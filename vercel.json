@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "cd htpl-react && npm install",
+  "buildCommand": "cd htpl-react && npm run build",
+  "outputDirectory": "htpl-react/dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
