@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Trailer-mounted firefighting pump">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a2a2e"/>
+      <stop offset="1" stop-color="#131315"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="50%" cy="46%" r="62%">
+      <stop offset="60%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.55"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <line x1="80" y1="430" x2="720" y2="430" stroke="rgba(239,236,229,0.12)" stroke-width="2"/>
+  <!-- trailer frame -->
+  <rect x="190" y="300" width="420" height="20" rx="4" fill="#3a3a3d"/>
+  <rect x="170" y="305" width="30" height="10" rx="3" fill="#6b6b6e"/>
+  <!-- pump body -->
+  <rect x="250" y="200" width="220" height="105" rx="12" fill="#d63924"/>
+  <rect x="250" y="200" width="220" height="105" rx="12" fill="none" stroke="#a82c1c" stroke-width="3"/>
+  <circle cx="305" cy="252" r="34" fill="#18181a" stroke="rgba(239,236,229,0.35)" stroke-width="3"/>
+  <circle cx="305" cy="252" r="12" fill="#6b6b6e"/>
+  <rect x="380" y="222" width="70" height="60" rx="8" fill="#efece5" opacity="0.85"/>
+  <!-- engine box -->
+  <rect x="470" y="225" width="120" height="80" rx="10" fill="#3a3a3d" stroke="rgba(239,236,229,0.3)" stroke-width="2"/>
+  <!-- coiled hoses -->
+  <circle cx="540" cy="180" r="34" fill="none" stroke="#efece5" stroke-width="10" opacity="0.7"/>
+  <circle cx="540" cy="180" r="18" fill="none" stroke="#efece5" stroke-width="8" opacity="0.5"/>
+  <!-- inlet/outlet stubs -->
+  <rect x="232" y="240" width="20" height="26" rx="4" fill="#6b6b6e"/>
+  <!-- wheels -->
+  <circle cx="300" cy="430" r="52" fill="#18181a" stroke="#6b6b6e" stroke-width="6"/>
+  <circle cx="300" cy="430" r="20" fill="#3a3a3d"/>
+  <circle cx="520" cy="430" r="52" fill="#18181a" stroke="#6b6b6e" stroke-width="6"/>
+  <circle cx="520" cy="430" r="20" fill="#3a3a3d"/>
+  <rect width="800" height="600" fill="url(#vig)"/>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Industrial utility van for hazmat and oil-spill recovery">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a2a2e"/>
+      <stop offset="1" stop-color="#131315"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="50%" cy="46%" r="62%">
+      <stop offset="60%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.55"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <line x1="60" y1="440" x2="740" y2="440" stroke="rgba(239,236,229,0.12)" stroke-width="2"/>
+  <!-- cab -->
+  <path d="M120 360 L120 250 L210 250 L250 200 L250 360 Z" fill="#efece5"/>
+  <path d="M205 252 L235 215 L235 252 Z" fill="#18181a" opacity="0.65"/>
+  <!-- body -->
+  <rect x="250" y="170" width="430" height="190" rx="10" fill="#d63924"/>
+  <rect x="250" y="170" width="430" height="190" rx="10" fill="none" stroke="#a82c1c" stroke-width="3"/>
+  <!-- white livery band -->
+  <rect x="250" y="290" width="430" height="40" fill="#efece5" opacity="0.92"/>
+  <!-- rear hose reels / storage compartments -->
+  <rect x="560" y="200" width="100" height="80" rx="6" fill="#18181a" opacity="0.5"/>
+  <circle cx="610" cy="240" r="26" fill="none" stroke="#efece5" stroke-width="8" opacity="0.7"/>
+  <circle cx="610" cy="240" r="12" fill="none" stroke="#efece5" stroke-width="6" opacity="0.5"/>
+  <rect x="300" y="195" width="90" height="70" rx="6" fill="#18181a" opacity="0.45"/>
+  <!-- hazard chevrons -->
+  <path d="M255 335 l16 -10 l0 12 l-16 10 Z" fill="#d63924"/>
+  <path d="M285 335 l16 -10 l0 12 l-16 10 Z" fill="#18181a"/>
+  <path d="M315 335 l16 -10 l0 12 l-16 10 Z" fill="#d63924"/>
+  <!-- wheels -->
+  <circle cx="220" cy="440" r="56" fill="#18181a" stroke="#6b6b6e" stroke-width="6"/>
+  <circle cx="220" cy="440" r="22" fill="#3a3a3d"/>
+  <circle cx="560" cy="440" r="56" fill="#18181a" stroke="#6b6b6e" stroke-width="6"/>
+  <circle cx="560" cy="440" r="22" fill="#3a3a3d"/>
+  <rect width="800" height="600" fill="url(#vig)"/>
+</svg>
