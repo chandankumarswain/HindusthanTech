@@ -80,7 +80,7 @@ export default function Gallery() {
 
           {/* 05 — light stat */}
           <article className="show-card is-light reveal">
-            <span className="show-n">37+</span>
+            <span className="show-n">38+</span>
             <span className="show-label">Years of experience</span>
             <span className="show-rule" aria-hidden="true"></span>
             <p className="show-desc">

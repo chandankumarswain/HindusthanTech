@@ -1,23 +1,23 @@
 const GROUPS = [
   {
     heading: 'Defence & Space',
-    clients: ['Indian Navy', 'Air Force', 'DRDO', 'HAL', 'ISRO'],
+    clients: ['Indian Navy', 'Indian Air Force', 'DRDO', 'HAL', 'ISRO', 'Ordnance Factories'],
   },
   {
     heading: 'Oil & Gas',
-    clients: ['IOCL', 'BPCL', 'HPCL', 'ONGC', 'GAIL', 'MRPL'],
+    clients: ['IOCL', 'BPCL', 'HPCL', 'ONGC', 'GAIL', 'MRPL', 'NRL'],
   },
   {
     heading: 'Steel & Power',
-    clients: ['NTPC', 'BHEL', 'SAIL', 'NSPCL', 'NPCIL', 'RINL'],
+    clients: ['NTPC', 'BHEL', 'SAIL', 'NSPCL', 'NPCIL', 'RINL', 'Tata Steel', 'NHPC'],
   },
   {
     heading: 'Fertilizer & State Fire Service',
     clients: [
       'IFFCO',
-      'Paradeep Phosphate',
+      'Paradeep Phosphates',
       'FACT',
-      'NFL Bhatinda',
+      'NFL Bathinda',
       'Odisha Fire Service',
       'WB Fire Service',
     ],

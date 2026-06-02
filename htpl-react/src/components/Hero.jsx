@@ -14,7 +14,7 @@ export default function Hero() {
             </h1>
             <p className="lead hero-lead">
               India's trusted manufacturer of firefighting vehicles and special purpose
-              vehicles for over 37 years — engineered for refineries, ports, defence
+              vehicles for over three decades — engineered for refineries, ports, defence
               establishments, and the front line.
             </p>
             <div className="hero-actions">
@@ -62,7 +62,7 @@ export default function Hero() {
 
             <div className="stat-card" style={{ top: '6%', left: '-3%' }}>
               <div className="n">
-                37<span className="accent">+</span>
+                38<span className="accent">+</span>
               </div>
               <div className="l">Years building</div>
             </div>

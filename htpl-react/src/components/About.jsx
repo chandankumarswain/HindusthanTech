@@ -51,13 +51,13 @@ export default function About() {
             <p className="about2-lead">
               Founded in <strong>1987</strong> at Jagatpur, Cuttack by{' '}
               <strong>Shri Mohan Ranjan Panda</strong>, Hindusthan Technologies Pvt. Ltd.
-              has spent over <strong>37 years</strong> building world-class firefighting and
+              has spent over <strong>three decades</strong> building world-class firefighting and
               special purpose vehicles — trusted across India's most critical sectors.
             </p>
 
             <div className="about2-stat">
               <span className="n">
-                37<span className="accent">+</span>
+                38<span className="accent">+</span>
               </span>
               <span className="l">Years of excellence · 500+ vehicles delivered</span>
             </div>
