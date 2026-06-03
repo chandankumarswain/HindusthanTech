@@ -1378,7 +1378,7 @@ section { position: relative; overflow-x: clip; }
   .tech-grid, .quality-grid, .process-steps { grid-template-columns: 1fr; }
   .step::after { display: none !important; }
   .statsbar-grid { grid-template-columns: 1fr; }
-  .statsbar-cell { border-right: none; }
+  .statsbar-cell { border-right: none; align-items: center; text-align: center; }
   /* pillars stay 2×2 on tablet (561–859px); collapse to one column only on phones */
   .commit-pillars { grid-template-columns: 1fr; }
 }
