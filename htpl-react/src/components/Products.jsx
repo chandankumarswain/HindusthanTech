@@ -10,7 +10,7 @@ const PRODUCTS = [
   {
     num: '01',
     title: 'Firefighting Trucks',
-    img: '/images/hitech-fire-tender.png',
+    img: '/images/fleet/tn-fire-rescue-tender.png',
     alt: 'HTPL heavy-duty firefighting truck',
     specs: [
       ['Use case', 'Industrial / Municipal'],
@@ -32,7 +32,7 @@ const PRODUCTS = [
   {
     num: '03',
     title: 'Quick Response Vehicles',
-    img: '/images/quick-response-vehicle.png',
+    img: '/images/fleet/tata-yodha-qrv.png',
     alt: 'Quick response fire-rescue vehicle',
     specs: [
       ['Use case', 'Urban / Industrial rescue'],
@@ -43,7 +43,7 @@ const PRODUCTS = [
   {
     num: '04',
     title: 'Diesel Bowser & Oil Tanker',
-    img: '/images/water-bowser.png',
+    img: '/images/fleet/nalco-oil-tanker.png',
     alt: 'Diesel bowser and oil tanker',
     specs: [
       ['Use case', 'Defence / Refinery'],
@@ -54,7 +54,7 @@ const PRODUCTS = [
   {
     num: '05',
     title: 'MOSRU / Gulley Sucker / Explosive Van',
-    img: '/images/mosru-explosive-van.svg',
+    img: '/images/fleet/sail-explosive-van.png',
     alt: 'Mobile oil-spill recovery / explosive utility van',
     specs: [
       ['Use case', 'Hazmat / Spill recovery'],

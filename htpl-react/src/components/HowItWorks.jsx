@@ -29,7 +29,7 @@ export default function HowItWorks() {
           {/* R1C1 — image */}
           <figure className="hiw-cell hiw-img reveal">
             <img
-              src="/images/hero-fire-tender.png"
+              src="/images/fleet/tn-ladder-tender.jpg"
               alt="HTPL fire tender at the start of the build journey"
               loading="lazy"
               decoding="async"
@@ -74,7 +74,7 @@ export default function HowItWorks() {
           {/* R2C2 — image */}
           <figure className="hiw-cell hiw-img reveal">
             <img
-              src="/images/hitech-fire-tender.png"
+              src="/images/fleet/fabrication-workshop.jpg"
               alt="HTPL fire tender in production at the Jagatpur workshop"
               loading="lazy"
               decoding="async"
@@ -105,7 +105,7 @@ export default function HowItWorks() {
           {/* R3C1 — image */}
           <figure className="hiw-cell hiw-img reveal">
             <img
-              src="/images/quick-response-vehicle.png"
+              src="/images/fleet/fact-handover.jpg"
               alt="HTPL vehicle delivered and deployed at customer site"
               loading="lazy"
               decoding="async"

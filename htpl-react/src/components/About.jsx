@@ -172,7 +172,7 @@ export default function About() {
           <div className="about2-media reveal">
             <figure className="about2-fig is-lg">
               <img
-                src="/images/hitech-fire-tender.png"
+                src="/images/fleet/delhi-foam-tender.png"
                 alt="HTPL heavy-duty firefighting truck built in-house"
                 loading="lazy"
                 decoding="async"
@@ -181,7 +181,7 @@ export default function About() {
             </figure>
             <figure className="about2-fig is-sm">
               <img
-                src="/images/cummins-x12-engine.png"
+                src="/images/fleet/water-tender-1920.png"
                 alt="Engine integration and precision engineering"
                 loading="lazy"
                 decoding="async"
@@ -190,7 +190,7 @@ export default function About() {
             </figure>
             <figure className="about2-fig is-sm">
               <img
-                src="/images/quick-response-vehicle.png"
+                src="/images/fleet/hyundai-water-tender.png"
                 alt="HTPL quick response vehicle ready for delivery"
                 loading="lazy"
                 decoding="async"

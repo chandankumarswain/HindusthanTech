@@ -45,7 +45,7 @@ export default function Gallery() {
           {/* 02 — image */}
           <figure className="show-card is-img reveal">
             <img
-              src="/images/hitech-fire-tender.png"
+              src="/images/fleet/chhattisgarh-tender.jpg"
               alt="Ashok Leyland Hi-Tech fire tender"
               loading="lazy"
               decoding="async"
@@ -107,7 +107,7 @@ export default function Gallery() {
             </span>
             <div className="show-thumb">
               <img
-                src="/images/quick-response-vehicle.png"
+                src="/images/fleet/ntpc-foam-fleet.jpg"
                 alt="Quick response fire-rescue vehicle"
                 loading="lazy"
                 decoding="async"
