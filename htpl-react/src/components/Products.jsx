@@ -21,7 +21,7 @@ const PRODUCTS = [
   {
     num: '02',
     title: 'Trailer & Portable Pumps',
-    img: '/images/trailer-portable-pump.svg',
+    img: '/images/fleet/trailer-portable-pump.png',
     alt: 'Trailer-mounted firefighting pump',
     specs: [
       ['Use case', 'Backup / Limited access'],
@@ -65,7 +65,7 @@ const PRODUCTS = [
   {
     num: '06',
     title: 'Blood Donation Van (MBDV)',
-    img: '/images/blood-donation-van.svg',
+    img: '/images/fleet/blood-donation-mbdv.png',
     alt: 'Mobile blood donation van',
     specs: [
       ['Use case', 'Healthcare outreach'],
