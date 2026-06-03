@@ -137,9 +137,14 @@ export default function Nav() {
       <div className="nav-inner">
         {/* LEFT — brand / logo */}
         <a href={NAV.home_link} className="brand" aria-label={NAV.aria_label}>
-          <span className="brand-mark" aria-hidden="true">
-            {NAV.brand_mark}
-          </span>
+          <img
+            className="brand-logo"
+            src="/images/htpl-logo.png"
+            alt=""
+            aria-hidden="true"
+            width="46"
+            height="46"
+          />
           <span className="brand-text">
             {NAV.brand_name[0]}
             <span>{NAV.brand_name[1]}</span>
@@ -205,9 +210,14 @@ export default function Nav() {
       >
         <div className="nav-drawer-head">
           <a href={NAV.home_link} className="brand" onClick={close}>
-            <span className="brand-mark" aria-hidden="true">
-              {NAV.brand_mark}
-            </span>
+            <img
+              className="brand-logo"
+              src="/images/htpl-logo.png"
+              alt=""
+              aria-hidden="true"
+              width="46"
+              height="46"
+            />
             <span className="brand-text">
               {NAV.brand_name[0]}
               <span>{NAV.brand_name[1]}</span>

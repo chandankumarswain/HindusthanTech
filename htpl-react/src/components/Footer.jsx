@@ -62,7 +62,14 @@ export default function Footer() {
           {/* COLUMN 01 — company overview + newsletter */}
           <div className="footer-brand reveal">
             <a href="#hero" className="brand" aria-label="Hindusthan Technologies — home">
-              <span className="brand-mark" aria-hidden="true">H</span>
+              <img
+                className="brand-logo"
+                src="/images/htpl-logo.png"
+                alt=""
+                aria-hidden="true"
+                width="48"
+                height="48"
+              />
               <span className="brand-text" style={{ color: 'var(--bone)' }}>
                 Hindusthan
                 <span style={{ color: 'rgba(239,236,229,0.55)' }}>Technologies</span>

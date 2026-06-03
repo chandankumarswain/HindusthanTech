@@ -171,6 +171,13 @@ section { position: relative; overflow-x: clip; }
   transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s;
 }
 .brand:hover .brand-mark { transform: translateY(-1px) rotate(-3deg); box-shadow: 0 10px 22px rgba(20,20,20,0.22); }
+/* transparent emblem logo — sits on any background (light nav · dark footer) */
+.brand-logo {
+  width: 46px; height: 46px; flex: none; display: block; object-fit: contain;
+  transition: transform .25s cubic-bezier(.2,.8,.2,1);
+}
+.brand:hover .brand-logo { transform: translateY(-1px) rotate(-3deg); }
+.footer .brand-logo { width: 48px; height: 48px; }
 .brand-text { font-size: 14px; font-weight: 600; line-height: 1.12; letter-spacing: 0.01em; }
 .brand-text span { display: block; color: var(--muted); font-weight: 500; font-size: 12.5px; }
 
