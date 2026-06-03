@@ -479,9 +479,9 @@ section { position: relative; overflow-x: clip; }
 }
 
 /* --- left column --- */
-.about2-head { font-size: 3rem; line-height: 1.05; letter-spacing: -0.025em; }
+.about2-head { font-size: clamp(2rem, 4.6vw, 3rem); line-height: 1.05; letter-spacing: -0.025em; }
 .about2-lead {
-  font-size: 1.2rem; line-height: 1.7; color: var(--ink-2);
+  font-size: clamp(1rem, 0.5rem + 1vw, 1.2rem); line-height: 1.7; color: var(--ink-2);
   max-width: 56ch; margin: 24px 0 0;
 }
 .about2-lead strong { color: var(--ink); font-weight: 600; }
@@ -530,21 +530,79 @@ section { position: relative; overflow-x: clip; }
 .about2-link:hover .arrow { transform: translateX(4px); }
 .about2-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-/* --- about responsive --- */
+/* --- right column: image composition (real HTPL product visuals) --- */
+.about2-media { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 1.6vw, 20px); align-content: center; }
+.about2-fig {
+  position: relative; margin: 0; overflow: hidden;
+  border-radius: var(--radius); border: 1px solid var(--line-2);
+  background: linear-gradient(160deg, var(--paper) 0%, var(--bone-2) 100%);
+  box-shadow: var(--shadow);
+}
+.about2-fig.is-lg { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+.about2-fig.is-sm { aspect-ratio: 4 / 3.4; }
+.about2-fig img { width: 100%; height: 100%; object-fit: contain; padding: 7%; }
+.about2-fig figcaption {
+  position: absolute; left: 16px; bottom: 13px; z-index: 2;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* --- stacked sub-blocks (industries band · vision/mission · core values) --- */
+.about2-industries,
+.about-block { margin-top: clamp(48px, 6vw, 88px); }
+.about2-industries { padding-top: clamp(40px, 5vw, 64px); border-top: 1px solid var(--line); }
+.about-block-head .eyebrow { margin-bottom: 14px; }
+.about-subhead { font-size: clamp(26px, 3vw, 40px); line-height: 1.05; letter-spacing: -0.02em; margin: 0; }
+
+/* vision & mission — two equal cards */
+.about-vm-grid {
+  margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 2.5vw, 28px); align-items: stretch;
+}
+.vm-card {
+  display: flex; flex-direction: column; gap: 14px;
+  background: var(--paper); border: 1px solid var(--line-2);
+  border-radius: var(--radius); padding: clamp(28px, 3vw, 40px); box-shadow: var(--shadow);
+}
+.vm-card .ic {
+  width: 48px; height: 48px; flex: none; border-radius: 12px;
+  background: var(--accent-wash); color: var(--accent-dk); display: grid; place-items: center;
+}
+.vm-card h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.6vw, 32px); letter-spacing: -0.02em; margin: 0; }
+.vm-card p { margin: 0; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.65; color: var(--ink-2); }
+
+/* core values — responsive card grid (4 · 2 · 1) */
+.values-grid {
+  margin-top: 30px; display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 1.8vw, 20px);
+}
+.value-card {
+  display: flex; flex-direction: column; gap: 10px;
+  background: var(--paper); border: 1px solid var(--line-2);
+  border-radius: 14px; padding: clamp(20px, 2vw, 26px);
+  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, border-color .25s;
+}
+.value-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--line); }
+.value-card .ic { color: var(--accent-dk); }
+.value-card h4 { margin: 0; font-size: clamp(15px, 1.1vw, 17px); font-weight: 600; letter-spacing: -0.01em; }
+.value-card p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.5; }
+
+/* --- about responsive --- (headings scale via clamp(); queries handle layout only) */
 @media (max-width: 991px) {
   .about2 { min-height: auto; }
   .about2-shell { padding-inline: 50px; }
+  /* tablet: stack story over images (content first), values to 2 columns */
   .about2-split { grid-template-columns: 1fr; gap: 48px; }
-  .about2-head { font-size: 2.5rem; }
-  .about2-lead { font-size: 1.1rem; }
+  .values-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 767px) {
   .about2-shell { padding-inline: 25px; }
-  .about2-head { font-size: 2.1rem; }
-  .about2-lead { font-size: 1rem; }
   .about2-actions .btn { flex: 1 1 auto; justify-content: center; }
   .industry-row { gap: 14px; padding: 16px 4px; }
   .industry-row .it-name { font-size: 16.5px; }
+  /* mobile: single column throughout */
+  .about-vm-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
