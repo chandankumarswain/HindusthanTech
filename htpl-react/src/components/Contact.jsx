@@ -11,16 +11,17 @@ export default function Contact() {
   return (
     <section className="section-pad" id="contact">
       <div className="wrap">
-        <div className="sec-head reveal" style={{ marginBottom: '48px' }}>
-          <p className="eyebrow">
-            <span className="dot"></span>Get in touch
-          </p>
-          <h2 className="display h-sec">
-            Contact <span className="italic-accent">us</span>
-          </h2>
-        </div>
         <div className="contact-grid">
-          <div className="contact-info reveal">
+          <div className="contact-left">
+            <div className="sec-head reveal">
+              <p className="eyebrow">
+                <span className="dot"></span>Get in touch
+              </p>
+              <h2 className="display h-sec">
+                Contact <span className="italic-accent">us</span>
+              </h2>
+            </div>
+            <div className="contact-info reveal">
             <div className="ci-item">
               <span className="ic">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
@@ -91,6 +92,7 @@ export default function Contact() {
                   Sunday: Closed
                 </div>
               </div>
+            </div>
             </div>
           </div>
 

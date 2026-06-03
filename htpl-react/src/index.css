@@ -1075,7 +1075,12 @@ section { position: relative; overflow-x: clip; }
 /* ============================================================
    CONTACT
    ============================================================ */
-.contact-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(36px, 5vw, 64px); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 4vw, 64px); align-items: center; width: 100%;
+}
+/* left column: badge + heading + contact info, vertically centered */
+.contact-left { display: flex; flex-direction: column; gap: clamp(26px, 3vw, 40px); }
 .contact-info { display: grid; gap: 22px; align-content: start; }
 .ci-item { display: flex; gap: 16px; align-items: flex-start; }
 .ci-item .ic { flex: none; width: 44px; height: 44px; border-radius: 11px; background: var(--accent-wash); color: var(--accent-dk); display: grid; place-items: center; }
@@ -1087,8 +1092,8 @@ section { position: relative; overflow-x: clip; }
   background: var(--paper); border: 1px solid var(--line-2);
   border-radius: var(--radius); padding: clamp(26px, 3vw, 40px); box-shadow: var(--shadow);
 }
-.contact-form h3 { font-family: var(--serif); font-size: 27px; font-weight: 400; margin: 0 0 24px; letter-spacing: -0.02em; }
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.contact-form h3 { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 27px); font-weight: 400; margin: 0 0 24px; letter-spacing: -0.02em; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .field { display: flex; flex-direction: column; gap: 7px; }
 .field.full { grid-column: 1 / -1; }
 .field label { font-size: 12.5px; font-weight: 600; color: var(--ink-2); letter-spacing: 0.02em; }
@@ -1102,7 +1107,17 @@ section { position: relative; overflow-x: clip; }
   border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-wash);
 }
 .field textarea { resize: vertical; min-height: 110px; }
-.form-submit { margin-top: 22px; }
+.form-submit { margin-top: 24px; }
+
+/* --- contact responsive: 50/50 on desktop & tablet · single column on mobile --- */
+@media (max-width: 991px) {
+  /* tablet keeps the 50/50 split; the form's inner fields stack so they never crowd */
+  .form-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  /* mobile: single column — contact info first, then the form */
+  .contact-grid { grid-template-columns: 1fr; align-items: stretch; gap: clamp(28px, 6vw, 40px); }
+}
 
 /* ============================================================
    FOOTER  —  premium industrial close
@@ -1297,14 +1312,13 @@ section { position: relative; overflow-x: clip; }
 }
 
 @media (max-width: 860px) {
-  .about-grid, .commit-grid, .contact-grid, .process-quality { grid-template-columns: 1fr; }
+  .about-grid, .commit-grid, .process-quality { grid-template-columns: 1fr; }
   .clients-groups { grid-template-columns: 1fr; }
   .about-badge { left: 0; }
 }
 @media (max-width: 560px) {
   .tech-grid, .quality-grid, .process-steps { grid-template-columns: 1fr; }
   .step::after { display: none !important; }
-  .form-grid { grid-template-columns: 1fr; }
   .statsbar-grid { grid-template-columns: 1fr; }
   .statsbar-cell { border-right: none; }
   /* pillars stay 2×2 on tablet (561–859px); collapse to one column only on phones */
