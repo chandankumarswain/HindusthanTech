@@ -1546,28 +1546,6 @@ section { position: relative; overflow-x: clip; }
 .ap-badge-logo { width: 50%; height: 50%; object-fit: contain; }
 @keyframes apSpin { to { transform: rotate(360deg); } }
 
-/* brand statement + stats (one centered full-screen intro) */
-.ap-intro .ap-shell {
-  display: flex; flex-direction: column; align-items: center;
-  gap: clamp(36px, 5vw, 64px);
-}
-.ap-statement {
-  margin: 0; max-width: 30ch; text-align: center;
-  font-family: var(--serif); font-weight: 400;
-  font-size: clamp(1.6rem, 3.4vw, 2.8rem); line-height: 1.2; letter-spacing: -0.02em;
-}
-.ap-statement-muted { color: var(--muted); }
-/* stats span the full section width, the 4 cells distributed equally */
-.ap-stats {
-  width: 100%; margin: 0;
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2vw, 32px);
-  border-block: 1px solid var(--line); padding-block: clamp(26px, 3vw, 40px);
-}
-.ap-stat { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
-.ap-stat .n { font-family: var(--serif); font-size: clamp(34px, 4vw, 54px); line-height: 0.9; letter-spacing: -0.03em; }
-.ap-stat .accent { color: var(--accent); }
-.ap-stat .l { font-size: 13px; color: var(--muted); letter-spacing: 0.03em; }
-
 /* mission / vision alternating blocks */
 .ap-block { padding-block: clamp(40px, 5vw, 72px); }
 .ap-split {
@@ -1627,7 +1605,6 @@ section { position: relative; overflow-x: clip; }
   .ap-hero-media { aspect-ratio: 16 / 10; max-width: 620px; }
   .ap-split { grid-template-columns: 1fr; gap: clamp(28px, 4vw, 40px); }
   .ap-media { aspect-ratio: 16 / 10; }
-  .ap-stats { grid-template-columns: repeat(2, 1fr); }
   /* values: 2 columns, single-step stagger */
   .ap-values-grid { grid-template-columns: repeat(2, 1fr); }
   .ap-values-grid > :nth-child(3n + 2),
@@ -1637,7 +1614,6 @@ section { position: relative; overflow-x: clip; }
 /* mobile — 25px gutters */
 @media (max-width: 767px) {
   .ap-shell { padding-inline: 25px; }
-  .ap-stats { gap: 22px 20px; }
   .ap-cta-actions .btn { flex: 1 1 auto; justify-content: center; }
   /* values: single column, no stagger */
   .ap-values-grid { grid-template-columns: 1fr; }

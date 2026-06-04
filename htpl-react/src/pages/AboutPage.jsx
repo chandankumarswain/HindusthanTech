@@ -47,34 +47,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ---- Brand statement + stats ---- */}
-        <section className="ap-intro">
-          <div className="ap-shell">
-            <p className="ap-statement reveal">
-              When seconds decide outcomes,{' '}
-              <span className="ap-statement-muted">we build the truck.</span>
-            </p>
-            <div className="ap-stats">
-              <div className="ap-stat reveal">
-                <span className="n">38<span className="accent">+</span></span>
-                <span className="l">Years of excellence</span>
-              </div>
-              <div className="ap-stat reveal">
-                <span className="n">500<span className="accent">+</span></span>
-                <span className="l">Vehicles delivered</span>
-              </div>
-              <div className="ap-stat reveal">
-                <span className="n">50<span className="accent">+</span></span>
-                <span className="l">PSU clients</span>
-              </div>
-              <div className="ap-stat reveal">
-                <span className="n">ISO</span>
-                <span className="l">9001:2015 certified</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* ---- Our Mission: image left · text + checklist right ---- */}
         <section className="ap-block">
           <div className="ap-shell ap-split">
