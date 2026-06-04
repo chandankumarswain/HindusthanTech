@@ -149,14 +149,32 @@ export default function About() {
                 <span className="dot"></span>What we serve
               </p>
               <h3 className="display about2-subhead">Built for critical industries</h3>
-              <figure className="serve-media">
-                <img
-                  src="/images/fleet/bpcl-mosru-tanker.jpg"
-                  alt="HTPL special-purpose vehicle serving India's critical industries"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </figure>
+              <div className="serve-collage">
+                <figure className="serve-pic serve-pic-1">
+                  <img
+                    src="/images/fleet/dcp-tender.jpg"
+                    alt="HTPL DCP fire tender"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <figure className="serve-pic serve-pic-2">
+                  <img
+                    src="/images/fleet/ntpc-foam-fleet.jpg"
+                    alt="HTPL foam tender fleet for power plants"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <figure className="serve-pic serve-pic-3">
+                  <img
+                    src="/images/fleet/bpcl-mosru-tanker.jpg"
+                    alt="HTPL special-purpose vehicle serving India's critical industries"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+              </div>
               <a href="#clients" className="about2-link">
                 Know our clients <span className="arrow">→</span>
               </a>
