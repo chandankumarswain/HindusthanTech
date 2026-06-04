@@ -1494,11 +1494,22 @@ section { position: relative; overflow-x: clip; }
    ABOUT PAGE  (/about)  — reuses all site tokens, 80/50/25 gutters
    ============================================================ */
 .about-page { background: var(--bone); color: var(--ink); }
-/* same container width (--maxw) + the site's 80/50/25 padding system */
-.ap-shell { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: 80px; }
+/* full-width sections (100% relative) + the site's 80/50/25 padding system */
+.ap-shell { width: 100%; padding-inline: 80px; }
+
+/* every About-page section fills the viewport, content vertically centred.
+   min-height (not fixed) lets dense content (e.g. 9 value cards on mobile)
+   grow past 100vh instead of clipping. */
+.about-page > section {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding-block: clamp(40px, 6vh, 80px);
+}
+@supports (min-height: 100dvh) {
+  .about-page > section { min-height: 100dvh; }
+}
 
 /* hero */
-.ap-hero { padding-top: clamp(36px, 5vw, 72px); padding-bottom: clamp(36px, 5vw, 64px); }
 .ap-hero-grid {
   display: grid; grid-template-columns: 1.1fr 0.9fr;
   gap: clamp(40px, 5vw, 64px); align-items: center;
@@ -1535,18 +1546,15 @@ section { position: relative; overflow-x: clip; }
 .ap-badge-logo { width: 50%; height: 50%; object-fit: contain; }
 @keyframes apSpin { to { transform: rotate(360deg); } }
 
-/* brand statement */
-.ap-statement-wrap { padding-block: clamp(40px, 6vw, 80px); }
+/* brand statement + stats (one full-screen intro) */
 .ap-statement {
   margin: 0 auto; max-width: 24ch; text-align: center;
   font-family: var(--serif); font-weight: 400;
   font-size: clamp(1.6rem, 3.4vw, 2.8rem); line-height: 1.2; letter-spacing: -0.02em;
 }
 .ap-statement-muted { color: var(--muted); }
-
-/* stats */
-.ap-stats-wrap { padding-bottom: clamp(40px, 5vw, 64px); }
 .ap-stats {
+  margin-top: clamp(36px, 5vw, 64px);
   display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 3vw, 40px);
   border-block: 1px solid var(--line); padding-block: clamp(26px, 3vw, 40px);
 }
