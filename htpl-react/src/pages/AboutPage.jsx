@@ -62,6 +62,12 @@ export default function AboutPage() {
               </figure>
             </div>
 
+          </div>
+        </section>
+
+        {/* ---- Stats band (primary red, centered) ---- */}
+        <section className="ap-stats-section">
+          <div className="ap-shell">
             <div className="ap-statsband reveal">
               <div className="ap-sb">
                 <span className="ap-sb-n">38<span className="ap-sb-suf">+</span></span>

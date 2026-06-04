@@ -1530,19 +1530,29 @@ section { position: relative; overflow-x: clip; }
 .ap-col-sm { aspect-ratio: 1 / 1.05; align-self: end; }
 .ap-col-md { aspect-ratio: 1 / 1.1; align-self: start; }
 
-/* stats band under the hero — 4 figures split by vertical dividers */
+/* stats band — full-width primary-red section, centered figures with dividers.
+   higher specificity than `.about-page > section` so it opts out of 100vh */
+.about-page > section.ap-stats-section {
+  min-height: 0;
+  display: block;
+  background: var(--accent); color: #fff;
+  padding-block: clamp(56px, 7vw, 100px);   /* top/bottom 100 on desktop */
+}
 .ap-statsband {
-  margin-top: clamp(36px, 5vw, 60px);
   display: grid; grid-template-columns: repeat(4, 1fr); row-gap: clamp(24px, 4vw, 32px);
 }
-.ap-sb { padding-inline: clamp(18px, 2.4vw, 40px); border-left: 1px solid var(--line); }
-.ap-sb:first-child { border-left: none; padding-left: 0; }
+.ap-sb {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding-inline: clamp(18px, 2.4vw, 40px);
+  border-left: 1px solid rgba(255, 255, 255, 0.28);
+}
+.ap-sb:first-child { border-left: none; }
 .ap-sb-n {
-  display: block; font-family: var(--serif); font-weight: 400;
-  font-size: clamp(34px, 4vw, 54px); line-height: 1; letter-spacing: -0.02em; color: var(--accent);
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(34px, 4vw, 54px); line-height: 1; letter-spacing: -0.02em; color: #fff;
 }
 .ap-sb-suf { font-size: 0.5em; font-weight: 600; }
-.ap-sb-l { display: block; margin-top: 12px; font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+.ap-sb-l { margin-top: 12px; font-size: 14px; line-height: 1.4; color: rgba(255, 255, 255, 0.88); }
 
 /* mission / vision alternating blocks */
 .ap-block { padding-block: clamp(40px, 5vw, 72px); }
@@ -1600,8 +1610,8 @@ section { position: relative; overflow-x: clip; }
   .ap-hero-head .ap-intro { max-width: 60ch; }
   /* stats band: 2 columns, divider only between the pair in each row */
   .ap-statsband { grid-template-columns: repeat(2, 1fr); }
-  .ap-sb { padding-inline: clamp(18px, 4vw, 28px); border-left: 1px solid var(--line); }
-  .ap-sb:nth-child(odd) { border-left: none; padding-left: 0; }
+  .ap-sb { padding-inline: clamp(18px, 4vw, 28px); border-left: 1px solid rgba(255, 255, 255, 0.28); }
+  .ap-sb:nth-child(odd) { border-left: none; }
   .ap-split { grid-template-columns: 1fr; gap: clamp(28px, 4vw, 40px); }
   .ap-media { aspect-ratio: 16 / 10; }
   /* values: 2 columns, single-step stagger */
@@ -1618,8 +1628,8 @@ section { position: relative; overflow-x: clip; }
   .ap-hero-collage { grid-template-columns: 1fr; gap: clamp(16px, 4vw, 22px); }
   .ap-col-lg, .ap-col-sm, .ap-col-md { aspect-ratio: 16 / 11; align-self: auto; }
   /* stats band: single column on small phones */
-  .ap-statsband { grid-template-columns: 1fr; row-gap: 22px; }
-  .ap-sb, .ap-sb:nth-child(odd) { border-left: none; padding-left: 0; }
+  .ap-statsband { grid-template-columns: 1fr; row-gap: 26px; }
+  .ap-sb, .ap-sb:nth-child(odd) { border-left: none; }
   /* values: single column, no stagger */
   .ap-values-grid { grid-template-columns: 1fr; }
   .ap-values-grid > * { transform: none; }
