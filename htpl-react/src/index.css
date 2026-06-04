@@ -533,6 +533,52 @@ section { position: relative; overflow-x: clip; }
 .about2-link:hover .arrow { transform: translateX(4px); }
 .about2-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
+/* --- "What we serve": sticky aside (40%) + scroll-driven cards (60%) --- */
+.serve-layout {
+  margin-top: 26px;
+  display: grid; grid-template-columns: 40% 1fr;
+  gap: clamp(48px, 5vw, 64px); align-items: start;
+}
+.serve-aside { position: sticky; top: calc(var(--nav-h) + 24px); align-self: start; }
+.serve-aside .about2-subhead { margin-top: 4px; }
+.serve-media {
+  margin: 22px 0; overflow: hidden;
+  border-radius: var(--radius); border: 1px solid var(--line-2); box-shadow: var(--shadow);
+  aspect-ratio: 4 / 4.2;
+}
+.serve-media img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(0.95) contrast(1.02);
+}
+
+/* right column — stacked numbered cards */
+.serve-list { display: flex; flex-direction: column; gap: clamp(20px, 2vw, 24px); margin: 0; }
+.industry-row.serve-card {
+  align-items: flex-start; gap: 18px;
+  padding: clamp(24px, 2.4vw, 32px);
+  border: 1px solid var(--line-2); border-radius: var(--radius);
+  background: var(--paper); box-shadow: var(--shadow);
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease,
+              border-color .3s ease;
+}
+.serve-list li:last-child .serve-card { border-bottom: 1px solid var(--line-2); }
+.serve-card .idx { font-size: clamp(20px, 2vw, 26px); line-height: 1; margin-top: 2px; }
+.serve-card .it-name { font-size: clamp(18px, 1.5vw, 21px); }
+.serve-card .it-desc { font-size: 14px; max-width: 46ch; }
+.serve-card .it-arrow { align-self: center; }
+/* hover + scroll-active card emphasis (existing accent tokens — no new colors) */
+.industry-row.serve-card:hover, .industry-row.serve-card:focus-visible {
+  padding-left: clamp(24px, 2.4vw, 32px);
+  background: var(--paper); border-radius: var(--radius);
+  border-color: var(--accent); box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+.serve-card.is-active { border-color: var(--accent); box-shadow: var(--shadow-lg); }
+.serve-card.is-active .it-name { color: var(--accent-dk); }
+@media (prefers-reduced-motion: reduce) {
+  .industry-row.serve-card { transition: none; }
+}
+
 /* --- right column: image composition (real HTPL product visuals) --- */
 .about2-media { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 1.6vw, 20px); align-content: center; }
 .about2-fig {
@@ -611,6 +657,10 @@ section { position: relative; overflow-x: clip; }
   /* tablet: stack story over images (content first), values to 2 columns */
   .about2-split { grid-template-columns: 1fr; gap: 48px; }
   .values-grid { grid-template-columns: repeat(2, 1fr); }
+  /* "What we serve": no sticky — vertical flow (badge · heading · image · cards) */
+  .serve-layout { grid-template-columns: 1fr; gap: clamp(28px, 4vw, 40px); }
+  .serve-aside { position: static; top: auto; }
+  .serve-media { aspect-ratio: 16 / 9; max-width: 560px; }
 }
 @media (max-width: 767px) {
   .about2-shell { padding-inline: 25px; }

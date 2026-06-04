@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 const INDUSTRIES = [
   {
     name: 'Oil, Gas & Refineries',
@@ -114,6 +116,23 @@ const VALUES = [
 ]
 
 export default function About() {
+  /* Highlight the industry card crossing the viewport centre — sequential,
+     storytelling read on desktop; reuses the site's IntersectionObserver
+     animation language (no new deps). Native position:sticky handles the
+     sticky-left / release-at-end behaviour. */
+  useEffect(() => {
+    const cards = document.querySelectorAll('.serve-card')
+    if (!cards.length) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => e.target.classList.toggle('is-active', e.isIntersecting))
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: 0 }
+    )
+    cards.forEach((c) => io.observe(c))
+    return () => io.disconnect()
+  }, [])
+
   return (
     <section className="about2" id="about">
       <div className="about2-shell">
@@ -200,35 +219,46 @@ export default function About() {
           </div>
         </div>
 
-        {/* industries served — preserved, now a full-width band */}
-        <div className="about2-industries reveal">
-          <p className="eyebrow">
-            <span className="dot"></span>What we serve
-          </p>
-          <h3 className="display about2-subhead">Built for critical industries</h3>
+        {/* What we serve — sticky aside + scroll-driven industry cards (reference-inspired) */}
+        <div className="about2-industries">
+          <div className="serve-layout">
+            <aside className="serve-aside reveal">
+              <p className="eyebrow">
+                <span className="dot"></span>What we serve
+              </p>
+              <h3 className="display about2-subhead">Built for critical industries</h3>
+              <figure className="serve-media">
+                <img
+                  src="/images/fleet/bpcl-mosru-tanker.jpg"
+                  alt="HTPL special-purpose vehicle serving India's critical industries"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <a href="#clients" className="about2-link">
+                Know our clients <span className="arrow">→</span>
+              </a>
+            </aside>
 
-          <ul className="industries">
-            {INDUSTRIES.map((it, i) => (
-              <li key={it.name}>
-                <a className="industry-row" href={it.href}>
-                  <span className="idx">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="it-text">
-                    <span className="it-name">{it.name}</span>
-                    <span className="it-desc">{it.desc}</span>
-                  </span>
-                  <span className="it-arrow" aria-hidden="true">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h13M13 6l6 6-6 6" />
-                    </svg>
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <a href="#clients" className="about2-link">
-            Know our clients <span className="arrow">→</span>
-          </a>
+            <ul className="industries serve-list">
+              {INDUSTRIES.map((it, i) => (
+                <li key={it.name}>
+                  <a className="industry-row serve-card reveal" href={it.href}>
+                    <span className="idx">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="it-text">
+                      <span className="it-name">{it.name}</span>
+                      <span className="it-desc">{it.desc}</span>
+                    </span>
+                    <span className="it-arrow" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h13M13 6l6 6-6 6" />
+                      </svg>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* 3 — vision & mission */}
