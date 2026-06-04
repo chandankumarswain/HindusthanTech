@@ -202,32 +202,23 @@ section { position: relative; overflow-x: clip; }
 .nav-right { display: flex; align-items: center; gap: 16px; justify-self: end; }
 .nav-phone { font-size: 14px; font-weight: 500; color: var(--ink-2); white-space: nowrap; transition: color .2s; }
 .nav-phone:hover { color: var(--accent); }
-/* split CTA — primary-red pill + circular arrow orb */
+/* CTA — single primary-red pill with the arrow inside (same colour + font) */
 .cta-split {
-  display: inline-flex; align-items: center; gap: 6px;
-  border-radius: 999px;
-  transition: transform .25s cubic-bezier(.2,.8,.2,1);
-}
-.cta-pill,
-.cta-orb {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 13px 22px; border-radius: 999px;
   background: var(--accent); color: #fff;
   box-shadow: 0 10px 24px rgba(214,57,36,0.30);
-  transition: background .2s ease, box-shadow .25s ease;
-}
-.cta-pill {
-  padding: 13px 24px; border-radius: 999px;
   font-family: var(--sans); font-size: 15px; font-weight: 600; letter-spacing: 0.01em;
   white-space: nowrap;
+  transition: transform .25s cubic-bezier(.2,.8,.2,1), background .2s ease, box-shadow .25s ease;
 }
-.cta-orb {
-  width: 46px; height: 46px; flex: none; border-radius: 50%;
-  display: grid; place-items: center;
+.cta-arrow { display: inline-grid; place-items: center; }
+.cta-arrow svg { display: block; transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+.cta-split:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: var(--accent-dk); box-shadow: 0 14px 30px rgba(214,57,36,0.38);
 }
-.cta-orb svg { transition: transform .25s cubic-bezier(.2,.8,.2,1); }
-.cta-split:hover { transform: translateY(-2px) scale(1.02); }
-.cta-split:hover .cta-pill,
-.cta-split:hover .cta-orb { background: var(--accent-dk); box-shadow: 0 14px 30px rgba(214,57,36,0.38); }
-.cta-split:hover .cta-orb svg { transform: translateX(2px); }
+.cta-split:hover .cta-arrow svg { transform: translateX(3px); }
 .cta-split:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
 /* --- hamburger toggle (hidden on desktop) --- */
