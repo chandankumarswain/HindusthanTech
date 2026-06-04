@@ -13,19 +13,21 @@ export default function AboutPage() {
     <>
       <Nav />
       <main className="about-page">
-        {/* ---- Hero: breadcrumb + heading + intro + image with rotating badge ---- */}
+        {/* ---- Hero: header row (heading + intro) above a 3-image collage ---- */}
         <section className="ap-hero">
-          <div className="ap-shell ap-hero-grid">
-            <div className="ap-hero-text reveal">
-              <p className="ap-crumb">
-                <a href="/">Home</a> <span aria-hidden="true">/</span>{' '}
-                <span className="ap-crumb-current">About</span>
-              </p>
-              <h1 className="display ap-title">
-                Engineered for the{' '}
-                <span className="italic-accent">industries that matter.</span>
-              </h1>
-              <p className="lead ap-intro">
+          <div className="ap-shell">
+            <div className="ap-hero-head">
+              <div className="ap-hero-head-l reveal">
+                <p className="ap-crumb">
+                  <a href="/">Home</a> <span aria-hidden="true">/</span>{' '}
+                  <span className="ap-crumb-current">About</span>
+                </p>
+                <h1 className="display ap-title">
+                  Engineered for the{' '}
+                  <span className="italic-accent">industries that matter.</span>
+                </h1>
+              </div>
+              <p className="lead ap-intro reveal">
                 Founded in <strong>1987</strong> at Jagatpur, Cuttack by{' '}
                 <strong>Shri Mohan Ranjan Panda</strong>, Hindusthan Technologies Pvt. Ltd.
                 has spent over <strong>three decades</strong> building world-class firefighting
@@ -33,17 +35,32 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <figure className="ap-hero-media reveal">
-              <img
-                src="/images/fleet/htpl-build-rear.jpg"
-                alt="HTPL fire tender built at the Jagatpur facility"
-                loading="eager"
-                decoding="async"
-              />
-              <span className="ap-badge" aria-hidden="true">
-                <img className="ap-badge-logo" src="/images/htpl-logo.png" alt="" />
-              </span>
-            </figure>
+            <div className="ap-hero-collage reveal">
+              <figure className="ap-col ap-col-sm">
+                <img
+                  src="/images/fleet/fabrication-workshop.jpg"
+                  alt="HTPL fire vehicles in production at the Jagatpur workshop"
+                  loading="eager"
+                  decoding="async"
+                />
+              </figure>
+              <figure className="ap-col ap-col-lg">
+                <img
+                  src="/images/fleet/htpl-build-rear.jpg"
+                  alt="HTPL fire tender built at the Jagatpur facility"
+                  loading="eager"
+                  decoding="async"
+                />
+              </figure>
+              <figure className="ap-col ap-col-md">
+                <img
+                  src="/images/fleet/chhattisgarh-tender.jpg"
+                  alt="HTPL Ashok Leyland fire tender"
+                  loading="eager"
+                  decoding="async"
+                />
+              </figure>
+            </div>
           </div>
         </section>
 
