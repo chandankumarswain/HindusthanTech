@@ -21,7 +21,7 @@ const NAV = {
 
 const LINKS = [
   { label: 'Home', href: NAV.home_link },
-  { label: 'About Us', href: NAV.about_link },
+  { label: 'About Us', href: '/about' },
   { label: 'Products', href: NAV.products_link },
   { label: 'Gallery', href: NAV.gallery_link },
   { label: 'Technology', href: NAV.technology_link },
@@ -37,6 +37,11 @@ export default function Nav() {
   const toggleRef = useRef(null)
 
   const close = useCallback(() => setOpen(false), [])
+
+  /* On non-home pages (e.g. /about), section anchors must point back to the
+     landing page: "#products" → "/#products". On home they stay native hashes. */
+  const onHome = (window.location.pathname.replace(/\/+$/, '') || '/') === '/'
+  const resolveHref = (href) => (href.startsWith('#') && !onHome ? `/${href}` : href)
 
   /* Shadow + intelligent hide-on-scroll-down / show-on-scroll-up.
      rAF-throttled, transform-only — no re-render storms, no layout shift. */
@@ -136,7 +141,7 @@ export default function Nav() {
     >
       <div className="nav-inner">
         {/* LEFT — brand / logo */}
-        <a href={NAV.home_link} className="brand" aria-label={NAV.aria_label}>
+        <a href={resolveHref(NAV.home_link)} className="brand" aria-label={NAV.aria_label}>
           <img
             className="brand-logo"
             src="/images/htpl-logo.png"
@@ -154,7 +159,7 @@ export default function Nav() {
         {/* CENTER — primary navigation */}
         <nav className="nav-links" aria-label="Primary">
           {LINKS.map((l) => (
-            <a key={l.href} href={l.href}>
+            <a key={l.href} href={resolveHref(l.href)}>
               {l.label}
             </a>
           ))}
@@ -169,7 +174,7 @@ export default function Nav() {
             >
             </a>
           )}
-          <a href={NAV.cta_link} className="cta-split nav-cta" aria-label={NAV.cta_text}>
+          <a href={resolveHref(NAV.cta_link)} className="cta-split nav-cta" aria-label={NAV.cta_text}>
             <span className="cta-pill">{NAV.cta_text}</span>
             <span className="cta-orb" aria-hidden="true">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -209,7 +214,7 @@ export default function Nav() {
         aria-label="Site menu"
       >
         <div className="nav-drawer-head">
-          <a href={NAV.home_link} className="brand" onClick={close}>
+          <a href={resolveHref(NAV.home_link)} className="brand" onClick={close}>
             <img
               className="brand-logo"
               src="/images/htpl-logo.png"
@@ -238,14 +243,14 @@ export default function Nav() {
 
         <nav className="nav-drawer-links" aria-label="Mobile">
           {LINKS.map((l) => (
-            <a key={l.href} href={l.href} onClick={close}>
+            <a key={l.href} href={resolveHref(l.href)} onClick={close}>
               {l.label}
             </a>
           ))}
         </nav>
 
         <div className="nav-drawer-foot">
-          <a href={NAV.cta_link} className="btn btn-primary" onClick={close}>
+          <a href={resolveHref(NAV.cta_link)} className="btn btn-primary" onClick={close}>
             {NAV.cta_text} <span className="arrow">→</span>
           </a>
           {NAV.phone_number && (

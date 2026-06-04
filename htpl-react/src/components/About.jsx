@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { CREDENTIALS } from '../data/company'
 
 const INDUSTRIES = [
   {
@@ -30,88 +31,6 @@ const INDUSTRIES = [
     name: 'Industrial & Manufacturing',
     desc: 'Special purpose vehicles for plants, estates and refineries.',
     href: '#products',
-  },
-]
-
-const CREDENTIALS = ['MSME Recognized', 'DGQA Approved', 'ISO 9001:2015']
-
-/* Core values — text verbatim from the HTPL company profile (PDF) */
-const VALUES = [
-  {
-    name: 'Safety',
-    desc: 'We prioritize safety in every aspect of our design, manufacturing, testing, and service processes to support reliable emergency response operations.',
-    icon: <path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z" />,
-  },
-  {
-    name: 'Quality',
-    desc: 'We are committed to delivering high-quality fire fighting vehicles and equipment that meet stringent performance and durability standards.',
-    icon: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <path d="M8.5 12l2.5 2.5 5-5" />
-      </>
-    ),
-  },
-  {
-    name: 'Integrity',
-    desc: 'We conduct our business with honesty, transparency, accountability, and ethical practices in all dealings with customers, employees, suppliers, and government organizations.',
-    icon: (
-      <>
-        <path d="M12 3v18M7 21h10M5 7h14" />
-        <path d="M8 7l-3 5.5h6zM16 7l-3 5.5h6z" />
-      </>
-    ),
-  },
-  {
-    name: 'Innovation',
-    desc: 'We continuously improve our technology, engineering, and manufacturing capabilities to provide advanced and efficient fire fighting solutions.',
-    icon: (
-      <>
-        <path d="M9 18h6M10 21h4" />
-        <path d="M12 3a6 6 0 0 0-3.8 10.6c.5.4.8 1 .8 1.6v.8h6v-.8c0-.6.3-1.2.8-1.6A6 6 0 0 0 12 3z" />
-      </>
-    ),
-  },
-  {
-    name: 'Customer Commitment',
-    desc: 'We strive to understand and fulfill customer requirements through dependable products, timely delivery, and responsive after-sales support.',
-    icon: <path d="M21 11.5a8.4 8.4 0 0 1-9 8.3L3 21l1.2-3.6A8.4 8.4 0 1 1 21 11.5z" />,
-  },
-  {
-    name: 'Reliability',
-    desc: 'We build products that emergency services can depend upon during critical operations where performance and durability are essential.',
-    icon: (
-      <>
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v5l3 2" />
-      </>
-    ),
-  },
-  {
-    name: 'Teamwork',
-    desc: 'We value collaboration, mutual respect, and shared responsibility among employees, partners, and stakeholders.',
-    icon: (
-      <>
-        <circle cx="9" cy="8" r="3" />
-        <circle cx="17" cy="9" r="2.5" />
-        <path d="M3 20c0-3 2.5-5 6-5s6 2 6 5M15.5 14c2.5 0 4.5 1.8 4.5 4.5" />
-      </>
-    ),
-  },
-  {
-    name: 'Excellence',
-    desc: 'We pursue operational excellence through continuous improvement, skilled workmanship, and adherence to industry standards.',
-    icon: <path d="M12 3l2.6 5.6 6 .8-4.4 4.1 1.1 6L12 16.8 6.7 19.6l1.1-6L3.4 9.4l6-.8z" />,
-  },
-  {
-    name: 'Responsibility',
-    desc: 'We are committed to contributing to public safety, environmental responsibility, and sustainable business practices.',
-    icon: (
-      <>
-        <path d="M5 20c0-8 6-15 15-15 0 8-6 15-15 15z" />
-        <path d="M5 20c3.5-1 7-4 9-8" />
-      </>
-    ),
   },
 ]
 
@@ -162,8 +81,11 @@ export default function About() {
             </div>
 
             <div className="about2-actions">
-              <a href="#products" className="btn btn-primary">
-                Explore products <span className="arrow">→</span>
+              <a href="/about" className="btn btn-primary">
+                Learn more <span className="arrow">→</span>
+              </a>
+              <a href="#products" className="btn btn-ghost">
+                Explore products
               </a>
               <a href="#contact" className="btn btn-ghost">
                 Talk to our team
@@ -258,91 +180,6 @@ export default function About() {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-
-        {/* 3 — vision & mission */}
-        <div className="about-block about-screen">
-          <div className="about-block-head reveal">
-            <p className="eyebrow">
-              <span className="dot"></span>Our purpose
-            </p>
-            <h3 className="display about-subhead">Vision &amp; mission</h3>
-          </div>
-          {/* editorial diagonal — Vision text ↔ image, image ↔ Mission text */}
-          <div className="vm-editorial">
-            <article className="vm-card reveal">
-              <span className="ic" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-              </span>
-              <h3>Vision</h3>
-              <p>
-                To become a nationally trusted leader in fire tender and emergency vehicle
-                manufacturing by delivering innovative, reliable, and high-quality solutions
-                that enhance fire safety and emergency response capabilities.
-              </p>
-            </article>
-
-            <figure className="vm-media reveal">
-              <img
-                src="/images/fleet/sail-rsp-night-ops.jpg"
-                alt="HTPL fire tender in active emergency response"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-
-            <figure className="vm-media reveal">
-              <img
-                src="/images/fleet/fabrication-workshop.jpg"
-                alt="Fire vehicles in production at the HTPL Jagatpur facility"
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-
-            <article className="vm-card reveal">
-              <span className="ic" aria-hidden="true">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="9" />
-                  <circle cx="12" cy="12" r="5" />
-                  <circle cx="12" cy="12" r="1.5" />
-                </svg>
-              </span>
-              <h3>Mission</h3>
-              <p>
-                To manufacture reliable and high-performance fire-fighting and rescue vehicles
-                through innovative engineering, quality manufacturing, timely delivery, and
-                dedicated customer support, while contributing to public safety and emergency
-                preparedness.
-              </p>
-            </article>
-          </div>
-        </div>
-
-        {/* 4 — core values */}
-        <div className="about-block">
-          <div className="about-block-head reveal">
-            <p className="eyebrow">
-              <span className="dot"></span>What we stand for
-            </p>
-            <h3 className="display about-subhead">Our core values</h3>
-          </div>
-          <div className="values-grid">
-            {VALUES.map((v) => (
-              <article className="value-card reveal" key={v.name}>
-                <span className="ic" aria-hidden="true">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    {v.icon}
-                  </svg>
-                </span>
-                <h4>{v.name}</h4>
-                <p>{v.desc}</p>
-              </article>
-            ))}
           </div>
         </div>
       </div>
