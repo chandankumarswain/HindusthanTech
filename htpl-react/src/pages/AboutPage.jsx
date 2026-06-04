@@ -61,6 +61,25 @@ export default function AboutPage() {
                 />
               </figure>
             </div>
+
+            <div className="ap-statsband reveal">
+              <div className="ap-sb">
+                <span className="ap-sb-n">38<span className="ap-sb-suf">+</span></span>
+                <span className="ap-sb-l">Years of excellence</span>
+              </div>
+              <div className="ap-sb">
+                <span className="ap-sb-n">500<span className="ap-sb-suf">+</span></span>
+                <span className="ap-sb-l">Vehicles delivered</span>
+              </div>
+              <div className="ap-sb">
+                <span className="ap-sb-n">50<span className="ap-sb-suf">+</span></span>
+                <span className="ap-sb-l">PSU clients</span>
+              </div>
+              <div className="ap-sb">
+                <span className="ap-sb-n">15<span className="ap-sb-suf">+</span></span>
+                <span className="ap-sb-l">States served</span>
+              </div>
+            </div>
           </div>
         </section>
 
