@@ -956,8 +956,10 @@ section { position: relative; overflow-x: clip; }
   display: flex; flex-direction: column; gap: clamp(16px, 1.6vw, 22px);
   will-change: transform; /* GPU-promote for smooth parallax */
 }
-/* offset the centre column so the composition reads intentionally staggered */
-.pgal-grid[data-cols="3"] .pgal-col:nth-child(2) { margin-top: clamp(28px, 4vw, 56px); }
+/* flowing editorial stagger — each column starts at a different height so the
+   composition reads as organic masonry, not a grid (matches the reference layout) */
+.pgal-grid[data-cols="3"] .pgal-col:nth-child(2) { margin-top: clamp(40px, 5vw, 72px); }
+.pgal-grid[data-cols="3"] .pgal-col:nth-child(3) { margin-top: clamp(18px, 2.6vw, 36px); }
 
 .pgal-card {
   position: relative; margin: 0; overflow: hidden;
@@ -965,9 +967,11 @@ section { position: relative; overflow-x: clip; }
   background: linear-gradient(160deg, #26262a, #131315);
   transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
 }
-.pgal-card.is-tall   { height: clamp(360px, 42vw, 460px); }
-.pgal-card.is-medium { height: clamp(240px, 30vw, 320px); }
-.pgal-card.is-large  { height: clamp(400px, 48vw, 520px); }
+/* editorial card proportions — tall ≈4:6 · medium ≈4:5 · large ≈4:7
+   (clamped so they stay proportional yet never run away on ultra-wide screens) */
+.pgal-card.is-tall   { height: clamp(380px, 44vw, 520px); }
+.pgal-card.is-medium { height: clamp(300px, 36vw, 420px); }
+.pgal-card.is-large  { height: clamp(440px, 52vw, 620px); }
 .pgal-img {
   width: 100%; height: 100%; object-fit: cover;
   filter: saturate(0.95) contrast(1.02); /* same treatment as the HowItWorks imagery */
@@ -997,6 +1001,8 @@ section { position: relative; overflow-x: clip; }
 /* mobile — single column, normalised heights, no parallax offset */
 @media (max-width: 767px) {
   .pgal-shell { padding-inline: 25px; }
+  /* single column stack — comfortable 24–32px rhythm between cards */
+  .pgal-col { gap: clamp(24px, 6vw, 32px); }
   .pgal-card.is-tall, .pgal-card.is-medium, .pgal-card.is-large {
     height: clamp(260px, 72vw, 380px);
   }
