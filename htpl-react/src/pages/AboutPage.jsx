@@ -130,16 +130,20 @@ export default function AboutPage() {
               <p className="eyebrow"><span className="dot"></span>What we stand for</p>
               <h2 className="display ap-h2">Our core values</h2>
             </div>
-            <div className="values-grid">
-              {VALUES.map((v) => (
-                <article className="value-card reveal" key={v.name}>
-                  <span className="ic" aria-hidden="true">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                      {v.icon}
+            <div className="ap-values-grid">
+              {VALUES.map((v, i) => (
+                <article className="ap-vcard reveal" key={v.name}>
+                  <span className="ap-vcard-bracket" aria-hidden="true">
+                    <svg width="24" height="11" viewBox="0 0 24 11" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M1 10V1h7" />
+                      <path d="M23 10V1h-7" />
                     </svg>
                   </span>
-                  <h4>{v.name}</h4>
-                  <p>{v.desc}</p>
+                  <span className="ap-vcard-num" aria-hidden="true">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h4 className="ap-vcard-title">{v.name}</h4>
+                  <p className="ap-vcard-desc">{v.desc}</p>
                 </article>
               ))}
             </div>

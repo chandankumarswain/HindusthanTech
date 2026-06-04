@@ -1555,6 +1555,9 @@ section { position: relative; overflow-x: clip; }
 .ap-statement-muted { color: var(--muted); }
 .ap-stats {
   margin-top: clamp(36px, 5vw, 64px);
+  /* full-width stretched band — break out of the shell's 80px gutter so the
+     band spans 100%, then re-pad so the 4 stats stay aligned with content */
+  margin-inline: -80px; padding-inline: 80px;
   display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 3vw, 40px);
   border-block: 1px solid var(--line); padding-block: clamp(26px, 3vw, 40px);
 }
@@ -1580,10 +1583,32 @@ section { position: relative; overflow-x: clip; }
 .ap-checks li { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: var(--ink); }
 .ap-checks svg { color: var(--accent); flex: none; }
 
-/* core values */
+/* core values — staggered numbered cards (reference-inspired) */
 .ap-values-block { padding-top: clamp(8px, 1vw, 16px); }
-.ap-values-head { text-align: center; margin-bottom: clamp(28px, 3vw, 44px); }
+.ap-values-head { text-align: center; margin-bottom: clamp(36px, 4vw, 56px); }
 .ap-values-head .eyebrow { display: inline-flex; }
+.ap-values-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 2vw, 28px); align-items: start;
+}
+/* diagonal stagger: each column starts progressively lower (desktop only) */
+.ap-values-grid > :nth-child(3n + 2) { transform: translateY(clamp(24px, 3.5vw, 48px)); }
+.ap-values-grid > :nth-child(3n + 3) { transform: translateY(clamp(48px, 7vw, 96px)); }
+.ap-vcard {
+  position: relative; display: flex; flex-direction: column;
+  background: var(--paper); border: 1px solid var(--line-2);
+  border-radius: var(--radius); padding: clamp(24px, 2.4vw, 34px);
+  transition: box-shadow .3s ease, border-color .3s ease;
+}
+.ap-vcard:hover { box-shadow: var(--shadow-lg); border-color: var(--line); }
+.ap-vcard-bracket { position: absolute; top: 18px; right: 18px; color: var(--muted); opacity: 0.55; }
+.ap-vcard-num {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(40px, 4vw, 62px); line-height: 1; letter-spacing: -0.02em;
+  color: var(--accent);
+}
+.ap-vcard-title { margin: 16px 0 0; font-size: clamp(16px, 1.3vw, 19px); font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+.ap-vcard-desc { margin: 8px 0 0; font-size: 13.5px; line-height: 1.55; color: var(--muted); }
 
 /* closing CTA */
 .ap-cta-wrap { padding-block: clamp(48px, 6vw, 80px); }
@@ -1600,11 +1625,19 @@ section { position: relative; overflow-x: clip; }
   .ap-hero-media { aspect-ratio: 16 / 10; max-width: 620px; }
   .ap-split { grid-template-columns: 1fr; gap: clamp(28px, 4vw, 40px); }
   .ap-media { aspect-ratio: 16 / 10; }
-  .ap-stats { grid-template-columns: repeat(2, 1fr); }
+  .ap-stats { grid-template-columns: repeat(2, 1fr); margin-inline: -50px; padding-inline: 50px; }
+  /* values: 2 columns, single-step stagger */
+  .ap-values-grid { grid-template-columns: repeat(2, 1fr); }
+  .ap-values-grid > :nth-child(3n + 2),
+  .ap-values-grid > :nth-child(3n + 3) { transform: none; }
+  .ap-values-grid > :nth-child(2n) { transform: translateY(clamp(20px, 4vw, 40px)); }
 }
 /* mobile — 25px gutters */
 @media (max-width: 767px) {
   .ap-shell { padding-inline: 25px; }
-  .ap-stats { gap: 18px 20px; }
+  .ap-stats { gap: 18px 20px; margin-inline: -25px; padding-inline: 25px; }
   .ap-cta-actions .btn { flex: 1 1 auto; justify-content: center; }
+  /* values: single column, no stagger */
+  .ap-values-grid { grid-template-columns: 1fr; }
+  .ap-values-grid > * { transform: none; }
 }
