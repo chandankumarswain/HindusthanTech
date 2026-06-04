@@ -262,7 +262,7 @@ export default function About() {
         </div>
 
         {/* 3 — vision & mission */}
-        <div className="about-block">
+        <div className="about-block about-screen">
           <div className="about-block-head reveal">
             <p className="eyebrow">
               <span className="dot"></span>Our purpose

@@ -542,9 +542,9 @@ section { position: relative; overflow-x: clip; }
 .serve-aside { position: sticky; top: calc(var(--nav-h) + 24px); align-self: start; }
 .serve-aside .about2-subhead { margin-top: 4px; }
 .serve-media {
-  margin: 22px 0; overflow: hidden;
+  margin: 20px 0; overflow: hidden;
   border-radius: var(--radius); border: 1px solid var(--line-2); box-shadow: var(--shadow);
-  aspect-ratio: 4 / 4.2;
+  aspect-ratio: 4 / 3.4; max-height: 38vh;
 }
 .serve-media img {
   width: 100%; height: 100%; object-fit: cover;
@@ -552,10 +552,10 @@ section { position: relative; overflow-x: clip; }
 }
 
 /* right column — stacked numbered cards */
-.serve-list { display: flex; flex-direction: column; gap: clamp(20px, 2vw, 24px); margin: 0; }
+.serve-list { display: flex; flex-direction: column; gap: clamp(14px, 1.4vw, 20px); margin: 0; }
 .industry-row.serve-card {
   align-items: flex-start; gap: 18px;
-  padding: clamp(24px, 2.4vw, 32px);
+  padding: clamp(18px, 1.9vw, 26px);
   border: 1px solid var(--line-2); border-radius: var(--radius);
   background: var(--paper); box-shadow: var(--shadow);
   transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease,
@@ -568,7 +568,7 @@ section { position: relative; overflow-x: clip; }
 .serve-card .it-arrow { align-self: center; }
 /* hover + scroll-active card emphasis (existing accent tokens — no new colors) */
 .industry-row.serve-card:hover, .industry-row.serve-card:focus-visible {
-  padding-left: clamp(24px, 2.4vw, 32px);
+  padding-left: clamp(18px, 1.9vw, 26px);
   background: var(--paper); border-radius: var(--radius);
   border-color: var(--accent); box-shadow: var(--shadow-lg);
   transform: translateY(-3px);
@@ -600,6 +600,19 @@ section { position: relative; overflow-x: clip; }
 .about2-industries,
 .about-block { margin-top: clamp(48px, 6vw, 88px); }
 .about2-industries { padding-top: clamp(40px, 5vw, 64px); border-top: 1px solid var(--line); }
+
+/* full-viewport "screens" — Our purpose + What we serve each fill 100vh with
+   their child content vertically centred. min-height (not a fixed height) means
+   the block only grows past the viewport when content genuinely cannot fit
+   (e.g. dense mobile), so nothing is ever clipped. */
+.about2-industries,
+.about-screen {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+}
+@supports (min-height: 100dvh) {
+  .about2-industries, .about-screen { min-height: 100dvh; }
+}
 .about-block-head .eyebrow { margin-bottom: 14px; }
 .about-subhead { font-size: clamp(26px, 3vw, 40px); line-height: 1.05; letter-spacing: -0.02em; margin: 0; }
 
@@ -614,7 +627,7 @@ section { position: relative; overflow-x: clip; }
   border-radius: var(--radius); border: 1px solid var(--line-2);
   box-shadow: var(--shadow);
   background: linear-gradient(160deg, var(--paper) 0%, var(--bone-2) 100%);
-  min-height: clamp(220px, 26vw, 300px);
+  min-height: clamp(180px, 20vw, 260px);
 }
 .vm-media img {
   width: 100%; height: 100%; object-fit: cover;
