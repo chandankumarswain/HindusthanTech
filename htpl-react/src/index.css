@@ -537,8 +537,13 @@ section { position: relative; overflow-x: clip; }
   margin: 20px 0;
   display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px, 1.2vw, 16px);
   grid-template-areas:
-    ". a"
+    "t a"
     "b c";
+}
+.serve-note {
+  grid-area: t; align-self: center; margin: 0; padding-right: 6px;
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(15px, 1.4vw, 19px); line-height: 1.4; color: var(--ink-2);
 }
 .serve-pic {
   margin: 0; overflow: hidden;

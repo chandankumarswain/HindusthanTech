@@ -150,6 +150,9 @@ export default function About() {
               </p>
               <h3 className="display about2-subhead">Built for critical industries</h3>
               <div className="serve-collage">
+                <p className="serve-note">
+                  Purpose-built fleets, trusted across India's most critical sectors.
+                </p>
                 <figure className="serve-pic serve-pic-1">
                   <img
                     src="/images/fleet/dcp-tender.jpg"
