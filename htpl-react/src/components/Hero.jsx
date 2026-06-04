@@ -21,9 +21,6 @@ export default function Hero() {
               <a href="#products" className="btn btn-primary">
                 Explore products <span className="arrow">→</span>
               </a>
-              <a href="#contact" className="btn btn-ghost">
-                Contact us
-              </a>
             </div>
             <div className="hero-trust">
               <div className="avatars" aria-hidden="true">
@@ -54,7 +51,7 @@ export default function Hero() {
                 src="/images/hero-fire-tender.png"
                 alt="HTPL Ashok Leyland multipurpose fire tender"
                 width="1200"
-                height="800"
+                height="600"
                 loading="eager"
                 decoding="async"
               />
