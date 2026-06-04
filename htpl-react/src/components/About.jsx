@@ -239,7 +239,8 @@ export default function About() {
             </p>
             <h3 className="display about-subhead">Vision &amp; mission</h3>
           </div>
-          <div className="about-vm-grid">
+          {/* editorial diagonal — Vision text ↔ image, image ↔ Mission text */}
+          <div className="vm-editorial">
             <article className="vm-card reveal">
               <span className="ic" aria-hidden="true">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
@@ -254,6 +255,25 @@ export default function About() {
                 that enhance fire safety and emergency response capabilities.
               </p>
             </article>
+
+            <figure className="vm-media reveal">
+              <img
+                src="/images/fleet/sail-rsp-night-ops.jpg"
+                alt="HTPL fire tender in active emergency response"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+
+            <figure className="vm-media reveal">
+              <img
+                src="/images/fleet/fabrication-workshop.jpg"
+                alt="Fire vehicles in production at the HTPL Jagatpur facility"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+
             <article className="vm-card reveal">
               <span className="ic" aria-hidden="true">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">

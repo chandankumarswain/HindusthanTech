@@ -557,11 +557,25 @@ section { position: relative; overflow-x: clip; }
 .about-block-head .eyebrow { margin-bottom: 14px; }
 .about-subhead { font-size: clamp(26px, 3vw, 40px); line-height: 1.05; letter-spacing: -0.02em; margin: 0; }
 
-/* vision & mission — two equal cards */
-.about-vm-grid {
+/* vision & mission — editorial diagonal: text top-left ↔ image top-right,
+   image bottom-left ↔ text bottom-right (matches the reference composition) */
+.vm-editorial {
   margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr;
   gap: clamp(20px, 2.5vw, 28px); align-items: stretch;
 }
+.vm-media {
+  margin: 0; position: relative; overflow: hidden;
+  border-radius: var(--radius); border: 1px solid var(--line-2);
+  box-shadow: var(--shadow);
+  background: linear-gradient(160deg, var(--paper) 0%, var(--bone-2) 100%);
+  min-height: clamp(220px, 26vw, 300px);
+}
+.vm-media img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(0.95) contrast(1.02);
+  transition: transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.vm-media:hover img { transform: scale(1.04); }
 .vm-card {
   display: flex; flex-direction: column; gap: 14px;
   background: var(--paper); border: 1px solid var(--line-2);
@@ -604,7 +618,12 @@ section { position: relative; overflow-x: clip; }
   .industry-row { gap: 14px; padding: 16px 4px; }
   .industry-row .it-name { font-size: 16.5px; }
   /* mobile: single column throughout */
-  .about-vm-grid { grid-template-columns: 1fr; }
+  .vm-editorial { grid-template-columns: 1fr; }
+  /* interleave so each text sits with its image: Vision · img · Mission · img */
+  .vm-editorial > .vm-card:first-of-type { order: 1; }
+  .vm-editorial > .vm-media:first-of-type { order: 2; }
+  .vm-editorial > .vm-card:last-of-type { order: 3; }
+  .vm-editorial > .vm-media:last-of-type { order: 4; }
   .values-grid { grid-template-columns: 1fr; }
 }
 
