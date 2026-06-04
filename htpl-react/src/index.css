@@ -945,33 +945,33 @@ section { position: relative; overflow-x: clip; }
 .pgal-shell { width: 100%; padding-inline: 80px; }
 .pgal-head { margin-bottom: clamp(36px, 5vw, 60px); }
 
-/* staggered masonry — three column stacks (JS distributes cards + drives parallax) */
-.pgal-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: clamp(16px, 1.6vw, 22px); align-items: start;
+/* editorial mosaic — fixed asymmetric grid areas (no parallax, no JS columns) */
+.pgal-mosaic {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: clamp(92px, 9.2vw, 120px);
+  gap: clamp(16px, 1.6vw, 22px);
+  grid-template-areas:
+    "a a b b"
+    "a a b b"
+    "a a c d"
+    "e e c d"
+    "e e f f"
+    "e e f f";
 }
-.pgal-grid[data-cols="2"] { grid-template-columns: repeat(2, 1fr); }
-.pgal-grid[data-cols="1"] { grid-template-columns: 1fr; }
-.pgal-col {
-  display: flex; flex-direction: column; gap: clamp(16px, 1.6vw, 22px);
-  will-change: transform; /* GPU-promote for smooth parallax */
-}
-/* flowing editorial stagger — each column starts at a different height so the
-   composition reads as organic masonry, not a grid (matches the reference layout) */
-.pgal-grid[data-cols="3"] .pgal-col:nth-child(2) { margin-top: clamp(40px, 5vw, 72px); }
-.pgal-grid[data-cols="3"] .pgal-col:nth-child(3) { margin-top: clamp(18px, 2.6vw, 36px); }
+.pgal-a { grid-area: a; }
+.pgal-b { grid-area: b; }
+.pgal-c { grid-area: c; }
+.pgal-d { grid-area: d; }
+.pgal-e { grid-area: e; }
+.pgal-f { grid-area: f; }
 
 .pgal-card {
-  position: relative; margin: 0; overflow: hidden;
+  position: relative; margin: 0; height: 100%; overflow: hidden;
   border-radius: var(--radius); box-shadow: var(--shadow);
   background: linear-gradient(160deg, #26262a, #131315);
   transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
 }
-/* editorial card proportions — tall ≈4:6 · medium ≈4:5 · large ≈4:7
-   (clamped so they stay proportional yet never run away on ultra-wide screens) */
-.pgal-card.is-tall   { height: clamp(380px, 44vw, 520px); }
-.pgal-card.is-medium { height: clamp(300px, 36vw, 420px); }
-.pgal-card.is-large  { height: clamp(440px, 52vw, 620px); }
 .pgal-img {
   width: 100%; height: 100%; object-fit: cover;
   filter: saturate(0.95) contrast(1.02); /* same treatment as the HowItWorks imagery */
@@ -989,28 +989,41 @@ section { position: relative; overflow-x: clip; }
 }
 .pgal-desc { margin: 8px 0 0; font-size: 13.5px; line-height: 1.5; color: rgba(239,236,229,0.82); max-width: 42ch; }
 
-/* hover — card lifts, image zooms (card + img are separate from the parallax column) */
+/* hover — card lifts, image zooms */
 .pgal-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
 .pgal-card:hover .pgal-img { transform: scale(1.05); }
 
-/* tablet — 50px gutters */
+/* tablet — 2-column mosaic, 50px gutters */
 @media (max-width: 991px) {
   .pgal-shell { padding-inline: 50px; }
-  .pgal-grid[data-cols="2"] .pgal-col:nth-child(2) { margin-top: clamp(28px, 4vw, 48px); }
+  .pgal-mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: clamp(96px, 13vw, 140px);
+    grid-template-areas:
+      "a a"
+      "a a"
+      "b c"
+      "b c"
+      "d e"
+      "d e"
+      "f f"
+      "f f";
+  }
 }
-/* mobile — single column, normalised heights, no parallax offset */
+/* mobile — single column stack, comfortable 24–32px rhythm */
 @media (max-width: 767px) {
   .pgal-shell { padding-inline: 25px; }
-  /* single column stack — comfortable 24–32px rhythm between cards */
-  .pgal-col { gap: clamp(24px, 6vw, 32px); }
-  .pgal-card.is-tall, .pgal-card.is-medium, .pgal-card.is-large {
-    height: clamp(260px, 72vw, 380px);
+  .pgal-mosaic {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: clamp(24px, 6vw, 32px);
+    grid-template-areas: "a" "b" "c" "d" "e" "f";
   }
+  .pgal-card { height: clamp(260px, 72vw, 380px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .pgal-card, .pgal-img { transition: none; }
-  .pgal-col { transform: none !important; }
 }
 
 /* ============================================================
