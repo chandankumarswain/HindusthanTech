@@ -188,19 +188,14 @@ export default function Hero() {
           {/* Statistics (mobile + tablet): all three stats, horizontal snap-scroll.
               The same figures float as cards on the image at lg+, so this keeps the
               proof points in the content area below lg without crowding the truck. */}
+          {/* 3 stats fit the width in an equal 3-column grid (no scroll) below lg */}
           <div
-            className="htpl-noscroll mt-7 flex snap-x snap-mandatory gap-3 overflow-x-auto
-                       pb-1 lg:hidden"
+            className="mt-7 grid grid-cols-3 gap-2.5 lg:hidden"
             role="list"
             aria-label="Key facts"
           >
             {HERO.stats.map((s) => (
-              <StatCard
-                key={s.label}
-                stat={s}
-                role="listitem"
-                className="flex shrink-0 snap-start"
-              />
+              <StatCard key={s.label} stat={s} role="listitem" className="flex" />
             ))}
           </div>
         </div>
@@ -278,15 +273,15 @@ function StatCard({ stat, className = '', role }) {
       role={role}
       className={
         'flex-col rounded-[14px] border border-[rgba(24,24,26,0.06)] bg-paper ' +
-        'px-[18px] py-[13px] shadow-[0_18px_40px_rgba(20,20,20,0.10)] ' +
+        'px-3 py-2.5 sm:px-[18px] sm:py-[13px] shadow-[0_18px_40px_rgba(20,20,20,0.10)] ' +
         className
       }
     >
-      <div className="font-serif text-[clamp(1.4rem,1rem+1.5vw,2.5rem)] leading-none tracking-[-0.02em] text-ink">
+      <div className="font-serif text-[clamp(1.5rem,5vw,2.5rem)] leading-none tracking-[-0.02em] text-ink">
         {stat.n}
         {stat.plus && <span className="text-accent">+</span>}
       </div>
-      <div className="mt-1.5 text-[10.5px] font-semibold uppercase tracking-[0.09em] text-muted">
+      <div className="mt-1.5 text-[9.5px] sm:text-[10.5px] font-semibold uppercase tracking-[0.08em] text-muted">
         {stat.label}
       </div>
     </div>

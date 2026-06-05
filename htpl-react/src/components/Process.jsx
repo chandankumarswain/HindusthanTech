@@ -125,7 +125,7 @@ export default function Process() {
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            <path d="M 25 7 L 75 7 L 75 32 L 25 32 L 25 57 L 75 57 L 75 82 L 25 82" />
+            <path d="M 25 6 L 75 6 L 75 31.5 L 25 31.5 L 25 57 L 75 57 L 75 83 L 25 83" />
           </svg>
 
           {STEPS.map((s, i) => (
