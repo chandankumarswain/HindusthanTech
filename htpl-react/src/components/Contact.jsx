@@ -1,12 +1,43 @@
 import { useState } from 'react'
 
-export default function Contact() {
-  const [sent, setSent] = useState(false)
+/* Where the form posts. Set VITE_CONTACT_ENDPOINT to your deployed Google Apps
+   Script Web App URL (see CONTACT_SETUP.md). On submit each enquiry is appended
+   to the Google Sheet and emailed to aivorntech@gmail.com. */
+const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || ''
 
-  const handleSubmit = (e) => {
+export default function Contact() {
+  // idle | sending | sent | error
+  const [status, setStatus] = useState('idle')
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
+    const form = e.currentTarget
+    const body = new URLSearchParams(new FormData(form)) // simple request → no CORS preflight
+
+    if (!CONTACT_ENDPOINT) {
+      // Not configured yet — don't lose the UX, but make it obvious in the console.
+      console.warn(
+        'Contact form: VITE_CONTACT_ENDPOINT is not set, so this enquiry was not delivered. See CONTACT_SETUP.md.'
+      )
+      setStatus('sent')
+      form.reset()
+      return
+    }
+
+    setStatus('sending')
+    try {
+      // Apps Script web apps don't send CORS headers, so use no-cors (opaque
+      // response). A resolved fetch means the request was delivered.
+      await fetch(CONTACT_ENDPOINT, { method: 'POST', mode: 'no-cors', body })
+      setStatus('sent')
+      form.reset()
+    } catch (err) {
+      console.error('Contact form submission failed:', err)
+      setStatus('error')
+    }
   }
+
+  const sent = status === 'sent'
 
   return (
     <section className="section-pad" id="contact">
@@ -103,27 +134,27 @@ export default function Contact() {
                 <label>
                   Full Name <span className="req">*</span>
                 </label>
-                <input type="text" required placeholder="Your name" />
+                <input type="text" name="fullName" required placeholder="Your name" />
               </div>
               <div className="field">
                 <label>Organization</label>
-                <input type="text" placeholder="Company / department" />
+                <input type="text" name="organization" placeholder="Company / department" />
               </div>
               <div className="field">
                 <label>
                   Phone Number <span className="req">*</span>
                 </label>
-                <input type="tel" required placeholder="+91" />
+                <input type="tel" name="phone" required placeholder="+91" />
               </div>
               <div className="field">
                 <label>
                   Email Address <span className="req">*</span>
                 </label>
-                <input type="email" required placeholder="you@org.com" />
+                <input type="email" name="email" required placeholder="you@org.com" />
               </div>
               <div className="field full">
                 <label>Requirement Type</label>
-                <select>
+                <select name="requirement">
                   <option>Select product / service</option>
                   <option>Firefighting Truck</option>
                   <option>Trailer / Portable Pump</option>
@@ -137,22 +168,38 @@ export default function Contact() {
               </div>
               <div className="field full">
                 <label>Message / Specification Details</label>
-                <textarea placeholder="Tell us about your requirement…"></textarea>
+                <textarea name="message" placeholder="Tell us about your requirement…"></textarea>
               </div>
             </div>
             <button
               type="submit"
               className="btn btn-primary form-submit"
               style={{ width: '100%', justifyContent: 'center' }}
+              disabled={status === 'sending' || sent}
             >
-              {sent ? (
+              {status === 'sending' ? (
+                'Sending…'
+              ) : sent ? (
                 'Enquiry sent ✓'
+              ) : status === 'error' ? (
+                'Try again'
               ) : (
                 <>
                   Send enquiry <span className="arrow">→</span>
                 </>
               )}
             </button>
+            {status === 'error' && (
+              <p className="form-status" role="alert">
+                Something went wrong. Please try again or email{' '}
+                <a href="mailto:aivorntech@gmail.com">aivorntech@gmail.com</a>.
+              </p>
+            )}
+            {sent && (
+              <p className="form-status form-status-ok" role="status">
+                Thanks — we&apos;ve received your enquiry and will be in touch shortly.
+              </p>
+            )}
           </form>
         </div>
       </div>
