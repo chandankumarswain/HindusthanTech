@@ -1627,6 +1627,26 @@ section { position: relative; overflow-x: clip; }
   .proc-flow::before { display: none; }
   .proc-node { flex-direction: column; text-align: center; gap: 12px; min-height: auto; }
   .proc-label { text-align: center; }
+
+  /* ---- Centre every section's main heading + sub heading on mobile ---- */
+  /* shared section header (About story, Products, Technology, Quality, Clients,
+     Contact, Track record, Process, Gallery) */
+  .sec-head { text-align: center; margin-inline: auto; }
+  /* How it works header */
+  .hiw-head { text-align: center; }
+  .hiw-head-desc { margin-inline: auto; }
+  /* CTA band — stack heading over action, centred */
+  .cta-band .wrap { flex-direction: column; align-items: center; text-align: center; }
+  /* About (landing): kicker + heading + lead + secondary subhead
+     (eyebrow is inline-flex → make it a centred flex so the box centres) */
+  .about2 .eyebrow { display: flex; justify-content: center; }
+  .about2-head, .about2-lead, .about2-subhead { text-align: center; }
+  /* Our promise (Commitment): kicker + heading (body paragraphs stay left) */
+  .commit-body .eyebrow { display: flex; justify-content: center; }
+  .commit-body .h-sec { text-align: center; }
+  /* About page mission / vision: kicker + heading (body + checklist stay left) */
+  .ap-copy .eyebrow { display: flex; justify-content: center; }
+  .ap-copy .ap-h2 { text-align: center; }
 }
 
 /* ============================================================
