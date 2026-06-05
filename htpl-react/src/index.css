@@ -1260,7 +1260,7 @@ section { position: relative; overflow-x: clip; }
   color: var(--accent-dk); font-weight: 500;
 }
 .client-group .gh .bar { width: 22px; height: 2px; background: var(--accent); }
-.client-list { display: flex; flex-wrap: wrap; gap: 12px; }
+.client-list { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 /* Standardized logo container — every logo, whatever its native shape, occupies
    the same box and is centred + contained so they read with equal visual weight.
    Desktop 220×100 · tablet 180×90 · mobile 140×70 (set in the responsive block). */
@@ -1286,9 +1286,6 @@ section { position: relative; overflow-x: clip; }
 @media (max-width: 991px) {
   .client-logo-box { width: 180px; height: 90px; padding: 14px 16px; }
   .client-wordmark { font-size: 18px; }
-  /* fixed-width tiles fit one per card column here — centre them so the single
-     column reads as intentional rather than left-hugging a wide card */
-  .client-list { justify-content: center; }
 }
 @media (max-width: 767px) {
   .client-logo-box { width: 140px; height: 70px; padding: 11px 13px; }
