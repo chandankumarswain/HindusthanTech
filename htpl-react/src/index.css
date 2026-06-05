@@ -1147,25 +1147,72 @@ section { position: relative; overflow-x: clip; }
 /* ============================================================
    PROCESS
    ============================================================ */
-.process-steps {
-  margin-top: 56px;
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+/* ---- Wave timeline (desktop) ---------------------------------------------
+   8 nodes spread as equal flex columns, so each node centre sits at
+   (i+0.5)/8 of the width — exactly where the SVG wave anchors are. Nodes
+   alternate up/down; labels sit on the outer side. ------------------------- */
+.proc-flow {
+  position: relative; margin-top: 60px;
+  display: flex; align-items: stretch;
+  height: clamp(340px, 31vw, 410px);
 }
-.step {
-  position: relative; padding: 26px 22px;
-  background: var(--paper); border: 1px solid var(--line-2); border-radius: 14px;
+/* dotted S-curve behind the nodes */
+.proc-wave { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.proc-wave path {
+  fill: none; stroke: var(--accent); opacity: 0.6;
+  stroke-width: 2; stroke-linecap: round; stroke-dasharray: 0.1 7.5;
+  vector-effect: non-scaling-stroke; /* keeps the dots round despite x/y stretch */
 }
-.step .num {
-  font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+
+.proc-node { position: relative; flex: 1 1 0; min-width: 0; }
+
+/* circle — neumorphic disc with a partial accent ring, centred on the wave */
+.proc-circle {
+  position: absolute; left: 50%; transform: translate(-50%, -50%); z-index: 2;
+  width: clamp(58px, 6.6vw, 94px); aspect-ratio: 1; border-radius: 50%;
+  background: var(--paper);
+  display: grid; place-items: center;
+  box-shadow: 0 18px 34px rgba(20,20,20,0.12), 0 4px 10px rgba(20,20,20,0.06),
+              inset 0 2px 3px rgba(255,255,255,0.9);
+  color: var(--ink);
+}
+.is-up .proc-circle { top: 35%; }
+.is-down .proc-circle { top: 65%; }
+.proc-circle .proc-ico { width: 42%; height: 42%; }
+
+/* partial accent ring (the reference's coloured crescent), rotated per side */
+.proc-ring {
+  position: absolute; inset: -7px; border-radius: 50%; z-index: -1;
+  background: conic-gradient(var(--accent) 0 140deg, transparent 140deg 360deg);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 7px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 7px));
+  opacity: 0.85;
+}
+.is-up .proc-ring { transform: rotate(35deg); }
+.is-down .proc-ring { transform: rotate(215deg); }
+
+/* milestone pip on the circle edge facing the label */
+.proc-dot {
+  position: absolute; left: 50%; transform: translate(-50%, -50%); z-index: 3;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--accent); border: 3px solid var(--paper);
+}
+.is-up .proc-dot { top: 0; }
+.is-down .proc-dot { top: 100%; }
+
+/* label — sits above (up) or below (down) the circle */
+.proc-label {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: max-content; max-width: min(90%, 150px); text-align: center;
+}
+.is-up .proc-label { bottom: 79%; }
+.is-down .proc-label { top: 79%; }
+.proc-num {
+  display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
   color: var(--accent); font-weight: 600;
 }
-.step h4 { margin: 14px 0 4px; font-size: 19px; font-weight: 600; }
-.step .sub { font-size: 13px; color: var(--muted); font-family: var(--mono); letter-spacing: 0.03em; }
-.step::after {
-  content: "→"; position: absolute; right: -14px; top: 50%; transform: translateY(-50%);
-  color: var(--accent); font-size: 18px; z-index: 2;
-}
-.step.no-arrow::after { display: none; }
+.proc-label h4 { margin: 5px 0 3px; font-size: clamp(15px, 1.3vw, 18px); font-weight: 600; line-height: 1.2; }
+.proc-sub { font-size: 12.5px; color: var(--muted); font-family: var(--mono); letter-spacing: 0.03em; }
 
 .process-quality {
   margin-top: 28px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center;
@@ -1456,10 +1503,38 @@ section { position: relative; overflow-x: clip; }
    ============================================================ */
 @media (max-width: 1080px) {
   .tech-grid, .quality-grid { grid-template-columns: repeat(2, 1fr); }
-  .process-steps { grid-template-columns: repeat(2, 1fr); }
-  .step:nth-child(2)::after, .step:nth-child(4)::after, .step:nth-child(6)::after { display: none; }
   .statsbar-grid { grid-template-columns: repeat(2, 1fr); padding-inline: 50px; row-gap: clamp(28px, 4vw, 40px); }
   .statsbar-cell:nth-child(odd) { border-left: none; }
+}
+/* Tablet + mobile: the 8-node wave is too wide — collapse to a vertical
+   dotted timeline (circle left, label right). Matches the site's 991/767 system. */
+@media (max-width: 991px) {
+  .proc-flow {
+    flex-direction: column; height: auto; margin-top: 44px;
+    gap: 6px; padding-left: 4px;
+  }
+  .proc-wave { display: none; }
+  /* single vertical dotted line running through the circle centres (left: 31px) */
+  .proc-flow::before {
+    content: ""; position: absolute; left: 31px; top: 32px; bottom: 32px;
+    border-left: 2px dotted var(--accent); opacity: 0.5;
+  }
+  .proc-node { display: flex; align-items: center; gap: 18px; min-height: 88px; }
+  /* position:relative (not static) so .proc-ring stays anchored to the circle,
+     not the full-width node; reset the desktop absolute placement. */
+  .proc-circle {
+    position: relative; left: auto; transform: none; order: -1; flex: none;
+    width: 62px; height: 62px;
+  }
+  .is-up .proc-circle, .is-down .proc-circle { top: auto; }
+  .proc-circle .proc-ico { width: 24px; height: 24px; }
+  .is-up .proc-ring, .is-down .proc-ring { transform: rotate(125deg); }
+  .proc-dot { display: none; }
+  .proc-label {
+    position: static; transform: none; text-align: left;
+    width: auto; max-width: none;
+  }
+  .proc-label h4 { font-size: 18px; }
 }
 /* Tablet & below: switch the center nav to the hamburger drawer */
 @media (max-width: 991px) {
@@ -1496,8 +1571,7 @@ section { position: relative; overflow-x: clip; }
   .about-badge { left: 0; }
 }
 @media (max-width: 560px) {
-  .tech-grid, .quality-grid, .process-steps { grid-template-columns: 1fr; }
-  .step::after { display: none !important; }
+  .tech-grid, .quality-grid { grid-template-columns: 1fr; }
   .statsbar-grid { grid-template-columns: 1fr; padding-inline: 25px; row-gap: 26px; }
   .statsbar-cell, .statsbar-cell:nth-child(odd) { border-left: none; }
   /* pillars stay 2×2 on tablet (561–859px); collapse to one column only on phones */
