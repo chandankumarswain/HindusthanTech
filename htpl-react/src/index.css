@@ -1260,11 +1260,39 @@ section { position: relative; overflow-x: clip; }
   color: var(--accent-dk); font-weight: 500;
 }
 .client-group .gh .bar { width: 22px; height: 2px; background: var(--accent); }
-.client-list { display: flex; flex-wrap: wrap; gap: 10px; }
-.client-list span {
-  font-size: 15px; font-weight: 600; color: var(--ink);
-  padding: 9px 16px; background: var(--bone); border: 1px solid var(--line);
-  border-radius: 10px;
+.client-list { display: flex; flex-wrap: wrap; gap: 12px; }
+/* Standardized logo container — every logo, whatever its native shape, occupies
+   the same box and is centred + contained so they read with equal visual weight.
+   Desktop 220×100 · tablet 180×90 · mobile 140×70 (set in the responsive block). */
+.client-logo-box {
+  width: 220px; height: 100px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px 20px;
+  background: var(--bone); border: 1px solid var(--line); border-radius: 12px;
+  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
+}
+.client-logo-box:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--line); }
+/* object-contain, never cropped, never upscaled past its box */
+.client-logo {
+  max-width: 100%; max-height: 100%; width: auto; height: auto;
+  object-fit: contain; display: block;
+}
+/* text wordmark fallback (used only where no correct logo is available) */
+.client-wordmark {
+  font-family: var(--mono); font-size: 20px; font-weight: 600;
+  letter-spacing: 0.08em; color: var(--ink);
+}
+/* Logo container scales with the site's breakpoints: tablet 180×90 · mobile 140×70 */
+@media (max-width: 991px) {
+  .client-logo-box { width: 180px; height: 90px; padding: 14px 16px; }
+  .client-wordmark { font-size: 18px; }
+  /* fixed-width tiles fit one per card column here — centre them so the single
+     column reads as intentional rather than left-hugging a wide card */
+  .client-list { justify-content: center; }
+}
+@media (max-width: 767px) {
+  .client-logo-box { width: 140px; height: 70px; padding: 11px 13px; }
+  .client-wordmark { font-size: 16px; }
 }
 
 /* ============================================================

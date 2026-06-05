@@ -24,6 +24,13 @@ const GROUPS = [
   },
 ]
 
+// client name -> processed transparent logo (in /public/images/clients/<slug>.png).
+// The supplied "NRL" file was the wrong entity (Australian rugby league, not
+// Numaligarh Refinery Ltd), so NRL falls back to a clean text wordmark until a
+// correct logo is provided. Every other client maps to its official logo.
+const slugify = (name) => name.toLowerCase().replace(/\s+/g, '-')
+const NO_LOGO = new Set(['NRL'])
+
 export default function Clients() {
   return (
     <section className="clients section-pad" id="clients">
@@ -49,7 +56,19 @@ export default function Clients() {
               </div>
               <div className="client-list">
                 {g.clients.map((c) => (
-                  <span key={c}>{c}</span>
+                  <span key={c} className="client-logo-box" title={c}>
+                    {NO_LOGO.has(c) ? (
+                      <span className="client-wordmark">{c}</span>
+                    ) : (
+                      <img
+                        className="client-logo"
+                        src={`/images/clients/${slugify(c)}.png`}
+                        alt={c}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    )}
+                  </span>
                 ))}
               </div>
             </div>
