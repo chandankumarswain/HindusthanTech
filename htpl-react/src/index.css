@@ -174,7 +174,7 @@ section { position: relative; overflow-x: clip; }
 .brand:hover .brand-mark { transform: translateY(-1px) rotate(-3deg); box-shadow: 0 10px 22px rgba(20,20,20,0.22); }
 /* transparent emblem logo — sits on any background (light nav · dark footer) */
 .brand-logo {
-  width: 46px; height: 46px; flex: none; display: block; object-fit: contain;
+  width: 56px; height: 56px; flex: none; display: block; object-fit: contain;
   transition: transform .25s cubic-bezier(.2,.8,.2,1);
 }
 .brand:hover .brand-logo { transform: translateY(-1px) rotate(-3deg); }
@@ -197,6 +197,9 @@ section { position: relative; overflow-x: clip; }
 .nav-links a:hover { color: var(--ink); transform: translateY(-2px); }
 .nav-links a:hover::after { width: 100%; left: 0; }
 .nav-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+/* active route — thin red underline stays lit (no hover needed) */
+.nav-links a[aria-current="page"] { color: var(--ink); }
+.nav-links a[aria-current="page"]::after { width: 100%; left: 0; }
 
 /* --- CTA / phone (right) --- */
 .nav-right { display: flex; align-items: center; gap: 16px; justify-self: end; }
@@ -1466,11 +1469,14 @@ section { position: relative; overflow-x: clip; }
   .nav-phone { display: none; }
   .nav-toggle { display: block; }
 }
-/* Mobile: CTA moves into the drawer for a compact bar */
+/* Mobile: keep "Get a Quote" visible as a smaller pill beside the hamburger */
 @media (max-width: 767px) {
-  .nav-cta { display: none; }
   /* mobile: 25px gutter to match the hero + the rest of the site */
   .nav-inner { padding: 0 25px; }
+  /* shrink the CTA so it + the hamburger fit a narrow bar; hide the inner arrow */
+  .nav-cta { padding: 9px 15px; font-size: 13px; gap: 6px; }
+  .nav-cta .cta-arrow { display: none; }
+  .nav-right { gap: 10px; }
 }
 
 /* Gallery showcase — same 991/767 breakpoints as About */

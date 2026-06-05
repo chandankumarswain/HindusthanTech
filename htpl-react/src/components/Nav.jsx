@@ -43,6 +43,29 @@ export default function Nav() {
   const onHome = (window.location.pathname.replace(/\/+$/, '') || '/') === '/'
   const resolveHref = (href) => (href.startsWith('#') && !onHome ? `/${href}` : href)
 
+  /* Active-route underline. Off-home (e.g. /about) the route link is active.
+     On home, a scroll-spy highlights whichever section is crossing the upper
+     third of the viewport — IntersectionObserver, so no scroll-handler churn. */
+  const [activeHref, setActiveHref] = useState(onHome ? NAV.home_link : '/about')
+  useEffect(() => {
+    if (!onHome) return
+    const ids = ['hero', 'products', 'gallery', 'technology', 'clients', 'contact']
+    const els = ids.map((id) => document.getElementById(id)).filter(Boolean)
+    if (!els.length) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        const top = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+        if (top) setActiveHref(`#${top.target.id}`)
+      },
+      // thin band ~45–50% down the viewport = the "current" section line
+      { rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.25, 0.5, 1] }
+    )
+    els.forEach((el) => io.observe(el))
+    return () => io.disconnect()
+  }, [onHome])
+
   /* Shadow + intelligent hide-on-scroll-down / show-on-scroll-up.
      rAF-throttled, transform-only — no re-render storms, no layout shift. */
   useEffect(() => {
@@ -159,7 +182,11 @@ export default function Nav() {
         {/* CENTER — primary navigation */}
         <nav className="nav-links" aria-label="Primary">
           {LINKS.map((l) => (
-            <a key={l.href} href={resolveHref(l.href)}>
+            <a
+              key={l.href}
+              href={resolveHref(l.href)}
+              aria-current={activeHref === l.href ? 'page' : undefined}
+            >
               {l.label}
             </a>
           ))}

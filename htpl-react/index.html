@@ -14,6 +14,13 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- LCP: preload the hero truck so it paints early (mirrors next/image priority) -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/hero-fire-tender.png"
+      fetchpriority="high"
+    />
   </head>
   <body>
     <div id="root"></div>
