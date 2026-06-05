@@ -1639,8 +1639,10 @@ section { position: relative; overflow-x: clip; }
   /* How it works header */
   .hiw-head { text-align: center; }
   .hiw-head-desc { margin-inline: auto; }
-  /* CTA band — stack heading over action, centred */
+  /* CTA band — stack heading over action, centred. Drop the heading/text
+     max-width so the wrapped lines centre to the band, not a narrow box. */
   .cta-band .wrap { flex-direction: column; align-items: center; text-align: center; }
+  .cta-band h2, .cta-band p { max-width: none; margin-inline: auto; }
   /* About (landing): kicker + heading + lead + secondary subhead
      (eyebrow is inline-flex → make it a centred flex so the box centres) */
   .about2 .eyebrow { display: flex; justify-content: center; }
