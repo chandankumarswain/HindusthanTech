@@ -114,6 +114,19 @@ export default function Process() {
           >
             <path d={wavePath(STEPS.length)} />
           </svg>
+          {/* Mobile connector: a boustrophedon (snake) dotted path through the
+              2-column grid. The cards have an opaque background, so the path is
+              hidden behind them and only the dotted segments in the gaps show —
+              connecting the cards like the desktop wave. y values sit at the
+              circle band of each of the 4 rows. */}
+          <svg
+            className="proc-wave-m"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path d="M 25 7 L 75 7 L 75 32 L 25 32 L 25 57 L 75 57 L 75 82 L 25 82" />
+          </svg>
 
           {STEPS.map((s, i) => (
             <div
