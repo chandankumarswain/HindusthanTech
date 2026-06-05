@@ -1288,7 +1288,9 @@ section { position: relative; overflow-x: clip; }
   .client-wordmark { font-size: 18px; }
 }
 @media (max-width: 767px) {
-  .client-logo-box { width: 140px; height: 70px; padding: 11px 13px; }
+  /* 2×2 logo grid — tiles fill each grid cell */
+  .client-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .client-logo-box { width: 100%; height: 76px; padding: 10px 12px; }
   .client-wordmark { font-size: 16px; }
 }
 
@@ -1324,13 +1326,17 @@ section { position: relative; overflow-x: clip; }
   display: grid; grid-template-columns: 1fr 1fr;
   gap: clamp(32px, 4vw, 64px); align-items: center; width: 100%;
 }
+/* grid/flex items default to min-width:auto and would force the column wider than
+   the viewport (long email/address, form controls) — let them shrink so text wraps */
+.contact-grid > *, .contact-left, .contact-form, .field { min-width: 0; }
 /* left column: badge + heading + contact info, vertically centered */
 .contact-left { display: flex; flex-direction: column; gap: clamp(26px, 3vw, 40px); }
 .contact-info { display: grid; gap: 22px; align-content: start; }
 .ci-item { display: flex; gap: 16px; align-items: flex-start; }
+.ci-item > div { min-width: 0; } /* let long email/address wrap instead of overflowing the row */
 .ci-item .ic { flex: none; width: 44px; height: 44px; border-radius: 11px; background: var(--accent-wash); color: var(--accent-dk); display: grid; place-items: center; }
 .ci-item .k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.ci-item .v { font-size: 15.5px; color: var(--ink); font-weight: 500; line-height: 1.45; }
+.ci-item .v { font-size: 15.5px; color: var(--ink); font-weight: 500; line-height: 1.45; overflow-wrap: anywhere; }
 .ci-item .v a:hover { color: var(--accent); }
 
 .contact-form {
@@ -1345,6 +1351,7 @@ section { position: relative; overflow-x: clip; }
 .field label .req { color: var(--accent); }
 .field input, .field select, .field textarea {
   font-family: var(--sans); font-size: 16px; color: var(--ink); /* 16px prevents iOS focus zoom */
+  width: 100%; min-width: 0; max-width: 100%; /* never let a control overflow its column */
   padding: 13px 15px; background: var(--bone); border: 1px solid var(--line);
   border-radius: 10px; outline: none; transition: border .2s, box-shadow .2s;
 }
@@ -1467,7 +1474,7 @@ section { position: relative; overflow-x: clip; }
   font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em;
   text-transform: uppercase; color: rgba(239,236,229,0.45); margin-bottom: 4px;
 }
-.footer-contact .v { font-size: clamp(13px, 0.9vw, 14px); color: rgba(239,236,229,0.8); line-height: 1.5; }
+.footer-contact .v { font-size: clamp(13px, 0.9vw, 14px); color: rgba(239,236,229,0.8); line-height: 1.5; overflow-wrap: anywhere; }
 .footer-contact .v a { transition: color .2s; }
 .footer-contact .v a:hover { color: #fff; }
 
@@ -1509,9 +1516,9 @@ section { position: relative; overflow-x: clip; }
 }
 @media (max-width: 767px) {
   .footer .wrap { padding-inline: 25px; }
-  /* mobile: single column — company · quick links · products · industries · contact */
-  .footer-top { grid-template-columns: 1fr; gap: 30px; }
-  .footer-brand { grid-column: auto; }
+  /* mobile: brand full-width on top, then the four link columns in a 2×2 grid */
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 30px 24px; }
+  .footer-brand { grid-column: 1 / -1; }
   .footer-news { max-width: 100%; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
   .footer-watermark { font-size: clamp(48px, 22vw, 120px); transform: translateY(14%); }
@@ -1569,13 +1576,12 @@ section { position: relative; overflow-x: clip; }
   .nav-phone { display: none; }
   .nav-toggle { display: block; }
 }
-/* Mobile: keep "Get a Quote" visible as a smaller pill beside the hamburger */
+/* Mobile: declutter the bar to logo + hamburger — the "Get a Quote" CTA lives
+   inside the drawer, so the top-bar pill is removed to avoid the duplicate */
 @media (max-width: 767px) {
   /* mobile: 25px gutter to match the hero + the rest of the site */
   .nav-inner { padding: 0 25px; }
-  /* shrink the CTA so it + the hamburger fit a narrow bar; hide the inner arrow */
-  .nav-cta { padding: 9px 15px; font-size: 13px; gap: 6px; }
-  .nav-cta .cta-arrow { display: none; }
+  .nav-cta { display: none; }
   .nav-right { gap: 10px; }
 }
 
@@ -1601,6 +1607,26 @@ section { position: relative; overflow-x: clip; }
   .statsbar-cell, .statsbar-cell:nth-child(odd) { border-left: none; }
   /* pillars stay 2×2 on tablet (561–859px); collapse to one column only on phones */
   .commit-pillars { grid-template-columns: 1fr; }
+}
+
+/* Mobile: centre card content across the content sections (per request) */
+@media (max-width: 767px) {
+  /* How it works */
+  .hiw-cell { align-items: center; text-align: center; }
+  /* Our capabilities (Technology) */
+  .tech-cell { text-align: center; }
+  .tech-cell .ic { margin-left: auto; margin-right: auto; }
+  /* Quality & safety + Our promise (Commitment) pillars — flex-centre so the
+     icon centres too (cards are display:block with an svg icon otherwise left) */
+  .q-card, .pillar { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  /* Track record (Gallery) — keep full-width rule/thumb when the card centres */
+  .show-card { align-items: center; text-align: center; }
+  .show-rule, .show-thumb { align-self: stretch; width: 100%; }
+  /* How we work (Process) — stack each node as a centred card (icon over label) */
+  .proc-flow { padding-left: 0; gap: 16px; }
+  .proc-flow::before { display: none; }
+  .proc-node { flex-direction: column; text-align: center; gap: 12px; min-height: auto; }
+  .proc-label { text-align: center; }
 }
 
 /* ============================================================
@@ -1728,6 +1754,9 @@ section { position: relative; overflow-x: clip; }
 /* tablet — 50px gutters, single-column blocks */
 @media (max-width: 991px) {
   .ap-shell { padding-inline: 50px; }
+  /* drop the per-section 100vh (it created full-screen gaps between blocks);
+     let content dictate height like the landing page does below 991px */
+  .about-page > section { min-height: auto; }
   .ap-hero-head { grid-template-columns: 1fr; gap: clamp(16px, 3vw, 24px); align-items: start; }
   .ap-hero-head .ap-intro { max-width: 60ch; }
   /* stats band: 2 columns, divider only between the pair in each row */
@@ -1745,6 +1774,14 @@ section { position: relative; overflow-x: clip; }
 /* mobile — 25px gutters */
 @media (max-width: 767px) {
   .ap-shell { padding-inline: 25px; }
+  /* reduce vertical rhythm to landing-page-like spacing (tighter mission↔vision
+     gap and bottom padding) now that the 100vh is gone */
+  .about-page > section { padding-block: clamp(28px, 7vw, 48px); }
+  /* centre the hero heading + intro */
+  .ap-hero-head { text-align: center; align-items: center; }
+  .ap-hero-head .ap-intro { margin-inline: auto; }
+  /* centre the core-values card content */
+  .ap-vcard { align-items: center; text-align: center; }
   .ap-cta-actions .btn { flex: 1 1 auto; justify-content: center; }
   /* collage: stack the 3 images, reset the staggered alignment */
   .ap-hero-collage { grid-template-columns: 1fr; gap: clamp(16px, 4vw, 22px); }

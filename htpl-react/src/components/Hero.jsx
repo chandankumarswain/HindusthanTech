@@ -85,12 +85,13 @@ export default function Hero() {
             each other via items-center. Tablet and desktop share the 50/50 split.
       */}
       <div className="w-full grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center lg:gap-16">
-        {/* ============ LEFT — content (vertically centred) ============ */}
-        <div className="flex flex-col">
+        {/* ============ LEFT — content (vertically centred; centre-aligned on mobile) ============ */}
+        <div className="flex flex-col text-center md:text-left">
           {/* Eyebrow — flex-wrap so the three segments never break mid-word on
               narrow phones; shrinks to text-xs on mobile. */}
           <p
             className="htpl-rise flex flex-wrap items-center gap-x-3 gap-y-1
+                       justify-center md:justify-start
                        font-mono uppercase text-accent-dk font-medium
                        text-xs tracking-[0.18em] sm:text-[13px]"
             style={{ animationDelay: '.05s' }}
@@ -116,7 +117,7 @@ export default function Hero() {
               spans give the manual line break (italic always on its own line) AND
               separate targets for the per-line stagger (0.1s apart). max-width
               keeps an optimal measure so lines don't break awkwardly. */}
-          <h1 className="mt-5 max-w-[16ch] font-serif font-normal tracking-[-0.03em] text-ink text-[clamp(2.2rem,4vw,4rem)] leading-[1.08]">
+          <h1 className="mt-5 max-w-[16ch] mx-auto md:mx-0 font-serif font-normal tracking-[-0.03em] text-ink text-[clamp(2.2rem,4vw,4rem)] leading-[1.08]">
             <span className="htpl-rise block" style={{ animationDelay: '.15s' }}>
               {HERO.headline_top}
             </span>
@@ -130,7 +131,7 @@ export default function Hero() {
 
           {/* Description — fluid clamp(0.9rem,1vw,1rem). */}
           <p
-            className="htpl-rise mt-6 max-w-[54ch] text-ink-2 leading-[1.7]
+            className="htpl-rise mt-6 max-w-[54ch] mx-auto md:mx-0 text-ink-2 leading-[1.7]
                        text-[clamp(0.9rem,1vw,1rem)]"
             style={{ animationDelay: '.35s' }}
           >
@@ -139,7 +140,7 @@ export default function Hero() {
 
           {/* Credibility pill — thin red top border, small-caps, tracked. */}
           <div
-            className="htpl-rise mt-7 inline-flex items-center gap-2 self-start border-t-2 border-accent
+            className="htpl-rise mt-7 inline-flex items-center gap-2 self-center md:self-start border-t-2 border-accent
                        pt-2 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-2"
             style={{ animationDelay: '.42s' }}
           >
