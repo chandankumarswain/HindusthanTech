@@ -9,9 +9,14 @@
    prefers-reduced-motion). Colours use the site's existing tokens
    (bone #efece5 / accent #d63924) to stay consistent with the rest of the page.
 
-   The whole file is self-contained: markup + a scoped <style> for the
-   keyframes that Tailwind utilities can't express (ken-burns, dot pulse,
-   staggered line rise).
+   Layout system (per the design spec):
+   • Section = 90vh, full width, flex-centered.
+   • Balanced 50/50 two-column grid at md+ (tablet AND desktop), left = content,
+     right = visual. Mobile stacks single-column: CONTENT first, then IMAGE.
+   • Padding: 25px mobile · 50px tablet · desktop (top 50 / bottom 80 / x 80).
+   • Heading clamp(2.2rem,4vw,4rem); description clamp(0.9rem,1vw,1rem).
+   Content, copy, CTAs, image and colours are unchanged — only structure, spacing
+   and responsive sizing are refined.
    ========================================================================== */
 
 const HERO = {
@@ -44,15 +49,15 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      /* Padding system (brief): 25px mobile → 50px tablet (md) → 80px desktop (lg).
-         Min-height: none on phones (content dictates), ~viewport minus the nav
-         on tablet/desktop. */
+      /* 90vh, full width, centred. min-height (not a hard height) so phones can
+         grow past 90vh if stacked content needs it — guarantees no clipping.
+         Padding: 25 mobile · 50 tablet · desktop top 50 / bottom 80 / x 80. */
       className="relative w-full bg-bone overflow-hidden
+                 flex items-center justify-center
+                 min-h-[90vh]
                  px-[25px] py-[25px]
                  md:px-[50px] md:py-[50px]
-                 lg:px-20 lg:py-20
-                 min-h-0 md:min-h-[calc(100vh-100px)] lg:min-h-[calc(100vh-80px)]
-                 flex items-center"
+                 lg:px-20 lg:pt-[50px] lg:pb-20"
     >
       {/* Scoped keyframes (single-file requirement). Names are namespaced so they
           never collide with the legacy hero animations still in index.css. */}
@@ -74,24 +79,14 @@ export default function Hero() {
       `}</style>
 
       {/*
-        12-column grid. The mobile reading order (HEADLINE → image → copy/CTA) is
-        different from the desktop two-column split, so the hero is built as THREE
-        grid blocks rather than two monolithic columns:
-          A = eyebrow + headline   B = image   C = copy + CTAs
-        • Mobile (grid-cols-1): blocks flow in DOM order A, B, C  → exactly the
-          headline-first order the brief wants.
-        • md/lg: A is row 1 / C is row 2 in the LEFT column, while B (image) is
-          placed in the RIGHT column spanning BOTH rows and vertically centred.
-        gap-x is the column gutter (brief: 16 / 10); gap-y is tightened so the
-        headline and the copy below it keep a natural rhythm, not a 64px chasm.
+        Balanced 50/50 grid. Two cells only → clean composition:
+          • Mobile (grid-cols-1): DOM order is CONTENT then IMAGE (spec order).
+          • md + lg (grid-cols-2): equal halves, vertically centred against
+            each other via items-center. Tablet and desktop share the 50/50 split.
       */}
-      <div
-        className="w-full grid grid-cols-1 gap-8
-                   md:grid-cols-12 md:gap-x-10 md:gap-y-6 md:items-center
-                   lg:gap-x-16 lg:gap-y-8"
-      >
-        {/* ---- BLOCK A : eyebrow + headline ---- */}
-        <div className="md:col-span-7 md:col-start-1 md:row-start-1 lg:col-span-6">
+      <div className="w-full grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center lg:gap-16">
+        {/* ============ LEFT — content (vertically centred) ============ */}
+        <div className="flex flex-col">
           {/* Eyebrow — flex-wrap so the three segments never break mid-word on
               narrow phones; shrinks to text-xs on mobile. */}
           <p
@@ -117,10 +112,11 @@ export default function Hero() {
             ))}
           </p>
 
-          {/* Headline — fluid clamp + 1.05 line-height. Two block spans give the
-              manual line break (italic always on its own line) AND separate
-              targets for the per-line stagger (0.1s apart). */}
-          <h1 className="mt-5 font-serif font-normal tracking-[-0.03em] text-ink text-[clamp(2.25rem,6vw,5.5rem)] leading-[1.05]">
+          {/* Headline — fluid clamp(2.2rem,4vw,4rem), line-height ~1.08. Two block
+              spans give the manual line break (italic always on its own line) AND
+              separate targets for the per-line stagger (0.1s apart). max-width
+              keeps an optimal measure so lines don't break awkwardly. */}
+          <h1 className="mt-5 max-w-[16ch] font-serif font-normal tracking-[-0.03em] text-ink text-[clamp(2.2rem,4vw,4rem)] leading-[1.08]">
             <span className="htpl-rise block" style={{ animationDelay: '.15s' }}>
               {HERO.headline_top}
             </span>
@@ -131,14 +127,87 @@ export default function Hero() {
               {HERO.headline_accent}
             </span>
           </h1>
+
+          {/* Description — fluid clamp(0.9rem,1vw,1rem). */}
+          <p
+            className="htpl-rise mt-6 max-w-[54ch] text-ink-2 leading-[1.7]
+                       text-[clamp(0.9rem,1vw,1rem)]"
+            style={{ animationDelay: '.35s' }}
+          >
+            {HERO.lead}
+          </p>
+
+          {/* Credibility pill — thin red top border, small-caps, tracked. */}
+          <div
+            className="htpl-rise mt-7 inline-flex items-center gap-2 self-start border-t-2 border-accent
+                       pt-2 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-2"
+            style={{ animationDelay: '.42s' }}
+          >
+            <span className="text-muted">Trusted by</span>
+            {HERO.trusted_by.map((c) => (
+              <span key={c} className="flex items-center gap-2">
+                <span className="text-accent/40" aria-hidden="true">
+                  ·
+                </span>
+                {c}
+              </span>
+            ))}
+          </div>
+
+          {/* CTAs — desktop inline, mobile full-width stacked (gap-3). */}
+          <div
+            className="htpl-rise mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
+            style={{ animationDelay: '.5s' }}
+          >
+            <a
+              href={HERO.primary_cta.href}
+              className="group inline-flex items-center justify-center gap-2.5 rounded-full
+                         bg-accent px-7 py-[15px] text-[15px] font-semibold text-white
+                         shadow-[0_10px_24px_rgba(214,57,36,0.28)]
+                         transition hover:-translate-y-0.5 hover:bg-accent-dk
+                         focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            >
+              {HERO.primary_cta.label}
+              <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">
+                →
+              </span>
+            </a>
+            <a
+              href={HERO.secondary_cta.href}
+              className="inline-flex items-center justify-center gap-2.5 rounded-full
+                         border border-[rgba(24,24,26,0.18)] bg-transparent px-7 py-[15px]
+                         text-[15px] font-semibold text-ink transition
+                         hover:-translate-y-0.5 hover:border-ink
+                         focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            >
+              {HERO.secondary_cta.label}
+            </a>
+          </div>
+
+          {/* Statistics (mobile + tablet): all three stats, horizontal snap-scroll.
+              The same figures float as cards on the image at lg+, so this keeps the
+              proof points in the content area below lg without crowding the truck. */}
+          <div
+            className="htpl-noscroll mt-7 flex snap-x snap-mandatory gap-3 overflow-x-auto
+                       pb-1 lg:hidden"
+            role="list"
+            aria-label="Key facts"
+          >
+            {HERO.stats.map((s) => (
+              <StatCard
+                key={s.label}
+                stat={s}
+                role="listitem"
+                className="flex shrink-0 snap-start"
+              />
+            ))}
+          </div>
         </div>
 
-        {/* ---- BLOCK B : image on the cream page (no card) ---- */}
+        {/* ============ RIGHT — visual (vertically centred) ============ */}
         <div
-          className="htpl-img-in relative self-center w-full
-                     aspect-[4/3] md:aspect-[5/4]
-                     md:col-span-5 md:col-start-8 md:row-start-1 md:row-span-2
-                     lg:col-span-6 lg:col-start-7"
+          className="htpl-img-in relative w-full self-center
+                     aspect-[4/3] md:aspect-[5/4]"
         >
           {/* Depth layer: faint diagonal red gradient + dot-grid (~6% opacity max)
               so it adds texture without competing with the truck. */}
@@ -181,9 +250,9 @@ export default function Hero() {
                        drop-shadow-[0_24px_30px_rgba(20,20,20,0.18)]"
           />
 
-          {/* Floating stats only at lg+. Below lg the image column is too narrow
-              (col-span-5) for cards to sit without covering the truck/windshield,
-              so tablet + mobile use the horizontal stat rail instead (Block C). */}
+          {/* Floating stat cards only at lg+. Below lg the half-width image column
+              is too narrow for cards to sit without covering the truck/windshield,
+              so tablet + mobile use the in-content stat rail instead. */}
           {/* TOP-LEFT, kept high in the empty area above the cab → clear of the windshield. */}
           <StatCard
             className="hidden lg:flex absolute top-1 left-0 z-20"
@@ -195,90 +264,13 @@ export default function Hero() {
             stat={HERO.stats[1]}
           />
         </div>
-
-        {/* ---- BLOCK C : lead + credibility pill + CTAs + mobile stat rail ---- */}
-        <div className="md:col-span-7 md:col-start-1 md:row-start-2 lg:col-span-6">
-          <p
-            className="htpl-rise max-w-[600px] text-ink-2 leading-[1.7]
-                       text-[clamp(1rem,0.5rem+1vw,1.375rem)]"
-            style={{ animationDelay: '.35s' }}
-          >
-            {HERO.lead}
-          </p>
-
-          {/* Credibility pill — thin red top border, small-caps, tracked. */}
-          <div
-            className="htpl-rise mt-7 inline-flex items-center gap-2 border-t-2 border-accent
-                       pt-2 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-2"
-            style={{ animationDelay: '.42s' }}
-          >
-            <span className="text-muted">Trusted by</span>
-            {HERO.trusted_by.map((c) => (
-              <span key={c} className="flex items-center gap-2">
-                <span className="text-accent/40" aria-hidden="true">
-                  ·
-                </span>
-                {c}
-              </span>
-            ))}
-          </div>
-
-          {/* CTAs — desktop inline, mobile full-width stacked (gap-3). */}
-          <div
-            className="htpl-rise mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
-            style={{ animationDelay: '.5s' }}
-          >
-            <a
-              href={HERO.primary_cta.href}
-              className="group inline-flex items-center justify-center gap-2.5 rounded-full
-                         bg-accent px-7 py-[15px] text-[15px] font-semibold text-white
-                         shadow-[0_10px_24px_rgba(214,57,36,0.28)]
-                         transition hover:-translate-y-0.5 hover:bg-accent-dk
-                         focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-            >
-              {HERO.primary_cta.label}
-              <span className="transition-transform group-hover:translate-x-1" aria-hidden="true">
-                →
-              </span>
-            </a>
-            <a
-              href={HERO.secondary_cta.href}
-              className="inline-flex items-center justify-center gap-2.5 rounded-full
-                         border border-[rgba(24,24,26,0.18)] bg-transparent px-7 py-[15px]
-                         text-[15px] font-semibold text-ink transition
-                         hover:-translate-y-0.5 hover:border-ink
-                         focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
-            >
-              {HERO.secondary_cta.label}
-            </a>
-          </div>
-
-          {/* Stat rail (mobile + tablet): all three stats, horizontal snap-scroll.
-              The floating cards only appear at lg+, so this keeps the proof points
-              visible below lg without crowding the narrower truck. */}
-          <div
-            className="htpl-noscroll mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto
-                       pb-1 lg:hidden"
-            role="list"
-            aria-label="Key facts"
-          >
-            {HERO.stats.map((s) => (
-              <StatCard
-                key={s.label}
-                stat={s}
-                role="listitem"
-                className="flex shrink-0 snap-start"
-              />
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   )
 }
 
 /* Reusable stat card — used both as the floating desktop badges and as the
-   items in the mobile scroll rail, so the two stay visually identical. */
+   items in the mobile/tablet scroll rail, so the two stay visually identical. */
 function StatCard({ stat, className = '', role }) {
   return (
     <div
