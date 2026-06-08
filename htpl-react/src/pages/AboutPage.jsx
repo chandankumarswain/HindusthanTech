@@ -46,16 +46,16 @@ export default function AboutPage() {
               </figure>
               <figure className="ap-col ap-col-lg">
                 <img
-                  src="/images/about/truck-3.jpeg"
-                  alt="HTPL FACT fire tender built at the Jagatpur facility"
+                  src="/images/about/truck-2.jpeg"
+                  alt="HTPL fire tender in the HTPL studio"
                   loading="eager"
                   decoding="async"
                 />
               </figure>
               <figure className="ap-col ap-col-md">
                 <img
-                  src="/images/about/truck-2.jpeg"
-                  alt="HTPL foam fire tender"
+                  src="/images/about/truck-3.jpeg"
+                  alt="HTPL FACT fire tender built at the Jagatpur facility"
                   loading="eager"
                   decoding="async"
                 />
