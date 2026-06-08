@@ -174,6 +174,22 @@ export default function About() {
                     decoding="async"
                   />
                 </figure>
+                <figure className="serve-pic serve-pic-4">
+                  <img
+                    src="/images/fleet/tn-ladder-tender.jpg"
+                    alt="HTPL ladder fire tender for state fire services"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <figure className="serve-pic serve-pic-5">
+                  <img
+                    src="/images/fleet/chhattisgarh-tender.jpg"
+                    alt="HTPL fire & emergency tender deployed with a state fire service"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
               </div>
               <a href="#clients" className="about2-link">
                 Know our clients <span className="arrow">→</span>

@@ -38,24 +38,24 @@ export default function AboutPage() {
             <div className="ap-hero-collage reveal">
               <figure className="ap-col ap-col-sm">
                 <img
-                  src="/images/fleet/fabrication-workshop.jpg"
-                  alt="HTPL fire vehicles in production at the Jagatpur workshop"
+                  src="/images/fleet/tn-fire-rescue-tender.jpg"
+                  alt="HTPL Ashok Leyland fire & rescue tender"
                   loading="eager"
                   decoding="async"
                 />
               </figure>
               <figure className="ap-col ap-col-lg">
                 <img
-                  src="/images/fleet/htpl-build-rear.jpg"
-                  alt="HTPL fire tender built at the Jagatpur facility"
+                  src="/images/fleet/chhattisgarh-tender.jpg"
+                  alt="HTPL fire & emergency tender for a state fire service"
                   loading="eager"
                   decoding="async"
                 />
               </figure>
               <figure className="ap-col ap-col-md">
                 <img
-                  src="/images/fleet/chhattisgarh-tender.jpg"
-                  alt="HTPL Ashok Leyland fire tender"
+                  src="/images/fleet/tn-ladder-tender.jpg"
+                  alt="HTPL ladder fire tender built at the Jagatpur facility"
                   loading="eager"
                   decoding="async"
                 />
@@ -94,8 +94,8 @@ export default function AboutPage() {
           <div className="ap-shell ap-split">
             <figure className="ap-media reveal">
               <img
-                src="/images/fleet/fabrication-workshop.jpg"
-                alt="Fire vehicles in production at the HTPL Jagatpur facility"
+                src="/images/fleet/htpl-build-rear.jpg"
+                alt="HTPL multipurpose fire tender built at the Jagatpur facility"
                 loading="lazy"
                 decoding="async"
               />

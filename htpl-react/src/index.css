@@ -541,7 +541,8 @@ section { position: relative; overflow-x: clip; }
   display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px, 1.2vw, 16px);
   grid-template-areas:
     "t a"
-    "b c";
+    "b c"
+    "d e";
 }
 .serve-note {
   grid-area: t; align-self: center; margin: 0; padding-right: 6px;
@@ -561,6 +562,8 @@ section { position: relative; overflow-x: clip; }
 .serve-pic-1 { grid-area: a; aspect-ratio: 4 / 3; }
 .serve-pic-2 { grid-area: b; aspect-ratio: 1 / 1; align-self: end; }
 .serve-pic-3 { grid-area: c; aspect-ratio: 4 / 3.2; }
+.serve-pic-4 { grid-area: d; aspect-ratio: 4 / 3.2; }
+.serve-pic-5 { grid-area: e; aspect-ratio: 1 / 1; align-self: start; }
 
 /* right column — stacked numbered cards */
 .serve-list { display: flex; flex-direction: column; gap: clamp(14px, 1.4vw, 20px); margin: 0; }
@@ -1070,10 +1073,13 @@ section { position: relative; overflow-x: clip; }
   filter: saturate(0.95) contrast(1.02); /* same treatment as the HowItWorks imagery */
   transition: transform .4s cubic-bezier(.2,.8,.2,1);
 }
-/* readability overlay — transparent top → dark bottom (matches .show-cap) */
+/* readability overlay — stronger transparent-top → dark-bottom so the caption
+   stays legible even on bright daytime images */
 .pgal-card::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to top, rgba(13,13,15,0.9) 0%, rgba(13,13,15,0.3) 40%, transparent 64%);
+  background: linear-gradient(to top,
+    rgba(13,13,15,0.96) 0%, rgba(13,13,15,0.80) 26%,
+    rgba(13,13,15,0.40) 52%, transparent 76%);
 }
 .pgal-cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: clamp(18px, 2vw, 26px); }
 .pgal-title {
