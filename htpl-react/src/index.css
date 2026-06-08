@@ -1732,14 +1732,13 @@ section { position: relative; overflow-x: clip; }
 .ap-col {
   margin: 0; overflow: hidden;
   border-radius: var(--radius); border: 1px solid var(--line-2); box-shadow: var(--shadow);
-  background: var(--paper); /* clean frame behind the contained image */
 }
-/* contain (not cover) so the whole vehicle fits inside the card — card size
-   (aspect-ratio) is unchanged; the slim letterbox sits on the paper frame */
-.ap-col img { width: 100%; height: 100%; object-fit: contain; padding: 10px; filter: saturate(0.95) contrast(1.02); }
-.ap-col-lg { aspect-ratio: 4 / 4.2; }
-.ap-col-sm { aspect-ratio: 1 / 1.05; align-self: end; }
-.ap-col-md { aspect-ratio: 1 / 1.1; align-self: start; }
+.ap-col img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.95) contrast(1.02); }
+/* cards match the 16:9 about-us photos so cover fills them perfectly with the
+   whole vehicle in frame (no crop, no letterbox); widths vary, heights follow */
+.ap-col-lg { aspect-ratio: 16 / 9; }
+.ap-col-sm { aspect-ratio: 16 / 9; align-self: end; }
+.ap-col-md { aspect-ratio: 16 / 9; align-self: start; }
 
 /* stats band — full-width primary-red section, centered figures with dividers.
    higher specificity than `.about-page > section` so it opts out of 100vh */

@@ -38,24 +38,24 @@ export default function AboutPage() {
             <div className="ap-hero-collage reveal">
               <figure className="ap-col ap-col-sm">
                 <img
-                  src="/images/fleet/tn-fire-rescue-tender.jpg"
-                  alt="HTPL Ashok Leyland fire & rescue tender"
+                  src="/images/about/truck-1.jpeg"
+                  alt="HTPL Tata-based fire & rescue vehicle"
                   loading="eager"
                   decoding="async"
                 />
               </figure>
               <figure className="ap-col ap-col-lg">
                 <img
-                  src="/images/fleet/chhattisgarh-tender.jpg"
-                  alt="HTPL fire & emergency tender for a state fire service"
+                  src="/images/about/truck-3.jpeg"
+                  alt="HTPL FACT fire tender built at the Jagatpur facility"
                   loading="eager"
                   decoding="async"
                 />
               </figure>
               <figure className="ap-col ap-col-md">
                 <img
-                  src="/images/fleet/tn-ladder-tender.jpg"
-                  alt="HTPL ladder fire tender built at the Jagatpur facility"
+                  src="/images/about/truck-2.jpeg"
+                  alt="HTPL foam fire tender"
                   loading="eager"
                   decoding="async"
                 />
