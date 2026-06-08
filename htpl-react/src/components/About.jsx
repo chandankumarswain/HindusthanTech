@@ -81,11 +81,8 @@ export default function About() {
             </div>
 
             <div className="about2-actions">
-              <a href="/about" className="btn btn-primary">
-                Learn more <span className="arrow">→</span>
-              </a>
-              <a href="#products" className="btn btn-ghost">
-                Explore products
+              <a href="#products" className="btn btn-primary">
+                Explore products <span className="arrow">→</span>
               </a>
               <a href="#contact" className="btn btn-ghost">
                 Talk to our team

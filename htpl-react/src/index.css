@@ -483,7 +483,7 @@ section { position: relative; overflow-x: clip; }
 }
 .about2-lead strong { color: var(--ink); font-weight: 600; }
 .about2-stat {
-  margin-top: 26px; display: flex; align-items: baseline; gap: 14px;
+  margin-top: 26px; display: flex; align-items: center; justify-content: center; gap: 14px;
   padding-top: 24px; border-top: 1px solid var(--line);
 }
 .about2-stat .n { font-family: var(--serif); font-size: 54px; line-height: 0.9; letter-spacing: -0.03em; }
