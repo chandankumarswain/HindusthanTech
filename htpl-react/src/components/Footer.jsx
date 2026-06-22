@@ -76,7 +76,7 @@ export default function Footer() {
             </p>
             <p className="footer-meta">
               <span><strong>Est. 1987</strong> · Jagatpur, Cuttack</span>
-              <span><strong>38+</strong> years · <strong>500+</strong> vehicles · <strong>50+</strong> PSU clients</span>
+              <span><strong>38+</strong> years · <strong>2000+</strong> vehicles · <strong>50+</strong> PSU clients</span>
             </p>
 
             <div className="footer-news">
@@ -138,16 +138,16 @@ export default function Footer() {
           <div className="footer-col footer-contact reveal">
             <h3 className="footer-col-title">Contact Info</h3>
             <div className="ci">
-              <div className="k">Workshop</div>
+              <div className="k">Factory</div>
               <div className="v">Plot No. 5 &amp; 7, Old Industrial Estate, Jagatpur, Cuttack – 754021, Odisha</div>
             </div>
             <div className="ci">
               <div className="k">Registered Office</div>
-              <div className="v">Sivapuri, Nimpur, Jagatpur, Cuttack, Odisha</div>
+              <div className="v">Shivapuri, Nimpur, Jagatpur, Cuttack – 754021, Odisha</div>
             </div>
             <div className="ci">
               <div className="k">Phone</div>
-              <div className="v"><a href="tel:+919439695804">+91 94396 95804</a></div>
+              <div className="v"><a href="tel:+919437026348">9437026348</a> / <a href="tel:+919437055701">9437055701</a></div>
             </div>
             <div className="ci">
               <div className="k">Email</div>

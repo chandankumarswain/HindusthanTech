@@ -61,22 +61,28 @@ export default function Contact() {
                 </svg>
               </span>
               <div>
-                <div className="k">Workshop Address</div>
+                <div className="k">Factory</div>
                 <div className="v">
                   Plot No. 5 &amp; 7, Old Industrial Estate, Jagatpur, Cuttack – 754021, Odisha
+                  <br />
+                  Ph: <a href="tel:+919437579348">9437579348</a>
                 </div>
               </div>
             </div>
             <div className="ci-item">
               <span className="ic">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-                  <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-                  <path d="M3 8l9 5 9-5"></path>
+                  <path d="M3 21h18M5 21V7l8-4 8 4v14M9 9h.01M13 9h.01M9 13h.01M13 13h.01M9 17h.01M13 17h.01"></path>
                 </svg>
               </span>
               <div>
                 <div className="k">Registered Office</div>
-                <div className="v">Sivapuri, Nimpur, Jagatpur, Cuttack, Odisha</div>
+                <div className="v">
+                  Shivapuri, Nimpur, Jagatpur, Cuttack – 754021, Odisha
+                  <br />
+                  Ph: <a href="tel:+916712491348">0671-2491348</a>,{' '}
+                  <a href="tel:+919437026348">9437026348</a>
+                </div>
               </div>
             </div>
             <div className="ci-item">
@@ -88,7 +94,8 @@ export default function Contact() {
               <div>
                 <div className="k">Phone</div>
                 <div className="v">
-                  <a href="tel:+919439695804">+91 94396 95804</a>
+                  <a href="tel:+919437026348">9437026348</a> /{' '}
+                  <a href="tel:+919437055701">9437055701</a>
                 </div>
               </div>
             </div>
@@ -105,6 +112,31 @@ export default function Contact() {
                   <a href="mailto:admin@hindusthantechnologies.com">
                     admin@hindusthantechnologies.com
                   </a>
+                </div>
+              </div>
+            </div>
+            <div className="ci-item">
+              <span className="ic">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <circle cx="9" cy="8" r="3"></circle>
+                  <circle cx="17" cy="9" r="2.5"></circle>
+                  <path d="M3 20c0-3 2.5-5 6-5s6 2 6 5M15.5 14c2.5 0 4.5 1.8 4.5 4.5"></path>
+                </svg>
+              </span>
+              <div>
+                <div className="k">Departments</div>
+                <div className="v">
+                  Sales &amp; Marketing —{' '}
+                  <a href="mailto:marketing@hindusthantechnologies.com">marketing@hindusthantechnologies.com</a>,{' '}
+                  <a href="tel:+919439695800">9439695800</a>
+                  <br />
+                  After-Sales Support —{' '}
+                  <a href="mailto:supervisor@hindusthantechnologies.com">supervisor@hindusthantechnologies.com</a>,{' '}
+                  <a href="tel:+919439695814">9439695814</a>
+                  <br />
+                  Technical &amp; QA —{' '}
+                  <a href="mailto:tech.qa@hindusthantechnologies.com">tech.qa@hindusthantechnologies.com</a>,{' '}
+                  <a href="tel:+919439695817">9439695817</a>
                 </div>
               </div>
             </div>

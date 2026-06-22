@@ -67,17 +67,18 @@ export default function About() {
               <span className="italic-accent">industries that matter.</span>
             </h2>
             <p className="about2-lead">
-              Founded in <strong>1987</strong> at Jagatpur, Cuttack by{' '}
-              <strong>Shri Mohan Ranjan Panda</strong>, Hindusthan Technologies Pvt. Ltd.
-              has spent over <strong>three decades</strong> building world-class firefighting and
-              special purpose vehicles — trusted across India's most critical sectors.
+              Founded in <strong>1987</strong> as Hindustan Enterprises by{' '}
+              <strong>Shri Mohan Ranjan Panda</strong> at Jagatpur, Cuttack, and incorporated
+              as Hindusthan Technologies Pvt. Ltd. in <strong>2010</strong>. An MSME-recognised
+              manufacturer with over <strong>three decades</strong> of expertise in
+              safety-critical engineering — trusted across India's most critical sectors.
             </p>
 
             <div className="about2-stat">
               <span className="n">
                 38<span className="accent">+</span>
               </span>
-              <span className="l">Years of excellence · 500+ vehicles delivered</span>
+              <span className="l">Years of expertise · 2000+ vehicles delivered</span>
             </div>
 
             <div className="about2-actions">
@@ -101,8 +102,8 @@ export default function About() {
             </ul>
 
             <p className="about2-addr">
-              Workshop: Plot No. 5 &amp; 7, Old Industrial Estate, Jagatpur · Regd. Office:
-              Sivapuri, Nimpur, Jagatpur, Cuttack, Odisha.
+              Factory: Plot No. 5 &amp; 7, Old Industrial Estate, Jagatpur · Regd. Office:
+              Shivapuri, Nimpur, Jagatpur, Cuttack – 754021, Odisha.
             </p>
           </div>
 

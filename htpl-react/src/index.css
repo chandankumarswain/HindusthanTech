@@ -174,7 +174,8 @@ section { position: relative; overflow-x: clip; }
 .brand:hover .brand-mark { transform: translateY(-1px) rotate(-3deg); box-shadow: 0 10px 22px rgba(20,20,20,0.22); }
 /* transparent emblem logo — sits on any background (light nav · dark footer) */
 .brand-logo {
-  width: 56px; height: 56px; flex: none; display: block; object-fit: contain;
+  height: clamp(40px, 5vw, 50px); width: auto; aspect-ratio: 1 / 1; flex: none;
+  display: block; object-fit: contain;
   transition: transform .25s cubic-bezier(.2,.8,.2,1);
 }
 .brand:hover .brand-logo { transform: translateY(-1px) rotate(-3deg); }
@@ -189,7 +190,10 @@ section { position: relative; overflow-x: clip; }
 }
 .brand:hover .brand-wordmark { transform: translateY(-1px); }
 .footer .brand-wordmark { height: 46px; max-width: 280px; }
-.nav-drawer-head .brand-wordmark { height: 38px; max-width: 200px; }
+.nav-drawer-head .brand-wordmark { height: 36px; max-width: 190px; }
+.nav-drawer-head .brand-logo { height: 40px; }
+/* tighten the gap between emblem and wordmark when both are shown */
+.brand { gap: 11px; }
 
 /* --- navigation (center) --- */
 .nav-links { display: flex; gap: clamp(18px, 2.4vw, 34px); justify-content: center; justify-self: center; }

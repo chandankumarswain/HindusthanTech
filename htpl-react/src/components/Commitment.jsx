@@ -11,9 +11,10 @@ export default function Commitment() {
               Our <span className="italic-accent">commitment</span>
             </h2>
             <p style={{ marginTop: '24px' }}>
-              HTPL plays a vital role in strengthening fire safety and emergency response
-              infrastructure through its expertise in designing and manufacturing reliable,
-              efficient fire-fighting vehicles and systems.
+              HTPL strengthens fire safety and emergency response infrastructure by blending
+              modern engineering, rigorous structural analysis, and proactive maintenance —
+              empowering fire crews and defence agencies with durable, high-performance solutions
+              that protect lives and critical assets.
             </p>
             <p>
               With a strong focus on quality, customization, and compliance with industry

@@ -40,11 +40,12 @@ export default function Clients() {
             <span className="dot"></span>Trusted partners
           </p>
           <h2 className="display h-sec">
-            Our esteemed <span className="italic-accent">clientele</span>
+            Trusted across <span className="italic-accent">strategic sectors</span>
           </h2>
           <p className="lead">
-            Serving India's most critical industries — from petroleum giants to space research
-            and national defence.
+            HTPL serves State Fire Services, Steel &amp; Power, Defence, Oil &amp; Gas, Space, and
+            Fertilizer sectors. Twelve state fire services have placed repeat orders — a testament
+            to our quality of manufacturing and the trust of our customers.
           </p>
         </div>
         <div className="clients-groups">

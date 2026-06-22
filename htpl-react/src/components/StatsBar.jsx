@@ -4,7 +4,7 @@ export default function StatsBar() {
       <div className="statsbar-grid">
         <div className="statsbar-cell reveal">
           <div className="n">
-            500<span className="accent">+</span>
+            2000<span className="accent">+</span>
           </div>
           <div className="l">Vehicles delivered</div>
         </div>
@@ -21,8 +21,10 @@ export default function StatsBar() {
           <div className="l">PSU clients</div>
         </div>
         <div className="statsbar-cell reveal">
-          <div className="n">DGQA</div>
-          <div className="l">Approved vendor</div>
+          <div className="n">
+            38<span className="accent">+</span>
+          </div>
+          <div className="l">Years of expertise</div>
         </div>
       </div>
     </section>

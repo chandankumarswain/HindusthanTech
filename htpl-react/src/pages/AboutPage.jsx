@@ -28,10 +28,12 @@ export default function AboutPage() {
                 </h1>
               </div>
               <p className="lead ap-intro reveal">
-                Founded in <strong>1987</strong> at Jagatpur, Cuttack by{' '}
-                <strong>Shri Mohan Ranjan Panda</strong>, Hindusthan Technologies Pvt. Ltd.
-                has spent over <strong>three decades</strong> building world-class firefighting
-                and special purpose vehicles — trusted across India's most critical sectors.
+                Founded in <strong>1987</strong> as Hindustan Enterprises by{' '}
+                <strong>Shri Mohan Ranjan Panda</strong> at Jagatpur, Cuttack, Odisha, and
+                incorporated as Hindusthan Technologies Pvt. Ltd. in <strong>2010</strong>.
+                An <strong>MSME-recognised</strong> manufacturer (Govt. of Odisha) with over
+                <strong> three decades</strong> of expertise in sophisticated, safety-critical
+                engineering — known for rugged performance, on-time delivery, and transparency.
               </p>
             </div>
 
@@ -74,7 +76,7 @@ export default function AboutPage() {
                 <span className="ap-sb-l">Years of excellence</span>
               </div>
               <div className="ap-sb">
-                <span className="ap-sb-n">500<span className="ap-sb-suf">+</span></span>
+                <span className="ap-sb-n">2000<span className="ap-sb-suf">+</span></span>
                 <span className="ap-sb-l">Vehicles delivered</span>
               </div>
               <div className="ap-sb">

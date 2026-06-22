@@ -111,7 +111,7 @@ export default function Products() {
 
             <div className="pump-stat">
               <div className="n">
-                500<span className="accent">+</span>
+                2000<span className="accent">+</span>
               </div>
               <div className="l">
                 Fire vehicles delivered to India's most demanding industries —

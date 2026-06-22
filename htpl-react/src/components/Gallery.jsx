@@ -35,7 +35,7 @@ export default function Gallery() {
           {/* 01 — accent stat */}
           <article className="show-card is-accent reveal">
             <span className="show-k">Trusted nationwide</span>
-            <span className="show-n">500+</span>
+            <span className="show-n">2000+</span>
             <p className="show-desc">
               Special-purpose vehicles delivered across India's most critical
               sectors.

@@ -21,13 +21,12 @@
 
 const HERO = {
   eyebrow: ['EST. 1987', 'JAGATPUR, CUTTACK', 'MAKE IN INDIA'],
-  headline_top: 'When seconds decide outcomes,',
-  headline_accent: 'we build the truck.',
+  headline_top: 'Engineering of today,',
+  headline_accent: 'saving lives of tomorrow.',
   lead:
     "India's trusted manufacturer of firefighting vehicles and special purpose " +
     'vehicles for over three decades — engineered for refineries, ports, defence ' +
     'establishments, and the front line.',
-  trusted_by: ['ISRO', 'INDIAN NAVY', 'NTPC'],
   primary_cta: { label: 'Explore products', href: '#products' },
   // No brochure asset ships with the repo yet — point at contact so the button
   // never 404s. Swap href for the real PDF (e.g. "/HTPL-brochure.pdf") when ready.
@@ -39,9 +38,9 @@ const HERO = {
     height: 1024,
   },
   stats: [
-    { n: '38', plus: true, label: 'Years building' },
-    { n: '500', plus: true, label: 'Vehicles delivered' },
-    { n: 'ISO', plus: false, label: 'Certified · 9001:2015' },
+    { n: '2000', plus: true, label: 'Vehicles delivered' },
+    { n: '38', plus: true, label: 'Years of expertise' },
+    { n: '50', plus: true, label: 'PSU clients' },
   ],
 }
 
@@ -137,23 +136,6 @@ export default function Hero() {
           >
             {HERO.lead}
           </p>
-
-          {/* Credibility pill — thin red top border, small-caps, tracked. */}
-          <div
-            className="htpl-rise mt-7 inline-flex items-center gap-2 self-center md:self-start border-t-2 border-accent
-                       pt-2 font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-2"
-            style={{ animationDelay: '.42s' }}
-          >
-            <span className="text-muted">Trusted by</span>
-            {HERO.trusted_by.map((c) => (
-              <span key={c} className="flex items-center gap-2">
-                <span className="text-accent/40" aria-hidden="true">
-                  ·
-                </span>
-                {c}
-              </span>
-            ))}
-          </div>
 
           {/* CTAs — desktop inline, mobile full-width stacked (gap-3). */}
           <div

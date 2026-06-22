@@ -64,30 +64,4 @@ export const VALUES = [
       </>
     ),
   },
-  {
-    name: 'Teamwork',
-    desc: 'We value collaboration, mutual respect, and shared responsibility among employees, partners, and stakeholders.',
-    icon: (
-      <>
-        <circle cx="9" cy="8" r="3" />
-        <circle cx="17" cy="9" r="2.5" />
-        <path d="M3 20c0-3 2.5-5 6-5s6 2 6 5M15.5 14c2.5 0 4.5 1.8 4.5 4.5" />
-      </>
-    ),
-  },
-  {
-    name: 'Excellence',
-    desc: 'We pursue operational excellence through continuous improvement, skilled workmanship, and adherence to industry standards.',
-    icon: <path d="M12 3l2.6 5.6 6 .8-4.4 4.1 1.1 6L12 16.8 6.7 19.6l1.1-6L3.4 9.4l6-.8z" />,
-  },
-  {
-    name: 'Responsibility',
-    desc: 'We are committed to contributing to public safety, environmental responsibility, and sustainable business practices.',
-    icon: (
-      <>
-        <path d="M5 20c0-8 6-15 15-15 0 8-6 15-15 15z" />
-        <path d="M5 20c3.5-1 7-4 9-8" />
-      </>
-    ),
-  },
 ]
