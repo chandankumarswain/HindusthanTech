@@ -63,17 +63,12 @@ export default function Footer() {
           <div className="footer-brand reveal">
             <a href="#hero" className="brand" aria-label="Hindusthan Technologies — home">
               <img
-                className="brand-logo"
-                src="/images/htpl-logo.png"
-                alt=""
-                aria-hidden="true"
-                width="48"
-                height="48"
+                className="brand-wordmark"
+                src="/images/htpl-wordmark.png"
+                alt="Hindusthan Technologies Pvt. Ltd."
+                width="1794"
+                height="409"
               />
-              <span className="brand-text" style={{ color: 'var(--bone)' }}>
-                Hindusthan
-                <span style={{ color: 'rgba(239,236,229,0.55)' }}>Technologies</span>
-              </span>
             </a>
             <p className="footer-about">
               Manufacturers of firefighting vehicles and special purpose vehicles since 1987.
