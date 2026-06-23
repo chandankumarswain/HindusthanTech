@@ -216,7 +216,24 @@ section { position: relative; overflow-x: clip; }
 
 /* --- "About Us" hover dropdown (desktop) --- */
 .nav-item { position: relative; display: inline-flex; align-items: center; }
-.nav-item-trigger { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+/* trigger is a non-navigating <button> styled to match the sibling nav links */
+.nav-item-trigger {
+  display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
+  position: relative; padding: 6px 2px; margin: 0;
+  background: none; border: none; appearance: none;
+  font-family: var(--sans); font-size: clamp(14px, 1.05vw, 15.5px); font-weight: 500;
+  color: var(--ink-2);
+  transition: color .2s ease, transform .2s cubic-bezier(.2,.8,.2,1);
+}
+.nav-item-trigger::after {
+  content: ""; position: absolute; left: 50%; bottom: 0; height: 2px; width: 0;
+  background: var(--accent); border-radius: 2px;
+  transition: width .28s cubic-bezier(.2,.8,.2,1), left .28s cubic-bezier(.2,.8,.2,1);
+}
+.nav-item-trigger:hover { color: var(--ink); transform: translateY(-2px); }
+.nav-item-trigger:hover::after,
+.nav-item.is-open .nav-item-trigger::after { width: 100%; left: 0; }
+.nav-item-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .nav-caret { width: 13px; height: 13px; flex: none; opacity: 0.7;
   transition: transform .28s cubic-bezier(.2,.8,.2,1); }
 .nav-item.is-open .nav-caret { transform: rotate(180deg); }
@@ -388,7 +405,7 @@ section { position: relative; overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) {
   .nav, .nav-drawer, .nav-overlay, .nav-toggle span, .brand-mark, .nav-links a,
   .cta-split, .nav-caret, .nav-dropdown, .nav-dropdown-link, .nav-drawer-sub,
-  .nav-drawer-acc { transition: none; }
+  .nav-drawer-acc, .nav-item-trigger { transition: none; }
   .nav.is-hidden { transform: none; opacity: 1; pointer-events: auto; }
 }
 
@@ -2000,4 +2017,59 @@ section { position: relative; overflow-x: clip; }
      stagger's specificity (0,2,0) so the reset actually wins → even gaps. */
   .ap-values-grid { grid-template-columns: 1fr; }
   .ap-values-grid > :nth-child(n) { transform: none; }
+}
+
+/* ============================================================
+   VISION · MISSION · CORE VALUES PAGE  (/vision-mission)
+   Editorial collage + the shared staggered value cards. Reuses
+   the site tokens, .ap-shell gutters (80/50/25) and 991/767 bps.
+   ============================================================ */
+.vm-page { background: var(--bone); color: var(--ink); }
+.vm-page > section { padding-block: clamp(48px, 7vw, 96px); }
+
+/* header */
+.vm-hero { padding-top: clamp(56px, 8vw, 104px) !important; padding-bottom: clamp(28px, 4vw, 56px) !important; }
+.vm-page-title { margin: 14px 0 0; font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1.06; letter-spacing: -0.03em; max-width: 18ch; }
+.vm-page-intro { margin: 18px 0 0; max-width: 56ch; }
+
+/* vision / mission collage blocks */
+.vm-head { max-width: 60ch; margin-bottom: clamp(28px, 3.5vw, 48px); }
+.vm-title { margin: 8px 0 0; font-size: clamp(1.9rem, 3.4vw, 3rem); line-height: 1.08; letter-spacing: -0.02em; }
+.vm-collage {
+  display: grid; grid-template-columns: 0.95fr 1.15fr 1fr;
+  gap: clamp(20px, 2.5vw, 40px); align-items: end;
+}
+.vm-block.is-reverse .vm-collage { grid-template-columns: 1fr 1.15fr 0.95fr; }
+.vm-pic {
+  margin: 0; overflow: hidden;
+  border-radius: var(--radius); border: 1px solid var(--line-2); box-shadow: var(--shadow);
+}
+.vm-pic img {
+  width: 100%; height: 100%; object-fit: cover; filter: saturate(0.95) contrast(1.02);
+  transition: transform .6s cubic-bezier(.2,.8,.2,1);
+}
+.vm-pic:hover img { transform: scale(1.04); }
+.vm-pic-1 { aspect-ratio: 4 / 5; align-self: start; }
+.vm-pic-2 { aspect-ratio: 4 / 3; }
+.vm-text {
+  margin: 0; padding-bottom: 4px;
+  font-size: clamp(15px, 1.05vw, 17px); line-height: 1.75; color: var(--ink-2);
+}
+
+/* core values block on this page (head spacing parity with About page) */
+.vm-values-block .ap-values-head { margin-bottom: clamp(36px, 4vw, 56px); }
+
+/* tablet — 50px gutters (via .ap-shell), 2-up collage */
+@media (max-width: 991px) {
+  .vm-collage,
+  .vm-block.is-reverse .vm-collage { grid-template-columns: 1fr 1fr; align-items: stretch; }
+  .vm-pic-1 { aspect-ratio: 4 / 3; align-self: auto; }
+  .vm-text { grid-column: 1 / -1; }
+}
+/* mobile — 25px gutters, single column */
+@media (max-width: 767px) {
+  .vm-page > section { padding-block: clamp(34px, 8vw, 56px); }
+  .vm-collage,
+  .vm-block.is-reverse .vm-collage { grid-template-columns: 1fr; gap: clamp(16px, 4vw, 24px); }
+  .vm-pic-1, .vm-pic-2 { aspect-ratio: 16 / 11; }
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Landing from './pages/Landing'
 import AboutPage from './pages/AboutPage'
+import VisionMission from './pages/VisionMission'
 
 /* Lightweight pathname router — the Vercel/Vite SPA rewrite serves index.html
    for every path, so a direct hit or refresh on /about renders here too.
@@ -18,5 +19,7 @@ export default function App() {
     return () => window.removeEventListener('popstate', onNav)
   }, [])
 
-  return path === '/about' ? <AboutPage /> : <Landing />
+  if (path === '/about') return <AboutPage />
+  if (path === '/vision-mission') return <VisionMission />
+  return <Landing />
 }

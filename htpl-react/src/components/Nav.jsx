@@ -23,7 +23,7 @@ const NAV = {
    dedicated /about page (anchors added in AboutPage.jsx). */
 const ABOUT_DROPDOWN = [
   { label: 'Company Overview', href: '/about#company-overview' },
-  { label: 'Vision, Mission and Core Values', href: '/about#vision-mission' },
+  { label: 'Vision, Mission and Core Values', href: '/vision-mission' },
   { label: 'Our Infrastructure', href: '/about#our-infrastructure' },
   { label: 'Our Plant and Machinery', href: '/about#plant-machinery' },
   { label: 'Design and Engineering Prowess', href: '/about#design-engineering' },
@@ -239,17 +239,17 @@ export default function Nav() {
                   }
                 }}
               >
-                <a
+                <button
                   ref={aboutTriggerRef}
-                  href={resolveHref(l.href)}
+                  type="button"
                   className="nav-item-trigger"
                   aria-haspopup="true"
                   aria-expanded={aboutOpen}
-                  aria-current={activeHref === l.href ? 'page' : undefined}
+                  onClick={() => setAboutOpen((v) => !v)}
                 >
                   {l.label}
                   <Caret />
-                </a>
+                </button>
                 <div className="nav-dropdown" role="menu" aria-label={l.label}>
                   <div className="nav-dropdown-panel">
                     {l.children.map((c) => (
