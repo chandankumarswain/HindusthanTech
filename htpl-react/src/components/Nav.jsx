@@ -28,7 +28,7 @@ const ABOUT_DROPDOWN = [
   { label: 'Our Plant and Machinery', href: '/about#plant-machinery' },
   { label: 'Design and Engineering Prowess', href: '/design-engineering' },
   { label: 'Testing Facility', href: '/about#testing-facility' },
-  { label: 'Registration and Approvals', href: '/about#registration-approvals' },
+  { label: 'Registration and Approvals', href: '/registration-approvals' },
 ]
 
 const LINKS = [
