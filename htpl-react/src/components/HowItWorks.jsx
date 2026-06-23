@@ -1,18 +1,41 @@
 /* WORKFLOW — the structured, quality-driven manufacturing workflow.
-   Reuses the section's existing card design (mono kicker + sans title, bordered
-   bento grid, hover) so the style, fonts, and colours are unchanged — only the
-   content and the section name are updated. */
+   Redesigned into an editorial bento (reference-inspired): the 9 workflow
+   stages render as text cards (kicker + title + sub-title + accent arrow)
+   interspersed with image cells. Titles, order, and section copy are
+   unchanged; only the sub-titles are generated to enrich each card. */
 
 const STAGES = [
-  'Design & Engineering',
-  'Material Selection & Verification',
-  'Fabrication of Components',
-  'Installation & Assembly',
-  'Surface Preparation & Painting',
-  'Electrical Installation',
-  'Testing & Quality Inspection',
-  'Final Inspection',
-  'Dispatch & Delivery',
+  { title: 'Design & Engineering', sub: 'CAD-led design and engineering before the first cut.' },
+  { title: 'Material Selection & Verification', sub: 'Certified materials sourced and verified to specification.' },
+  { title: 'Fabrication of Components', sub: 'Precision cutting, forming, and fabrication of components.' },
+  { title: 'Installation & Assembly', sub: 'Sub-systems fitted and assembled on calibrated jigs.' },
+  { title: 'Surface Preparation & Painting', sub: 'Surface prep, anti-corrosion treatment, and baked paint.' },
+  { title: 'Electrical Installation', sub: 'Wiring, panels, and electrical systems fully integrated.' },
+  { title: 'Testing & Quality Inspection', sub: 'Functional testing with stage-wise quality inspection.' },
+  { title: 'Final Inspection', sub: 'Complete final inspection and documented sign-off.' },
+  { title: 'Dispatch & Delivery', sub: 'Dispatch, delivery, and on-site handover.' },
+]
+
+const IMAGES = [
+  { src: '/images/fleet/fabrication-workshop.jpg', alt: 'HTPL fabrication at the Jagatpur workshop' },
+  { src: '/images/fleet/htpl-build-rear.jpg', alt: 'HTPL vehicle build nearing completion' },
+  { src: '/images/fleet/dcp-tender.jpg', alt: 'Completed HTPL fire tender ready for dispatch' },
+]
+
+/* 12 cells = 9 stage cards + 3 image cells, interleaved for an editorial rhythm */
+const CELLS = [
+  { img: 0 },
+  { stage: 0 },
+  { stage: 1 },
+  { stage: 2 },
+  { stage: 3 },
+  { img: 1 },
+  { stage: 4 },
+  { stage: 5 },
+  { stage: 6 },
+  { img: 2 },
+  { stage: 7 },
+  { stage: 8 },
 ]
 
 export default function HowItWorks() {
@@ -35,14 +58,27 @@ export default function HowItWorks() {
           </p>
         </header>
 
-        {/* ---- Workflow stages ---- */}
+        {/* ---- Workflow bento: stage cards + image cells ---- */}
         <div className="hiw-bento">
-          {STAGES.map((stage, i) => (
-            <article className="hiw-cell hiw-card reveal" key={stage}>
-              <span className="hiw-step-k">Stage {String(i + 1).padStart(2, '0')}</span>
-              <h3>{stage}</h3>
-            </article>
-          ))}
+          {CELLS.map((cell, i) =>
+            cell.img !== undefined ? (
+              <figure className="hiw-cell hiw-img reveal" key={`img-${i}`}>
+                <img
+                  src={IMAGES[cell.img].src}
+                  alt={IMAGES[cell.img].alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            ) : (
+              <article className="hiw-cell hiw-card reveal" key={`stage-${cell.stage}`}>
+                <span className="hiw-step-k">Stage {String(cell.stage + 1).padStart(2, '0')}</span>
+                <h3>{STAGES[cell.stage].title}</h3>
+                <p>{STAGES[cell.stage].sub}</p>
+                <span className="hiw-card-arrow" aria-hidden="true">↗</span>
+              </article>
+            )
+          )}
         </div>
       </div>
     </section>

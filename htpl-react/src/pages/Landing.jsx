@@ -5,6 +5,7 @@ import StatsBar from '../components/StatsBar'
 import About from '../components/About'
 import Products from '../components/Products'
 import HowItWorks from '../components/HowItWorks'
+import TestingQuality from '../components/TestingQuality'
 import ProjectGallery from '../components/ProjectGallery'
 import Gallery from '../components/Gallery'
 import Technology from '../components/Technology'
@@ -32,6 +33,7 @@ export default function Landing() {
         <Technology />
         <Process />
         <HowItWorks />
+        <TestingQuality />
         <Quality />
         <Clients />
         <Commitment />

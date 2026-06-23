@@ -976,7 +976,7 @@ section { position: relative; overflow-x: clip; }
 
 /* ---- bento grid ---- */
 .hiw-bento {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 1px; background: var(--line);
   border: 1px solid var(--line); border-radius: var(--radius);
   overflow: hidden;
@@ -1011,6 +1011,13 @@ section { position: relative; overflow-x: clip; }
 .hiw-card p {
   margin: 12px 0 0; font-size: 14px; line-height: 1.6; color: var(--muted);
 }
+/* accent arrow pinned to the card's bottom-left (reference-style affordance) */
+.hiw-card-arrow {
+  margin-top: auto; padding-top: 20px;
+  font-size: 18px; line-height: 1; color: var(--accent);
+  transition: transform .25s cubic-bezier(.2,.8,.2,1);
+}
+.hiw-card:hover .hiw-card-arrow { transform: translate(3px, -3px); }
 .hiw-card.is-lead { background: var(--bone-2); }
 .hiw-card.is-lead p { color: rgba(24,24,26,0.42); }
 .hiw-card:hover { background: var(--paper); }
@@ -1058,8 +1065,8 @@ section { position: relative; overflow-x: clip; }
   .hiw-inner { padding-inline: 50px; }
   .hiw-head { grid-template-columns: 1fr; gap: 22px; align-items: start; margin-bottom: 44px; }
   .hiw-head-desc { max-width: 56ch; }
-  /* keep 3-up so the 9 workflow stages fill every row (no empty cells) */
-  .hiw-bento { grid-template-columns: repeat(3, 1fr); }
+  /* 2-up so the 12 cells (9 stages + 3 images) fill every row (no empty cells) */
+  .hiw-bento { grid-template-columns: repeat(2, 1fr); }
   .hiw-feature, .hiw-cta { grid-column: 1 / -1; }
   .hiw-cell { min-height: 200px; }
   .hiw-img { min-height: 260px; }
@@ -1074,7 +1081,7 @@ section { position: relative; overflow-x: clip; }
   .hiw-cta-btn { width: 100%; justify-content: center; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hiw-img img, .hiw-cell, .hiw-link, .hiw-link .arrow { transition: none; }
+  .hiw-img img, .hiw-cell, .hiw-link, .hiw-link .arrow, .hiw-card-arrow { transition: none; }
 }
 
 /* ============================================================
@@ -1366,6 +1373,24 @@ section { position: relative; overflow-x: clip; }
 .q-card .ic { color: var(--accent-dk); margin-bottom: 14px; }
 .q-card h4 { margin: 0 0 7px; font-size: 17px; font-weight: 600; }
 .q-card p { margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.5; }
+
+/* Testing + Quality Management Framework card grid (landing sub-sections) */
+.tq-grid {
+  margin-top: clamp(36px, 4vw, 56px);
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 1.6vw, 22px);
+}
+.tq-card {
+  display: flex; flex-direction: column;
+  background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--radius);
+  padding: clamp(24px, 2.4vw, 32px);
+  transition: box-shadow .3s ease, border-color .3s ease, transform .3s ease;
+}
+.tq-card:hover { box-shadow: var(--shadow-lg); border-color: var(--line); transform: translateY(-4px); }
+.tq-card-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-dk); }
+.tq-card-title { margin: 14px 0 0; font-family: var(--sans); font-weight: 600; font-size: clamp(18px, 1.5vw, 21px); line-height: 1.2; letter-spacing: -0.01em; color: var(--ink); }
+.tq-card-desc { margin: 10px 0 0; font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+@media (max-width: 991px) { .tq-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 767px) { .tq-grid { grid-template-columns: 1fr; } }
 
 /* ============================================================
    CLIENTS
