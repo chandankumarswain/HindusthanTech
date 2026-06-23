@@ -34,11 +34,11 @@ export default function Landing() {
         <Technology />
         <Process />
         <HowItWorks />
+        <ProductsServices />
         <TestingQuality />
         <Quality />
         <Clients />
         <Commitment />
-        <ProductsServices />
         <CtaBand />
         <Contact />
       </main>
