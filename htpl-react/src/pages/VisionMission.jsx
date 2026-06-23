@@ -24,7 +24,9 @@ export default function VisionMission() {
               <span className="ap-crumb-current">Vision, Mission &amp; Core Values</span>
             </p>
             <h1 className="display vm-page-title reveal">
-              Vision, Mission <span className="italic-accent">&amp; Core Values</span>
+              The Vision That Inspires,
+              <br />
+              <span className="italic-accent">The Mission That Drives</span>
             </h1>
             <p className="lead vm-page-intro reveal">
               The purpose, promise, and principles that drive every fire tender and

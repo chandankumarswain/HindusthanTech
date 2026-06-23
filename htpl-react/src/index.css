@@ -2027,10 +2027,10 @@ section { position: relative; overflow-x: clip; }
 .vm-page { background: var(--bone); color: var(--ink); }
 .vm-page > section { padding-block: clamp(48px, 7vw, 96px); }
 
-/* header */
-.vm-hero { padding-top: clamp(56px, 8vw, 104px) !important; padding-bottom: clamp(28px, 4vw, 56px) !important; }
-.vm-page-title { margin: 14px 0 0; font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1.06; letter-spacing: -0.03em; max-width: 18ch; }
-.vm-page-intro { margin: 18px 0 0; max-width: 56ch; }
+/* header — centred (breadcrumb · headline · sub-headline) */
+.vm-hero { padding-top: clamp(56px, 8vw, 104px) !important; padding-bottom: clamp(28px, 4vw, 56px) !important; text-align: center; }
+.vm-page-title { margin: 14px auto 0; font-size: clamp(1.75rem, 4.6vw, 3.6rem); line-height: 1.08; letter-spacing: -0.03em; max-width: 26ch; }
+.vm-page-intro { margin: 18px auto 0; max-width: 56ch; }
 
 /* vision / mission collage blocks */
 .vm-head { max-width: 60ch; margin-bottom: clamp(28px, 3.5vw, 48px); }
