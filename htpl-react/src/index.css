@@ -1393,6 +1393,93 @@ section { position: relative; overflow-x: clip; }
 @media (max-width: 767px) { .tq-grid { grid-template-columns: 1fr; } }
 
 /* ============================================================
+   PRODUCTS & SERVICES — hover tabbed console (uses site tokens)
+   ============================================================ */
+.ps-head { max-width: none; }
+.ps-console {
+  margin-top: clamp(36px, 4vw, 56px);
+  display: grid; grid-template-columns: 300px 1fr;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--paper); overflow: hidden; box-shadow: var(--shadow);
+}
+/* left rail */
+.ps-rail { border-right: 1px solid var(--line); background: var(--bone-2); padding: 8px; }
+.ps-rail-head {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); padding: 14px 14px 12px;
+}
+.ps-tab {
+  position: relative; width: 100%; text-align: left; cursor: pointer;
+  background: none; border: 0; border-top: 1px solid var(--line-2);
+  padding: 18px 16px 18px 20px; display: flex; align-items: flex-start; gap: 14px;
+  transition: background .15s ease;
+}
+.ps-tab:first-of-type { border-top: 0; }
+.ps-tab-num { font-family: var(--mono); font-size: 11px; color: var(--accent); padding-top: 3px; min-width: 20px; }
+.ps-tab-tx { display: flex; flex-direction: column; gap: 3px; }
+.ps-tab-nm { font-family: var(--sans); font-weight: 500; font-size: 15px; line-height: 1.2; color: var(--ink); }
+.ps-tab-ct { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; color: var(--muted); }
+.ps-tab::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent);
+  transform: scaleY(0); transform-origin: center; transition: transform .2s ease;
+}
+.ps-tab:hover { background: var(--accent-wash); }
+.ps-tab[aria-selected="true"] { background: var(--paper); }
+.ps-tab[aria-selected="true"]::before { transform: scaleY(1); }
+.ps-tab[aria-selected="true"] .ps-tab-nm { color: var(--accent-dk); }
+.ps-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+/* right panel */
+.ps-panel { padding: clamp(28px, 3vw, 42px); min-height: 520px; }
+.ps-panel-head {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
+  padding-bottom: 22px; margin-bottom: 8px; border-bottom: 1px solid var(--line);
+}
+.ps-panel-head h3 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.4rem, 2.4vw, 1.7rem); line-height: 1.1; margin: 0; letter-spacing: -0.01em; color: var(--ink); }
+.ps-panel-head p { margin: 10px 0 0; font-size: 0.97rem; line-height: 1.55; color: var(--ink-2); max-width: 46ch; }
+.ps-tag {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); border: 1px solid var(--line); padding: 6px 10px; white-space: nowrap;
+}
+.ps-pane { display: none; }
+.ps-pane.on { display: block; animation: psFade .28s ease; }
+@keyframes psFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+/* datasheet spec rows */
+.ps-spec { display: flex; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--line-2); }
+.ps-spec:last-child { border-bottom: 0; padding-bottom: 4px; }
+.ps-code { font-family: var(--mono); font-size: 11px; color: var(--accent); min-width: 56px; padding-top: 5px; letter-spacing: 0.04em; }
+.ps-spec-body h4 { font-family: var(--sans); font-weight: 600; font-size: 1.05rem; margin: 0 0 6px; letter-spacing: -0.005em; color: var(--ink); }
+.ps-spec-body p { margin: 0; font-size: 0.97rem; line-height: 1.58; color: var(--ink-2); max-width: 62ch; }
+/* overview cards */
+.ps-cards { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line-2); }
+.ps-card { padding: 26px 22px 28px; border-right: 1px solid var(--line-2); }
+.ps-card:last-child { border-right: 0; }
+.ps-card-ci { font-family: var(--mono); font-size: 10.5px; color: var(--accent); letter-spacing: 0.14em; }
+.ps-card h4 { font-family: var(--serif); font-weight: 600; font-size: 1.2rem; line-height: 1.12; margin: 14px 0 10px; color: var(--ink); }
+.ps-card p { font-size: 0.92rem; line-height: 1.55; color: var(--ink-2); margin: 0 0 16px; }
+.ps-card ul { list-style: none; margin: 0; padding: 0; }
+.ps-card li { font-family: var(--sans); font-size: 0.84rem; color: var(--ink); padding: 5px 0 5px 16px; position: relative; }
+.ps-card li::before { content: ""; position: absolute; left: 0; top: 11px; width: 6px; height: 6px; background: var(--accent); }
+.ps-note { font-size: 0.97rem; color: var(--ink-2); line-height: 1.6; margin: 24px 0 0; max-width: 62ch; }
+.ps-note strong { color: var(--ink); font-weight: 600; }
+/* ≤860px: rail becomes a horizontal scroll strip; content stacks */
+@media (max-width: 860px) {
+  .ps-console { grid-template-columns: 1fr; }
+  .ps-rail { display: flex; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); padding: 0; }
+  .ps-rail-head { display: none; }
+  .ps-tab { border-top: 0; border-right: 1px solid var(--line-2); min-width: 210px; padding: 16px; }
+  .ps-tab::before { top: auto; bottom: 0; left: 0; right: 0; width: auto; height: 3px; transform: scaleX(0); }
+  .ps-tab[aria-selected="true"]::before { transform: scaleX(1); }
+  .ps-panel { padding: 30px 24px 34px; min-height: auto; }
+  .ps-cards { grid-template-columns: 1fr; }
+  .ps-card { border-right: 0; border-bottom: 1px solid var(--line-2); }
+  .ps-card:last-child { border-bottom: 0; }
+  .ps-panel-head { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ps-tab, .ps-tab::before, .ps-pane.on { transition: none; animation: none; }
+}
+
+/* ============================================================
    CLIENTS
    ============================================================ */
 .clients { background: var(--bone-2); }

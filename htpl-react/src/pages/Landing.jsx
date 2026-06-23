@@ -3,6 +3,7 @@ import Nav from '../components/Nav'
 import Hero from '../components/Hero'
 import StatsBar from '../components/StatsBar'
 import About from '../components/About'
+import ProductsServices from '../components/ProductsServices'
 import Products from '../components/Products'
 import HowItWorks from '../components/HowItWorks'
 import TestingQuality from '../components/TestingQuality'
@@ -27,6 +28,7 @@ export default function Landing() {
         <Hero />
         <StatsBar />
         <About />
+        <ProductsServices />
         <Products />
         <ProjectGallery />
         <Gallery />

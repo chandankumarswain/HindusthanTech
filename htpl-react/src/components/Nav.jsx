@@ -43,11 +43,20 @@ const MANUFACTURING_DROPDOWN = [
   { label: 'Our Commitment', href: '/#commitment' },
 ]
 
+/* Products & Services mega-menu — each item selects + scrolls to its tab in the
+   Products & Services console (handled by the section's #ps-N hash listener). */
+const PRODUCTS_DROPDOWN = [
+  { label: 'Core Product Portfolio', href: '/#ps-0' },
+  { label: 'Fire-fighting Equipment & Vehicles', href: '/#ps-1' },
+  { label: 'Special Purpose Vehicles (SPVs)', href: '/#ps-2' },
+  { label: 'Services', href: '/#ps-3' },
+]
+
 const LINKS = [
   { label: 'Home', href: NAV.home_link },
   { label: 'About Us', href: '/about', children: ABOUT_DROPDOWN },
   { label: 'Manufacturing', href: 'manufacturing', children: MANUFACTURING_DROPDOWN },
-  { label: 'Products', href: NAV.products_link },
+  { label: 'Products', href: 'products-menu', children: PRODUCTS_DROPDOWN },
   { label: 'Gallery', href: NAV.gallery_link },
   { label: 'Clients', href: NAV.clients_link },
 ]
