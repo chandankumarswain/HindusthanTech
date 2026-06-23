@@ -222,14 +222,6 @@ export default function Nav() {
         {/* LEFT — brand / logo */}
         <a href={resolveHref(NAV.home_link)} className="brand" aria-label={NAV.aria_label}>
           <img
-            className="brand-logo"
-            src="/images/htpl-logo.png"
-            alt=""
-            aria-hidden="true"
-            width="471"
-            height="467"
-          />
-          <img
             className="brand-wordmark"
             src="/images/htpl-wordmark.png"
             alt="Hindusthan Technologies Pvt. Ltd."
@@ -346,14 +338,6 @@ export default function Nav() {
       >
         <div className="nav-drawer-head">
           <a href={resolveHref(NAV.home_link)} className="brand" onClick={close}>
-            <img
-              className="brand-logo"
-              src="/images/htpl-logo.png"
-              alt=""
-              aria-hidden="true"
-              width="471"
-              height="467"
-            />
             <img
               className="brand-wordmark"
               src="/images/htpl-wordmark.png"
