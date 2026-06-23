@@ -2056,6 +2056,13 @@ section { position: relative; overflow-x: clip; }
   font-size: clamp(15px, 1.05vw, 17px); line-height: 1.75; color: var(--ink-2);
 }
 
+/* stats band — full-width primary-red section (reuses .ap-statsband internals) */
+.vm-page > section.ap-stats-section {
+  display: block;
+  background: var(--accent); color: #fff;
+  padding-block: clamp(56px, 7vw, 100px);
+}
+
 /* core values block on this page (head spacing parity with About page) */
 .vm-values-block .ap-values-head { margin-bottom: clamp(36px, 4vw, 56px); }
 

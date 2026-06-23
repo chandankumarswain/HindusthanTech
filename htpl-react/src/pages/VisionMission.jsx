@@ -97,6 +97,30 @@ export default function VisionMission() {
           </div>
         </section>
 
+        {/* ---- Stats band (primary red, centered) ---- */}
+        <section className="ap-stats-section">
+          <div className="ap-shell">
+            <div className="ap-statsband reveal">
+              <div className="ap-sb">
+                <span className="ap-sb-n">38<span className="ap-sb-suf">+</span></span>
+                <span className="ap-sb-l">Years of excellence</span>
+              </div>
+              <div className="ap-sb">
+                <span className="ap-sb-n">2000<span className="ap-sb-suf">+</span></span>
+                <span className="ap-sb-l">Vehicles delivered</span>
+              </div>
+              <div className="ap-sb">
+                <span className="ap-sb-n">50<span className="ap-sb-suf">+</span></span>
+                <span className="ap-sb-l">PSU clients</span>
+              </div>
+              <div className="ap-sb">
+                <span className="ap-sb-n">15<span className="ap-sb-suf">+</span></span>
+                <span className="ap-sb-l">States served</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ---- Core values (staggered numbered cards) ---- */}
         <section className="vm-block vm-values-block">
           <div className="ap-shell">
