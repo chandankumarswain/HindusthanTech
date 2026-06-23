@@ -2149,3 +2149,85 @@ section { position: relative; overflow-x: clip; }
   .infra-page .ap-sb, .infra-page .ap-sb:first-child { border-left: none; }
   .infra-hero-media { aspect-ratio: 16 / 10; }
 }
+
+/* ============================================================
+   DESIGN & ENGINEERING PROWESS PAGE  (/design-engineering)
+   Reuses site tokens, .ap-shell gutters (80/50/25) + 991/767 bps.
+   ============================================================ */
+.de-page { background: var(--bone); color: var(--ink); }
+.de-page > section { padding-block: clamp(48px, 7vw, 96px); }
+
+/* hero — centred */
+.de-hero { text-align: center; padding-top: clamp(56px, 8vw, 104px) !important; }
+.de-hero-kicker { justify-content: center; flex-wrap: wrap; gap: 10px 14px; }
+.de-tol { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding-left: 14px; border-left: 1px solid var(--line); }
+.de-hero-title { margin: 16px auto 0; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.07; letter-spacing: -0.03em; max-width: 18ch; }
+.de-hero-desc { margin: 22px auto 0; max-width: 62ch; }
+.de-hero-actions { margin-top: 30px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* stage flow — first cut → final paint */
+.de-flow { margin-top: clamp(44px, 6vw, 84px); text-align: left; }
+.de-flow-head { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-dk); margin-bottom: 16px; }
+.de-flow-stages { list-style: none; margin: 0; padding: 18px 0 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; position: relative; }
+.de-flow-stages::before { content: ""; position: absolute; top: 5px; left: 0; right: 0; height: 1px; background: var(--line); }
+.de-stage { position: relative; }
+.de-stage::before { content: ""; position: absolute; top: 1px; left: 0; width: 9px; height: 9px; background: var(--accent); border-radius: 2px; }
+.de-stage-num { display: block; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.de-stage-label { display: block; margin-top: 4px; font-size: 14px; font-weight: 600; color: var(--ink); }
+
+/* shared section heads */
+.de-h2 { margin: 8px 0 0; font-size: clamp(1.8rem, 3.2vw, 2.9rem); line-height: 1.1; letter-spacing: -0.02em; }
+.de-text { margin: 16px 0 0; max-width: 60ch; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.7; color: var(--ink-2); }
+.de-sec-head { margin-bottom: clamp(32px, 4vw, 52px); }
+.de-sec-head-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
+.de-sec-head-row .de-text { margin-top: 0; max-width: 40ch; }
+
+/* capability cards (3-up) */
+.de-cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 1.6vw, 22px); }
+.de-card { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--radius); padding: clamp(22px, 2.2vw, 30px); transition: box-shadow .3s ease, border-color .3s ease, transform .3s ease; }
+.de-card:hover { box-shadow: var(--shadow-lg); border-color: var(--line); transform: translateY(-4px); }
+.de-card-top { display: flex; align-items: center; justify-content: space-between; }
+.de-card-num { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--accent); }
+.de-card-cat { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.de-card-title { margin: 16px 0 0; font-size: clamp(17px, 1.4vw, 20px); font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; color: var(--ink); }
+.de-card-desc { margin: 10px 0 0; font-size: 14px; line-height: 1.6; color: var(--ink-2); flex: 1; }
+.de-card-tags { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 7px; }
+.de-tag { font-family: var(--mono); font-size: 11px; color: var(--ink-2); padding: 4px 9px; border: 1px solid var(--line); border-radius: 6px; }
+
+/* dark spec band */
+.de-band { background: var(--ink); color: var(--bone); }
+.de-band-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.de-band-quote { margin: 0; font-size: clamp(1.4rem, 2.4vw, 2.2rem); line-height: 1.32; letter-spacing: -0.01em; color: var(--bone); }
+.de-band-accent { color: var(--accent); font-style: italic; }
+.de-band-specs { margin: 0; display: grid; gap: 22px; }
+.de-spec dt { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(239, 236, 229, 0.5); }
+.de-spec dd { margin: 6px 0 0; font-family: var(--serif); font-size: clamp(1.4rem, 2vw, 1.8rem); color: var(--bone); }
+
+/* validation gates (3-up) */
+.de-gate-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 1.6vw, 22px); }
+.de-gate { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--radius); padding: clamp(22px, 2.2vw, 30px); transition: box-shadow .3s ease, border-color .3s ease, transform .3s ease; }
+.de-gate:hover { box-shadow: var(--shadow-lg); border-color: var(--line); transform: translateY(-4px); }
+.de-gate-top { display: flex; align-items: center; justify-content: space-between; }
+.de-gate-id { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.de-gate-req { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.de-gate-title { margin: 16px 0 0; font-size: clamp(17px, 1.4vw, 20px); font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+.de-gate-desc { margin: 10px 0 0; font-size: 14px; line-height: 1.6; color: var(--ink-2); flex: 1; }
+.de-gate-tag { margin-top: 18px; align-self: flex-start; font-family: var(--mono); font-size: 11px; color: var(--ink-2); padding: 4px 9px; border: 1px solid var(--line); border-radius: 6px; }
+
+/* tablet — 50px gutters (via .ap-shell) */
+@media (max-width: 991px) {
+  .de-cap-grid { grid-template-columns: repeat(2, 1fr); }
+  .de-sec-head-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .de-band-grid { grid-template-columns: 1fr; gap: 28px; }
+  .de-flow-stages { grid-template-columns: repeat(3, 1fr); row-gap: 26px; }
+  .de-flow-stages::before { display: none; }
+  .de-stage::before { position: static; display: block; margin: 0 0 8px; }
+}
+/* mobile — 25px gutters, single column */
+@media (max-width: 767px) {
+  .de-page > section { padding-block: clamp(34px, 8vw, 56px); }
+  .de-cap-grid { grid-template-columns: 1fr; }
+  .de-gate-grid { grid-template-columns: 1fr; }
+  .de-flow-stages { grid-template-columns: repeat(2, 1fr); }
+  .de-band-quote { font-size: clamp(1.3rem, 5vw, 1.7rem); }
+}

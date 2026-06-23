@@ -26,7 +26,7 @@ const ABOUT_DROPDOWN = [
   { label: 'Vision, Mission and Core Values', href: '/vision-mission' },
   { label: 'Our Infrastructure', href: '/infrastructure' },
   { label: 'Our Plant and Machinery', href: '/about#plant-machinery' },
-  { label: 'Design and Engineering Prowess', href: '/about#design-engineering' },
+  { label: 'Design and Engineering Prowess', href: '/design-engineering' },
   { label: 'Testing Facility', href: '/about#testing-facility' },
   { label: 'Registration and Approvals', href: '/about#registration-approvals' },
 ]
