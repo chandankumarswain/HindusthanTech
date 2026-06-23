@@ -11,20 +11,15 @@ export default function Commitment() {
               Our <span className="italic-accent">commitment</span>
             </h2>
             <p style={{ marginTop: '24px' }}>
-              HTPL strengthens fire safety and emergency response infrastructure by blending
-              modern engineering, rigorous structural analysis, and proactive maintenance —
-              empowering fire crews and defence agencies with durable, high-performance solutions
-              that protect lives and critical assets.
+              At HTPL, we play an indispensable role in strengthening fire safety and emergency
+              response infrastructure through our expertise in designing and manufacturing
+              reliable and efficient firefighting vehicles and systems.
             </p>
             <p>
-              With a strong focus on quality, customization, and compliance with industry
-              standards, HTPL ensures its solutions meet the critical demands of industrial,
-              institutional, and public safety applications.
-            </p>
-            <p>
-              By integrating modern engineering practices, robust manufacturing processes, and
-              comprehensive after-sales support, the company contributes significantly to
-              enhancing emergency preparedness and operational safety.
+              By blending modern engineering setups, rigorous structural analysis, and proactive
+              maintenance frameworks, we empower fire-response crews and defence agencies to
+              deliver durable, high-performance solutions that help safeguard lives, protect
+              critical infrastructure, and ensure the safety of valuable assets.
             </p>
           </div>
           <div className="commit-pillars reveal">

@@ -29,8 +29,8 @@ const CARDS = [
     ),
   },
   {
-    title: 'CMVR Compliance',
-    desc: 'All vehicles meet Central Motor Vehicles Rules for road-worthiness, safety, and regulatory compliance across India.',
+    title: 'CMVR Alignment',
+    desc: 'Comprehensive legal engineering alignment with the Central Motor Vehicles Rules (CMVR) standards.',
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
         <path d="M3 17l4-3 1.5-7L12 4l3.5 3L17 14l4 3M3 21h18"></path>
@@ -38,24 +38,24 @@ const CARDS = [
     ),
   },
   {
-    title: '5S & FIFO Implementation',
-    desc: 'Disciplined shopfloor organization through 5S methodology and First-In-First-Out inventory practices.',
+    title: 'Industrial Security',
+    desc: 'Mandatory use of safety equipment (PPE) — helmets, safety shoes, gloves, and goggles — across all manufacturing lines.',
     icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <rect x="3" y="3" width="7" height="7" rx="1"></rect>
-        <rect x="14" y="3" width="7" height="7" rx="1"></rect>
-        <rect x="3" y="14" width="7" height="7" rx="1"></rect>
-        <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M2 18h20"></path>
+        <path d="M4 18a8 8 0 0 1 16 0"></path>
+        <path d="M9 10V7a3 3 0 0 1 6 0v3"></path>
       </svg>
     ),
   },
   {
-    title: 'QAP, CAPA & Stage-wise Inspection',
-    desc: 'Project-specific Quality Assurance Plans, Corrective & Preventive Actions, and full traceability documentation.',
+    title: 'SOP Frameworks',
+    desc: 'Standard Operating Procedures for every critical activity, including welding, painting, sheet-metal work, testing, and inspection.',
     icon: (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-        <path d="M9 11l3 3 8-8"></path>
-        <path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"></path>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <path d="M14 2v6h6"></path>
+        <path d="M9 13h6M9 17h6"></path>
       </svg>
     ),
   },
