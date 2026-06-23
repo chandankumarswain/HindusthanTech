@@ -27,11 +27,11 @@ export default function Landing() {
         <StatsBar />
         <About />
         <Products />
-        <HowItWorks />
         <ProjectGallery />
         <Gallery />
         <Technology />
         <Process />
+        <HowItWorks />
         <Quality />
         <Clients />
         <Commitment />

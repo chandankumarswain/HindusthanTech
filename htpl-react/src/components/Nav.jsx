@@ -36,7 +36,7 @@ const ABOUT_DROPDOWN = [
 const MANUFACTURING_DROPDOWN = [
   { label: 'Technology & Innovation', href: '/#technology' },
   { label: 'Manufacturing Process', href: '/#process' },
-  { label: 'Workflow', href: '/#how-it-works' },
+  { label: 'Workflow', href: '/#workflow' },
   { label: 'Testing', href: '/#process' },
   { label: 'Quality Assurance', href: '/#quality' },
   { label: 'Compliance and Safety', href: '/#quality' },
