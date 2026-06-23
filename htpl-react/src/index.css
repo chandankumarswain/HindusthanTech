@@ -191,6 +191,12 @@ section { position: relative; overflow-x: clip; }
 .brand:hover .brand-wordmark { transform: translateY(-1px); }
 .footer .brand-wordmark { height: 46px; max-width: 280px; }
 .nav-drawer-head .brand-wordmark { height: 36px; max-width: 190px; }
+/* Optical centering in the navbar: the script's long descender pulls the
+   wordmark's visual mass to ~34% from the top, so geometric centering reads
+   high. Nudge down by ~15% of its own height (responsive) to sit on the same
+   line as the nav links. Scoped to the nav (header + drawer), not the footer. */
+.nav .brand-wordmark { transform: translateY(15%); }
+.nav .brand:hover .brand-wordmark { transform: translateY(15%) translateY(-2px); }
 .nav-drawer-head .brand-logo { height: 40px; }
 /* tighten the gap between emblem and wordmark when both are shown */
 .brand { gap: 11px; }
