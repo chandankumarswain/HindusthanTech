@@ -28,7 +28,6 @@ export default function Landing() {
         <Hero />
         <StatsBar />
         <About />
-        <ProductsServices />
         <Products />
         <ProjectGallery />
         <Gallery />
@@ -39,6 +38,7 @@ export default function Landing() {
         <Quality />
         <Clients />
         <Commitment />
+        <ProductsServices />
         <CtaBand />
         <Contact />
       </main>
