@@ -14,7 +14,7 @@ const NAV = {
   technology_link: '#technology',
   clients_link: '#clients',
   contact_link: '#contact',
-  cta_text: 'Get a Quote',
+  cta_text: 'Contact Us',
   cta_link: '#contact',
   aria_label: 'HTPL home',
 }
@@ -31,14 +31,25 @@ const ABOUT_DROPDOWN = [
   { label: 'Registration and Approvals', href: '/registration-approvals' },
 ]
 
+/* Manufacturing hover/accordion submenu — each item deep-links to the relevant
+   section on the landing page. */
+const MANUFACTURING_DROPDOWN = [
+  { label: 'Technology & Innovation', href: '/#technology' },
+  { label: 'Manufacturing Process', href: '/#process' },
+  { label: 'Workflow', href: '/#how-it-works' },
+  { label: 'Testing', href: '/#process' },
+  { label: 'Quality Assurance', href: '/#quality' },
+  { label: 'Compliance and Safety', href: '/#quality' },
+  { label: 'Our Commitment', href: '/#commitment' },
+]
+
 const LINKS = [
   { label: 'Home', href: NAV.home_link },
   { label: 'About Us', href: '/about', children: ABOUT_DROPDOWN },
+  { label: 'Manufacturing', href: 'manufacturing', children: MANUFACTURING_DROPDOWN },
   { label: 'Products', href: NAV.products_link },
   { label: 'Gallery', href: NAV.gallery_link },
-  { label: 'Technology', href: NAV.technology_link },
   { label: 'Clients', href: NAV.clients_link },
-  { label: 'Contact Us', href: NAV.contact_link },
 ]
 
 const Caret = () => (
@@ -60,19 +71,18 @@ export default function Nav() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
-  // desktop "About Us" hover/focus dropdown + mobile drawer accordion
-  const [aboutOpen, setAboutOpen] = useState(false)
-  const [drawerAboutOpen, setDrawerAboutOpen] = useState(false)
+  // desktop hover/focus dropdown + mobile drawer accordion — keyed by item href
+  const [openMenu, setOpenMenu] = useState(null)
+  const [drawerMenu, setDrawerMenu] = useState(null)
   const drawerRef = useRef(null)
   const toggleRef = useRef(null)
-  const aboutTriggerRef = useRef(null)
 
   const close = useCallback(() => setOpen(false), [])
 
-  /* Close the About dropdown + collapse the drawer accordion whenever the
-     drawer itself closes, so it never reopens in a stale state. */
+  /* Collapse any open drawer accordion whenever the drawer itself closes, so it
+     never reopens in a stale state. */
   useEffect(() => {
-    if (!open) setDrawerAboutOpen(false)
+    if (!open) setDrawerMenu(null)
   }, [open])
 
   /* On non-home pages (e.g. /about), section anchors must point back to the
@@ -225,27 +235,26 @@ export default function Nav() {
             l.children ? (
               <div
                 key={l.href}
-                className={`nav-item${aboutOpen ? ' is-open' : ''}`}
-                onMouseEnter={() => setAboutOpen(true)}
-                onMouseLeave={() => setAboutOpen(false)}
-                onFocus={() => setAboutOpen(true)}
+                className={`nav-item${openMenu === l.href ? ' is-open' : ''}`}
+                onMouseEnter={() => setOpenMenu(l.href)}
+                onMouseLeave={() => setOpenMenu(null)}
+                onFocus={() => setOpenMenu(l.href)}
                 onBlur={(e) => {
-                  if (!e.currentTarget.contains(e.relatedTarget)) setAboutOpen(false)
+                  if (!e.currentTarget.contains(e.relatedTarget)) setOpenMenu(null)
                 }}
                 onKeyDown={(e) => {
                   if (e.key === 'Escape') {
-                    setAboutOpen(false)
-                    aboutTriggerRef.current?.focus()
+                    setOpenMenu(null)
+                    e.currentTarget.querySelector('.nav-item-trigger')?.focus()
                   }
                 }}
               >
                 <button
-                  ref={aboutTriggerRef}
                   type="button"
                   className="nav-item-trigger"
                   aria-haspopup="true"
-                  aria-expanded={aboutOpen}
-                  onClick={() => setAboutOpen((v) => !v)}
+                  aria-expanded={openMenu === l.href}
+                  onClick={() => setOpenMenu((v) => (v === l.href ? null : l.href))}
                 >
                   {l.label}
                   <Caret />
@@ -258,7 +267,7 @@ export default function Nav() {
                         href={resolveHref(c.href)}
                         className="nav-dropdown-link"
                         role="menuitem"
-                        onClick={() => setAboutOpen(false)}
+                        onClick={() => setOpenMenu(null)}
                       >
                         {c.label}
                       </a>
@@ -363,17 +372,15 @@ export default function Nav() {
               <div key={l.href} className="nav-drawer-group">
                 <button
                   type="button"
-                  className={`nav-drawer-acc${drawerAboutOpen ? ' is-open' : ''}`}
-                  aria-expanded={drawerAboutOpen}
-                  aria-controls="drawer-about-sub"
-                  onClick={() => setDrawerAboutOpen((v) => !v)}
+                  className={`nav-drawer-acc${drawerMenu === l.href ? ' is-open' : ''}`}
+                  aria-expanded={drawerMenu === l.href}
+                  onClick={() => setDrawerMenu((v) => (v === l.href ? null : l.href))}
                 >
                   {l.label}
                   <Caret />
                 </button>
                 <div
-                  id="drawer-about-sub"
-                  className={`nav-drawer-sub${drawerAboutOpen ? ' is-open' : ''}`}
+                  className={`nav-drawer-sub${drawerMenu === l.href ? ' is-open' : ''}`}
                 >
                   <div className="nav-drawer-sub-inner">
                     {l.children.map((c) => (
