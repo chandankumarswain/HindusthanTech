@@ -2080,3 +2080,71 @@ section { position: relative; overflow-x: clip; }
   .vm-block.is-reverse .vm-collage { grid-template-columns: 1fr; gap: clamp(16px, 4vw, 24px); }
   .vm-pic-1, .vm-pic-2 { aspect-ratio: 16 / 11; }
 }
+
+/* ============================================================
+   OUR INFRASTRUCTURE PAGE  (/infrastructure)
+   Reuses site tokens, .ap-shell gutters (80/50/25) + 991/767 bps.
+   ============================================================ */
+.infra-page { background: var(--bone); color: var(--ink); }
+.infra-page > section { padding-block: clamp(48px, 7vw, 96px); }
+
+/* hero — centred headline + sub-headline + actions, then a wide main image */
+.infra-hero { text-align: center; padding-top: clamp(56px, 8vw, 104px) !important; }
+.infra-hero-title { margin: 0 auto; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.07; letter-spacing: -0.03em; max-width: 20ch; }
+.infra-hero-desc { margin: 22px auto 0; max-width: 64ch; }
+.infra-hero-actions { margin-top: 30px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.infra-hero-media {
+  margin: clamp(40px, 5vw, 72px) 0 0; overflow: hidden; aspect-ratio: 16 / 7;
+  border-radius: var(--radius); border: 1px solid var(--line-2); box-shadow: var(--shadow);
+}
+.infra-hero-media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.95) contrast(1.02); }
+
+/* overview + metrics */
+.infra-h2 { margin: 10px 0 0; font-size: clamp(1.8rem, 3.2vw, 2.9rem); line-height: 1.1; letter-spacing: -0.02em; max-width: 24ch; }
+.infra-text { margin: 18px 0 0; max-width: 66ch; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.7; color: var(--ink-2); }
+.infra-stats { margin-top: clamp(32px, 4vw, 56px); display: grid; grid-template-columns: repeat(3, max-content); gap: clamp(28px, 5vw, 80px); }
+.infra-stat { padding-left: clamp(24px, 4vw, 56px); border-left: 1px solid var(--line); }
+.infra-stat:first-child { padding-left: 0; border-left: none; }
+.infra-stat-n {
+  display: block; font-family: var(--serif); font-weight: 400;
+  font-size: clamp(2.2rem, 3.6vw, 3.2rem); line-height: 1; letter-spacing: -0.02em; color: var(--ink);
+}
+.infra-stat-n .accent { color: var(--accent); }
+.infra-stat-l { display: block; margin-top: 12px; font-size: 13.5px; font-weight: 500; color: var(--muted); }
+
+/* what we build — centred header + 3-up cards */
+.infra-build-head { text-align: center; max-width: 64ch; margin: 0 auto clamp(36px, 4vw, 56px); }
+.infra-build-head .eyebrow { display: inline-flex; }
+.infra-build-head .infra-h2 { max-width: none; }
+.infra-build-head .infra-text { margin-inline: auto; }
+.infra-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2vw, 28px); }
+.infra-card {
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--radius);
+  transition: box-shadow .3s ease, border-color .3s ease, transform .3s ease;
+}
+.infra-card:hover { box-shadow: var(--shadow-lg); border-color: var(--line); transform: translateY(-4px); }
+.infra-card-body { flex: 1; display: flex; flex-direction: column; padding: clamp(22px, 2.2vw, 30px); }
+.infra-card-cat { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-dk); }
+.infra-card-title { margin: 12px 0 0; font-size: clamp(18px, 1.5vw, 21px); font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+.infra-card-desc { margin: 10px 0 0; font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+.infra-card-link { margin-top: 18px; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; color: var(--accent-dk); transition: gap .2s ease, color .2s ease; }
+.infra-card-link:hover { color: var(--accent); gap: 11px; }
+.infra-card-media { margin: 0; aspect-ratio: 16 / 10; overflow: hidden; }
+.infra-card-media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.95) contrast(1.02); transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.infra-card:hover .infra-card-media img { transform: scale(1.05); }
+
+/* tablet — 50px gutters (via .ap-shell), 2-up cards */
+@media (max-width: 991px) {
+  .infra-cards { grid-template-columns: repeat(2, 1fr); }
+  .infra-stats { gap: clamp(20px, 4vw, 40px); }
+}
+/* mobile — 25px gutters, single column, stacked metrics */
+@media (max-width: 767px) {
+  .infra-page > section { padding-block: clamp(34px, 8vw, 56px); }
+  .infra-cards { grid-template-columns: 1fr; }
+  .infra-stats { grid-template-columns: 1fr; gap: 0; }
+  .infra-stat { padding: 18px 0; border-left: none; border-top: 1px solid var(--line); }
+  .infra-stat:first-child { padding-top: 0; border-top: none; }
+  .infra-hero-media { aspect-ratio: 16 / 10; }
+}

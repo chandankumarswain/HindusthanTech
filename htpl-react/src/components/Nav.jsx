@@ -24,7 +24,7 @@ const NAV = {
 const ABOUT_DROPDOWN = [
   { label: 'Company Overview', href: '/about#company-overview' },
   { label: 'Vision, Mission and Core Values', href: '/vision-mission' },
-  { label: 'Our Infrastructure', href: '/about#our-infrastructure' },
+  { label: 'Our Infrastructure', href: '/infrastructure' },
   { label: 'Our Plant and Machinery', href: '/about#plant-machinery' },
   { label: 'Design and Engineering Prowess', href: '/about#design-engineering' },
   { label: 'Testing Facility', href: '/about#testing-facility' },
