@@ -91,14 +91,20 @@ export default function Infrastructure() {
               facilities are built to meet the highest industry standards while ensuring
               operational excellence.
             </p>
-            <div className="infra-stats reveal">
+          </div>
+        </section>
+
+        {/* ---- Stats band (primary red, centered) ---- */}
+        <section className="ap-stats-section">
+          <div className="ap-shell">
+            <div className="ap-statsband reveal">
               {STATS.map((s) => (
-                <div className="infra-stat" key={s.l}>
-                  <span className="infra-stat-n">
+                <div className="ap-sb" key={s.l}>
+                  <span className="ap-sb-n">
                     {s.n}
-                    <span className="accent">{s.suf}</span>
+                    <span className="ap-sb-suf">{s.suf}</span>
                   </span>
-                  <span className="infra-stat-l">{s.l}</span>
+                  <span className="ap-sb-l">{s.l}</span>
                 </div>
               ))}
             </div>
