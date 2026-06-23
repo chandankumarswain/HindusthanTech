@@ -214,6 +214,60 @@ section { position: relative; overflow-x: clip; }
 .nav-links a[aria-current="page"] { color: var(--ink); }
 .nav-links a[aria-current="page"]::after { width: 100%; left: 0; }
 
+/* --- "About Us" hover dropdown (desktop) --- */
+.nav-item { position: relative; display: inline-flex; align-items: center; }
+.nav-item-trigger { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+.nav-caret { width: 13px; height: 13px; flex: none; opacity: 0.7;
+  transition: transform .28s cubic-bezier(.2,.8,.2,1); }
+.nav-item.is-open .nav-caret { transform: rotate(180deg); }
+
+.nav-dropdown {
+  position: absolute; top: 100%; left: 50%;
+  /* transparent top padding = hover-bridge across the gap → no flicker */
+  padding-top: 14px; min-width: 264px;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transform: translateX(-50%) translateY(-8px);
+  transition: opacity .22s ease, transform .26s cubic-bezier(.2,.8,.2,1), visibility .22s;
+  z-index: 1200;
+}
+.nav-item:hover > .nav-dropdown,
+.nav-item.is-open > .nav-dropdown {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown-panel {
+  position: relative;
+  display: flex; flex-direction: column; gap: 2px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  padding: 8px;
+}
+/* small pointer notch, centred under the trigger */
+.nav-dropdown-panel::before {
+  content: ""; position: absolute; top: -7px; left: 50%;
+  width: 13px; height: 13px; transform: translateX(-50%) rotate(45deg);
+  background: var(--paper);
+  border-left: 1px solid var(--line); border-top: 1px solid var(--line);
+  border-top-left-radius: 4px;
+}
+/* dropdown links — reset the parent .nav-links a base styles, left-aligned rows */
+.nav-dropdown-link {
+  position: relative; display: block; width: 100%;
+  padding: 10px 14px; border-radius: 9px;
+  font-family: var(--sans); font-size: 14.5px; font-weight: 500;
+  color: var(--ink-2); white-space: nowrap; line-height: 1.3;
+  transition: background .18s ease, color .18s ease, padding-left .18s ease;
+}
+.nav-dropdown-link::after { display: none; }
+.nav-dropdown-link:hover,
+.nav-dropdown-link:focus-visible {
+  background: var(--accent-wash); color: var(--accent-dk);
+  padding-left: 18px; transform: none; outline: none;
+}
+.nav-dropdown-link:focus-visible { box-shadow: inset 0 0 0 2px var(--accent); }
+
 /* --- CTA / phone (right) --- */
 .nav-right { display: flex; align-items: center; gap: 16px; justify-self: end; }
 .nav-phone { font-size: 14px; font-weight: 500; color: var(--ink-2); white-space: nowrap; transition: color .2s; }
@@ -297,6 +351,35 @@ section { position: relative; overflow-x: clip; }
 .nav-drawer-links a:hover, .nav-drawer-links a:focus-visible {
   color: var(--accent); padding-left: 8px; outline: none;
 }
+/* --- "About Us" accordion (mobile / tablet drawer) --- */
+.nav-drawer-group { border-bottom: 1px solid var(--line-2); }
+.nav-drawer-acc {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  background: none; border: none; cursor: pointer; gap: 12px;
+  font-family: var(--serif); font-size: 24px; font-weight: 400; color: var(--ink);
+  padding: 15px 0; letter-spacing: -0.01em; text-align: left;
+  transition: color .2s, padding-left .2s;
+}
+.nav-drawer-acc:hover, .nav-drawer-acc:focus-visible { color: var(--accent); padding-left: 8px; outline: none; }
+.nav-drawer-acc .nav-caret { width: 20px; height: 20px; opacity: 0.85; }
+.nav-drawer-acc.is-open .nav-caret { transform: rotate(180deg); }
+/* grid-rows 0fr→1fr = height auto animation without measuring JS */
+.nav-drawer-sub {
+  display: grid; grid-template-rows: 0fr;
+  transition: grid-template-rows .34s cubic-bezier(.2,.8,.2,1);
+}
+.nav-drawer-sub.is-open { grid-template-rows: 1fr; }
+.nav-drawer-sub-inner { overflow: hidden; min-height: 0; }
+.nav-drawer-links .nav-drawer-sub-inner a {
+  display: block; border: none;
+  font-family: var(--sans); font-size: 16px; font-weight: 500; color: var(--ink-2);
+  padding: 13px 0 13px 18px; letter-spacing: 0;
+}
+.nav-drawer-links .nav-drawer-sub-inner a:hover,
+.nav-drawer-links .nav-drawer-sub-inner a:focus-visible {
+  color: var(--accent); padding-left: 26px;
+}
+.nav-drawer-links .nav-drawer-sub-inner a:last-child { padding-bottom: 18px; }
 .nav-drawer-foot { padding: 22px var(--pad) calc(22px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line-2); display: grid; gap: 14px; }
 .nav-drawer-foot .btn { justify-content: center; width: 100%; }
 .nav-drawer-phone { font-size: 15px; font-weight: 500; color: var(--ink-2); text-align: center; }
@@ -304,7 +387,8 @@ section { position: relative; overflow-x: clip; }
 
 @media (prefers-reduced-motion: reduce) {
   .nav, .nav-drawer, .nav-overlay, .nav-toggle span, .brand-mark, .nav-links a,
-  .cta-split { transition: none; }
+  .cta-split, .nav-caret, .nav-dropdown, .nav-dropdown-link, .nav-drawer-sub,
+  .nav-drawer-acc { transition: none; }
   .nav.is-hidden { transform: none; opacity: 1; pointer-events: auto; }
 }
 
@@ -1826,6 +1910,50 @@ section { position: relative; overflow-x: clip; }
 .ap-cta { display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
 .ap-cta-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 
+/* About sub-sections (dropdown targets) — compact, content-height sections.
+   Override the page's per-section 100vh so they don't each become a full screen. */
+.about-page > section.ap-sec-auto { min-height: 0; }
+.ap-cap-head { max-width: 62ch; }
+.ap-cap-head .ap-text { margin-top: 16px; }
+
+/* infrastructure cards */
+.ap-cap-grid {
+  margin-top: clamp(28px, 3.2vw, 44px);
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2vw, 26px);
+}
+.ap-cap-card {
+  background: var(--paper); border: 1px solid var(--line-2);
+  border-radius: var(--radius); padding: clamp(22px, 2.2vw, 30px);
+  transition: box-shadow .3s ease, border-color .3s ease, transform .3s ease;
+}
+.ap-cap-card:hover { box-shadow: var(--shadow); border-color: var(--line); transform: translateY(-3px); }
+.ap-cap-card h4 {
+  margin: 0; font-size: clamp(17px, 1.4vw, 20px); font-weight: 600;
+  letter-spacing: -0.01em; color: var(--ink);
+}
+.ap-cap-card p { margin: 10px 0 0; font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+
+/* capability / approval tag chips */
+.ap-tags {
+  list-style: none; margin: clamp(24px, 3vw, 36px) 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.ap-tags li {
+  display: inline-flex; align-items: center;
+  padding: 9px 16px; border-radius: 999px;
+  background: var(--paper); border: 1px solid var(--line);
+  font-size: 14px; font-weight: 500; color: var(--ink-2);
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+.ap-tags li:hover { border-color: var(--accent); color: var(--accent-dk); background: var(--accent-wash); }
+.ap-tags-approvals li::before {
+  content: ""; width: 6px; height: 6px; margin-right: 9px; border-radius: 50%;
+  background: var(--accent); flex: none;
+}
+
+/* two-column checklist (testing facility) */
+.ap-checks-2col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 28px; }
+
 /* tablet — 50px gutters, single-column blocks */
 @media (max-width: 991px) {
   .ap-shell { padding-inline: 50px; }
@@ -1840,6 +1968,7 @@ section { position: relative; overflow-x: clip; }
   .ap-sb:nth-child(odd) { border-left: none; }
   .ap-split { grid-template-columns: 1fr; gap: clamp(28px, 4vw, 40px); }
   .ap-media { aspect-ratio: 16 / 10; }
+  .ap-cap-grid { grid-template-columns: repeat(2, 1fr); }
   /* values: 2 columns, single-step stagger */
   .ap-values-grid { grid-template-columns: repeat(2, 1fr); }
   .ap-values-grid > :nth-child(3n + 2),
@@ -1863,6 +1992,9 @@ section { position: relative; overflow-x: clip; }
   .ap-col-lg, .ap-col-sm, .ap-col-md { aspect-ratio: 16 / 11; align-self: auto; }
   /* stats band: single column on small phones */
   .ap-statsband { grid-template-columns: 1fr; row-gap: 26px; }
+  /* About sub-sections: single-column grids + checklist on phones */
+  .ap-cap-grid { grid-template-columns: 1fr; }
+  .ap-checks-2col { grid-template-columns: 1fr; }
   .ap-sb, .ap-sb:nth-child(odd) { border-left: none; }
   /* values: single column, no stagger. Use :nth-child to match the tablet
      stagger's specificity (0,2,0) so the reset actually wins → even gaps. */

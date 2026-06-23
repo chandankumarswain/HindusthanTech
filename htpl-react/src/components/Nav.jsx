@@ -19,9 +19,21 @@ const NAV = {
   aria_label: 'HTPL home',
 }
 
+/* About Us hover/accordion submenu — each item deep-links to its section on the
+   dedicated /about page (anchors added in AboutPage.jsx). */
+const ABOUT_DROPDOWN = [
+  { label: 'Company Overview', href: '/about#company-overview' },
+  { label: 'Vision, Mission and Core Values', href: '/about#vision-mission' },
+  { label: 'Our Infrastructure', href: '/about#our-infrastructure' },
+  { label: 'Our Plant and Machinery', href: '/about#plant-machinery' },
+  { label: 'Design and Engineering Prowess', href: '/about#design-engineering' },
+  { label: 'Testing Facility', href: '/about#testing-facility' },
+  { label: 'Registration and Approvals', href: '/about#registration-approvals' },
+]
+
 const LINKS = [
   { label: 'Home', href: NAV.home_link },
-  { label: 'About Us', href: '/about' },
+  { label: 'About Us', href: '/about', children: ABOUT_DROPDOWN },
   { label: 'Products', href: NAV.products_link },
   { label: 'Gallery', href: NAV.gallery_link },
   { label: 'Technology', href: NAV.technology_link },
@@ -29,14 +41,39 @@ const LINKS = [
   { label: 'Contact Us', href: NAV.contact_link },
 ]
 
+const Caret = () => (
+  <svg
+    className="nav-caret"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M6 9l6 6 6-6" />
+  </svg>
+)
+
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
+  // desktop "About Us" hover/focus dropdown + mobile drawer accordion
+  const [aboutOpen, setAboutOpen] = useState(false)
+  const [drawerAboutOpen, setDrawerAboutOpen] = useState(false)
   const drawerRef = useRef(null)
   const toggleRef = useRef(null)
+  const aboutTriggerRef = useRef(null)
 
   const close = useCallback(() => setOpen(false), [])
+
+  /* Close the About dropdown + collapse the drawer accordion whenever the
+     drawer itself closes, so it never reopens in a stale state. */
+  useEffect(() => {
+    if (!open) setDrawerAboutOpen(false)
+  }, [open])
 
   /* On non-home pages (e.g. /about), section anchors must point back to the
      landing page: "#products" → "/#products". On home they stay native hashes. */
@@ -184,15 +221,61 @@ export default function Nav() {
 
         {/* CENTER — primary navigation */}
         <nav className="nav-links" aria-label="Primary">
-          {LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={resolveHref(l.href)}
-              aria-current={activeHref === l.href ? 'page' : undefined}
-            >
-              {l.label}
-            </a>
-          ))}
+          {LINKS.map((l) =>
+            l.children ? (
+              <div
+                key={l.href}
+                className={`nav-item${aboutOpen ? ' is-open' : ''}`}
+                onMouseEnter={() => setAboutOpen(true)}
+                onMouseLeave={() => setAboutOpen(false)}
+                onFocus={() => setAboutOpen(true)}
+                onBlur={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget)) setAboutOpen(false)
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Escape') {
+                    setAboutOpen(false)
+                    aboutTriggerRef.current?.focus()
+                  }
+                }}
+              >
+                <a
+                  ref={aboutTriggerRef}
+                  href={resolveHref(l.href)}
+                  className="nav-item-trigger"
+                  aria-haspopup="true"
+                  aria-expanded={aboutOpen}
+                  aria-current={activeHref === l.href ? 'page' : undefined}
+                >
+                  {l.label}
+                  <Caret />
+                </a>
+                <div className="nav-dropdown" role="menu" aria-label={l.label}>
+                  <div className="nav-dropdown-panel">
+                    {l.children.map((c) => (
+                      <a
+                        key={c.href}
+                        href={resolveHref(c.href)}
+                        className="nav-dropdown-link"
+                        role="menuitem"
+                        onClick={() => setAboutOpen(false)}
+                      >
+                        {c.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <a
+                key={l.href}
+                href={resolveHref(l.href)}
+                aria-current={activeHref === l.href ? 'page' : undefined}
+              >
+                {l.label}
+              </a>
+            )
+          )}
         </nav>
 
         {/* RIGHT — CTA + phone */}
@@ -275,11 +358,38 @@ export default function Nav() {
         </div>
 
         <nav className="nav-drawer-links" aria-label="Mobile">
-          {LINKS.map((l) => (
-            <a key={l.href} href={resolveHref(l.href)} onClick={close}>
-              {l.label}
-            </a>
-          ))}
+          {LINKS.map((l) =>
+            l.children ? (
+              <div key={l.href} className="nav-drawer-group">
+                <button
+                  type="button"
+                  className={`nav-drawer-acc${drawerAboutOpen ? ' is-open' : ''}`}
+                  aria-expanded={drawerAboutOpen}
+                  aria-controls="drawer-about-sub"
+                  onClick={() => setDrawerAboutOpen((v) => !v)}
+                >
+                  {l.label}
+                  <Caret />
+                </button>
+                <div
+                  id="drawer-about-sub"
+                  className={`nav-drawer-sub${drawerAboutOpen ? ' is-open' : ''}`}
+                >
+                  <div className="nav-drawer-sub-inner">
+                    {l.children.map((c) => (
+                      <a key={c.href} href={resolveHref(c.href)} onClick={close}>
+                        {c.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <a key={l.href} href={resolveHref(l.href)} onClick={close}>
+                {l.label}
+              </a>
+            )
+          )}
         </nav>
 
         <div className="nav-drawer-foot">
