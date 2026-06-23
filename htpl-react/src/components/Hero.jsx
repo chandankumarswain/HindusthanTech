@@ -32,10 +32,10 @@ const HERO = {
   // never 404s. Swap href for the real PDF (e.g. "/HTPL-brochure.pdf") when ready.
   secondary_cta: { label: 'Download brochure', href: '#contact' },
   image: {
-    src: '/images/hero-fire-tender.png',
-    alt: 'HTPL Ashok Leyland multipurpose fire tender',
-    width: 1536, // intrinsic px — locks the aspect ratio for the browser
-    height: 1024,
+    src: '/images/hero-water-tender.webp',
+    alt: 'HTPL Ashok Leyland 1920 water tender fire truck',
+    width: 1361, // intrinsic px — locks the aspect ratio for the browser
+    height: 1015,
   },
   stats: [
     { n: '2000', plus: true, label: 'Vehicles delivered' },

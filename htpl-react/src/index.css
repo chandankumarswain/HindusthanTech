@@ -1397,6 +1397,8 @@ section { position: relative; overflow-x: clip; }
    ============================================================ */
 .clients { background: var(--bone-2); }
 .clients-groups { margin-top: 52px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+/* single unified logo grid (all clients in one flex-wrap row set) */
+.clients-all { margin-top: clamp(36px, 4vw, 52px); }
 .client-group {
   background: var(--paper); border: 1px solid var(--line-2);
   border-radius: var(--radius); padding: 26px 28px;
