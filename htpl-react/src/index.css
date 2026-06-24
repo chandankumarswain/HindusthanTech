@@ -1399,56 +1399,90 @@ section { position: relative; overflow-x: clip; }
 @media (max-width: 767px) { .tq-grid { grid-template-columns: 1fr; } }
 
 /* ============================================================
-   QUALITY MANAGEMENT FRAMEWORK — sticky dark feature + cards band
+   QUALITY MANAGEMENT FRAMEWORK — pinned feature + windowed card scroll
    (reference-inspired; uses site tokens — red accent, serif/grotesk/mono)
    ============================================================ */
+.qmf-pin {
+  --qmf-cardH: 212px; --qmf-gap: 20px; --qmf-winH: 444px; /* 2*cardH + gap */
+  position: relative; background: var(--bone-2);
+}
+.qmf-stage {
+  position: sticky; top: 0; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding-block: clamp(40px, 6vh, 80px);
+}
 .qmf-band {
-  margin-top: clamp(36px, 4vw, 56px);
+  margin-top: clamp(28px, 3vw, 44px);
   display: grid; grid-template-columns: 1.04fr 1fr;
   gap: clamp(20px, 2.4vw, 40px); align-items: start;
 }
-/* sticky dark "Our framework" feature card */
+/* dark "Our framework" feature card */
 .qmf-feature {
-  position: sticky; top: calc(var(--nav-h) + 20px);
   display: flex; flex-direction: column; overflow: hidden;
+  height: calc(var(--qmf-winH) + 84px);
   background:
     radial-gradient(120% 90% at 85% 8%, rgba(58,58,62,0.55) 0%, rgba(35,35,37,0) 55%),
     linear-gradient(160deg, #1f1f22 0%, #101011 100%);
   color: var(--bone); border-radius: var(--radius);
-  padding: clamp(28px, 3vw, 40px);
+  padding: clamp(26px, 2.8vw, 36px);
   box-shadow: var(--shadow-lg);
 }
 .qmf-flabel { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(239,236,229,0.5); }
-.qmf-seal-wrap { display: flex; align-items: center; justify-content: center; padding: clamp(20px, 3vw, 36px) 0; min-height: 170px; }
-.qmf-seal { width: min(280px, 72%); height: auto; display: block; }
-.qmf-lead { margin: auto 0 0; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.65; color: rgba(239,236,229,0.82); max-width: 36ch; }
-.qmf-cta { align-self: flex-start; margin-top: 24px; }
-/* framework cards */
-.qmf-cards { display: flex; flex-direction: column; gap: clamp(14px, 1.6vw, 20px); }
+.qmf-seal-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 8px 0; min-height: 150px; }
+.qmf-seal { width: min(260px, 70%); height: auto; display: block; }
+.qmf-lead { margin: auto 0 0; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.6; color: rgba(239,236,229,0.82); max-width: 34ch; }
+.qmf-cta { align-self: flex-start; margin-top: 22px; }
+/* windowed viewport: fixed-height window + scroll-driven track + progress rail */
+.qmf-viewport { display: flex; gap: 16px; align-items: stretch; }
+.qmf-window { position: relative; flex: 1; height: var(--qmf-winH); overflow: hidden; }
+.qmf-track { display: flex; flex-direction: column; gap: var(--qmf-gap); will-change: transform; }
+.qmf-fade { position: absolute; left: 0; right: 0; height: 46px; pointer-events: none; z-index: 3; }
+.qmf-fade.top { top: 0; background: linear-gradient(var(--bone-2), rgba(230,226,216,0)); }
+.qmf-fade.bot { bottom: 0; background: linear-gradient(rgba(230,226,216,0), var(--bone-2)); }
 .qmf-card {
-  position: relative; background: var(--paper); border: 1px solid var(--line-2);
-  border-radius: var(--radius); padding: clamp(24px, 2.4vw, 30px) clamp(26px, 2.6vw, 34px);
-  transition: box-shadow .3s ease, border-color .3s ease, transform .3s ease;
+  height: var(--qmf-cardH); position: relative;
+  display: flex; flex-direction: column; justify-content: center;
+  background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--radius);
+  padding: 26px clamp(26px, 2.6vw, 34px);
+  transition: box-shadow .35s ease, border-color .35s ease, transform .35s ease;
 }
 .qmf-card::before {
   content: ""; position: absolute; left: 0; top: 24px; bottom: 24px; width: 3px; border-radius: 3px;
   background: var(--accent); opacity: 0; transform: scaleY(.3); transform-origin: center;
-  transition: opacity .3s ease, transform .3s ease;
+  transition: opacity .35s ease, transform .35s ease;
 }
-.qmf-card:hover { box-shadow: var(--shadow-lg); border-color: var(--line); transform: translateY(-3px); }
-.qmf-card:hover::before { opacity: 1; transform: scaleY(1); }
+.qmf-card.qmf-active::before, .qmf-card:hover::before { opacity: 1; transform: scaleY(1); }
+.qmf-card:hover { box-shadow: var(--shadow-lg); border-color: var(--line); }
 .qmf-clabel { display: block; font-family: var(--serif); font-style: italic; font-size: 0.92rem; color: var(--muted); margin-bottom: 10px; }
 .qmf-ctitle { margin: 0; font-family: var(--sans); font-weight: 600; font-size: clamp(1.15rem, 1.8vw, 1.4rem); letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); }
 .qmf-ctitle em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--accent-dk); padding-right: 0.06em; }
 .qmf-cdesc { margin: 11px 0 0; font-size: 0.97rem; line-height: 1.55; color: var(--ink-2); max-width: 48ch; }
+/* progress rail */
+.qmf-rail { position: relative; width: 3px; border-radius: 3px; background: rgba(24,24,26,0.08); height: var(--qmf-winH); }
+.qmf-thumb { position: absolute; left: 0; top: 0; width: 3px; border-radius: 3px; background: var(--accent); height: 40%; }
 /* sheen sweep on the seal */
 .qmf-sheen { transform-origin: 130px 130px; animation: qmfSpin 14s linear infinite; }
 @keyframes qmfSpin { to { transform: rotate(360deg); } }
+
+/* ≤991px / reduced-motion: drop the pin, stack the cards as a simple list */
 @media (max-width: 991px) {
+  .qmf-pin { height: auto !important; }
+  .qmf-stage { position: static; min-height: 0; display: block; padding-block: clamp(40px, 8vw, 64px); }
   .qmf-band { grid-template-columns: 1fr; }
-  .qmf-feature { position: static; }
+  .qmf-feature { height: auto; }
+  .qmf-viewport { display: block; }
+  .qmf-window { height: auto; overflow: visible; }
+  .qmf-track { transform: none !important; display: flex; flex-direction: column; gap: clamp(14px, 3vw, 20px); }
+  .qmf-fade, .qmf-rail { display: none; }
+  .qmf-card { height: auto; min-height: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .qmf-pin { height: auto !important; }
+  .qmf-stage { position: static; min-height: 0; display: block; }
+  .qmf-window { height: auto; overflow: visible; }
+  .qmf-track { transform: none !important; }
+  .qmf-fade, .qmf-rail { display: none; }
+  .qmf-card { height: auto; }
   .qmf-card, .qmf-card::before, .qmf-sheen { transition: none; animation: none; }
 }
 

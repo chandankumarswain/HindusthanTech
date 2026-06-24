@@ -1,10 +1,14 @@
-/* TESTING + QUALITY MANAGEMENT FRAMEWORK — two manufacturing sub-sections that
-   sit under the Workflow section.
-   - Testing: centred header + card grid (built from landing classes).
-   - Quality Management Framework: a two-column band — a sticky dark "Our
-     framework" feature card (machined seal + lead + CTA) beside the framework
-     cards. Layout inspired by the supplied reference, re-rendered in the site's
-     own tokens (red accent, serif/grotesk/mono), content verbatim. */
+import { useEffect, useRef } from 'react'
+
+/* TESTING + QUALITY MANAGEMENT FRAMEWORK — manufacturing sub-sections under
+   Workflow.
+   - Testing: centred header + card grid.
+   - Quality Management Framework: pinned-scroll band — the dark "Our framework"
+     feature card stays pinned while the framework cards scroll through a fixed
+     window (with fade edges + progress rail) until the last card. Ported from
+     the reference into the site's tokens (red accent, serif/grotesk/mono);
+     content verbatim. Falls back to a simple stacked list on ≤991px / reduced
+     motion. */
 
 const TESTS = [
   { name: 'DP Test & Hydrotest of Tanks', desc: 'Dye-penetrant and hydrostatic pressure testing of tanks for leak-proof integrity.' },
@@ -69,6 +73,88 @@ const QualitySeal = () => (
 )
 
 export default function TestingQuality() {
+  const pinRef = useRef(null)
+  const winRef = useRef(null)
+  const trackRef = useRef(null)
+  const railRef = useRef(null)
+  const thumbRef = useRef(null)
+
+  /* Pinned-scroll driver: pin the band, translate the card track on scroll. */
+  useEffect(() => {
+    const pin = pinRef.current
+    const win = winRef.current
+    const track = trackRef.current
+    const rail = railRef.current
+    const thumb = thumbRef.current
+    if (!pin || !win || !track) return
+    const cards = Array.from(track.children)
+    const mqMobile = window.matchMedia('(max-width: 991px)')
+    const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let maxT = 0
+
+    const pinMode = () => !(mqMobile.matches || mqReduce.matches)
+
+    const update = () => {
+      if (!pinMode()) return
+      const dur = pin.offsetHeight - window.innerHeight
+      let p = dur > 0 ? (window.scrollY - pin.offsetTop) / dur : 0
+      p = Math.min(1, Math.max(0, p))
+      track.style.transform = `translateY(${-maxT * p}px)`
+      if (thumb && rail) {
+        const tH = thumb.offsetHeight
+        thumb.style.transform = `translateY(${(rail.clientHeight - tH) * p}px)`
+      }
+      const winRect = win.getBoundingClientRect()
+      const center = winRect.top + winRect.height / 2
+      let best = 0
+      let bestD = Infinity
+      cards.forEach((c, i) => {
+        const r = c.getBoundingClientRect()
+        const d = Math.abs(r.top + r.height / 2 - center)
+        if (d < bestD) {
+          bestD = d
+          best = i
+        }
+      })
+      cards.forEach((c, j) => c.classList.toggle('qmf-active', j === best))
+    }
+
+    const layout = () => {
+      if (!pinMode()) {
+        pin.style.height = ''
+        track.style.transform = ''
+        if (thumb) thumb.style.height = ''
+        cards.forEach((c) => c.classList.remove('qmf-active'))
+        return
+      }
+      const winH = win.clientHeight
+      const trackH = track.scrollHeight
+      maxT = Math.max(0, trackH - winH)
+      pin.style.height = window.innerHeight + maxT * 1.7 + 'px'
+      if (thumb && rail) {
+        thumb.style.height = Math.max(30, rail.clientHeight * (winH / trackH)) + 'px'
+      }
+      update()
+    }
+
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', layout)
+    const onMq = () => layout()
+    mqMobile.addEventListener?.('change', onMq)
+    mqReduce.addEventListener?.('change', onMq)
+    // settle after fonts/layout
+    layout()
+    const t = window.setTimeout(layout, 300)
+
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', layout)
+      mqMobile.removeEventListener?.('change', onMq)
+      mqReduce.removeEventListener?.('change', onMq)
+      window.clearTimeout(t)
+    }
+  }, [])
+
   return (
     <>
       {/* ---- Testing ---- */}
@@ -100,46 +186,57 @@ export default function TestingQuality() {
         </div>
       </section>
 
-      {/* ---- Quality Management Framework ---- */}
-      <section className="section-pad" id="quality-framework" style={{ background: 'var(--bone-2)' }}>
-        <div className="wrap">
-          <div className="sec-head center reveal">
-            <p className="eyebrow">
-              <span className="dot"></span>Quality Management
-            </p>
-            <h2 className="display h-sec">
-              A framework built <span className="italic-accent">on accountability.</span>
-            </h2>
-          </div>
-
-          <div className="qmf-band">
-            {/* sticky dark feature card */}
-            <aside className="qmf-feature reveal">
-              <div className="qmf-flabel">Our framework</div>
-              <div className="qmf-seal-wrap">
-                <QualitySeal />
-              </div>
-              <p className="qmf-lead">
-                Quality is engineered into every stage — from QMS-aligned design and stage-wise
-                documentation to defence-grade verification and continuous improvement.
+      {/* ---- Quality Management Framework (pinned-scroll band) ---- */}
+      <section className="qmf-pin" id="quality-framework" ref={pinRef}>
+        <div className="qmf-stage">
+          <div className="wrap">
+            <div className="sec-head center reveal">
+              <p className="eyebrow">
+                <span className="dot"></span>Quality Management
               </p>
-              <a href="#contact" className="btn btn-primary qmf-cta">
-                Talk to our quality team <span className="arrow">→</span>
-              </a>
-            </aside>
+              <h2 className="display h-sec">
+                A framework built <span className="italic-accent">on accountability.</span>
+              </h2>
+            </div>
 
-            {/* framework cards */}
-            <div className="qmf-cards">
-              {QMF.map((q) => (
-                <article className="qmf-card reveal" key={q.em}>
-                  <span className="qmf-clabel">{q.tag}</span>
-                  <h3 className="qmf-ctitle">
-                    <em>{q.em}</em>
-                    {q.rest}
-                  </h3>
-                  <p className="qmf-cdesc">{q.desc}</p>
-                </article>
-              ))}
+            <div className="qmf-band">
+              {/* dark feature card (pinned with the stage) */}
+              <aside className="qmf-feature reveal">
+                <div className="qmf-flabel">Our framework</div>
+                <div className="qmf-seal-wrap">
+                  <QualitySeal />
+                </div>
+                <p className="qmf-lead">
+                  Quality is engineered into every stage — from QMS-aligned design and stage-wise
+                  documentation to defence-grade verification and continuous improvement.
+                </p>
+                <a href="#contact" className="btn btn-primary qmf-cta">
+                  Talk to our quality team <span className="arrow">→</span>
+                </a>
+              </aside>
+
+              {/* windowed, scroll-driven card track */}
+              <div className="qmf-viewport reveal">
+                <div className="qmf-window" ref={winRef}>
+                  <span className="qmf-fade top" aria-hidden="true"></span>
+                  <div className="qmf-track" ref={trackRef}>
+                    {QMF.map((q) => (
+                      <article className="qmf-card" key={q.em}>
+                        <span className="qmf-clabel">{q.tag}</span>
+                        <h3 className="qmf-ctitle">
+                          <em>{q.em}</em>
+                          {q.rest}
+                        </h3>
+                        <p className="qmf-cdesc">{q.desc}</p>
+                      </article>
+                    ))}
+                  </div>
+                  <span className="qmf-fade bot" aria-hidden="true"></span>
+                </div>
+                <div className="qmf-rail" ref={railRef} aria-hidden="true">
+                  <span className="qmf-thumb" ref={thumbRef}></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
