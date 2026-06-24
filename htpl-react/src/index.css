@@ -1402,59 +1402,45 @@ section { position: relative; overflow-x: clip; }
 }
 
 /* ============================================================
-   QUALITY MANAGEMENT FRAMEWORK — sticky feature + normal-flow cards
-   (single page scroll: no nested scroller, no scroll-jacking)
+   QUALITY MANAGEMENT FRAMEWORK — header + CTA, then centred icon cards
    ============================================================ */
-.qmf-band {
-  margin-top: clamp(36px, 4vw, 56px);
-  display: grid; grid-template-columns: 1.04fr 1fr;
-  gap: clamp(20px, 2.4vw, 40px); align-items: start;
-}
-/* dark "Our framework" feature card — gentle sticky aside (does not hijack scroll) */
-.qmf-feature {
-  position: sticky; top: calc(var(--nav-h) + 20px);
-  display: flex; flex-direction: column; overflow: hidden;
-  background:
-    radial-gradient(120% 90% at 85% 8%, rgba(58,58,62,0.55) 0%, rgba(35,35,37,0) 55%),
-    linear-gradient(160deg, #1f1f22 0%, #101011 100%);
-  color: var(--bone); border-radius: var(--radius);
-  padding: clamp(28px, 3vw, 40px);
-  box-shadow: var(--shadow-lg);
-}
-.qmf-flabel { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(239,236,229,0.5); }
-.qmf-seal-wrap { display: flex; align-items: center; justify-content: center; padding: clamp(20px, 3vw, 36px) 0; min-height: 160px; }
-.qmf-seal { width: min(270px, 72%); height: auto; display: block; }
-.qmf-lead { margin: 18px 0 0; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.65; color: rgba(239,236,229,0.82); max-width: 36ch; }
-.qmf-cta { align-self: flex-start; margin-top: 24px; }
-/* framework cards — plain vertical stack in the normal document flow */
-.qmf-cards { display: flex; flex-direction: column; gap: clamp(14px, 1.6vw, 20px); }
+.qmf-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.qmf-head-l { max-width: 24ch; }
+.qmf-head-cta { flex: none; }
+.qmf-lead { margin: 18px 0 0; max-width: 60ch; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.65; color: var(--ink-2); }
+/* framework cards — centred icon · tag · title · description (pill cards) */
+.qmf-cards { margin-top: clamp(36px, 4vw, 56px); display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(16px, 1.6vw, 22px); }
 .qmf-card {
-  position: relative;
-  background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--radius);
-  padding: clamp(24px, 2.4vw, 30px) clamp(26px, 2.6vw, 34px);
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  background: var(--paper); border: 1px solid var(--line-2); border-radius: clamp(22px, 3vw, 34px);
+  padding: clamp(28px, 3vw, 40px) clamp(18px, 1.8vw, 24px);
   transition: box-shadow .3s ease, border-color .3s ease, transform .3s ease;
 }
-.qmf-card::before {
-  content: ""; position: absolute; left: 0; top: 24px; bottom: 24px; width: 3px; border-radius: 3px;
-  background: var(--accent); opacity: 0; transform: scaleY(.3); transform-origin: center;
-  transition: opacity .3s ease, transform .3s ease;
+.qmf-card:hover { box-shadow: var(--shadow-lg); border-color: var(--line); transform: translateY(-5px); }
+.qmf-card-ic {
+  display: grid; place-items: center; width: 62px; height: 62px; flex: none;
+  border-radius: 50%; background: var(--accent); color: #fff; margin-bottom: 22px;
+  box-shadow: 0 10px 22px rgba(214,57,36,0.28);
 }
-.qmf-card:hover { box-shadow: var(--shadow-lg); border-color: var(--line); transform: translateY(-3px); }
-.qmf-card:hover::before { opacity: 1; transform: scaleY(1); }
-.qmf-clabel { display: block; font-family: var(--serif); font-style: italic; font-size: 0.92rem; color: var(--muted); margin-bottom: 10px; }
-.qmf-ctitle { margin: 0; font-family: var(--sans); font-weight: 600; font-size: clamp(1.15rem, 1.8vw, 1.4rem); letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); }
-.qmf-ctitle em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--ink); padding-right: 0.06em; transition: color .3s ease; }
-.qmf-card:hover .qmf-ctitle em { color: var(--accent-dk); }
-.qmf-cdesc { margin: 11px 0 0; font-size: 0.97rem; line-height: 1.55; color: var(--ink-2); max-width: 48ch; }
-/* sheen sweep on the seal */
-.qmf-sheen { transform-origin: 130px 130px; animation: qmfSpin 14s linear infinite; }
-@keyframes qmfSpin { to { transform: rotate(360deg); } }
+.qmf-card-ic svg { width: 27px; height: 27px; }
+.qmf-card-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-dk); }
+.qmf-card-title { margin: 8px 0 0; font-family: var(--sans); font-weight: 600; font-size: clamp(16px, 1.4vw, 19px); letter-spacing: -0.01em; line-height: 1.2; color: var(--ink); }
+.qmf-card-title em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--ink); padding-right: 0.06em; transition: color .3s ease; }
+.qmf-card:hover .qmf-card-title em { color: var(--accent-dk); }
+.qmf-card-desc { margin: 12px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); }
+/* tablet / mobile */
 @media (max-width: 991px) {
-  .qmf-band { grid-template-columns: 1fr; }
-  .qmf-feature { position: static; }
+  .qmf-head { align-items: flex-start; }
+  .qmf-cards { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 767px) {
+  .qmf-cards { grid-template-columns: 1fr; }
+  .qmf-card { flex-direction: row; align-items: center; text-align: left; gap: 18px; padding: 22px; }
+  .qmf-card-ic { margin-bottom: 0; width: 54px; height: 54px; }
+  .qmf-card-ic svg { width: 24px; height: 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .qmf-card, .qmf-card::before, .qmf-sheen { transition: none; animation: none; }
+  .qmf-card { transition: none; }
 }
 
 /* ============================================================
