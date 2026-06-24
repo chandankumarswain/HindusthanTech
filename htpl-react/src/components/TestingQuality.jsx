@@ -1,9 +1,10 @@
 /* TESTING + QUALITY MANAGEMENT FRAMEWORK — two manufacturing sub-sections that
-   sit under the Workflow section. Layout inspired by the supplied reference
-   (centred header + clean card grid). Built entirely from the landing page's
-   own classes (section-pad · wrap · sec-head center · eyebrow · h-sec · lead)
-   so the fonts, colours, spacing, and breakpoints match the rest of the site.
-   Test card sub-titles are generated; the QMF copy is verbatim. */
+   sit under the Workflow section.
+   - Testing: centred header + card grid (built from landing classes).
+   - Quality Management Framework: a two-column band — a sticky dark "Our
+     framework" feature card (machined seal + lead + CTA) beside the framework
+     cards. Layout inspired by the supplied reference, re-rendered in the site's
+     own tokens (red accent, serif/grotesk/mono), content verbatim. */
 
 const TESTS = [
   { name: 'DP Test & Hydrotest of Tanks', desc: 'Dye-penetrant and hydrostatic pressure testing of tanks for leak-proof integrity.' },
@@ -15,13 +16,57 @@ const TESTS = [
   { name: 'Monitor Throw Test', desc: 'Measures water / foam monitor throw distance and discharge performance.' },
 ]
 
+/* em = the keyword set in the serif/accent treatment; rest = the remainder */
 const QMF = [
-  { tag: 'ISO 9001:2015', title: 'QMS Alignment', desc: 'Complete implementation of Quality Management Systems (QMS) across design and production phases.' },
-  { tag: 'Traceability', title: 'Accountability & QAP', desc: 'Project-specific Quality Assurance Plans (QAP) with stage-wise inspection and documentation.' },
-  { tag: 'Defence', title: 'DGQA Verification', desc: 'Formally evaluated and approved by the DGQA for defence supplies, reinforced with Z Certification.' },
-  { tag: 'Shopfloor', title: 'FIFO & 5S Efficiency', desc: 'Strict FIFO (First-In, First-Out) models and 5S methodologies to support structural manufacturing precision.' },
-  { tag: 'Improvement', title: 'CAPA Tracking', desc: 'Active operational tracking via Corrective and Preventive Actions (CAPA) tracking matrices.' },
+  { tag: 'ISO 9001:2015', em: 'QMS', rest: ' Alignment', desc: 'Complete implementation of Quality Management Systems (QMS) across design and production phases.' },
+  { tag: 'Traceability', em: 'Accountability', rest: ' & QAP', desc: 'Project-specific Quality Assurance Plans (QAP) with stage-wise inspection and documentation.' },
+  { tag: 'Defence', em: 'DGQA', rest: ' Verification', desc: 'Formally evaluated and approved by the DGQA for defence supplies, reinforced with Z Certification.' },
+  { tag: 'Shopfloor', em: 'FIFO', rest: ' & 5S Efficiency', desc: 'Strict FIFO (First-In, First-Out) models and 5S methodologies to support structural manufacturing precision.' },
+  { tag: 'Improvement', em: 'CAPA', rest: ' Tracking', desc: 'Active operational tracking via Corrective and Preventive Actions (CAPA) tracking matrices.' },
 ]
+
+/* Machined quality seal — metallic dial with an accent-red tick (site accent). */
+const QualitySeal = () => (
+  <svg className="qmf-seal" viewBox="0 0 260 260" role="img" aria-label="HTPL quality seal">
+    <defs>
+      <radialGradient id="qmfWell" cx="50%" cy="42%" r="62%">
+        <stop offset="0%" stopColor="#0c0c0c" />
+        <stop offset="70%" stopColor="#161618" />
+        <stop offset="100%" stopColor="#000" />
+      </radialGradient>
+      <linearGradient id="qmfMetal" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#5a5a5e" />
+        <stop offset="32%" stopColor="#9a9aa0" />
+        <stop offset="55%" stopColor="#39393c" />
+        <stop offset="78%" stopColor="#7e7e84" />
+        <stop offset="100%" stopColor="#2b2b2d" />
+      </linearGradient>
+      <linearGradient id="qmfRim" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="#cfcfd4" />
+        <stop offset="50%" stopColor="#48484c" />
+        <stop offset="100%" stopColor="#a9a9af" />
+      </linearGradient>
+      <linearGradient id="qmfGlow" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stopColor="rgba(255,255,255,0)" />
+        <stop offset="48%" stopColor="rgba(255,255,255,.55)" />
+        <stop offset="60%" stopColor="rgba(214,57,36,.65)" />
+        <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+      </linearGradient>
+    </defs>
+    <circle cx="130" cy="130" r="120" fill="url(#qmfMetal)" />
+    <circle cx="130" cy="130" r="120" fill="none" stroke="url(#qmfRim)" strokeWidth="2" />
+    <circle cx="130" cy="130" r="108" fill="none" stroke="#2a2a2c" strokeWidth="10" strokeDasharray="1.6 9.2" />
+    <circle cx="130" cy="130" r="100" fill="#1a1a1c" />
+    <circle cx="130" cy="130" r="100" fill="none" stroke="#0a0a0a" strokeWidth="1.4" />
+    <circle cx="130" cy="130" r="84" fill="url(#qmfWell)" />
+    <circle cx="130" cy="130" r="84" fill="none" stroke="#3a3a3d" strokeWidth="1" />
+    <g className="qmf-sheen">
+      <path d="M130 18 A112 112 0 0 1 242 130" fill="none" stroke="url(#qmfGlow)" strokeWidth="6" strokeLinecap="round" opacity=".9" />
+    </g>
+    <path d="M104 132 l18 19 l36 -44" fill="none" stroke="#d63924" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="130" cy="130" r="62" fill="none" stroke="rgba(214,57,36,.28)" strokeWidth="1.5" />
+  </svg>
+)
 
 export default function TestingQuality() {
   return (
@@ -63,21 +108,39 @@ export default function TestingQuality() {
               <span className="dot"></span>Quality Management
             </p>
             <h2 className="display h-sec">
-              A framework built on <span className="italic-accent">accountability.</span>
+              A framework built <span className="italic-accent">on accountability.</span>
             </h2>
-            <p className="lead">
-              Quality is engineered into every stage — from QMS-aligned design and stage-wise
-              documentation to defence-grade verification and continuous improvement.
-            </p>
           </div>
-          <div className="tq-grid">
-            {QMF.map((q) => (
-              <article className="tq-card reveal" key={q.title}>
-                <span className="tq-card-tag">{q.tag}</span>
-                <h3 className="tq-card-title">{q.title}</h3>
-                <p className="tq-card-desc">{q.desc}</p>
-              </article>
-            ))}
+
+          <div className="qmf-band">
+            {/* sticky dark feature card */}
+            <aside className="qmf-feature reveal">
+              <div className="qmf-flabel">Our framework</div>
+              <div className="qmf-seal-wrap">
+                <QualitySeal />
+              </div>
+              <p className="qmf-lead">
+                Quality is engineered into every stage — from QMS-aligned design and stage-wise
+                documentation to defence-grade verification and continuous improvement.
+              </p>
+              <a href="#contact" className="btn btn-primary qmf-cta">
+                Talk to our quality team <span className="arrow">→</span>
+              </a>
+            </aside>
+
+            {/* framework cards */}
+            <div className="qmf-cards">
+              {QMF.map((q) => (
+                <article className="qmf-card reveal" key={q.em}>
+                  <span className="qmf-clabel">{q.tag}</span>
+                  <h3 className="qmf-ctitle">
+                    <em>{q.em}</em>
+                    {q.rest}
+                  </h3>
+                  <p className="qmf-cdesc">{q.desc}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
