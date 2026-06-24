@@ -96,8 +96,11 @@ export default function TestingQuality() {
 
     const update = () => {
       if (!pinMode()) return
+      // viewport-relative progress: 0 when the wrapper top hits the viewport top,
+      // 1 when its bottom hits the viewport bottom. Robust in both scroll
+      // directions and independent of offsetParent nesting.
       const dur = pin.offsetHeight - window.innerHeight
-      let p = dur > 0 ? (window.scrollY - pin.offsetTop) / dur : 0
+      let p = dur > 0 ? -pin.getBoundingClientRect().top / dur : 0
       p = Math.min(1, Math.max(0, p))
       track.style.transform = `translateY(${-maxT * p}px)`
       if (thumb && rail) {

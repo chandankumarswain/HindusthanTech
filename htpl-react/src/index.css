@@ -1455,7 +1455,8 @@ section { position: relative; overflow-x: clip; }
 .qmf-card:hover { box-shadow: var(--shadow-lg); border-color: var(--line); }
 .qmf-clabel { display: block; font-family: var(--serif); font-style: italic; font-size: 0.92rem; color: var(--muted); margin-bottom: 10px; }
 .qmf-ctitle { margin: 0; font-family: var(--sans); font-weight: 600; font-size: clamp(1.15rem, 1.8vw, 1.4rem); letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); }
-.qmf-ctitle em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--accent-dk); padding-right: 0.06em; }
+.qmf-ctitle em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--ink); padding-right: 0.06em; transition: color .3s ease; }
+.qmf-card:hover .qmf-ctitle em, .qmf-card.qmf-active .qmf-ctitle em { color: var(--accent-dk); }
 .qmf-cdesc { margin: 11px 0 0; font-size: 0.97rem; line-height: 1.55; color: var(--ink-2); max-width: 48ch; }
 /* progress rail */
 .qmf-rail { position: relative; width: 3px; border-radius: 3px; background: rgba(24,24,26,0.08); height: var(--qmf-winH); }
