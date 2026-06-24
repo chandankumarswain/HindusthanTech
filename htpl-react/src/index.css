@@ -1380,23 +1380,26 @@ section { position: relative; overflow-x: clip; }
 .q-card h4 { margin: 0 0 7px; font-size: 17px; font-weight: 600; }
 .q-card p { margin: 0; font-size: 14px; color: var(--ink-2); line-height: 1.5; }
 
-/* Testing + Quality Management Framework card grid (landing sub-sections) */
-.tq-grid {
-  margin-top: clamp(36px, 4vw, 56px);
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 1.6vw, 22px);
+/* Testing — process-outline layout: left intro + image · right numbered list */
+.tst-layout { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
+.tst-title { margin: 16px 0 0; font-size: clamp(1.9rem, 3.2vw, 2.9rem); line-height: 1.08; letter-spacing: -0.02em; }
+.tst-desc { margin: 18px 0 0; max-width: 42ch; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.7; color: var(--ink-2); }
+.tst-media { margin: clamp(26px, 3vw, 40px) 0 0; aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--line-2); box-shadow: var(--shadow); max-width: 360px; }
+.tst-media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.95) contrast(1.02); }
+.tst-list { list-style: none; margin: 0; padding: 0; }
+.tst-row { display: grid; grid-template-columns: 0.62fr 1fr; gap: clamp(16px, 3vw, 48px); align-items: baseline; padding: clamp(20px, 2.4vw, 28px) 0; border-top: 1px solid var(--line); }
+.tst-row:first-child { border-top: 0; padding-top: 0; }
+.tst-row-head { display: flex; align-items: baseline; gap: 12px; }
+.tst-num { font-family: var(--serif); font-size: clamp(1.1rem, 1.6vw, 1.4rem); color: var(--accent); line-height: 1; }
+.tst-name { font-family: var(--sans); font-weight: 600; font-size: clamp(17px, 1.5vw, 21px); letter-spacing: -0.01em; line-height: 1.2; color: var(--ink); }
+.tst-row-desc { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-2); max-width: 46ch; }
+@media (max-width: 991px) {
+  .tst-layout { grid-template-columns: 1fr; gap: clamp(28px, 5vw, 44px); }
+  .tst-media { max-width: 320px; }
 }
-.tq-card {
-  display: flex; flex-direction: column;
-  background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--radius);
-  padding: clamp(24px, 2.4vw, 32px);
-  transition: box-shadow .3s ease, border-color .3s ease, transform .3s ease;
+@media (max-width: 767px) {
+  .tst-row { grid-template-columns: 1fr; gap: 8px; }
 }
-.tq-card:hover { box-shadow: var(--shadow-lg); border-color: var(--line); transform: translateY(-4px); }
-.tq-card-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-dk); }
-.tq-card-title { margin: 14px 0 0; font-family: var(--sans); font-weight: 600; font-size: clamp(18px, 1.5vw, 21px); line-height: 1.2; letter-spacing: -0.01em; color: var(--ink); }
-.tq-card-desc { margin: 10px 0 0; font-size: 14px; line-height: 1.6; color: var(--ink-2); }
-@media (max-width: 991px) { .tq-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 767px) { .tq-grid { grid-template-columns: 1fr; } }
 
 /* ============================================================
    QUALITY MANAGEMENT FRAMEWORK — sticky feature + normal-flow cards

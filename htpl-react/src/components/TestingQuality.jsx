@@ -71,31 +71,46 @@ const QualitySeal = () => (
 export default function TestingQuality() {
   return (
     <>
-      {/* ---- Testing ---- */}
+      {/* ---- Testing (process-outline layout) ---- */}
       <section className="section-pad" id="testing">
         <div className="wrap">
-          <div className="sec-head center reveal">
-            <p className="eyebrow">
-              <span className="dot"></span>Testing
-            </p>
-            <h2 className="display h-sec">
-              Tested, calibrated, <span className="italic-accent">certified.</span>
-            </h2>
-            <p className="lead">
-              In order to maintain our quality policies and ensure customer satisfaction, all our
-              products are subjected to rigorous testing and calibration prior to dispatch —
-              verified at our in-house, state-of-the-art facility built to relevant IS and
-              DGQA / defence specifications.
-            </p>
-          </div>
-          <div className="tq-grid">
-            {TESTS.map((t, i) => (
-              <article className="tq-card reveal" key={t.name}>
-                <span className="tq-card-tag">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="tq-card-title">{t.name}</h3>
-                <p className="tq-card-desc">{t.desc}</p>
-              </article>
-            ))}
+          <div className="tst-layout">
+            {/* left: heading + description + image */}
+            <div className="tst-left reveal">
+              <p className="eyebrow">
+                <span className="dot"></span>Testing
+              </p>
+              <h2 className="display tst-title">
+                Tested, calibrated, <span className="italic-accent">certified.</span>
+              </h2>
+              <p className="tst-desc">
+                In order to maintain our quality policies and ensure customer satisfaction, all
+                our products are subjected to rigorous testing and calibration prior to dispatch —
+                verified at our in-house, state-of-the-art facility built to relevant IS and
+                DGQA / defence specifications.
+              </p>
+              <figure className="tst-media">
+                <img
+                  src="/images/fleet/dcp-tender.jpg"
+                  alt="HTPL fire tender undergoing pre-dispatch testing"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+
+            {/* right: numbered test list */}
+            <ol className="tst-list">
+              {TESTS.map((t, i) => (
+                <li className="tst-row reveal" key={t.name}>
+                  <div className="tst-row-head">
+                    <span className="tst-num">{i + 1}.</span>
+                    <span className="tst-name">{t.name}</span>
+                  </div>
+                  <p className="tst-row-desc">{t.desc}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
