@@ -1535,11 +1535,10 @@ section { position: relative; overflow-x: clip; }
    Reuses section-pad / wrap gutters + site tokens + 991/767 bps.
    ============================================================ */
 .psp-page { background: var(--bone); color: var(--ink); }
-/* hero — heading left, description offset to the lower right */
-.psp-hero { padding-top: clamp(40px, 6vw, 80px); }
-.psp-hero-head { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: end; margin-top: clamp(14px, 2vw, 22px); }
-.psp-title { margin: 0; font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1.06; letter-spacing: -0.03em; max-width: 18ch; }
-.psp-hero-desc { margin: 0 0 6px; max-width: 46ch; }
+/* hero — centred breadcrumb · headline · sub-headline */
+.psp-hero { text-align: center; padding-top: clamp(56px, 8vw, 104px); padding-bottom: clamp(28px, 4vw, 56px); }
+.psp-title { margin: 16px auto 0; font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1.07; letter-spacing: -0.03em; max-width: 24ch; }
+.psp-hero-desc { margin: 18px auto 0; max-width: 56ch; }
 /* what we build — 4-card overview (text block + image at the bottom) */
 .psp-cards { margin-top: clamp(36px, 4vw, 56px); display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 1.6vw, 22px); }
 .psp-card {
@@ -1565,7 +1564,6 @@ section { position: relative; overflow-x: clip; }
 .psp-spec-desc { margin: 10px 0 0; font-size: 15px; line-height: 1.6; color: var(--ink-2); max-width: 54ch; }
 /* tablet */
 @media (max-width: 991px) {
-  .psp-hero-head { grid-template-columns: 1fr; gap: clamp(14px, 3vw, 22px); align-items: start; }
   .psp-cards { grid-template-columns: repeat(2, 1fr); }
 }
 /* mobile */

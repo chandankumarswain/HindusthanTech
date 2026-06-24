@@ -83,23 +83,23 @@ export default function ProductsServicesPage() {
     <>
       <Nav />
       <main className="psp-page">
-        {/* ---- Hero (editorial: heading left · description right) ---- */}
+        {/* ---- Hero (centred: breadcrumb · headline · sub-headline) ---- */}
         <section className="section-pad psp-hero">
           <div className="wrap">
             <p className="ap-crumb reveal">
               <a href="/">Home</a> <span aria-hidden="true">/</span>{' '}
               <span className="ap-crumb-current">Products &amp; Services</span>
             </p>
-            <div className="psp-hero-head">
-              <h1 className="display psp-title reveal">
-                Built to order. <span className="italic-accent">Supported for life.</span>
-              </h1>
-              <p className="lead psp-hero-desc reveal">
-                Custom-built firefighting and special-purpose vehicles, engineered for municipal,
-                industrial, and defence-grade hazards — backed by spares, maintenance, and fleet
-                support across the vehicle's working life.
-              </p>
-            </div>
+            <h1 className="display psp-title reveal">
+              Built to order.
+              <br />
+              <span className="italic-accent">Supported for life.</span>
+            </h1>
+            <p className="lead psp-hero-desc reveal">
+              Custom-built firefighting and special-purpose vehicles, engineered for municipal,
+              industrial, and defence-grade hazards — backed by spares, maintenance, and fleet
+              support across the vehicle's working life.
+            </p>
           </div>
         </section>
 
