@@ -94,7 +94,7 @@ export default function FleetCarousel() {
     >
       <header className="flt-head reveal">
         <p className="eyebrow flt-eyebrow">
-          <span className="dot"></span>Hindusthan · Fire &amp; Rescue Fleet
+          <span className="dot"></span>Gallery
         </p>
         <h2 className="display h-sec">Explore Our Fleet</h2>
         <p className="lead">
