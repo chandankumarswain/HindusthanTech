@@ -143,32 +143,6 @@ export default function FleetCarousel() {
             )
           })}
         </div>
-
-        <div className="flt-controls">
-          <button className="flt-nav" type="button" onClick={prev} aria-label="Previous vehicle">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
-          </button>
-          <div className="flt-dots" role="tablist" aria-label="Choose vehicle">
-            {SLIDES.map((s, i) => (
-              <button
-                key={s.file}
-                type="button"
-                className="flt-dot"
-                role="tab"
-                aria-current={i === active ? 'true' : 'false'}
-                aria-label={s.title}
-                onClick={() => go(i)}
-              />
-            ))}
-          </div>
-          <button className="flt-nav" type="button" onClick={next} aria-label="Next vehicle">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
-          </button>
-        </div>
-
-        <div className="flt-progress-wrap" aria-hidden="true">
-          <div className="flt-progress" style={{ width: `${reduce ? 0 : pct}%` }} />
-        </div>
       </div>
     </section>
   )
