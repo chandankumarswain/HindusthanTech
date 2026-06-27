@@ -1598,7 +1598,11 @@ section { position: relative; overflow-x: clip; }
    re-skinned in site tokens: single red accent, no second colour)
    ============================================================ */
 .flt { background: var(--bone); }
+/* centred header — eyebrow, title and subtitle all centred above the carousel */
 .flt-head { max-width: 760px; margin: 0 auto; text-align: center; }
+.flt-head .eyebrow { display: inline-flex; justify-content: center; }
+.flt-head .h-sec { margin-inline: auto; }
+.flt-head .lead { margin-inline: auto; }
 .flt-stage-wrap { margin-top: clamp(36px, 5vw, 60px); }
 .flt-stage { position: relative; width: min(840px, 90vw); margin: 0 auto; aspect-ratio: 1200 / 750; perspective: 1600px; }
 .flt-card {
