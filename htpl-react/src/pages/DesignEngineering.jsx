@@ -8,14 +8,36 @@ import Footer from '../components/Footer'
    engineering reference. Colours, fonts, gutters (80/50/25) and the 991/767
    breakpoints follow the landing page for full design parity. */
 
+/* process icons (stroke = currentColor) */
+const SICON = {
+  design: <><path d="M12 20h9" /><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" /></>,
+  analysis: <><path d="M3 3v18h18" /><path d="m19 9-5 5-4-4-3 3" /></>,
+  machining: <><circle cx="6" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M20 4 8.12 15.88" /><path d="M14.47 14.48 20 20" /><path d="M8.12 8.12 12 12" /></>,
+  welding: <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />,
+  finishing: <><rect x="3" y="3" width="11" height="6" rx="1" /><path d="M14 6h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-7a2 2 0 0 0-2 2v1" /><rect x="9" y="16" width="4" height="5" rx="1" /></>,
+  integration: <><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><path d="m9 11 3 3L22 4" /></>,
+}
+
 const STAGES = [
-  { num: '01', label: 'Design' },
-  { num: '02', label: 'Analysis' },
-  { num: '03', label: 'Machining' },
-  { num: '04', label: 'Welding' },
-  { num: '05', label: 'Finishing' },
-  { num: '06', label: 'Integration' },
+  { num: '01', label: 'Design', icon: SICON.design },
+  { num: '02', label: 'Analysis', icon: SICON.analysis },
+  { num: '03', label: 'Machining', icon: SICON.machining },
+  { num: '04', label: 'Welding', icon: SICON.welding },
+  { num: '05', label: 'Finishing', icon: SICON.finishing },
+  { num: '06', label: 'Integration', icon: SICON.integration },
 ]
+
+/* dotted S-curve through alternating up/down node centres (viewBox 0 0 100 100) */
+function wavePath(n) {
+  const span = 100 / n
+  const x = (i) => (i + 0.5) * span
+  const y = (i) => (i % 2 === 0 ? 35 : 65)
+  let d = `M ${x(0)} ${y(0)}`
+  for (let i = 0; i < n - 1; i++) {
+    d += ` C ${x(i) + span / 2} ${y(i)} ${x(i + 1) - span / 2} ${y(i + 1)} ${x(i + 1)} ${y(i + 1)}`
+  }
+  return d
+}
 
 const CAPABILITIES = [
   {
@@ -127,14 +149,24 @@ export default function DesignEngineering() {
                 <span className="de-flow-end">▸ First cut</span>
                 <span className="de-flow-end">Final paint ◂</span>
               </div>
-              <ol className="de-flow-stages">
-                {STAGES.map((s) => (
-                  <li className="de-stage" key={s.num}>
-                    <span className="de-stage-num">{s.num}</span>
-                    <span className="de-stage-label">{s.label}</span>
-                  </li>
+              <div className="de-wave" role="list" aria-label="Six-stage process: design to integration">
+                <svg className="de-wave-path" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <path d={wavePath(STAGES.length)} />
+                </svg>
+                {STAGES.map((s, i) => (
+                  <div className={`de-wnode ${i % 2 === 0 ? 'is-up' : 'is-down'}`} role="listitem" key={s.num}>
+                    <span className="de-wcircle">
+                      <svg className="de-wico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        {s.icon}
+                      </svg>
+                    </span>
+                    <span className="de-wmeta">
+                      <span className="de-wnum">{s.num}</span>
+                      <span className="de-wlabel">{s.label}</span>
+                    </span>
+                  </div>
                 ))}
-              </ol>
+              </div>
             </div>
           </div>
         </section>
