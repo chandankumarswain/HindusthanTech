@@ -215,11 +215,11 @@ export default function Nav() {
         {/* LEFT — brand / logo */}
         <a href={resolveHref(NAV.home_link)} className="brand" aria-label={NAV.aria_label}>
           <img
-            className="brand-wordmark"
-            src="/images/htpl-wordmark.png"
+            className="brand-logo"
+            src="/images/htpl-logo.png"
             alt="Hindusthan Technologies Pvt. Ltd."
-            width="1794"
-            height="409"
+            width="471"
+            height="467"
           />
         </a>
 
@@ -332,11 +332,11 @@ export default function Nav() {
         <div className="nav-drawer-head">
           <a href={resolveHref(NAV.home_link)} className="brand" onClick={close}>
             <img
-              className="brand-wordmark"
-              src="/images/htpl-wordmark.png"
+              className="brand-logo"
+              src="/images/htpl-logo.png"
               alt="Hindusthan Technologies Pvt. Ltd."
-              width="1794"
-              height="409"
+              width="471"
+              height="467"
             />
           </a>
           <button

@@ -63,11 +63,11 @@ export default function Footer() {
           <div className="footer-brand reveal">
             <a href="#hero" className="brand" aria-label="Hindusthan Technologies — home">
               <img
-                className="brand-wordmark"
-                src="/images/htpl-wordmark.png"
+                className="brand-logo"
+                src="/images/htpl-logo.png"
                 alt="Hindusthan Technologies Pvt. Ltd."
-                width="1794"
-                height="409"
+                width="471"
+                height="467"
               />
             </a>
             <p className="footer-about">
