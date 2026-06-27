@@ -3,45 +3,47 @@ import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 
 /* Products & Services page (/products-services).
-   Layout inspired by the supplied reference (editorial hero → "What we build"
-   card overview → detailed product/service sections). Built from the landing
-   design system — section-pad / wrap gutters, eyebrow / h-sec, site tokens,
-   80/50/25 padding and 991/767 breakpoints. All content points are covered. */
+   Layout: compact centred hero → "What we build" (two product categories
+   flanking a central image) → Services (three cards). Built from the landing
+   design system (section-pad / wrap, site tokens, 991/767 breakpoints). All
+   content covered; one red accent. */
 
-const OVERVIEW = [
-  {
-    cat: 'Foundation',
-    title: 'Core product portfolio',
-    desc: 'A complete range of custom-built vehicles and equipment.',
-    href: '#fire-fighting',
-    img: '/images/fleet/water-tender-1920.png',
-    alt: 'HTPL custom-built water tender',
-  },
-  {
-    cat: 'Response',
-    title: 'Fire-fighting equipment & vehicles',
-    desc: 'Trucks, QRVs, and pumps built for extreme conditions.',
-    href: '#fire-fighting',
-    img: '/images/fleet/tn-fire-rescue-tender.png',
-    alt: 'HTPL fire & rescue tender',
-  },
-  {
-    cat: 'Specialized',
-    title: 'Special purpose vehicles for industrial needs',
-    desc: 'Explosive vans, bowsers, and mobile recovery units.',
-    href: '#spv',
-    img: '/images/fleet/sail-explosive-van.png',
-    alt: 'HTPL special-purpose explosive van',
-  },
-  {
-    cat: 'Support',
-    title: 'Services that keep operations running',
-    desc: 'Spare parts, maintenance contracts, and fleet rentals.',
-    href: '#services',
-    img: '/images/fleet/fabrication-workshop.jpg',
-    alt: 'HTPL service and maintenance workshop',
-  },
-]
+const ICON = {
+  truck: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 18V6a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h1" />
+      <path d="M14 9h4l3 3v5a1 1 0 0 1-1 1h-1" />
+      <circle cx="7.5" cy="18.5" r="1.5" />
+      <circle cx="17.5" cy="18.5" r="1.5" />
+    </svg>
+  ),
+  cube: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+      <path d="m3.3 7 8.7 5 8.7-5" />
+      <path d="M12 22V12" />
+    </svg>
+  ),
+  wrench: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+    </svg>
+  ),
+  amc: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" />
+      <path d="M16 2v4M8 2v4M3 10h18" />
+      <path d="m9 16 2 2 4-4" />
+    </svg>
+  ),
+  key: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="7.5" cy="15.5" r="5.5" />
+      <path d="m21 2-9.6 9.6" />
+      <path d="m15.5 7.5 3 3L22 7l-3-3" />
+    </svg>
+  ),
+}
 
 const FIRE = [
   ['Firefighting Trucks / Vehicles', 'Custom-built multi-capacity water, foam, and dry chemical powder tenders for extreme municipal and industrial hazards.'],
@@ -52,26 +54,30 @@ const FIRE = [
 const SPV = [
   ['Explosive Vans', 'Insulated, completely spark-proof cargo bodies built to various capacities matching strict safety mandates.'],
   ['Diesel Bowsers & Oil Tankers', 'Fuel logistics and distribution units with calibrated metering, flow monitoring, and grounding mechanics.'],
-  ['Mobile Oil Spillage Recovery Units (MOSRU) / Gulley Suckers', 'Industrial heavy-suction rigs for specialised oil cleanup and recovery.'],
+  ['MOSRU / Gulley Suckers', 'Industrial heavy-suction rigs for specialised oil cleanup and recovery.'],
   ['Mobile Blood Donation Vans (MBDV)', 'Ergonomically specialised, clinically sterile testing and blood-collection mobile clinics.'],
   ['Mobile Service Vans', 'Fully outfitted mobile workshops and customised industrial application vehicles.'],
 ]
 
 const SERVICES = [
-  ['Spare Parts & Assistance', 'Continuous availability of genuine replacement components and responsive technical support for on-call maintenance.'],
-  ['Extended Service Lifecycles', 'Comprehensive Annual Maintenance Contracts (AMC) ranging from 2 to 5 years, on an onsite basis, after the standard warranty period.'],
-  ['Specialised Fleet Rentals', 'Fire-tender rental services based on customer site requirements.'],
+  { icon: ICON.wrench, title: 'Spare Parts & Assistance', desc: 'Continuous availability of genuine replacement components and responsive technical support for on-call maintenance.' },
+  { icon: ICON.amc, title: 'Extended Service Lifecycles', desc: 'Comprehensive Annual Maintenance Contracts (AMC) ranging from 2 to 5 years, on an onsite basis, after the standard warranty period.' },
+  { icon: ICON.key, title: 'Specialised Fleet Rentals', desc: 'Fire-tender rental services based on customer site requirements.' },
 ]
 
-function SpecGrid({ items }) {
+function CategoryCol({ icon, title, items }) {
   return (
-    <div className="psp-specs">
-      {items.map(([name, desc]) => (
-        <div className="psp-spec reveal" key={name}>
-          <h3 className="psp-spec-name">{name}</h3>
-          <p className="psp-spec-desc">{desc}</p>
-        </div>
-      ))}
+    <div className="psp-cat reveal">
+      <span className="psp-cat-ic" aria-hidden="true">{icon}</span>
+      <h3 className="psp-cat-title">{title}</h3>
+      <ul className="psp-cat-list">
+        {items.map(([name, desc]) => (
+          <li key={name}>
+            <span className="psp-li-name">{name}</span>
+            <span className="psp-li-desc">{desc}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
@@ -83,8 +89,8 @@ export default function ProductsServicesPage() {
     <>
       <Nav />
       <main className="psp-page">
-        {/* ---- Hero (centred: breadcrumb · headline · sub-headline) ---- */}
-        <section className="section-pad psp-hero">
+        {/* ---- Hero (centred, content-height) ---- */}
+        <section className="psp-hero">
           <div className="wrap">
             <p className="ap-crumb reveal">
               <a href="/">Home</a> <span aria-hidden="true">/</span>{' '}
@@ -100,78 +106,61 @@ export default function ProductsServicesPage() {
               industrial, and defence-grade hazards — backed by spares, maintenance, and fleet
               support across the vehicle's working life.
             </p>
+            <a href="#build" className="psp-explore reveal">
+              Explore <span aria-hidden="true">→</span>
+            </a>
           </div>
         </section>
 
-        {/* ---- What we build (4-card overview) ---- */}
-        <section className="section-pad psp-build">
+        {/* ---- What we build (two categories flanking a central image) ---- */}
+        <section className="section-pad" id="build">
           <div className="wrap">
             <div className="sec-head center reveal">
               <p className="eyebrow"><span className="dot"></span>Capability</p>
               <h2 className="display h-sec">What we build</h2>
               <p className="lead">Four distinct product lines engineered for specialized demands.</p>
             </div>
-            <div className="psp-cards">
-              {OVERVIEW.map((c) => (
-                <a className="psp-card reveal" href={c.href} key={c.title}>
-                  <div className="psp-card-body">
-                    <span className="psp-card-cat">{c.cat}</span>
-                    <h3 className="psp-card-title">{c.title}</h3>
-                    <p className="psp-card-desc">{c.desc}</p>
-                    <span className="psp-card-link">
-                      Learn <span aria-hidden="true">→</span>
-                    </span>
-                  </div>
-                  <figure className="psp-card-media">
-                    <img src={c.img} alt={c.alt} loading="lazy" decoding="async" />
-                  </figure>
-                </a>
-              ))}
+            <div className="psp-build">
+              <CategoryCol icon={ICON.truck} title="Fire-fighting equipment & vehicles" items={FIRE} />
+              <figure className="psp-build-media reveal">
+                <img
+                  src="/images/products-build.jpg"
+                  alt="HTPL fire tender built at the Jagatpur facility"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <CategoryCol icon={ICON.cube} title="Special purpose vehicles (SPVs)" items={SPV} />
             </div>
-          </div>
-        </section>
-
-        {/* ---- Fire-fighting Equipment & Vehicles ---- */}
-        <section className="section-pad" id="fire-fighting">
-          <div className="wrap">
-            <div className="sec-head reveal">
-              <p className="eyebrow"><span className="dot"></span>Fire-fighting Equipment &amp; Vehicles</p>
-              <h2 className="display h-sec">
-                Engineered for the <span className="italic-accent">front line.</span>
-              </h2>
+            <div className="psp-build-foot reveal">
+              <a href="#services" className="psp-explore">
+                Explore <span aria-hidden="true">→</span>
+              </a>
             </div>
-            <SpecGrid items={FIRE} />
-          </div>
-        </section>
-
-        {/* ---- Special Purpose Vehicles ---- */}
-        <section className="section-pad" id="spv" style={{ background: 'var(--bone-2)' }}>
-          <div className="wrap">
-            <div className="sec-head reveal">
-              <p className="eyebrow"><span className="dot"></span>Special Purpose Vehicles (SPVs)</p>
-              <h2 className="display h-sec">
-                Purpose-built for <span className="italic-accent">specialised duty.</span>
-              </h2>
-            </div>
-            <SpecGrid items={SPV} />
           </div>
         </section>
 
         {/* ---- Services ---- */}
-        <section className="section-pad" id="services">
+        <section className="section-pad" id="services" style={{ background: 'var(--bone-2)' }}>
           <div className="wrap">
-            <div className="sec-head reveal">
-              <p className="eyebrow"><span className="dot"></span>Services</p>
-              <h2 className="display h-sec">
-                Supported across the <span className="italic-accent">vehicle's life.</span>
-              </h2>
+            <div className="sec-head center reveal">
+              <p className="eyebrow"><span className="dot"></span>Capability</p>
+              <h2 className="display h-sec">Services</h2>
               <p className="lead">
                 HTPL provides customer-focused solutions through custom-built fire trucks as per
                 client requirements, engineering support, and design flexibility — reinforcing
                 long-term operational capabilities.
               </p>
             </div>
-            <SpecGrid items={SERVICES} />
+            <div className="psp-services">
+              {SERVICES.map((s) => (
+                <article className="psp-svc reveal" key={s.title}>
+                  <span className="psp-svc-ic" aria-hidden="true">{s.icon}</span>
+                  <h3 className="psp-svc-title">{s.title}</h3>
+                  <p className="psp-svc-desc">{s.desc}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
