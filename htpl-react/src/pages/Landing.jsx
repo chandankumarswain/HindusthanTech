@@ -6,7 +6,7 @@ import About from '../components/About'
 import Products from '../components/Products'
 import HowItWorks from '../components/HowItWorks'
 import TestingQuality from '../components/TestingQuality'
-import ProjectGallery from '../components/ProjectGallery'
+import FleetCarousel from '../components/FleetCarousel'
 import Gallery from '../components/Gallery'
 import Technology from '../components/Technology'
 import Process from '../components/Process'
@@ -28,7 +28,7 @@ export default function Landing() {
         <StatsBar />
         <About />
         <Products />
-        <ProjectGallery />
+        <FleetCarousel />
         <Gallery />
         <Technology />
         <Process />
