@@ -1597,7 +1597,9 @@ section { position: relative; overflow-x: clip; }
    FLEET CAROUSEL — "Explore Our Fleet" (ported from reference,
    re-skinned in site tokens: single red accent, no second colour)
    ============================================================ */
-.flt { background: var(--bone); }
+/* section-pad is display:flex (row); make this one a centred column so the
+   header stacks ON TOP of the carousel instead of beside it */
+.flt { background: var(--bone); flex-direction: column; justify-content: center; }
 /* centred header — eyebrow, title and subtitle all centred above the carousel */
 .flt-head { max-width: 760px; margin: 0 auto; text-align: center; }
 .flt-head .eyebrow { display: inline-flex; justify-content: center; }
