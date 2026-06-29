@@ -27,12 +27,13 @@ export default function AboutPage() {
                 </h1>
               </div>
               <p className="lead ap-intro reveal">
-                Founded in <strong>1987</strong> as Hindustan Enterprises by{' '}
-                <strong>Shri Mohan Ranjan Panda</strong> at Jagatpur, Cuttack, Odisha, and
-                incorporated as Hindusthan Technologies Pvt. Ltd. in <strong>2010</strong>.
-                An <strong>MSME-recognised</strong> manufacturer (Govt. of Odisha) with over
-                <strong> three decades</strong> of expertise in sophisticated, safety-critical
-                engineering — known for rugged performance, on-time delivery, and transparency.
+                Hindusthan Technologies Pvt. Ltd. (HTPL) traces its roots back to{' '}
+                <strong>1987</strong>, when it was established as a proprietorship firm under the
+                name <strong>Hindustan Enterprises</strong> by{' '}
+                <strong>Mr. Mohan Ranjan Panda</strong> at Jagatpur, Cuttack, Odisha. Driven by
+                engineering precision and expanding industrial requirements, the organization
+                underwent a strategic transformation in <strong>2010</strong> and was formally
+                incorporated as a Private Limited Company under its current identity.
               </p>
             </div>
 
@@ -61,6 +62,18 @@ export default function AboutPage() {
                   decoding="async"
                 />
               </figure>
+            </div>
+
+            <div className="ap-overview-foot reveal">
+              <p className="lead">
+                Today, <strong>HTPL</strong> is officially recognized under the{' '}
+                <strong>MSME</strong> category as per the Industrial Policy of the Government of
+                Odisha. With over <strong>30 years</strong> of deep manufacturing experience, we
+                possess comprehensive expertise in handling sophisticated engineering challenges,
+                extreme safety requirements, and stringent regulatory metrics. We have established
+                an unshakeable reputation for rugged product performance, on-time project
+                completion, and absolute transparency.
+              </p>
             </div>
 
           </div>

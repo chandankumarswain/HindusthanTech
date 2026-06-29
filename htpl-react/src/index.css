@@ -2162,6 +2162,10 @@ section { position: relative; overflow-x: clip; }
 .ap-col-sm { aspect-ratio: 16 / 9; align-self: end; }
 .ap-col-md { aspect-ratio: 16 / 9; align-self: start; }
 
+/* supporting copy under the collage (mirrors the top intro styling) */
+.ap-overview-foot { margin-top: clamp(32px, 4vw, 52px); }
+.ap-overview-foot .lead { margin: 0; max-width: 92ch; }
+
 /* stats band — full-width primary-red section, centered figures with dividers.
    higher specificity than `.about-page > section` so it opts out of 100vh */
 .about-page > section.ap-stats-section {
