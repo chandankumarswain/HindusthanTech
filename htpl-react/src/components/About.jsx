@@ -102,8 +102,8 @@ export default function About() {
             </ul>
 
             <p className="about2-addr">
-              Factory: Plot No. 5 &amp; 7, Old Industrial Estate, Jagatpur · Regd. Office:
-              Shivapuri, Nimpur, Jagatpur, Cuttack – 754021, Odisha.
+              Workshop Facility: Plot No. 5 &amp; 7, Old Industrial Estate, Jagatpur ·
+              Registered Corporate Office: Sivapuri, Nimpur, Jagatpur, Cuttack – 754021, Odisha.
             </p>
           </div>
 

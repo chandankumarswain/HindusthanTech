@@ -61,7 +61,7 @@ export default function Contact() {
                 </svg>
               </span>
               <div>
-                <div className="k">Factory</div>
+                <div className="k">Workshop Facility</div>
                 <div className="v">
                   Plot No. 5 &amp; 7, Old Industrial Estate, Jagatpur, Cuttack – 754021, Odisha
                   <br />
@@ -76,9 +76,9 @@ export default function Contact() {
                 </svg>
               </span>
               <div>
-                <div className="k">Registered Office</div>
+                <div className="k">Registered Corporate Office</div>
                 <div className="v">
-                  Shivapuri, Nimpur, Jagatpur, Cuttack – 754021, Odisha
+                  Sivapuri, Nimpur, Jagatpur, Cuttack – 754021, Odisha
                   <br />
                   Ph: <a href="tel:+916712491348">0671-2491348</a>,{' '}
                   <a href="tel:+919437026348">9437026348</a>

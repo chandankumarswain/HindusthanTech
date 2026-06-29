@@ -138,12 +138,12 @@ export default function Footer() {
           <div className="footer-col footer-contact reveal">
             <h3 className="footer-col-title">Contact Info</h3>
             <div className="ci">
-              <div className="k">Factory</div>
+              <div className="k">Workshop Facility</div>
               <div className="v">Plot No. 5 &amp; 7, Old Industrial Estate, Jagatpur, Cuttack – 754021, Odisha</div>
             </div>
             <div className="ci">
-              <div className="k">Registered Office</div>
-              <div className="v">Shivapuri, Nimpur, Jagatpur, Cuttack – 754021, Odisha</div>
+              <div className="k">Registered Corporate Office</div>
+              <div className="v">Sivapuri, Nimpur, Jagatpur, Cuttack – 754021, Odisha</div>
             </div>
             <div className="ci">
               <div className="k">Phone</div>
