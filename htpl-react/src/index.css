@@ -2539,27 +2539,73 @@ section { position: relative; overflow-x: clip; }
 .de-gate-desc { margin: 10px 0 0; font-size: 14px; line-height: 1.6; color: var(--ink-2); flex: 1; }
 .de-gate-tag { margin-top: 18px; align-self: flex-start; font-family: var(--mono); font-size: 11px; color: var(--ink-2); padding: 4px 9px; border: 1px solid var(--line); border-radius: 6px; }
 
-/* tablet — 50px gutters (via .ap-shell) */
+/* tablet + mobile (<=991px): centre every heading/sub-heading, centre the
+   spec band, and turn the process flow into a serpentine 2-column card grid */
 @media (max-width: 991px) {
   .de-cap-grid { grid-template-columns: repeat(2, 1fr); }
-  .de-sec-head-row { flex-direction: column; align-items: flex-start; gap: 14px; }
   .de-band-grid { grid-template-columns: 1fr; gap: 28px; }
-  .de-wcircle { width: 52px; height: 52px; }
-  .de-wico { width: 23px; height: 23px; }
+
+  /* centre every section heading + sub-heading */
+  .de-sec-head { text-align: center; }
+  .de-sec-head .eyebrow { justify-content: center; }
+  .de-sec-head .de-text { margin-left: auto; margin-right: auto; }
+  .de-sec-head-row { flex-direction: column; align-items: center; text-align: center; gap: 14px; }
+  .de-sec-head-row .de-text { max-width: 60ch; }
+
+  /* stats / spec band centred */
+  .de-band-grid { text-align: center; }
+  .de-band-specs { justify-items: center; }
+
+  /* process flow → serpentine 2-column card grid (inspiration layout) */
+  .de-wave { display: grid; grid-template-columns: 1fr 1fr; gap: 30px 18px; min-height: 0; padding-top: 6px; }
+  .de-wave-path { display: none; }
+  .de-wnode {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px;
+    background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--radius);
+    padding: 22px 14px; box-shadow: var(--shadow);
+  }
+  .de-wnode.is-up, .de-wnode.is-down { --cy: 0; }
+  .de-wcircle {
+    position: static; transform: none; flex: none;
+    width: 60px; height: 60px; border: 1px solid var(--line-2);
+    background: var(--paper); color: var(--ink); box-shadow: none;
+  }
+  /* red gauge arc around the bottom of the icon circle */
+  .de-wcircle::after {
+    content: ''; position: absolute; inset: -1px; border-radius: 50%;
+    background: conic-gradient(from 125deg, var(--accent) 0deg 110deg, transparent 110deg 360deg);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  }
+  .de-wico { width: 24px; height: 24px; }
+  .de-wmeta { position: static; text-align: center; }
+  .de-wnode.is-up .de-wmeta, .de-wnode.is-down .de-wmeta { top: auto; bottom: auto; }
+  .de-wnum { color: var(--accent); font-weight: 600; }
+
+  /* serpentine reading order — reverse the middle row (03 <-> 04) */
+  .de-wnode:nth-child(3) { grid-column: 2; grid-row: 2; }
+  .de-wnode:nth-child(4) { grid-column: 1; grid-row: 2; }
+
+  /* dotted snake connectors aligned to the circle centres */
+  .de-wnode:nth-child(1)::before,
+  .de-wnode:nth-child(4)::before,
+  .de-wnode:nth-child(5)::before {
+    content: ''; position: absolute; top: 52px; right: -18px; width: 18px;
+    border-top: 2px dotted var(--accent); opacity: .5;
+  }
+  .de-wnode:nth-child(2)::after,
+  .de-wnode:nth-child(4)::after {
+    content: ''; position: absolute; left: 50%; transform: translateX(-50%);
+    bottom: -30px; height: 30px; border-left: 2px dotted var(--accent); opacity: .5;
+  }
 }
-/* mobile — 25px gutters, single column; stage flow becomes a vertical list */
+/* mobile — 25px gutters, single-column card grids */
 @media (max-width: 767px) {
   .de-page > section { padding-block: clamp(34px, 8vw, 56px); }
   .de-cap-grid { grid-template-columns: 1fr; }
   .de-gate-grid { grid-template-columns: 1fr; }
   .de-band-quote { font-size: clamp(1.3rem, 5vw, 1.7rem); }
-  .de-wave { display: flex; flex-direction: column; gap: 14px; min-height: 0; padding-top: 8px; }
-  .de-wave-path { display: none; }
-  .de-wnode { display: flex; align-items: center; gap: 16px; }
-  .de-wnode.is-up, .de-wnode.is-down { --cy: 0; }
-  .de-wcircle { position: static; transform: none; flex: none; width: 48px; height: 48px; border-width: 0; }
-  .de-wmeta { position: static; text-align: left; }
-  .de-wnode.is-up .de-wmeta, .de-wnode.is-down .de-wmeta { top: auto; bottom: auto; }
 }
 
 /* ============================================================
