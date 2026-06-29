@@ -96,31 +96,6 @@ export default function Products() {
           </p>
         </header>
 
-        {/* [3][4][5] exploded diagram + hero stat + callouts */}
-        <div className="products-hero reveal">
-          <div className="pump-diagram">
-            <img
-              className="pump-engine"
-              src="/images/cummins-x12-engine.png"
-              alt="Cummins X12 engine with Eaton Endurant transmission — the powertrain behind HTPL fire tenders"
-              width="1400"
-              height="700"
-              loading="lazy"
-              decoding="async"
-            />
-
-            <div className="pump-stat">
-              <div className="n">
-                2000<span className="accent">+</span>
-              </div>
-              <div className="l">
-                Fire vehicles delivered to India's most demanding industries —
-                refineries, defence, ports, space.
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* [6] compact product card row */}
         <div className="products-row">
           {PRODUCTS.map((p) => (
