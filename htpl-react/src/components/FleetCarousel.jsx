@@ -144,6 +144,33 @@ export default function FleetCarousel() {
           })}
         </div>
       </div>
+
+      {/* prev / dots / next — shown only on tablet & mobile (CSS), where the
+          side-peek cards are hidden and there's otherwise no way to navigate */}
+      <div className="flt-controls">
+        <button type="button" className="flt-nav" aria-label="Previous slide" onClick={prev}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+        <div className="flt-dots" role="tablist" aria-label="Select slide">
+          {SLIDES.map((s, i) => (
+            <button
+              key={s.file}
+              type="button"
+              className="flt-dot"
+              aria-label={`Go to slide ${i + 1}: ${s.title}`}
+              aria-current={i === active}
+              onClick={() => go(i)}
+            />
+          ))}
+        </div>
+        <button type="button" className="flt-nav" aria-label="Next slide" onClick={next}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
     </section>
   )
 }
