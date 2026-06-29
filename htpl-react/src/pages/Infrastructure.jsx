@@ -8,9 +8,10 @@ import Footer from '../components/Footer'
    991/767 breakpoints follow the rest of the site for full design parity. */
 
 const STATS = [
-  { n: '20', suf: '+', l: 'Years in operation' },
-  { n: '2,500', suf: '+', l: 'Projects delivered' },
-  { n: '850', suf: 'K', l: 'Total facility space' },
+  { n: '38', suf: '+', l: 'Years of excellence' },
+  { n: '2000', suf: '+', l: 'Vehicles delivered' },
+  { n: '50', suf: '+', l: 'PSU clients' },
+  { n: '15', suf: '+', l: 'States served' },
 ]
 
 const CARDS = [
