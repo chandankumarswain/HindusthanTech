@@ -2410,8 +2410,12 @@ section { position: relative; overflow-x: clip; }
 .infra-hero-media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.95) contrast(1.02); }
 
 /* overview + metrics */
+.infra-overview { text-align: center; }
+.infra-overview .eyebrow { justify-content: center; }
 .infra-h2 { margin: 10px 0 0; font-size: clamp(1.8rem, 3.2vw, 2.9rem); line-height: 1.1; letter-spacing: -0.02em; max-width: 24ch; }
 .infra-text { margin: 18px 0 0; max-width: 66ch; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.7; color: var(--ink-2); }
+.infra-overview .infra-h2 { margin-inline: auto; }
+.infra-overview .infra-text { margin-inline: auto; }
 
 /* stats band — full-width primary-red section (reuses .ap-statsband internals);
    3 metrics on this page, so override the band's default 4 columns. */
