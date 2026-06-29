@@ -2376,6 +2376,12 @@ section { position: relative; overflow-x: clip; }
   .vm-block.is-reverse .vm-collage { grid-template-columns: 1fr 1fr; align-items: stretch; }
   .vm-pic-1 { aspect-ratio: 4 / 3; align-self: auto; }
   .vm-text { grid-column: 1 / -1; }
+  /* centre the vision & mission heading + body text */
+  .vm-head { text-align: center; margin-inline: auto; }
+  .vm-head .eyebrow { justify-content: center; }
+  .vm-text { text-align: center; }
+  /* show the vision paragraph directly under its heading, like the mission block */
+  .vm-block:not(.is-reverse) .vm-text { order: -1; }
 }
 /* mobile — 25px gutters, single column */
 @media (max-width: 767px) {
@@ -2383,12 +2389,6 @@ section { position: relative; overflow-x: clip; }
   .vm-collage,
   .vm-block.is-reverse .vm-collage { grid-template-columns: 1fr; gap: clamp(16px, 4vw, 24px); }
   .vm-pic-1, .vm-pic-2 { aspect-ratio: 16 / 11; }
-  /* centre the vision & mission heading + body text */
-  .vm-head { text-align: center; margin-inline: auto; }
-  .vm-head .eyebrow { justify-content: center; }
-  .vm-text { text-align: center; }
-  /* show the vision paragraph directly under its heading, like the mission block */
-  .vm-block:not(.is-reverse) .vm-text { order: -1; }
 }
 
 /* ============================================================
