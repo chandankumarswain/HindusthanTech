@@ -1576,13 +1576,13 @@ section { position: relative; overflow-x: clip; }
 .psp-services { margin-top: clamp(36px, 4vw, 56px); display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2vw, 28px); }
 .psp-svc {
   background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--radius);
-  padding: clamp(26px, 2.6vw, 34px);
+  padding: clamp(26px, 2.6vw, 34px); text-align: center;
   transition: box-shadow .3s ease, border-color .3s ease, transform .3s ease;
 }
 .psp-svc:hover { box-shadow: var(--shadow-lg); border-color: var(--line); transform: translateY(-4px); }
 .psp-svc-ic {
   display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px;
-  background: var(--accent-wash); color: var(--accent); margin-bottom: 18px;
+  background: var(--accent-wash); color: var(--accent); margin: 0 auto 18px;
 }
 .psp-svc-ic svg { width: 26px; height: 26px; }
 .psp-svc-title { margin: 0; font-family: var(--serif); font-weight: 600; font-size: clamp(18px, 1.5vw, 21px); letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); }
