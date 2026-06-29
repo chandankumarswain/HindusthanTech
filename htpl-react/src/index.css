@@ -2353,12 +2353,13 @@ section { position: relative; overflow-x: clip; }
   border-radius: var(--radius); border: 1px solid var(--line-2); box-shadow: var(--shadow);
 }
 .vm-pic img {
-  width: 100%; height: 100%; object-fit: contain; filter: saturate(0.95) contrast(1.02);
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  filter: saturate(0.95) contrast(1.02);
   transition: transform .6s cubic-bezier(.2,.8,.2,1);
 }
 .vm-pic:hover img { transform: scale(1.04); }
-.vm-pic-1 { aspect-ratio: 4 / 5; align-self: start; }
-.vm-pic-2 { aspect-ratio: 4 / 3; }
+.vm-pic-1 { aspect-ratio: 16 / 9; align-self: start; }
+.vm-pic-2 { aspect-ratio: 16 / 9; }
 .vm-text {
   margin: 0; padding-bottom: 4px;
   font-size: clamp(15px, 1.05vw, 17px); line-height: 1.75; color: var(--ink-2);
@@ -2378,7 +2379,7 @@ section { position: relative; overflow-x: clip; }
 @media (max-width: 991px) {
   .vm-collage,
   .vm-block.is-reverse .vm-collage { grid-template-columns: 1fr 1fr; align-items: stretch; }
-  .vm-pic-1 { aspect-ratio: 4 / 3; align-self: auto; }
+  .vm-pic-1 { aspect-ratio: 16 / 9; align-self: auto; }
   .vm-text { grid-column: 1 / -1; }
   /* centre the vision & mission heading + body text */
   .vm-head { text-align: center; margin-inline: auto; }
@@ -2392,7 +2393,7 @@ section { position: relative; overflow-x: clip; }
   .vm-page > section { padding-block: clamp(34px, 8vw, 56px); }
   .vm-collage,
   .vm-block.is-reverse .vm-collage { grid-template-columns: 1fr; gap: clamp(16px, 4vw, 24px); }
-  .vm-pic-1, .vm-pic-2 { aspect-ratio: 16 / 11; }
+  .vm-pic-1, .vm-pic-2 { aspect-ratio: 16 / 9; }
 }
 
 /* ============================================================
