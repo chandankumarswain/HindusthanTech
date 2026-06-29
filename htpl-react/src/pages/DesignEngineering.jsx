@@ -44,42 +44,42 @@ const CAPABILITIES = [
     num: '01',
     cat: 'Design',
     title: 'Precision 2D & 3D Engineering Design',
-    desc: 'Software-driven chassis layout optimisation and fluid-dynamics integration, modelled for precision and visualisation before a single part is cut.',
+    desc: 'Software-based engineering practices using advanced 2D and 3D design platforms. Chassis layout optimization and fluid dynamics system integration are performed using premium software platforms including AutoCAD and SolidWorks for enhanced precision and visualization.',
     tags: ['AutoCAD', 'SolidWorks', 'Chassis layout', 'Fluid dynamics'],
   },
   {
     num: '02',
     cat: 'Analysis',
     title: 'Vehicle Dynamics Analysis',
-    desc: 'Stability proven through Center of Gravity modelling and load-distribution analysis, so safety and performance hold up on rough terrain.',
+    desc: 'Proven capability in vehicle stability analysis, including thorough Center of Gravity (CG) modeling and load distribution analysis to guarantee safety and performance on rough terrains.',
     tags: ['CG modelling', 'Load distribution', 'Stability'],
   },
   {
     num: '03',
     cat: 'Machining',
     title: 'Modern Manufacturing Systems',
-    desc: 'Precision metal fabrication on hydraulic and pneumatic systems, with CNC cutting, turning, and machining for tight dimensional accuracy.',
+    desc: 'Precision metal fabrication using hydraulic and pneumatic systems for precision fabrication and assembly. Material cycles utilize CNC cutting, turning, and machining processes for improved dimensional accuracy.',
     tags: ['CNC', 'Hydraulic', 'Pneumatic'],
   },
   {
     num: '04',
     cat: 'Welding',
     title: 'Advanced Fabrication & Welding',
-    desc: 'High-strength structural joining using high-precision MIG and TIG welding setups built for load-bearing assemblies.',
+    desc: 'Implementation of structural high-strength joining methods utilizing advanced welding techniques including high-precision MIG welding and TIG welding setups.',
     tags: ['MIG welding', 'TIG welding', 'Structural joints'],
   },
   {
     num: '05',
     cat: 'Finishing',
     title: 'Durability Finishing',
-    desc: 'Temperature-controlled baking in a modern paint booth delivers long-term weather-proofing, chemical resistance, and corrosion protection.',
+    desc: 'State-of-the-art modern paint booth technology equipped with temperature-controlled baking facilities ensuring long-term weather-proofing, chemical resistance, and protection against corrosion.',
     tags: ['Baked finish', 'Anti-corrosion', 'Weather-proof'],
   },
   {
     num: '06',
     cat: 'Integration',
     title: 'Process Innovation',
-    desc: 'Fire-fighting system integration monitored dynamically through an ERP-based production system, backed by robust quality control and inspection.',
+    desc: 'Advanced fire-fighting system integration, driven and monitored dynamically via an ERP-based production monitoring system backed by robust quality control and inspection methodologies.',
     tags: ['ERP monitoring', 'Quality control', 'Inspection'],
   },
 ]
@@ -176,10 +176,11 @@ export default function DesignEngineering() {
           <div className="ap-shell">
             <header className="de-sec-head reveal">
               <p className="eyebrow"><span className="dot"></span>Capabilities</p>
-              <h2 className="display de-h2">Six stages, digital to physical</h2>
+              <h2 className="display de-h2">Advanced Design &amp; Engineering Prowess</h2>
               <p className="de-text">
-                A continuous engineering chain — from software-modelled design to calibrated
-                fabrication, finishing, and system integration.
+                We deploy cutting-edge software suites and modernized production workflows to ensure
+                that all custom vehicle builds match absolute technical expectations and superior
+                quality performance.
               </p>
             </header>
             <div className="de-cap-grid">
