@@ -133,12 +133,14 @@ export default function TestingQuality() {
             {QMF.map((q) => (
               <article className="qmf-card reveal" key={q.em}>
                 <span className="qmf-card-ic" aria-hidden="true">{q.icon}</span>
-                <span className="qmf-card-tag">{q.tag}</span>
-                <h3 className="qmf-card-title">
-                  <em>{q.em}</em>
-                  {q.rest}
-                </h3>
-                <p className="qmf-card-desc">{q.desc}</p>
+                <div className="qmf-card-body">
+                  <span className="qmf-card-tag">{q.tag}</span>
+                  <h3 className="qmf-card-title">
+                    <em>{q.em}</em>
+                    {q.rest}
+                  </h3>
+                  <p className="qmf-card-desc">{q.desc}</p>
+                </div>
               </article>
             ))}
           </div>

@@ -1382,9 +1382,11 @@ section { position: relative; overflow-x: clip; }
 
 /* Testing — process-outline layout: left intro + image · right numbered list */
 .tst-layout { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
+.tst-left { text-align: center; }
+.tst-left .eyebrow { justify-content: center; }
 .tst-title { margin: 16px 0 0; font-size: clamp(1.9rem, 3.2vw, 2.9rem); line-height: 1.08; letter-spacing: -0.02em; }
-.tst-desc { margin: 18px 0 0; max-width: 42ch; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.7; color: var(--ink-2); }
-.tst-media { margin: clamp(26px, 3vw, 40px) 0 0; aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--line-2); box-shadow: var(--shadow); max-width: 360px; }
+.tst-desc { margin: 18px auto 0; max-width: 42ch; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.7; color: var(--ink-2); }
+.tst-media { margin: clamp(26px, 3vw, 40px) auto 0; aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--line-2); box-shadow: var(--shadow); max-width: 360px; }
 .tst-media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.95) contrast(1.02); }
 .tst-list { list-style: none; margin: 0; padding: 0; }
 .tst-row { display: grid; grid-template-columns: 0.62fr 1fr; gap: clamp(16px, 3vw, 48px); align-items: baseline; padding: clamp(20px, 2.4vw, 28px) 0; border-top: 1px solid var(--line); }
@@ -1417,6 +1419,7 @@ section { position: relative; overflow-x: clip; }
   transition: box-shadow .3s ease, border-color .3s ease, transform .3s ease;
 }
 .qmf-card:hover { box-shadow: var(--shadow-lg); border-color: var(--line); transform: translateY(-5px); }
+.qmf-card-body { display: flex; flex-direction: column; align-items: center; width: 100%; min-width: 0; }
 .qmf-card-ic {
   display: grid; place-items: center; width: 62px; height: 62px; flex: none;
   border-radius: 50%; background: var(--accent); color: #fff; margin-bottom: 22px;
@@ -1428,16 +1431,18 @@ section { position: relative; overflow-x: clip; }
 .qmf-card-title em { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--ink); padding-right: 0.06em; transition: color .3s ease; }
 .qmf-card:hover .qmf-card-title em { color: var(--accent-dk); }
 .qmf-card-desc { margin: 12px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); }
-/* tablet / mobile */
+/* tablet / mobile — switch cards to a horizontal (icon-left) layout so the
+   content never gets squeezed into a too-narrow column */
 @media (max-width: 991px) {
   .qmf-head { align-items: flex-start; }
-  .qmf-cards { grid-template-columns: repeat(3, 1fr); }
+  .qmf-cards { grid-template-columns: repeat(2, 1fr); }
+  .qmf-card { flex-direction: row; align-items: center; text-align: left; gap: 18px; padding: clamp(22px, 2.6vw, 28px); }
+  .qmf-card-body { align-items: flex-start; }
+  .qmf-card-ic { margin-bottom: 0; width: 54px; height: 54px; }
+  .qmf-card-ic svg { width: 24px; height: 24px; }
 }
 @media (max-width: 767px) {
   .qmf-cards { grid-template-columns: 1fr; }
-  .qmf-card { flex-direction: row; align-items: center; text-align: left; gap: 18px; padding: 22px; }
-  .qmf-card-ic { margin-bottom: 0; width: 54px; height: 54px; }
-  .qmf-card-ic svg { width: 24px; height: 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .qmf-card { transition: none; }
