@@ -2349,11 +2349,11 @@ section { position: relative; overflow-x: clip; }
 }
 .vm-block.is-reverse .vm-collage { grid-template-columns: 1fr 1.15fr 0.95fr; }
 .vm-pic {
-  margin: 0; overflow: hidden;
+  margin: 0; overflow: hidden; background: var(--bone-2);
   border-radius: var(--radius); border: 1px solid var(--line-2); box-shadow: var(--shadow);
 }
 .vm-pic img {
-  width: 100%; height: 100%; object-fit: cover; filter: saturate(0.95) contrast(1.02);
+  width: 100%; height: 100%; object-fit: contain; filter: saturate(0.95) contrast(1.02);
   transition: transform .6s cubic-bezier(.2,.8,.2,1);
 }
 .vm-pic:hover img { transform: scale(1.04); }
@@ -2408,7 +2408,7 @@ section { position: relative; overflow-x: clip; }
 .infra-hero-desc { margin: 22px auto 0; max-width: 64ch; }
 .infra-hero-actions { margin-top: 30px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 .infra-hero-media {
-  margin: clamp(40px, 5vw, 72px) 0 0; overflow: hidden; aspect-ratio: 16 / 7;
+  margin: clamp(40px, 5vw, 72px) 0 0; overflow: hidden; aspect-ratio: 16 / 9;
   border-radius: var(--radius); border: 1px solid var(--line-2); box-shadow: var(--shadow);
 }
 .infra-hero-media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.95) contrast(1.02); }
@@ -2465,7 +2465,7 @@ section { position: relative; overflow-x: clip; }
   .infra-cards { grid-template-columns: 1fr; }
   .infra-page .ap-statsband { grid-template-columns: 1fr; }
   .infra-page .ap-sb, .infra-page .ap-sb:first-child { border-left: none; }
-  .infra-hero-media { aspect-ratio: 16 / 10; }
+  .infra-hero-media { aspect-ratio: 16 / 9; }
 }
 
 /* ============================================================
@@ -2630,7 +2630,7 @@ section { position: relative; overflow-x: clip; }
 .reg-hero-desc { margin: 22px auto 0; max-width: 64ch; }
 .reg-hero-actions { margin-top: 30px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 .reg-hero-media {
-  margin: clamp(40px, 5vw, 72px) 0 0; overflow: hidden; aspect-ratio: 16 / 7;
+  margin: clamp(40px, 5vw, 72px) 0 0; overflow: hidden; aspect-ratio: 16 / 9;
   border-radius: var(--radius); border: 1px solid var(--line-2); box-shadow: var(--shadow);
 }
 .reg-hero-media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.95) contrast(1.02); }
@@ -2664,5 +2664,5 @@ section { position: relative; overflow-x: clip; }
 @media (max-width: 767px) {
   .reg-page > section { padding-block: clamp(34px, 8vw, 56px); }
   .reg-grid { grid-template-columns: 1fr; }
-  .reg-hero-media { aspect-ratio: 16 / 10; }
+  .reg-hero-media { aspect-ratio: 16 / 9; }
 }

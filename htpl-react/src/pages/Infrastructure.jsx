@@ -68,8 +68,8 @@ export default function Infrastructure() {
             </div>
             <figure className="infra-hero-media reveal">
               <img
-                src="/images/fleet/water-tender-1920.png"
-                alt="HTPL manufacturing facility at Jagatpur, Cuttack"
+                src="/images/fleet/mosru-spv.jpg"
+                alt="HTPL-built mobile oil spillage recovery unit (MOSRU)"
                 loading="eager"
                 decoding="async"
               />

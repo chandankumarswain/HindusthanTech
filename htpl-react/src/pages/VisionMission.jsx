@@ -47,16 +47,16 @@ export default function VisionMission() {
             <div className="vm-collage">
               <figure className="vm-pic vm-pic-1 reveal">
                 <img
-                  src="/images/fleet/tn-ladder-tender.jpg"
-                  alt="HTPL ladder fire tender on duty"
+                  src="/images/fleet/multi-purpose-fire-tender.jpg"
+                  alt="HTPL-built multi-purpose fire tender"
                   loading="lazy"
                   decoding="async"
                 />
               </figure>
               <figure className="vm-pic vm-pic-2 reveal">
                 <img
-                  src="/images/fleet/sail-rsp-night-ops.jpg"
-                  alt="HTPL fire tender during night emergency operations"
+                  src="/images/fleet/compact-fire-tender.jpg"
+                  alt="HTPL-built compact fire tender"
                   loading="lazy"
                   decoding="async"
                 />
@@ -79,16 +79,16 @@ export default function VisionMission() {
               <p className="vm-text reveal">{MISSION_TEXT}</p>
               <figure className="vm-pic vm-pic-2 reveal">
                 <img
-                  src="/images/fleet/ntpc-foam-fleet.jpg"
-                  alt="HTPL foam tender fleet for power plants"
+                  src="/images/fleet/water-bowser-boom-tower.jpg"
+                  alt="HTPL-built water bowser with boom tower"
                   loading="lazy"
                   decoding="async"
                 />
               </figure>
               <figure className="vm-pic vm-pic-1 reveal">
                 <img
-                  src="/images/fleet/fact-handover.jpg"
-                  alt="HTPL fire tender handed over to a client"
+                  src="/images/fleet/recovery-vehicle.jpg"
+                  alt="HTPL-built fleet recovery vehicle"
                   loading="lazy"
                   decoding="async"
                 />
