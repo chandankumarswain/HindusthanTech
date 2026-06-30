@@ -69,8 +69,8 @@ export default function Infrastructure() {
             </div>
             <figure className="infra-hero-media reveal">
               <img
-                src="/images/fleet/mosru-spv.jpg"
-                alt="HTPL-built mobile oil spillage recovery unit (MOSRU)"
+                src="/images/infrastructure.jpg"
+                alt="HTPL manufacturing infrastructure and facilities"
                 loading="eager"
                 decoding="async"
               />

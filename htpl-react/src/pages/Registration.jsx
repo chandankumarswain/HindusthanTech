@@ -64,8 +64,8 @@ export default function Registration() {
             </div>
             <figure className="reg-hero-media reveal">
               <img
-                src="/images/fleet/foam-nurser-heavy.jpg"
-                alt="HTPL-built heavy-duty foam nurser"
+                src="/images/registration-approvals.jpg"
+                alt="HTPL registrations, approvals and certifications"
                 loading="eager"
                 decoding="async"
               />
