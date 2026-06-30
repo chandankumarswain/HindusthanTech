@@ -2164,7 +2164,7 @@ section { position: relative; overflow-x: clip; }
 
 /* supporting copy under the collage (mirrors the top intro styling) */
 .ap-overview-foot { margin-top: clamp(32px, 4vw, 52px); }
-.ap-overview-foot .lead { margin: 0; max-width: 92ch; }
+.ap-overview-foot .lead { margin: 0; max-width: none; }
 
 /* stats band — full-width primary-red section, centered figures with dividers.
    higher specificity than `.about-page > section` so it opts out of 100vh */
