@@ -2144,7 +2144,7 @@ section { position: relative; overflow-x: clip; }
 .ap-crumb a:hover { color: var(--accent); }
 .ap-crumb-current { color: var(--ink); }
 .ap-title { margin: 0; font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1.06; letter-spacing: -0.03em; }
-.ap-hero-head .ap-intro { margin: 0; max-width: 52ch; }
+.ap-hero-head .ap-intro { margin: 0; max-width: 52ch; text-align: justify; }
 
 /* asymmetric 3-image collage — small (low) · large (centre) · medium (high) */
 .ap-hero-collage {
