@@ -23,6 +23,28 @@ export default function App() {
     return () => window.removeEventListener('popstate', onNav)
   }, [])
 
+  /* Cross-page section links (e.g. /about → "/#products", or "/about#company-overview")
+     do a full page load, so the browser's native hash jump fires before React has
+     painted the target section and it lands at the top. Re-run the scroll once the
+     element exists. scroll-padding-top (var(--nav-h)) keeps it below the fixed nav. */
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.replace(/^#/, ''))
+    if (!id) return
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let timer
+    let tries = 0
+    const tryScroll = () => {
+      const el = document.getElementById(id)
+      if (el) {
+        el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+      } else if (tries++ < 30) {
+        timer = window.setTimeout(tryScroll, 80)
+      }
+    }
+    timer = window.setTimeout(tryScroll, 60)
+    return () => window.clearTimeout(timer)
+  }, [path])
+
   if (path === '/about') return <AboutPage />
   if (path === '/vision-mission') return <VisionMission />
   if (path === '/infrastructure') return <Infrastructure />
