@@ -64,10 +64,10 @@ export default function Footer() {
             <a href="#hero" className="brand" aria-label="Hindusthan Technologies — home">
               <img
                 className="brand-logo"
-                src="/images/htpl-logo.png"
+                src="/images/ss.png"
                 alt="Hindusthan Technologies Pvt. Ltd."
-                width="471"
-                height="467"
+                width="1794"
+                height="409"
               />
             </a>
             <p className="footer-about">
