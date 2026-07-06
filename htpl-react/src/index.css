@@ -569,7 +569,7 @@ section { position: relative; overflow-x: clip; }
 /* ============================================================
    STATS BAR (dark)
    ============================================================ */
-.statsbar { background: var(--ink); color: var(--bone); }
+.statsbar { background: #0A56A3; color: var(--bone); }
 .statsbar-grid {
   display: grid; grid-template-columns: repeat(4, 1fr);
   padding: clamp(56px, 7vw, 100px) 80px;   /* top/bottom 100 · left/right 80 */
@@ -1816,7 +1816,7 @@ section { position: relative; overflow-x: clip; }
    ============================================================ */
 .footer {
   position: relative; width: 100%;
-  background: var(--ink); color: var(--bone);
+  background: #0A56A3; color: var(--bone);
   padding-block: clamp(48px, 6vw, 80px) 0;
   overflow: hidden; isolation: isolate;
 }
@@ -1935,14 +1935,9 @@ section { position: relative; overflow-x: clip; }
 
 /* --- oversized brand wordmark (primary red, sized to fit the full width) --- */
 .footer-watermark {
-  position: relative; z-index: 1; pointer-events: none; user-select: none;
-  margin-top: clamp(10px, 2vw, 24px); margin-bottom: clamp(6px, 1.4vw, 16px);
-  font-family: var(--serif); font-weight: 600; font-style: italic;
-  /* ~14vw keeps the 10-char word inside the viewport at every size (no clip) */
-  font-size: clamp(30px, 14vw, 210px); line-height: 0.86; text-align: center;
-  letter-spacing: -0.04em; white-space: nowrap;
-  color: var(--accent); /* primary brand colour, solid fill */
-  transform: none;       /* fully visible — no bleed off the bottom edge */
+  display: block; position: relative; z-index: 1; pointer-events: none; user-select: none;
+  width: 100%; height: auto;
+  margin-top: clamp(16px, 3vw, 36px);
 }
 
 /* --- footer responsive: 80 / 50 / 25 padding · tablet 2-col · mobile 1-col --- */

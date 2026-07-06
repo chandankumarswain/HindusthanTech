@@ -61,15 +61,6 @@ export default function Footer() {
         <div className="footer-top">
           {/* COLUMN 01 — company overview + newsletter */}
           <div className="footer-brand reveal">
-            <a href="#hero" className="brand" aria-label="Hindusthan Technologies — home">
-              <img
-                className="brand-logo"
-                src="/images/ss.png"
-                alt="Hindusthan Technologies Pvt. Ltd."
-                width="1794"
-                height="409"
-              />
-            </a>
             <p className="footer-about">
               Manufacturers of firefighting vehicles and special purpose vehicles since 1987.
               Trusted by India's leading PSUs, defence establishments, and industrial giants.
@@ -175,8 +166,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* oversized brand wordmark (decorative, bleeds off the bottom edge) */}
-      <div className="footer-watermark" aria-hidden="true">HINDUSTHAN</div>
+      {/* oversized brand wordmark image (decorative), filling the footer width */}
+      <img className="footer-watermark" src="/images/ss.png" alt="" aria-hidden="true" />
     </footer>
   )
 }
