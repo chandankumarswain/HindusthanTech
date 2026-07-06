@@ -580,7 +580,7 @@ section { position: relative; overflow-x: clip; }
 /* ============================================================
    STATS BAR (dark)
    ============================================================ */
-.statsbar { background: #0A56A3; color: var(--bone); }
+.statsbar { background: #00072D; color: var(--bone); }
 .statsbar-grid {
   display: grid; grid-template-columns: repeat(4, 1fr);
   padding: clamp(56px, 7vw, 100px) 80px;   /* top/bottom 100 · left/right 80 */
