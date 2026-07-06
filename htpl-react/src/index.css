@@ -26,6 +26,7 @@
   --serif: "Source Serif 4", "Newsreader", Georgia, serif;
   --sans:  "Space Grotesk", system-ui, sans-serif;
   --mono:  "JetBrains Mono", ui-monospace, monospace;
+  --script: "Monotype Corsiva", "Apple Chancery", "Segoe Script", cursive;
 
   --maxw: 1280px;
   --pad: clamp(20px, 5vw, 72px);
@@ -76,11 +77,13 @@ section { position: relative; overflow-x: clip; }
 
 .eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
-  font-family: var(--mono);
+  font-family: var(--script);
   font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
   font-weight: 500; color: var(--accent-dk);
   margin: 0 0 22px;
 }
+/* Hero eyebrow uses Tailwind font-mono — override it to the script face too */
+.eyebrow-script { font-family: var(--script); }
 .eyebrow .dot {
   width: 7px; height: 7px; border-radius: 50%;
   background: var(--accent);

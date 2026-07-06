@@ -91,7 +91,7 @@ export default function Hero() {
           <p
             className="htpl-rise flex flex-wrap items-center gap-x-3 gap-y-1
                        justify-center md:justify-start
-                       font-mono uppercase text-accent-dk font-medium
+                       eyebrow-script uppercase text-accent-dk font-medium
                        text-xs tracking-[0.18em] sm:text-[13px]"
             style={{ animationDelay: '.05s' }}
           >
