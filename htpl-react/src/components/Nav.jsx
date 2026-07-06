@@ -27,7 +27,7 @@ const ABOUT_DROPDOWN = [
   { label: 'Our Infrastructure', href: '/infrastructure' },
   { label: 'Our Plant and Machinery', href: '/infrastructure' },
   { label: 'Design and Engineering Prowess', href: '/design-engineering' },
-  { label: 'Testing Facility', href: '/#testing' },
+  { label: 'Testing Facility', href: '/testing-facility' },
   { label: 'Registration and Approvals', href: '/registration-approvals' },
 ]
 
@@ -47,8 +47,8 @@ const LINKS = [
   { label: 'Home', href: NAV.home_link },
   { label: 'About Us', href: '/about', children: ABOUT_DROPDOWN },
   { label: 'Manufacturing', href: 'manufacturing', children: MANUFACTURING_DROPDOWN },
-  // Products -> dedicated /products page; Services -> dedicated page
-  { label: 'Products', href: '/products' },
+  // Products -> "What we build" range section; Services -> dedicated page
+  { label: 'Products', href: NAV.products_link },
   { label: 'Services', href: '/products-services' },
   { label: 'Gallery', href: NAV.gallery_link },
   { label: 'Clients', href: NAV.clients_link },
