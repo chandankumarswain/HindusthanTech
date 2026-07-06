@@ -221,6 +221,13 @@ export default function Nav() {
             width="471"
             height="467"
           />
+          <img
+            className="brand-wordmark"
+            src="/images/ss.png"
+            alt=""
+            width="1794"
+            height="409"
+          />
         </a>
 
         {/* CENTER — primary navigation */}

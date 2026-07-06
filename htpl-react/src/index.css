@@ -179,6 +179,8 @@ section { position: relative; overflow-x: clip; }
   transition: transform .25s cubic-bezier(.2,.8,.2,1);
 }
 .brand:hover .brand-logo { transform: translateY(-1px) rotate(-3deg); }
+/* Hindusthan wordmark shown right next to the emblem */
+.brand-wordmark { height: clamp(26px, 3.2vw, 36px); width: auto; display: block; flex: none; }
 .footer .brand-logo { width: auto; height: 40px; aspect-ratio: auto; max-width: 100%; }
 .brand-text { font-size: 14px; font-weight: 600; line-height: 1.12; letter-spacing: 0.01em; }
 .brand-text span { display: block; color: var(--muted); font-weight: 500; font-size: 12.5px; }
@@ -202,7 +204,7 @@ section { position: relative; overflow-x: clip; }
 .brand { gap: 11px; }
 
 /* --- navigation (center) --- */
-.nav-links { display: flex; align-items: center; gap: clamp(16px, 2vw, 30px); justify-content: center; justify-self: center; }
+.nav-links { display: flex; align-items: center; gap: clamp(8px, 1.1vw, 16px); justify-content: center; justify-self: center; }
 .nav-links a {
   font-size: clamp(14px, 1.05vw, 15.5px); font-weight: 500; color: var(--ink-2);
   position: relative; padding: 6px 2px; border-radius: 6px;
@@ -2016,6 +2018,8 @@ section { position: relative; overflow-x: clip; }
   .nav-inner { padding: 0 25px; }
   .nav-cta { display: none; }
   .nav-right { gap: 10px; }
+  /* hide the wordmark on small phones so it doesn't crowd the hamburger */
+  .brand-wordmark { display: none; }
 }
 
 /* Gallery showcase — same 991/767 breakpoints as About */
