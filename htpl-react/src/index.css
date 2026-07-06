@@ -1113,14 +1113,14 @@ section { position: relative; overflow-x: clip; }
   min-height: 100vh; width: 100%;
   display: flex; align-items: center;
   padding-block: clamp(48px, 6vw, 80px);
-  background: var(--ink); color: var(--bone);
+  background: var(--bone); color: var(--ink);
 }
 @supports (min-height: 100dvh) { .gallery { min-height: 100dvh; } }
 /* Full-width shell: 80px desktop · 50px tablet · 25px mobile (matches About) */
 .gallery-shell { width: 100%; padding-inline: 80px; }
 .gallery .sec-head { margin-bottom: 44px; }
-.gallery .display { color: var(--bone); }
-.gallery .lead { color: rgba(239,236,229,0.66); }
+.gallery .display { color: var(--ink); }
+.gallery .lead { color: var(--ink-2); }
 
 /* masonry bento — reflows 3 → 2 → 1 via column-count */
 .show-bento { column-count: 3; column-gap: 16px; }
@@ -1133,7 +1133,7 @@ section { position: relative; overflow-x: clip; }
 .show-card:hover { transform: translateY(-4px); }
 .show-card.is-accent { background: var(--accent); color: #fff; }
 .show-card.is-accent:hover { background: var(--accent-dk); box-shadow: 0 18px 40px rgba(214,57,36,0.28); }
-.show-card.is-light { background: var(--bone); color: var(--ink); }
+.show-card.is-light { background: var(--paper); color: var(--ink); border: 1px solid var(--line-2); }
 .show-card.is-light:hover { box-shadow: var(--shadow-lg); }
 
 /* icon */

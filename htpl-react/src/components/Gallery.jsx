@@ -18,7 +18,7 @@ export default function Gallery() {
     <section className="gallery" id="track-record">
       <div className="gallery-shell">
         <header className="sec-head reveal">
-          <p className="eyebrow on-dark">
+          <p className="eyebrow">
             <span className="dot"></span>Track record
           </p>
           <h2 className="display h-sec">
