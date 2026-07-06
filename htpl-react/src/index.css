@@ -2543,10 +2543,10 @@ section { position: relative; overflow-x: clip; }
 .de-tag { font-family: var(--mono); font-size: 11px; color: var(--ink-2); padding: 4px 9px; border: 1px solid var(--line); border-radius: 6px; }
 
 /* dark spec band */
-.de-band { background: var(--ink); color: var(--bone); }
+.de-band { background: var(--accent); color: var(--bone); }
 .de-band-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .de-band-quote { margin: 0; font-size: clamp(1.4rem, 2.4vw, 2.2rem); line-height: 1.32; letter-spacing: -0.01em; color: var(--bone); }
-.de-band-accent { color: var(--accent); font-style: italic; }
+.de-band-accent { color: var(--ink); font-style: italic; }
 .de-band-specs { margin: 0; display: grid; gap: 22px; }
 .de-spec dt { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(239, 236, 229, 0.5); }
 .de-spec dd { margin: 6px 0 0; font-family: var(--serif); font-size: clamp(1.4rem, 2vw, 1.8rem); color: var(--bone); }
