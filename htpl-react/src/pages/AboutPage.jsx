@@ -38,14 +38,6 @@ export default function AboutPage() {
             </div>
 
             <div className="ap-hero-collage reveal">
-              <figure className="ap-col ap-col-sm">
-                <img
-                  src="/images/about/truck-1.jpeg"
-                  alt="HTPL Tata-based fire & rescue vehicle"
-                  loading="eager"
-                  decoding="async"
-                />
-              </figure>
               <figure className="ap-col ap-col-lg">
                 <img
                   src="/images/about/truck-2.jpeg"
