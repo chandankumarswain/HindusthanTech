@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Coconat (Bold Extended) — OFL-licensed display face used for section labels.
+   One weight file, mapped across the range so any font-weight renders it. */
+@font-face {
+  font-family: "Coconat";
+  src: url("/fonts/Coconat-BoldExt.woff2") format("woff2"),
+       url("/fonts/Coconat-BoldExt.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ============================================================
    HTPL — Landing Page
    Design language: "Editorial Split" (V2)
@@ -26,7 +37,7 @@
   --serif: "Source Serif 4", "Newsreader", Georgia, serif;
   --sans:  "Space Grotesk", system-ui, sans-serif;
   --mono:  "JetBrains Mono", ui-monospace, monospace;
-  --script: "Monotype Corsiva", "Apple Chancery", "Segoe Script", cursive;
+  --script: "Coconat", "Source Serif 4", Georgia, serif;
 
   --maxw: 1280px;
   --pad: clamp(20px, 5vw, 72px);
