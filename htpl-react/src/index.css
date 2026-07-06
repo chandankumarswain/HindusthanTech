@@ -1611,7 +1611,14 @@ section { position: relative; overflow-x: clip; }
 }
 /* mobile */
 @media (max-width: 767px) {
-  .psp-build { grid-template-columns: 1fr; }
+  .psp-hero { padding-block: clamp(28px, 8vw, 44px); }
+  .psp-title { font-size: clamp(1.85rem, 8.4vw, 2.5rem); max-width: 18ch; }
+  .psp-hero-desc { font-size: 15px; }
+  .psp-build { grid-template-columns: 1fr; gap: 30px; margin-top: 28px; }
+  .psp-build-media { aspect-ratio: 4 / 3; }
+  .psp-cat-ic { width: 46px; height: 46px; margin-bottom: 14px; }
+  .psp-build-foot { margin-top: 30px; }
+  .psp-services { margin-top: 28px; gap: 16px; }
 }
 
 /* ============================================================

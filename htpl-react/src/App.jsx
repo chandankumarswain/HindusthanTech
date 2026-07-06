@@ -6,6 +6,7 @@ import Infrastructure from './pages/Infrastructure'
 import DesignEngineering from './pages/DesignEngineering'
 import Registration from './pages/Registration'
 import ProductsServicesPage from './pages/ProductsServicesPage'
+import ProductsPage from './pages/ProductsPage'
 
 /* Lightweight pathname router — the Vercel/Vite SPA rewrite serves index.html
    for every path, so a direct hit or refresh on /about renders here too.
@@ -51,5 +52,6 @@ export default function App() {
   if (path === '/design-engineering') return <DesignEngineering />
   if (path === '/registration-approvals') return <Registration />
   if (path === '/products-services') return <ProductsServicesPage />
+  if (path === '/products') return <ProductsPage />
   return <Landing />
 }
