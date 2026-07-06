@@ -47,8 +47,8 @@ const LINKS = [
   { label: 'Home', href: NAV.home_link },
   { label: 'About Us', href: '/about', children: ABOUT_DROPDOWN },
   { label: 'Manufacturing', href: 'manufacturing', children: MANUFACTURING_DROPDOWN },
-  // Products -> "What we build" range section; Services -> dedicated page
-  { label: 'Products', href: NAV.products_link },
+  // Products -> dedicated products page; Services -> dedicated page
+  { label: 'Products', href: '/products' },
   { label: 'Services', href: '/products-services' },
   { label: 'Gallery', href: NAV.gallery_link },
   { label: 'Clients', href: NAV.clients_link },
