@@ -56,46 +56,13 @@ export default function Contact() {
             <div className="ci-item">
               <span className="ic">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-                  <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"></path>
-                  <circle cx="12" cy="10" r="2.5"></circle>
-                </svg>
-              </span>
-              <div>
-                <div className="k">Workshop Facility</div>
-                <div className="v">
-                  Plot No. 5 &amp; 7, Old Industrial Estate, Jagatpur, Cuttack – 754021, Odisha
-                  <br />
-                  Ph: <a href="tel:+919437579348">9437579348</a>
-                </div>
-              </div>
-            </div>
-            <div className="ci-item">
-              <span className="ic">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-                  <path d="M3 21h18M5 21V7l8-4 8 4v14M9 9h.01M13 9h.01M9 13h.01M13 13h.01M9 17h.01M13 17h.01"></path>
-                </svg>
-              </span>
-              <div>
-                <div className="k">Registered Corporate Office</div>
-                <div className="v">
-                  Sivapuri, Nimpur, Jagatpur, Cuttack – 754021, Odisha
-                  <br />
-                  Ph: <a href="tel:+916712491348">0671-2491348</a>,{' '}
-                  <a href="tel:+919437026348">9437026348</a>
-                </div>
-              </div>
-            </div>
-            <div className="ci-item">
-              <span className="ic">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                   <path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"></path>
                 </svg>
               </span>
               <div>
                 <div className="k">Phone</div>
                 <div className="v">
-                  <a href="tel:+919437026348">9437026348</a> /{' '}
-                  <a href="tel:+919437055701">9437055701</a>
+                  <a href="tel:+919437055701">+91 9437055701</a> (M)
                 </div>
               </div>
             </div>
@@ -118,6 +85,38 @@ export default function Contact() {
             <div className="ci-item">
               <span className="ic">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <path d="M3 21h18M5 21V7l8-4 8 4v14M9 9h.01M13 9h.01M9 13h.01M13 13h.01M9 17h.01M13 17h.01"></path>
+                </svg>
+              </span>
+              <div>
+                <div className="k">Registered Corporate Office</div>
+                <div className="v">
+                  Sivapuri, Nimpur, Jagatpur, Cuttack – 754021, Odisha
+                  <br />
+                  <a href="tel:+916712491348">0671-2491348</a> (L),{' '}
+                  <a href="tel:+919437026348">9437026348</a> (M)
+                </div>
+              </div>
+            </div>
+            <div className="ci-item">
+              <span className="ic">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+                  <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"></path>
+                  <circle cx="12" cy="10" r="2.5"></circle>
+                </svg>
+              </span>
+              <div>
+                <div className="k">Factory</div>
+                <div className="v">
+                  Plot No. 5 &amp; 7, Old Industrial Estate, Jagatpur, Cuttack – 754021, Odisha
+                  <br />
+                  Ph: <a href="tel:+919437579348">9437579348</a>
+                </div>
+              </div>
+            </div>
+            <div className="ci-item">
+              <span className="ic">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
                   <circle cx="9" cy="8" r="3"></circle>
                   <circle cx="17" cy="9" r="2.5"></circle>
                   <path d="M3 20c0-3 2.5-5 6-5s6 2 6 5M15.5 14c2.5 0 4.5 1.8 4.5 4.5"></path>
@@ -125,18 +124,55 @@ export default function Contact() {
               </span>
               <div>
                 <div className="k">Departments</div>
-                <div className="v">
-                  Sales &amp; Marketing —{' '}
-                  <a href="mailto:marketing@hindusthantechnologies.com">marketing@hindusthantechnologies.com</a>,{' '}
-                  <a href="tel:+919439695800">9439695800</a>
-                  <br />
-                  After-Sales Support —{' '}
-                  <a href="mailto:supervisor@hindusthantechnologies.com">supervisor@hindusthantechnologies.com</a>,{' '}
-                  <a href="tel:+919439695814">9439695814</a>
-                  <br />
-                  Technical &amp; QA —{' '}
-                  <a href="mailto:tech.qa@hindusthantechnologies.com">tech.qa@hindusthantechnologies.com</a>,{' '}
-                  <a href="tel:+919439695817">9439695817</a>
+                <div className="ci-depts">
+                  <div className="ci-dept">
+                    <span className="ci-dept-ic">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M4 10v4M4 12l11-5v10L4 12z"></path>
+                        <path d="M15 9a3.5 3.5 0 0 1 0 6"></path>
+                      </svg>
+                    </span>
+                    <div>
+                      <div className="ci-dept-name">Sales &amp; Marketing</div>
+                      <div className="ci-dept-sub">
+                        <a href="mailto:marketing@hindusthantechnologies.com">marketing@hindusthantechnologies.com</a>
+                        <br />
+                        <a href="tel:+919439695800">9439695800</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="ci-dept">
+                    <span className="ci-dept-ic">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M4 13v-1a8 8 0 0 1 16 0v1"></path>
+                        <path d="M4 13a2 2 0 0 1 2-2h1v5H6a2 2 0 0 1-2-2v-1zM20 13a2 2 0 0 0-2-2h-1v5h1a2 2 0 0 0 2-2v-1z"></path>
+                        <path d="M18 16v1a3 3 0 0 1-3 3h-3"></path>
+                      </svg>
+                    </span>
+                    <div>
+                      <div className="ci-dept-name">After-Sales Support</div>
+                      <div className="ci-dept-sub">
+                        <a href="mailto:supervisor@hindusthantechnologies.com">supervisor@hindusthantechnologies.com</a>
+                        <br />
+                        <a href="tel:+919439695814">9439695814</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="ci-dept">
+                    <span className="ci-dept-ic">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M14 7a3.5 3.5 0 0 0-4.6 4.2L3 17.6 6.4 21l6.4-6.4A3.5 3.5 0 0 0 17 10l-2.3 2.3L12 9.6 14.3 7z"></path>
+                      </svg>
+                    </span>
+                    <div>
+                      <div className="ci-dept-name">Technical &amp; QA</div>
+                      <div className="ci-dept-sub">
+                        <a href="mailto:tech.qa@hindusthantechnologies.com">tech.qa@hindusthantechnologies.com</a>
+                        <br />
+                        <a href="tel:+919439695817">9439695817</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

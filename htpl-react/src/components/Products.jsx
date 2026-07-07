@@ -21,8 +21,8 @@ const PRODUCTS = [
   {
     num: '02',
     title: 'Trailer & Portable Pumps',
-    img: '/images/fleet/trailer-portable-pump.png',
-    alt: 'Trailer-mounted firefighting pump',
+    img: '/images/fleet/chhattisgarh-water-tender.png',
+    alt: 'HTPL water tender fire truck',
     specs: [
       ['Use case', 'Backup / Limited access'],
       ['Capacity', 'High-flow'],

@@ -41,7 +41,7 @@ export default function VisionMission() {
             <header className="vm-head reveal">
               <p className="eyebrow"><span className="dot"></span>Our vision</p>
               <h2 className="display vm-title">
-                Where engineering meets <span className="italic-accent">absolute trust.</span>
+                A vision where engineering meets <span className="italic-accent">absolute trust.</span>
               </h2>
             </header>
             <div className="vm-collage">
@@ -55,7 +55,7 @@ export default function VisionMission() {
               </figure>
               <figure className="vm-pic vm-pic-2 reveal">
                 <img
-                  src="/images/vm/vm-2.jpg"
+                  src="/images/vm/vm-oil-tender.jpg"
                   alt="HTPL fire & rescue vehicle"
                   loading="lazy"
                   decoding="async"
@@ -72,7 +72,7 @@ export default function VisionMission() {
             <header className="vm-head reveal">
               <p className="eyebrow"><span className="dot"></span>Our mission</p>
               <h2 className="display vm-title">
-                Built to perform when <span className="italic-accent">seconds matter.</span>
+                A mission built to perform when <span className="italic-accent">seconds matter.</span>
               </h2>
             </header>
             <div className="vm-collage">
@@ -87,7 +87,7 @@ export default function VisionMission() {
               </figure>
               <figure className="vm-pic vm-pic-1 reveal">
                 <img
-                  src="/images/vm/vm-4.jpg"
+                  src="/images/vm/vm-fleet.jpg"
                   alt="HTPL fire & rescue vehicle"
                   loading="lazy"
                   decoding="async"

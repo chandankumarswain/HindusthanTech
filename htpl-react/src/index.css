@@ -88,13 +88,13 @@ section { position: relative; overflow-x: clip; }
 
 .eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
-  font-family: var(--script);
+  font-family: Georgia, "Times New Roman", serif;
   font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
   font-weight: 500; color: var(--accent-dk);
   margin: 0 0 22px;
 }
-/* Hero eyebrow uses Tailwind font-mono — override it to the script face too */
-.eyebrow-script { font-family: var(--script); }
+/* Hero eyebrow uses Tailwind font-mono — override it to match the section labels */
+.eyebrow-script { font-family: Georgia, "Times New Roman", serif; }
 .eyebrow .dot {
   width: 7px; height: 7px; border-radius: 50%;
   background: var(--accent);
@@ -580,7 +580,7 @@ section { position: relative; overflow-x: clip; }
 /* ============================================================
    STATS BAR (dark)
    ============================================================ */
-.statsbar { background: #00072D; color: var(--bone); }
+.statsbar { background: var(--accent); color: #fff; }
 .statsbar-grid {
   display: grid; grid-template-columns: repeat(4, 1fr);
   padding: clamp(56px, 7vw, 100px) 80px;   /* top/bottom 100 · left/right 80 */
@@ -588,12 +588,12 @@ section { position: relative; overflow-x: clip; }
 .statsbar-cell {
   display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px;
   padding-inline: clamp(16px, 2.4vw, 40px);
-  border-left: 1px solid rgba(255,255,255,0.14);
+  border-left: 1px solid rgba(255,255,255,0.18);
 }
 .statsbar-cell:first-child { border-left: none; }
 .statsbar-cell .n { font-family: var(--serif); font-size: clamp(40px, 4.5vw, 60px); line-height: 0.9; letter-spacing: -0.03em; }
-.statsbar-cell .n .accent { color: var(--accent); }
-.statsbar-cell .l { font-size: 13px; color: rgba(239,236,229,0.62); letter-spacing: 0.04em; }
+.statsbar-cell .n .accent { color: #fff; }
+.statsbar-cell .l { font-size: 13px; color: rgba(255,255,255,0.9); letter-spacing: 0.04em; }
 
 /* ============================================================
    ABOUT  —  split layout (story + industries served)
@@ -1791,6 +1791,18 @@ section { position: relative; overflow-x: clip; }
 .ci-item .v { font-size: 15.5px; color: var(--ink); font-weight: 500; line-height: 1.45; overflow-wrap: anywhere; }
 .ci-item .v a:hover { color: var(--accent); }
 
+/* Departments — one iconed entry per team, name on top, contacts beneath */
+.ci-depts { display: flex; flex-direction: column; gap: 16px; margin-top: 6px; }
+.ci-dept { display: flex; gap: 11px; align-items: flex-start; }
+.ci-dept-ic {
+  flex: none; width: 30px; height: 30px; border-radius: 8px; margin-top: 1px;
+  background: var(--accent-wash); color: var(--accent-dk); display: grid; place-items: center;
+}
+.ci-dept > div { min-width: 0; }
+.ci-dept-name { font-size: 14.5px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
+.ci-dept-sub { margin-top: 3px; font-size: 13.5px; font-weight: 500; color: var(--ink-2); line-height: 1.55; overflow-wrap: anywhere; }
+.ci-dept-sub a:hover { color: var(--accent); }
+
 .contact-form {
   background: var(--paper); border: 1px solid var(--line-2);
   border-radius: var(--radius); padding: clamp(26px, 3vw, 40px); box-shadow: var(--shadow);
@@ -1834,7 +1846,7 @@ section { position: relative; overflow-x: clip; }
    ============================================================ */
 .footer {
   position: relative; width: 100%;
-  background: #0A56A3; color: var(--bone);
+  background: var(--accent); color: var(--bone);
   padding-block: clamp(48px, 6vw, 80px) 0;
   overflow: hidden; isolation: isolate;
 }
@@ -1861,15 +1873,15 @@ section { position: relative; overflow-x: clip; }
 .footer .brand-mark { background: var(--accent); color: #fff; }
 .footer-about {
   font-size: clamp(13.5px, 0.95vw, 15px);
-  color: rgba(239,236,229,0.62); line-height: 1.65;
+  color: rgba(255,255,255,0.9); line-height: 1.65;
   margin: 18px 0 0; max-width: 42ch;
 }
 .footer-meta {
   margin: 16px 0 0; display: flex; flex-direction: column; gap: 6px;
   font-family: var(--mono); font-size: clamp(10.5px, 0.82vw, 12px);
-  letter-spacing: 0.07em; color: rgba(239,236,229,0.5);
+  letter-spacing: 0.07em; color: rgba(255,255,255,0.8);
 }
-.footer-meta strong { color: var(--bone); font-weight: 600; }
+.footer-meta strong { color: #fff; font-weight: 600; }
 
 /* newsletter — "stay connected" */
 .footer-news { margin: 28px 0 0; max-width: 380px; }
@@ -1878,7 +1890,7 @@ section { position: relative; overflow-x: clip; }
   font-size: clamp(20px, 1.8vw, 26px); line-height: 1.1; margin: 0;
 }
 .footer-news > p {
-  font-size: clamp(13px, 0.9vw, 14px); color: rgba(239,236,229,0.6);
+  font-size: clamp(13px, 0.9vw, 14px); color: rgba(255,255,255,0.85);
   line-height: 1.6; margin: 10px 0 16px;
 }
 .footer-news-form {
@@ -1907,12 +1919,12 @@ section { position: relative; overflow-x: clip; }
 .footer-col-title {
   font-family: var(--mono); font-size: clamp(10.5px, 0.85vw, 12px);
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(239,236,229,0.5); margin: 0 0 18px; font-weight: 500;
+  color: rgba(255,255,255,0.72); margin: 0 0 18px; font-weight: 600;
 }
 .footer-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(9px, 0.8vw, 12px); }
 .footer-col li a {
   position: relative; display: inline-block; width: fit-content;
-  font-size: clamp(13.5px, 0.95vw, 15px); color: rgba(239,236,229,0.78);
+  font-size: clamp(13.5px, 0.95vw, 15px); color: rgba(255,255,255,0.88);
   transition: color .2s, transform .25s cubic-bezier(.2,.8,.2,1);
 }
 .footer-col li a::after {
@@ -1927,9 +1939,9 @@ section { position: relative; overflow-x: clip; }
 .footer-contact .ci { margin-bottom: 14px; }
 .footer-contact .k {
   font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em;
-  text-transform: uppercase; color: rgba(239,236,229,0.45); margin-bottom: 4px;
+  text-transform: uppercase; color: rgba(255,255,255,0.68); margin-bottom: 4px;
 }
-.footer-contact .v { font-size: clamp(13px, 0.9vw, 14px); color: rgba(239,236,229,0.8); line-height: 1.5; overflow-wrap: anywhere; }
+.footer-contact .v { font-size: clamp(13px, 0.9vw, 14px); color: rgba(255,255,255,0.92); line-height: 1.5; overflow-wrap: anywhere; }
 .footer-contact .v a { transition: color .2s; }
 .footer-contact .v a:hover { color: #fff; }
 
@@ -1939,28 +1951,29 @@ section { position: relative; overflow-x: clip; }
   padding-block: clamp(20px, 2.2vw, 28px);
   display: flex; align-items: center; justify-content: space-between;
   gap: 14px 28px; flex-wrap: wrap;
-  font-size: clamp(12px, 0.85vw, 13px); color: rgba(239,236,229,0.5);
+  font-size: clamp(12px, 0.85vw, 13px); color: rgba(255,255,255,0.75);
 }
 .footer-legal { display: flex; align-items: center; gap: 10px 18px; flex-wrap: wrap; }
-.footer-legal a { color: rgba(239,236,229,0.62); transition: color .2s; }
+.footer-legal a { color: rgba(255,255,255,0.85); transition: color .2s; }
 .footer-legal a:hover, .footer-legal a:focus-visible { color: #fff; }
 .footer-certs { display: flex; gap: 10px; flex-wrap: wrap; }
 .footer-certs span {
   font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em;
-  padding: 6px 11px; border: 1px solid rgba(255,255,255,0.16); border-radius: 7px;
-  color: rgba(239,236,229,0.7);
+  padding: 6px 11px; border: 1px solid rgba(255,255,255,0.2); border-radius: 7px;
+  color: rgba(255,255,255,0.85);
 }
 
-/* --- oversized brand wordmark (primary red, sized to fit the full width) --- */
+/* --- oversized brand wordmark — inset to the section gutters (80/50/25) --- */
 .footer-watermark {
   display: block; position: relative; z-index: 1; pointer-events: none; user-select: none;
-  width: 100%; height: auto;
+  width: 100%; height: auto; padding-inline: 80px;
   margin-top: clamp(16px, 3vw, 36px);
 }
 
 /* --- footer responsive: 80 / 50 / 25 padding · tablet 2-col · mobile 1-col --- */
 @media (max-width: 991px) {
   .footer .wrap { padding-inline: 50px; }
+  .footer-watermark { padding-inline: 50px; }
   /* tablet: company+newsletter spans the full row, the four columns drop to 2-up */
   .footer-top { grid-template-columns: 1fr 1fr; gap: 34px 40px; }
   .footer-brand { grid-column: 1 / -1; }
@@ -1972,7 +1985,7 @@ section { position: relative; overflow-x: clip; }
   .footer-brand { grid-column: 1 / -1; }
   .footer-news { max-width: 100%; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
-  .footer-watermark { transform: none; }
+  .footer-watermark { transform: none; padding-inline: 25px; }
 }
 
 /* ============================================================
@@ -2252,7 +2265,7 @@ section { position: relative; overflow-x: clip; }
   color: var(--accent);
 }
 .ap-vcard-title { margin: 16px 0 0; font-size: clamp(16px, 1.3vw, 19px); font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
-.ap-vcard-desc { margin: 8px 0 0; font-size: 13.5px; line-height: 1.55; color: var(--muted); }
+.ap-vcard-desc { margin: 8px 0 0; font-size: 13.5px; line-height: 1.55; color: #45454a; }
 
 /* closing CTA */
 .ap-cta-wrap { padding-block: clamp(48px, 6vw, 80px); }
@@ -2746,12 +2759,18 @@ section { position: relative; overflow-x: clip; }
 .tf-log-l { white-space: nowrap; color: var(--accent-dk); font-weight: 600; }
 .tf-log-rule { flex: 1; height: 1px; background: var(--line); }
 .tf-log-r { white-space: nowrap; text-align: right; }
-.tf-test-split { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(36px, 4.5vw, 68px); align-items: start; }
+/* content 45% · image 55%, both stretch to fill the section height */
+.tf-test-split { display: grid; grid-template-columns: 45% 55%; gap: clamp(28px, 3vw, 52px); align-items: stretch; }
+/* alternating layout: flipped sections put the collage on the LEFT */
 .tf-test.flip .tf-test-split { direction: rtl; }
 .tf-test.flip .tf-test-split > * { direction: ltr; }
+.tf-test-copy { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
 .tf-h2 { font-size: clamp(28px, 3.4vw, 44px); line-height: 1.06; letter-spacing: -0.02em; }
-.tf-test-copy p { margin-top: 16px; max-width: 42ch; font-size: clamp(15px, 1.05vw, 16.5px); line-height: 1.7; color: var(--ink-2); }
+.tf-test-copy p { margin-top: 16px; max-width: 46ch; font-size: clamp(15px, 1.05vw, 16.5px); line-height: 1.7; color: var(--ink-2); }
 .tf-test-copy p b { color: var(--ink); font-weight: 600; }
+/* Dye penetration — smaller sub-content so the section fits one screen */
+.tf-test-copy.is-compact .tf-h2 { font-size: clamp(24px, 2.6vw, 36px); }
+.tf-test-copy.is-compact p { font-size: clamp(13px, 0.9vw, 14.5px); margin-top: 11px; line-height: 1.6; }
 
 /* spec plate */
 .tf-plate { margin-top: 28px; border: 1px solid var(--ink); background: var(--paper); }
@@ -2777,6 +2796,44 @@ section { position: relative; overflow-x: clip; }
 .tf-fig-cap { margin-top: 9px; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em; color: var(--muted); }
 .tf-fig-cap b { color: var(--accent-dk); font-weight: 600; margin-right: 8px; }
 .tf-fig-big .tf-fig-btn img { aspect-ratio: 16 / 10; }
+
+/* Test-section image cards: show the WHOLE vehicle — contain (no crop) on a
+   soft framed mat, so every photo in all 9 test sections is fully visible. */
+.tf-test .tf-fig-btn { background: var(--bone-2); border-color: var(--line); }
+.tf-test .tf-fig-btn img { object-fit: contain; filter: none; padding: 8px; }
+
+/* Staggered 3-image collage (side · BIG centre · side), filled & caption-overlaid.
+   The middle card is the big one; the two side cards stagger high/low. It mirrors
+   between right-side sections (.tf-collage-right) and left-side sections
+   (.tf-collage-left) so the shape — and every card's size — is identical across
+   the page. aspect-ratio gives it a height on tablet; desktop makes it fill. */
+.tf-collage {
+  display: grid; gap: 12px;
+  grid-template-columns: 0.82fr 1.3fr 0.82fr;
+  grid-template-rows: repeat(10, 1fr);
+  aspect-ratio: 16 / 11;
+}
+.tf-col-b { grid-column: 2; grid-row: 1 / 11; }              /* big, centre, full height */
+/* right-side sections: small-left(low) · medium-right(high) */
+.tf-collage-right .tf-col-a { grid-column: 1; grid-row: 6 / 11; }
+.tf-collage-right .tf-col-c { grid-column: 3; grid-row: 1 / 8; }
+/* left-side sections (mirror): medium-left(high) · small-right(low) */
+.tf-collage-left .tf-col-a { grid-column: 1; grid-row: 1 / 8; }
+.tf-collage-left .tf-col-c { grid-column: 3; grid-row: 6 / 11; }
+.tf-collage .tf-fig { position: relative; margin: 0; height: 100%; }
+.tf-collage .tf-fig-btn { background: var(--bone-2); border: 1px solid var(--line-2); height: 100%; }
+.tf-collage .tf-fig-btn img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center; padding: 0;
+  aspect-ratio: auto; filter: saturate(0.95) contrast(1.02);
+}
+/* FIG caption overlaid at the bottom (our colours, not the reference green) */
+.tf-collage .tf-fig-cap {
+  position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 20px 12px 9px;
+  background: linear-gradient(to top, rgba(24,24,26,0.82), rgba(24,24,26,0));
+  color: rgba(255,255,255,0.82); border-radius: 0 0 var(--radius) var(--radius);
+}
+.tf-collage .tf-fig-cap b { color: #fff; }
+
 .tf-thumbs { display: grid; gap: 16px; margin-top: 18px; }
 .tf-thumbs.n2 { grid-template-columns: repeat(2, 1fr); }
 .tf-thumbs.n3 { grid-template-columns: repeat(3, 1fr); }
@@ -2822,6 +2879,25 @@ section { position: relative; overflow-x: clip; }
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,0.9);
 }
 
+/* desktop — each of the 9 test sections fills one screen (100vh) and the big
+   images are capped in viewport height so every photo stays inside its section.
+   Content is centred vertically; min-height (not fixed height) lets a section
+   grow rather than clip if copy ever runs long. */
+@media (min-width: 992px) {
+  /* each test fills exactly one screen; the inner split stretches to fill the
+     height, so both the 45% copy and the 55% collage run the full section. */
+  .tf-page > section.tf-test {
+    min-height: 100vh; min-height: 100dvh;
+    display: flex; align-items: stretch;
+    padding-block: clamp(40px, 5vh, 72px);
+  }
+  .tf-test .ap-shell { width: 100%; display: flex; flex-direction: column; }
+  .tf-test .tf-loghead { flex: none; }
+  .tf-test .tf-test-split { flex: 1; min-height: 0; }
+  /* collage fills its column — aspect-ratio off, height driven by the split */
+  .tf-collage { aspect-ratio: auto; height: 100%; }
+}
+
 /* tablet — 50px gutters (via .ap-shell) */
 @media (max-width: 991px) {
   .tf-protocol-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2833,6 +2909,15 @@ section { position: relative; overflow-x: clip; }
   .tf-page > section { padding-block: clamp(34px, 8vw, 56px); }
   .tf-test-split { grid-template-columns: 1fr; gap: 28px; }
   .tf-test.flip .tf-test-split { direction: ltr; }
+  /* collage on mobile: big image (centre card) on top full-width + the two side
+     cards below, each properly sized instead of a cramped strip */
+  .tf-collage { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; aspect-ratio: auto; height: auto; gap: 10px; }
+  .tf-collage .tf-col-b { grid-column: 1 / -1; grid-row: 1; }
+  .tf-collage .tf-col-a { grid-column: 1; grid-row: 2; }
+  .tf-collage .tf-col-c { grid-column: 2; grid-row: 2; }
+  .tf-collage .tf-fig, .tf-collage .tf-fig-btn { height: auto; }
+  .tf-col-b .tf-fig-btn img { aspect-ratio: 16 / 10; height: auto; }
+  .tf-col-a .tf-fig-btn img, .tf-col-c .tf-fig-btn img { aspect-ratio: 4 / 3; height: auto; }
   .tf-protocol-grid { grid-template-columns: 1fr; }
   .tf-facility-grid { grid-template-columns: 1fr; }
   .tf-monitor-row { grid-template-columns: 1fr; }
@@ -2840,4 +2925,87 @@ section { position: relative; overflow-x: clip; }
   .tf-page .ap-sb, .tf-page .ap-sb:first-child { border-left: none; }
   .tf-loghead { gap: 12px; }
   .tf-hero-media { aspect-ratio: 4 / 3; }
+}
+
+/* ============================================================
+   PLANT & MACHINERY PAGE  (/plant-machinery)
+   Works-register ledger re-skinned to the site design.
+   Reuses site tokens, .ap-shell gutters (80/50/25) + 991/767 bps.
+   ============================================================ */
+.pm-page { background: var(--bone); color: var(--ink); }
+.pm-page > section { padding-block: clamp(48px, 7vw, 96px); }
+
+/* hero — centred (matches infra/testing hero rhythm) */
+.pm-hero { text-align: center; padding-top: clamp(56px, 8vw, 104px) !important; }
+.pm-hero .ap-crumb { display: block; text-align: center; }
+.pm-hero .eyebrow { display: inline-flex; font-family: var(--mono); margin-top: 4px; }
+.pm-hero-title { margin: 0 auto; font-size: clamp(2.2rem, 6vw, 4.6rem); line-height: 1.04; letter-spacing: -0.03em; max-width: 18ch; }
+.pm-hero-desc { margin: 22px auto 0; max-width: 64ch; }
+
+/* red stats band (reuses .ap-statsband internals) */
+.pm-page > section.ap-stats-section {
+  display: block; background: var(--accent); color: #fff;
+  padding-block: clamp(56px, 7vw, 100px);
+}
+
+/* ledger */
+.pm-ledger { border-top: 1px solid var(--line); }
+
+/* search toolbar */
+.pm-toolbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  border: 1px solid var(--line); background: var(--paper);
+  padding: 4px 16px; border-radius: var(--radius);
+}
+.pm-search { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.pm-search svg { flex: none; color: var(--muted); }
+.pm-search input {
+  flex: 1; min-width: 0; background: transparent; border: 0; outline: none;
+  font-family: var(--mono); font-size: 13px; color: var(--ink); padding: 12px 0;
+}
+.pm-search input::placeholder { color: var(--muted); }
+.pm-showing { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; color: var(--muted); white-space: nowrap; }
+
+/* list block */
+.pm-block { margin-top: clamp(40px, 5vw, 60px); }
+.pm-list-head {
+  display: flex; align-items: baseline; gap: 18px;
+  border-bottom: 2px solid var(--ink); padding-bottom: 12px; flex-wrap: wrap;
+}
+.pm-list-idx { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-dk); font-weight: 600; }
+.pm-list-title { margin: 0; font-size: clamp(16px, 1.6vw, 19px); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+.pm-list-sub { margin-left: auto; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; color: var(--muted); }
+.pm-empty { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--muted); padding: 22px 0; }
+
+/* rows — two columns on desktop (CSS multi-column, like the source) */
+.pm-rows { list-style: none; margin: 0; padding-top: 12px; columns: 2; column-gap: 76px; }
+.pm-row {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 11px 2px; border-bottom: 1px solid var(--line-2); break-inside: avoid;
+}
+.pm-row-n { font-family: var(--mono); font-size: 11px; color: var(--muted); min-width: 24px; flex: none; }
+.pm-row-name { font-size: clamp(14px, 1.05vw, 15px); font-weight: 500; }
+.pm-leader { flex: 1 1 16px; min-width: 14px; border-bottom: 1px dotted var(--leader, rgba(24,24,26,0.28)); transform: translateY(-4px); }
+.pm-ticks { display: flex; align-items: center; justify-content: flex-end; gap: 2px; flex-wrap: wrap; max-width: 102px; flex: none; }
+.pm-tick { width: 3px; height: 11px; background: var(--accent); }
+.pm-row:hover .pm-tick { background: var(--accent-dk); }
+.pm-row-q { font-family: var(--mono); font-size: 12px; color: var(--ink-2); min-width: 66px; text-align: right; flex: none; }
+
+/* note */
+.pm-note { margin-top: 44px; max-width: 72ch; font-size: 13.5px; line-height: 1.65; color: var(--muted); }
+.pm-note-mark { color: var(--accent); margin-right: 6px; }
+
+/* tablet — 50px gutters (via .ap-shell), single column of rows */
+@media (max-width: 991px) {
+  .pm-rows { columns: 1; }
+  .pm-page .ap-statsband { grid-template-columns: repeat(2, 1fr); }
+}
+/* mobile — 25px gutters */
+@media (max-width: 767px) {
+  .pm-page > section { padding-block: clamp(34px, 8vw, 56px); }
+  .pm-toolbar { flex-direction: column; align-items: stretch; padding: 6px 16px 12px; }
+  .pm-showing { text-align: right; }
+  .pm-list-sub { margin-left: 0; flex-basis: 100%; }
+  .pm-page .ap-statsband { grid-template-columns: 1fr; row-gap: 26px; }
+  .pm-page .ap-sb, .pm-page .ap-sb:first-child { border-left: none; }
 }

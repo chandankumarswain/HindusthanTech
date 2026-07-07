@@ -3,11 +3,12 @@ import useScrollReveal from '../hooks/useScrollReveal'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 
-/* "Testing Facility" page — a faithful rewrite of the standalone
-   HTPL_Testing_Facility.html into the site's tech stack. The original
-   editorial "test-log" content is preserved verbatim, but re-skinned to the
+/* "Testing Facility" page — the editorial "test-log" content re-skinned to the
    site design language (bone canvas · ink · HTPL red · serif display + grotesk),
-   the shared tokens, .ap-shell gutters (80/50/25) and 991/767 breakpoints. */
+   the shared tokens, .ap-shell gutters (80/50/25) and 991/767 breakpoints.
+   Each test section is a full-screen split: copy (45%) + a staggered 3-image
+   collage (55%) that fills the height. The collage mirrors right↔left as the
+   sections alternate down the page. */
 
 const IMG = '/images/testing/'
 
@@ -18,70 +19,24 @@ const HERO_STATS = [
   { n: '10,000', suf: ' LPM', l: 'NABL-calibrated flow metering' },
 ]
 
-/* The protocol as the customer reads it — 10 checks, deep-linking to their
-   test section (flow + deep-lift share one section, as in the source). */
-const PROTOCOL = [
-  { n: '01', label: 'DP test & hydrotest of tanks', href: '#t1' },
-  { n: '02', label: 'Endurance test', href: '#t2' },
-  { n: '03', label: 'Stability test', href: '#t3' },
-  { n: '04', label: 'Gradeability test', href: '#t4' },
-  { n: '05', label: 'Shower test', href: '#t5' },
-  { n: '06', label: 'Flow test', href: '#t6' },
-  { n: '07', label: 'Monitor throw test', href: '#t7' },
-  { n: '08', label: 'Deep lift test', href: '#t6' },
-  { n: '09', label: 'Road test', href: '#t8' },
-  { n: '10', label: 'Paint thickness test', href: '#t9' },
-]
-
-/* Small inline SVG diagrams that ride at the foot of a spec plate, echoing the
-   source page. Colours use the site tokens (ink / accent). */
-const TiltDiagram = () => (
-  <svg width="196" height="66" viewBox="0 0 196 66" aria-hidden="true">
-    <line x1="10" y1="52" x2="180" y2="52" stroke="var(--ink)" strokeWidth="1" />
-    <line x1="10" y1="52" x2="152" y2="-23.5" stroke="var(--accent)" strokeWidth="2" />
-    <line x1="10" y1="52" x2="10" y2="40" stroke="var(--ink)" strokeWidth="1" />
-    <text x="150" y="18" fontFamily="var(--mono)" fontSize="11" fill="var(--accent)">28°</text>
-  </svg>
-)
-const GradeDiagram = () => (
-  <svg width="196" height="60" viewBox="0 0 196 60" aria-hidden="true">
-    <line x1="14" y1="48" x2="176" y2="48" stroke="var(--ink)" strokeWidth="1" />
-    <line x1="14" y1="48" x2="150" y2="14" stroke="var(--accent)" strokeWidth="2" />
-    <line x1="150" y1="14" x2="150" y2="48" stroke="var(--ink)" strokeWidth="1" strokeDasharray="3 3" />
-    <text x="70" y="30" fontFamily="var(--mono)" fontSize="11" fill="var(--accent)">1 : 4</text>
-  </svg>
-)
-const FlowDiagram = () => (
-  <svg width="196" height="44" viewBox="0 0 196 44" aria-hidden="true">
-    <line x1="14" y1="34" x2="176" y2="34" stroke="var(--ink)" strokeWidth="1" />
-    <line x1="14" y1="28" x2="14" y2="34" stroke="var(--ink)" strokeWidth="1" />
-    <line x1="54.5" y1="28" x2="54.5" y2="34" stroke="var(--ink)" strokeWidth="1" />
-    <line x1="95" y1="28" x2="95" y2="34" stroke="var(--ink)" strokeWidth="1" />
-    <line x1="135.5" y1="28" x2="135.5" y2="34" stroke="var(--ink)" strokeWidth="1" />
-    <line x1="176" y1="22" x2="176" y2="34" stroke="var(--accent)" strokeWidth="2" />
-    <text x="120" y="18" fontFamily="var(--mono)" fontSize="11" fill="var(--accent)">10,000 LPM</text>
-  </svg>
-)
-
 /* Each test: log header (index + descriptor), heading, body copy, a spec plate
-   and a photo cluster. `flip` alternates the split direction down the page. */
+   and a 3-image collage. `flip` alternates the split direction down the page.
+   Images are ordered [left · centre (big) · right] to feed the staggered grid. */
 const TESTS = [
   {
     id: 't1',
+    compact: true,
     log: 'Dye penetration + hydrostatic — in-process QC',
     title: 'Dye penetration & hydro test',
     body: (
       <>
         <p>
           Welds are proven twice. A <b>dye penetration test</b> is run on the weld surfaces of
-          every tank and pipeline during fabrication — catching surface defects at the stage where
-          they can still be corrected. It is carried out in-house by{' '}
-          <b>ASNT Level II certified personnel</b> as part of in-process quality control.
+          every tank and pipeline during fabrication, by <b>ASNT Level II certified personnel</b>.
         </p>
         <p>
-          Once tank and pipeline manufacturing is complete, a <b>hydrostatic test</b> under our
-          internal SOP confirms zero leakage or seepage, proving weld quality for the long service
-          life of the tender.
+          On completion, a <b>hydrostatic test</b> under our internal SOP confirms zero leakage or
+          seepage — proving weld quality for the service life of the tender.
         </p>
       </>
     ),
@@ -92,10 +47,9 @@ const TESTS = [
       ['Accepts', 'Zero leakage / seepage'],
     ],
     images: [
-      { src: 'fig-01-a.jpg', cap: 'FIG. 01-A — FABRICATION BAY, TANK LINE' },
-      { src: 'fig-01-b.jpg', cap: 'FIG. 01-B — PENETRANT ON TANK SHELL' },
-      { src: 'fig-01-c.jpg', cap: 'FIG. 01-C — PENETRANT CHECK, TANK INTERIOR' },
-      { src: 'fig-01-d.jpg', cap: 'FIG. 01-D — PIPELINE TEST SETUP' },
+      { src: 'tf-t1-a.jpg', cap: 'FIG. 01-A — TANK INTERIOR, HYDRO TEST' },
+      { src: 'tf-t1-b.jpg', cap: 'FIG. 01-B — DYE PENETRANT ON TANK SHELL' },
+      { src: 'tf-t1-c.jpg', cap: 'FIG. 01-C — PIPELINE FABRICATION' },
     ],
   },
   {
@@ -123,8 +77,9 @@ const TESTS = [
       ['Duration', 'Long-hour continuous run'],
     ],
     images: [
-      { src: 'fig-02-a.jpg', cap: 'FIG. 02-A — TEST YARD, ENDURANCE RUN' },
-      { src: 'fig-02-b.jpg', cap: 'FIG. 02-B — ENDURANCE LINE AT THE SUMP' },
+      { src: 'tf-t2-a.jpg', cap: 'FIG. 02-A — TENDERS AT THE YARD' },
+      { src: 'tf-t2-b.jpg', cap: 'FIG. 02-B — ENDURANCE LINE AT THE SUMP' },
+      { src: 'tf-t2-c.jpg', cap: 'FIG. 02-C — TEST YARD, ENDURANCE RUN' },
     ],
   },
   {
@@ -144,11 +99,10 @@ const TESTS = [
       ['Condition', 'Fully loaded'],
       ['Rig', 'Hydraulic tilt ramp'],
     ],
-    diagram: <TiltDiagram />,
     images: [
-      { src: 'fig-03-a.jpg', cap: 'FIG. 03-A — 28° ON THE HYDRAULIC RAMP' },
-      { src: 'fig-03-b.jpg', cap: 'FIG. 03-B — REAR QUARTER AT FULL TILT' },
-      { src: 'fig-03-c.jpg', cap: 'FIG. 03-C — INSPECTION AT THE PLATFORM' },
+      { src: 'tf-t3-a.jpg', cap: 'FIG. 03-A — ON THE HYDRAULIC RAMP' },
+      { src: 'tf-t3-b.jpg', cap: 'FIG. 03-B — REAR QUARTER AT FULL TILT' },
+      { src: 'tf-t3-c.jpg', cap: 'FIG. 03-C — INSPECTION AT THE PLATFORM' },
     ],
   },
   {
@@ -168,11 +122,10 @@ const TESTS = [
       ['Condition', 'Fully loaded'],
       ['Verifies', 'Parking brake'],
     ],
-    diagram: <GradeDiagram />,
     images: [
-      { src: 'fig-04-a.jpg', cap: 'FIG. 04-A — 1-IN-4 RAMP, FULLY LOADED' },
-      { src: 'fig-04-b.jpg', cap: 'FIG. 04-B — HOLD TEST ON GRADE' },
-      { src: 'fig-04-c.jpg', cap: 'FIG. 04-C — MINI WATER TENDER ON GRADE' },
+      { src: 'tf-t4-a.jpg', cap: 'FIG. 04-A — GRADEABILITY RAMP, 1 IN 4' },
+      { src: 'tf-t4-b.jpg', cap: 'FIG. 04-B — FULLY LOADED ON THE GRADE' },
+      { src: 'tf-t4-c.jpg', cap: 'FIG. 04-C — THE 1-IN-4 RAMP' },
     ],
   },
   {
@@ -193,9 +146,9 @@ const TESTS = [
       ['Accepts', 'Zero ingress'],
     ],
     images: [
-      { src: 'fig-05-a.jpg', cap: 'FIG. 05-A — SHOWER ARRAY, NIGHT RUN' },
-      { src: 'fig-05-b.jpg', cap: 'FIG. 05-B — UNDER THE ARRAY, OVERHEAD' },
-      { src: 'fig-05-c.jpg', cap: 'FIG. 05-C — FULL-SOAK CYCLE' },
+      { src: 'tf-t5-a.jpg', cap: 'FIG. 05-A — SHOWER ARRAY, NIGHT RUN' },
+      { src: 'tf-t5-b.jpg', cap: 'FIG. 05-B — UNDER THE SHOWER ARRAY' },
+      { src: 'tf-t5-c.jpg', cap: 'FIG. 05-C — FULL-SOAK CYCLE' },
     ],
   },
   {
@@ -222,29 +175,32 @@ const TESTS = [
       ['Plus', 'Deep-lift performance'],
       ['Standard', 'Relevant IS'],
     ],
-    diagram: <FlowDiagram />,
     images: [
-      { src: 'fig-06-a.jpg', cap: 'FIG. 06-A — DIGITAL FLOW METER LINE' },
-      { src: 'fig-06-b.jpg', cap: 'FIG. 06-B — TRAILER PUMP ON DEEP LIFT' },
-      { src: 'fig-06-c.jpg', cap: 'FIG. 06-C — DEEP-LIFT WELL' },
+      { src: 'tf-t6-a.jpg', cap: 'FIG. 06-A — PUMP LINE SETUP' },
+      { src: 'tf-t6-b.jpg', cap: 'FIG. 06-B — DIGITAL FLOW METER LINE' },
+      { src: 'tf-t6-c.jpg', cap: 'FIG. 06-C — DEEP-LIFT WELL' },
     ],
   },
   {
     id: 't7',
-    monitor: true,
     log: 'Monitor throw — range, arc & coverage',
     title: 'Monitor throw test',
-    lead: (
-      <>
+    body: (
+      <p>
         Water and foam monitors are throw-tested in the yard — <b>range, arc and coverage</b>{' '}
-        verified on every tender before it ships.
-      </>
+        verified on every tender before it ships, as part of the standard test protocol.
+      </p>
     ),
+    specs: [
+      ['Checks', 'Range · arc · coverage'],
+      ['Monitors', 'Water + foam'],
+      ['Stage', 'Yard trial'],
+      ['Applies to', 'Every tender'],
+    ],
     images: [
-      { src: 'fig-07-a.jpg', cap: 'FIG. 07-A — MONITOR LINE, FULL ARC' },
-      { src: 'fig-07-b.jpg', cap: 'FIG. 07-B — THROW OVER THE YARD' },
-      { src: 'fig-07-c.jpg', cap: 'FIG. 07-C — FOAM MONITOR RUN' },
-      { src: 'fig-07-d.jpg', cap: 'FIG. 07-D — RANGE CHECK' },
+      { src: 'tf-t7-a.jpg', cap: 'FIG. 07-A — MONITOR LINE, FULL ARC' },
+      { src: 'tf-t7-b.jpg', cap: 'FIG. 07-B — THROW OVER THE YARD' },
+      { src: 'tf-t7-c.jpg', cap: 'FIG. 07-C — FOAM MONITOR RUN' },
     ],
   },
   {
@@ -265,10 +221,9 @@ const TESTS = [
       ['Applies to', 'Every vehicle'],
     ],
     images: [
-      { src: 'fig-08-a.jpg', cap: 'FIG. 08-A — CRASH TENDER ON TRIAL' },
-      { src: 'fig-08-b.jpg', cap: 'FIG. 08-B — MULTI-AXLE ON HIGHWAY' },
-      { src: 'fig-08-c.jpg', cap: 'FIG. 08-C — WET-ROAD RUN' },
-      { src: 'fig-08-d.jpg', cap: 'FIG. 08-D — CROSS-COUNTRY LEG' },
+      { src: 'tf-t8-a.jpg', cap: 'FIG. 08-A — ON TRIAL IN THE FIELD' },
+      { src: 'tf-t8-b.jpg', cap: 'FIG. 08-B — CRASH TENDER, CROSS-COUNTRY' },
+      { src: 'tf-t8-c.jpg', cap: 'FIG. 08-C — MULTI-AXLE ON HIGHWAY' },
     ],
   },
   {
@@ -290,9 +245,9 @@ const TESTS = [
       ['Stage', 'Post-painting'],
     ],
     images: [
-      { src: 'fig-09-a.jpg', cap: 'FIG. 09-A — GAUGE CHECK AT THE PANEL' },
-      { src: 'fig-09-b.jpg', cap: 'FIG. 09-B — CALIBRATED THICKNESS GAUGE' },
-      { src: 'fig-09-c.jpg', cap: 'FIG. 09-C — EPOXY FINISH, CLOSE READ' },
+      { src: 'tf-t9-a.jpg', cap: 'FIG. 09-A — INSPECTION AT THE PANEL' },
+      { src: 'tf-t9-b.jpg', cap: 'FIG. 09-B — GAUGE CHECK ON THE TANKER' },
+      { src: 'tf-t9-c.jpg', cap: 'FIG. 09-C — CALIBRATED THICKNESS GAUGE' },
     ],
   },
 ]
@@ -374,8 +329,8 @@ export default function TestingFacility() {
               specifications.
             </p>
             <div className="tf-hero-actions reveal">
-              <a href="#protocol" className="btn btn-primary">
-                View the protocol <span className="arrow">→</span>
+              <a href="#t1" className="btn btn-primary">
+                View the tests <span className="arrow">→</span>
               </a>
               <a href="/#contact" className="btn btn-ghost">
                 Contact Us
@@ -392,22 +347,6 @@ export default function TestingFacility() {
                 <b>FIG. 00</b> — ENDURANCE LINE, TEST YARD · 10 TENDERS / CYCLE
               </figcaption>
             </figure>
-          </div>
-        </section>
-
-        {/* ---- Protocol strip ---- */}
-        <section className="tf-protocol" id="protocol">
-          <div className="ap-shell">
-            <p className="eyebrow reveal"><span className="dot" />The protocol — every tender, every time</p>
-            <div className="tf-protocol-grid reveal">
-              {PROTOCOL.map((p) => (
-                <a key={p.n} href={p.href} className="tf-chip">
-                  <span className="tf-chip-box" aria-hidden="true" />
-                  <span className="tf-chip-num">{p.n}</span>
-                  {p.label}
-                </a>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -430,11 +369,7 @@ export default function TestingFacility() {
 
         {/* ---- Test sections ---- */}
         {TESTS.map((t, i) => (
-          <section
-            className={`tf-test${t.flip ? ' flip' : ''}${t.monitor ? ' tf-test-monitor' : ''}`}
-            id={t.id}
-            key={t.id}
-          >
+          <section className={`tf-test${t.flip ? ' flip' : ''}`} id={t.id} key={t.id}>
             <div className="ap-shell">
               <div className="tf-loghead reveal">
                 <span className="tf-log-l">Test {String(i + 1).padStart(2, '0')} / 09</span>
@@ -442,24 +377,11 @@ export default function TestingFacility() {
                 <span className="tf-log-r">{t.log}</span>
               </div>
 
-              {t.monitor ? (
-                <>
-                  <h2 className="display tf-h2 reveal">{t.title}</h2>
-                  <p className="lead tf-monitor-lead reveal">{t.lead}</p>
-                  <div className="tf-monitor-grid">
-                    <Fig img={t.images[0]} className="tf-fig-wide reveal" />
-                    <div className="tf-monitor-row">
-                      {t.images.slice(1).map((img) => (
-                        <Fig img={img} key={img.src} className="reveal" />
-                      ))}
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <div className="tf-test-split">
-                  <div className="tf-test-copy reveal">
-                    <h2 className="display tf-h2">{t.title}</h2>
-                    {t.body}
+              <div className="tf-test-split">
+                <div className={`tf-test-copy reveal${t.compact ? ' is-compact' : ''}`}>
+                  <h2 className="display tf-h2">{t.title}</h2>
+                  {t.body}
+                  {t.specs && (
                     <div className="tf-plate">
                       <div className="tf-plate-hd">Specification</div>
                       {t.specs.map(([k, v]) => (
@@ -468,19 +390,18 @@ export default function TestingFacility() {
                           <span className="tf-prow-v">{v}</span>
                         </div>
                       ))}
-                      {t.diagram && <div className="tf-plate-diag">{t.diagram}</div>}
                     </div>
-                  </div>
-                  <div className="tf-test-media">
-                    <Fig img={t.images[0]} className="tf-fig-big reveal" />
-                    <div className={`tf-thumbs n${t.images.length - 1}`}>
-                      {t.images.slice(1).map((img) => (
-                        <Fig img={img} key={img.src} className="reveal" />
-                      ))}
-                    </div>
+                  )}
+                </div>
+                <div className="tf-test-media">
+                  {/* staggered 3-image collage — mirrors right↔left by section side */}
+                  <div className={`tf-collage ${t.flip ? 'tf-collage-left' : 'tf-collage-right'}`}>
+                    {t.images.slice(0, 3).map((img, k) => (
+                      <Fig img={img} key={img.src} className={`tf-col-${'abc'[k]} reveal`} />
+                    ))}
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </section>
         ))}

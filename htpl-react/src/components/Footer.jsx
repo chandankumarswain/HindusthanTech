@@ -167,7 +167,7 @@ export default function Footer() {
       </div>
 
       {/* oversized brand wordmark image (decorative), filling the footer width */}
-      <img className="footer-watermark" src="/images/ss.png" alt="" aria-hidden="true" />
+      <img className="footer-watermark" src="/images/footer-logo.png" alt="" aria-hidden="true" />
     </footer>
   )
 }
