@@ -205,6 +205,7 @@ const TESTS = [
   },
   {
     id: 't8',
+    flip: true,
     log: 'Road trial — highway + cross-country',
     title: 'Road test',
     body: (
@@ -228,7 +229,6 @@ const TESTS = [
   },
   {
     id: 't9',
-    flip: true,
     log: 'Paint thickness — calibrated gauge check',
     title: 'Paint thickness',
     body: (
@@ -318,6 +318,11 @@ export default function TestingFacility() {
         {/* ---- Hero ---- */}
         <section className="tf-hero">
           <div className="ap-shell">
+            <p className="ap-crumb reveal">
+              <a href="/">Home</a> <span aria-hidden="true">/</span>{' '}
+              <a href="/about">About</a> <span aria-hidden="true">/</span>{' '}
+              <span className="ap-crumb-current">Testing Facility</span>
+            </p>
             <p className="eyebrow reveal"><span className="dot" />Testing Facility — Jagatpur, Cuttack</p>
             <h1 className="display tf-hero-title reveal">
               Ten checks before <span className="italic-accent">dispatch.</span>

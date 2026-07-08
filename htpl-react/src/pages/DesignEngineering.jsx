@@ -121,6 +121,11 @@ export default function DesignEngineering() {
         {/* ---- Hero ---- */}
         <section className="de-hero">
           <div className="ap-shell">
+            <p className="ap-crumb reveal">
+              <a href="/">Home</a> <span aria-hidden="true">/</span>{' '}
+              <a href="/about">About</a> <span aria-hidden="true">/</span>{' '}
+              <span className="ap-crumb-current">Design &amp; Engineering</span>
+            </p>
             <p className="eyebrow de-hero-kicker reveal">
               <span className="dot"></span>Design &amp; Engineering Prowess
               <span className="de-tol">Tolerance ±0.02 mm</span>

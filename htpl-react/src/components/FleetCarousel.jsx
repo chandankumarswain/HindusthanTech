@@ -96,7 +96,7 @@ export default function FleetCarousel() {
         <p className="eyebrow flt-eyebrow">
           <span className="dot"></span>Gallery
         </p>
-        <h2 className="display h-sec">Explore Our Fleet</h2>
+        <h2 className="display h-sec">Explore Our <span className="italic-accent">Fleet</span></h2>
         <p className="lead">
           Purpose-built firefighting and rescue vehicles, engineered and bodied for the field.
         </p>

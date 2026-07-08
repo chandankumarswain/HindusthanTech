@@ -5,16 +5,6 @@
      centred icon cards. Reference-inspired layout in the site's tokens (single
      red accent, serif/grotesk/mono); content verbatim. */
 
-const TESTS = [
-  { name: 'DP Test & Hydrotest of Tanks', desc: 'Dye-penetrant and hydrostatic pressure testing of tanks for leak-proof integrity.' },
-  { name: 'Endurance Test', desc: 'Sustained-load running to validate long-term durability and reliability.' },
-  { name: 'Stability Test', desc: 'Tilt and balance verification to ensure safe handling under load.' },
-  { name: 'Gradeability Test', desc: 'Confirms climbing capability and performance on steep gradients.' },
-  { name: 'Shower Test', desc: 'Water-spray sealing test verifying weather-tightness of the cab and body.' },
-  { name: 'Flow Test', desc: 'Pump and pipework flow-rate verification against rated capacity.' },
-  { name: 'Monitor Throw Test', desc: 'Measures water / foam monitor throw distance and discharge performance.' },
-]
-
 const ICON = {
   qms: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
@@ -64,70 +54,26 @@ const QMF = [
 export default function TestingQuality() {
   return (
     <>
-      {/* ---- Testing (process-outline layout) ---- */}
-      <section className="section-pad" id="testing">
-        <div className="wrap">
-          <div className="tst-layout">
-            {/* left: heading + description + image */}
-            <div className="tst-left reveal">
-              <p className="eyebrow">
-                <span className="dot"></span>Testing
-              </p>
-              <h2 className="display tst-title">
-                Tested, calibrated, <span className="italic-accent">certified.</span>
-              </h2>
-              <p className="tst-desc">
-                In order to maintain our quality policies and ensure customer satisfaction, all
-                our products are subjected to rigorous testing and calibration prior to dispatch —
-                verified at our in-house, state-of-the-art facility built to relevant IS and
-                DGQA / defence specifications.
-              </p>
-              <figure className="tst-media">
-                <img
-                  src="/images/fleet/dcp-tender.jpg"
-                  alt="HTPL fire tender undergoing pre-dispatch testing"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </figure>
-            </div>
-
-            {/* right: numbered test list */}
-            <ol className="tst-list">
-              {TESTS.map((t, i) => (
-                <li className="tst-row reveal" key={t.name}>
-                  <div className="tst-row-head">
-                    <span className="tst-num">{i + 1}.</span>
-                    <span className="tst-name">{t.name}</span>
-                  </div>
-                  <p className="tst-row-desc">{t.desc}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
-
       {/* ---- Quality Management Framework (header + icon cards) ---- */}
       <section className="section-pad" id="quality-framework" style={{ background: 'var(--bone-2)' }}>
         <div className="wrap">
-          <div className="qmf-head reveal">
-            <div className="qmf-head-l">
-              <p className="eyebrow">
-                <span className="dot"></span>Quality Management
-              </p>
-              <h2 className="display h-sec">
-                A framework built <span className="italic-accent">on accountability.</span>
-              </h2>
-            </div>
+          <div className="sec-head center qmf-head reveal">
+            <p className="eyebrow">
+              <span className="dot"></span>Quality Management
+            </p>
+            <h2 className="display h-sec qmf-title">
+              A framework built
+              <br />
+              <span className="italic-accent">on accountability.</span>
+            </h2>
+            <p className="lead">
+              Quality is engineered into every stage — from QMS-aligned design and stage-wise
+              documentation to defence-grade verification and continuous improvement.
+            </p>
             <a href="#contact" className="btn btn-ghost qmf-head-cta">
               Talk to our quality team <span className="arrow">→</span>
             </a>
           </div>
-          <p className="qmf-lead reveal">
-            Quality is engineered into every stage — from QMS-aligned design and stage-wise
-            documentation to defence-grade verification and continuous improvement.
-          </p>
 
           <div className="qmf-cards">
             {QMF.map((q) => (

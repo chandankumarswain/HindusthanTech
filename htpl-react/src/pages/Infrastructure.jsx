@@ -48,6 +48,11 @@ export default function Infrastructure() {
         {/* ---- Hero (centred) + main image ---- */}
         <section className="infra-hero">
           <div className="ap-shell">
+            <p className="ap-crumb reveal">
+              <a href="/">Home</a> <span aria-hidden="true">/</span>{' '}
+              <a href="/about">About</a> <span aria-hidden="true">/</span>{' '}
+              <span className="ap-crumb-current">Our Infrastructure</span>
+            </p>
             <h1 className="display infra-hero-title reveal">
               Built to Deliver.
               <br />

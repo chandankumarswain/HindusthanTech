@@ -37,7 +37,7 @@ const MANUFACTURING_DROPDOWN = [
   { label: 'Technology & Innovation', href: '/#technology' },
   { label: 'Manufacturing Process', href: '/#process' },
   { label: 'Workflow', href: '/#workflow' },
-  { label: 'Testing', href: '/#testing' },
+  { label: 'Testing', href: '/testing-facility' },
   { label: 'Quality Assurance', href: '/#quality-framework' },
   { label: 'Compliance and Safety', href: '/#quality' },
   { label: 'Our Commitment', href: '/#commitment' },

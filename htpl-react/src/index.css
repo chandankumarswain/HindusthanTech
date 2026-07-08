@@ -1422,11 +1422,15 @@ section { position: relative; overflow-x: clip; }
 /* ============================================================
    QUALITY MANAGEMENT FRAMEWORK — header + CTA, then centred icon cards
    ============================================================ */
-.qmf-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; }
-.qmf-head .eyebrow { justify-content: center; }
-.qmf-head-l { max-width: 32ch; }
-.qmf-head-cta { flex: none; }
-.qmf-lead { margin: 18px auto 0; max-width: 60ch; text-align: center; font-size: clamp(15px, 1.05vw, 17px); line-height: 1.65; color: var(--ink-2); }
+/* Quality Management header — same centred eyebrow · heading · lead treatment as
+   the other section headers (.sec-head.center), with the CTA button below. */
+.qmf-head { display: block; }
+.qmf-head-cta { display: inline-flex; margin-top: 28px; }
+/* keep the QMF heading to a clean 2 lines (hard break) — shrink on phones so
+   "A framework built" never wraps into a third line */
+@media (max-width: 560px) {
+  .qmf-title { font-size: clamp(26px, 8vw, 40px); }
+}
 /* framework cards — centred icon · tag · title · description (pill cards) */
 .qmf-cards { margin-top: clamp(36px, 4vw, 56px); display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(16px, 1.6vw, 22px); }
 .qmf-card {
@@ -1760,6 +1764,52 @@ section { position: relative; overflow-x: clip; }
 .pillar p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.45; }
 
 /* ============================================================
+   REACH — nationwide delivery footprint (content + India map)
+   Dark section: black background, light-on-dark text.
+   ============================================================ */
+#reach { background: var(--ink); color: var(--bone); min-height: 100vh; min-height: 100dvh; }
+.reach-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: center; }
+/* light-on-dark text treatment */
+.reach-body .eyebrow { color: #ef9d8f; }
+.reach-body .eyebrow .dot { box-shadow: 0 0 0 4px rgba(214,57,36,0.22); }
+.reach-body .h-sec { color: #f4f1ea; }
+.reach-body .italic-accent { color: #ff6a4d; }
+.reach-lead { margin: 24px 0 0; max-width: 46ch; font-size: clamp(1rem, 0.5rem + 1vw, 1.2rem); line-height: 1.7; color: #b9b6ae; }
+.reach-lead strong { color: #f4f1ea; font-weight: 600; }
+.reach-stats {
+  display: grid; grid-template-columns: repeat(3, auto); gap: clamp(24px, 4vw, 56px);
+  margin: 34px 0 4px; justify-content: start;
+}
+.reach-stat { display: flex; flex-direction: column; gap: 4px; }
+.reach-stat .n {
+  font-family: var(--serif); font-size: clamp(30px, 3.4vw, 44px); font-weight: 500;
+  line-height: 1; color: #f4f1ea; letter-spacing: -0.02em;
+}
+.reach-stat .l { font-size: 13.5px; font-weight: 500; color: #8f8d88; line-height: 1.35; }
+.reach-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+/* ghost button needs a light border/text on the dark background */
+#reach .btn-ghost { color: #f4f1ea; border-color: rgba(255,255,255,0.24); }
+#reach .btn-ghost:hover { border-color: #f4f1ea; }
+.reach-media {
+  position: relative; display: flex; align-items: center; justify-content: center;
+}
+.reach-media img {
+  width: 100%; max-width: 560px; height: auto; display: block;
+  filter: drop-shadow(0 20px 46px rgba(0,0,0,0.55));
+  transform-origin: center;
+  animation: reachMapZoom 6s ease-in-out infinite;
+  will-change: transform;
+}
+/* gentle zoom in / zoom out loop — the whole map breathes */
+@keyframes reachMapZoom {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.045); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reach-media img { animation: none; }
+}
+
+/* ============================================================
    CTA BAND
    ============================================================ */
 .cta-band { background: var(--accent); color: #fff; }
@@ -2062,6 +2112,13 @@ section { position: relative; overflow-x: clip; }
   .show-bento { column-count: 1; }
 }
 
+/* Reach (map) — stack on tablet & below: content first, then map */
+@media (max-width: 991px) {
+  #reach { min-height: auto; }
+  .reach-grid { grid-template-columns: 1fr; gap: clamp(32px, 6vw, 56px); }
+  .reach-media { order: 2; }
+  .reach-media img { max-width: 460px; margin-inline: auto; }
+}
 @media (max-width: 860px) {
   .about-grid, .commit-grid, .process-quality { grid-template-columns: 1fr; }
   .clients-groups { grid-template-columns: 1fr; }
@@ -2069,6 +2126,7 @@ section { position: relative; overflow-x: clip; }
 }
 @media (max-width: 560px) {
   .tech-grid, .quality-grid { grid-template-columns: 1fr; }
+  .reach-stats { display: flex; flex-wrap: wrap; gap: 18px 28px; }
   .statsbar-grid { grid-template-columns: 1fr; padding-inline: 25px; row-gap: 26px; }
   .statsbar-cell, .statsbar-cell:nth-child(odd) { border-left: none; }
   /* pillars stay 2×2 on tablet (561–859px); collapse to one column only on phones */
@@ -2139,6 +2197,12 @@ section { position: relative; overflow-x: clip; }
   /* Our promise (Commitment): centre the kicker, heading AND body paragraphs */
   .commit-body { text-align: center; }
   .commit-body .eyebrow { display: flex; justify-content: center; }
+  /* Reach (nationwide): centre kicker, heading, lead + stats + actions */
+  .reach-body { text-align: center; }
+  .reach-body .eyebrow { display: flex; justify-content: center; }
+  .reach-lead { margin-inline: auto; }
+  .reach-stats { justify-content: center; }
+  .reach-actions { justify-content: center; }
   /* About page mission / vision: kicker + heading (body + checklist stay left) */
   .ap-copy .eyebrow { display: flex; justify-content: center; }
   .ap-copy .ap-h2 { text-align: center; }
@@ -2170,8 +2234,8 @@ section { position: relative; overflow-x: clip; }
   margin-bottom: clamp(36px, 5vw, 56px);
 }
 .ap-crumb {
-  margin: 0 0 16px; font-family: var(--mono); font-size: 12px;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  margin: 0 0 16px; font-family: Georgia, "Times New Roman", serif; font-size: 12px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
 }
 .ap-crumb a { color: var(--accent-dk); }
 .ap-crumb a:hover { color: var(--accent); }
@@ -2566,7 +2630,7 @@ section { position: relative; overflow-x: clip; }
 .de-band { background: var(--accent); color: var(--bone); }
 .de-band-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .de-band-quote { margin: 0; font-size: clamp(1.4rem, 2.4vw, 2.2rem); line-height: 1.32; letter-spacing: -0.01em; color: var(--bone); }
-.de-band-accent { color: var(--ink); font-style: italic; }
+.de-band-accent { color: #fff; font-style: italic; font-weight: 700; }
 .de-band-specs { margin: 0; display: grid; gap: 22px; }
 .de-spec dt { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(239, 236, 229, 0.5); }
 .de-spec dd { margin: 6px 0 0; font-family: var(--serif); font-size: clamp(1.4rem, 2vw, 1.8rem); color: var(--bone); }
@@ -2712,7 +2776,7 @@ section { position: relative; overflow-x: clip; }
 
 /* hero — centred (matches infra/reg hero rhythm) */
 .tf-hero { text-align: center; padding-top: clamp(56px, 8vw, 104px) !important; }
-.tf-hero .eyebrow { display: inline-flex; font-family: var(--mono); }
+.tf-hero .eyebrow { display: inline-flex; }
 .tf-hero-title { margin: 0 auto; font-size: clamp(2.2rem, 6vw, 4.6rem); line-height: 1.04; letter-spacing: -0.03em; max-width: 16ch; }
 .tf-hero-desc { margin: 22px auto 0; max-width: 64ch; }
 .tf-hero-actions { margin-top: 30px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
@@ -2898,19 +2962,16 @@ section { position: relative; overflow-x: clip; }
   .tf-collage { aspect-ratio: auto; height: 100%; }
 }
 
-/* tablet — 50px gutters (via .ap-shell) */
+/* tablet — 50px gutters (via .ap-shell). Stack the test split to one column so
+   the copy + spec plate aren't cramped in a 45% column; give the collage the
+   roomy stacked layout (big image on top, two side cards below). */
 @media (max-width: 991px) {
   .tf-protocol-grid { grid-template-columns: repeat(2, 1fr); }
   .tf-facility-grid { grid-template-columns: repeat(2, 1fr); }
   .tf-hero-title { font-size: clamp(2rem, 7vw, 3.4rem); }
-}
-/* mobile — 25px gutters, single column */
-@media (max-width: 767px) {
-  .tf-page > section { padding-block: clamp(34px, 8vw, 56px); }
   .tf-test-split { grid-template-columns: 1fr; gap: 28px; }
   .tf-test.flip .tf-test-split { direction: ltr; }
-  /* collage on mobile: big image (centre card) on top full-width + the two side
-     cards below, each properly sized instead of a cramped strip */
+  .tf-test-copy p { max-width: none; }
   .tf-collage { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; aspect-ratio: auto; height: auto; gap: 10px; }
   .tf-collage .tf-col-b { grid-column: 1 / -1; grid-row: 1; }
   .tf-collage .tf-col-a { grid-column: 1; grid-row: 2; }
@@ -2918,12 +2979,20 @@ section { position: relative; overflow-x: clip; }
   .tf-collage .tf-fig, .tf-collage .tf-fig-btn { height: auto; }
   .tf-col-b .tf-fig-btn img { aspect-ratio: 16 / 10; height: auto; }
   .tf-col-a .tf-fig-btn img, .tf-col-c .tf-fig-btn img { aspect-ratio: 4 / 3; height: auto; }
+}
+/* mobile — 25px gutters, single column */
+@media (max-width: 767px) {
+  .tf-page > section { padding-block: clamp(34px, 8vw, 56px); }
   .tf-protocol-grid { grid-template-columns: 1fr; }
   .tf-facility-grid { grid-template-columns: 1fr; }
   .tf-monitor-row { grid-template-columns: 1fr; }
   .tf-page .ap-statsband { grid-template-columns: 1fr; }
   .tf-page .ap-sb, .tf-page .ap-sb:first-child { border-left: none; }
-  .tf-loghead { gap: 12px; }
+  /* stack the log header on phones: index label on top, descriptor wraps below,
+     with a full-width rule between — the descriptor's nowrap was overflowing */
+  .tf-loghead { flex-direction: column; align-items: stretch; gap: 8px; }
+  .tf-log-rule { width: 100%; flex: none; order: 2; }
+  .tf-log-r { white-space: normal; text-align: left; order: 3; line-height: 1.5; }
   .tf-hero-media { aspect-ratio: 4 / 3; }
 }
 
@@ -2938,7 +3007,7 @@ section { position: relative; overflow-x: clip; }
 /* hero — centred (matches infra/testing hero rhythm) */
 .pm-hero { text-align: center; padding-top: clamp(56px, 8vw, 104px) !important; }
 .pm-hero .ap-crumb { display: block; text-align: center; }
-.pm-hero .eyebrow { display: inline-flex; font-family: var(--mono); margin-top: 4px; }
+.pm-hero .eyebrow { display: inline-flex; margin-top: 4px; }
 .pm-hero-title { margin: 0 auto; font-size: clamp(2.2rem, 6vw, 4.6rem); line-height: 1.04; letter-spacing: -0.03em; max-width: 18ch; }
 .pm-hero-desc { margin: 22px auto 0; max-width: 64ch; }
 

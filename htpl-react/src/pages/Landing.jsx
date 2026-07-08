@@ -11,6 +11,7 @@ import Gallery from '../components/Gallery'
 import Technology from '../components/Technology'
 import Process from '../components/Process'
 import Quality from '../components/Quality'
+import Reach from '../components/Reach'
 import Clients from '../components/Clients'
 import Commitment from '../components/Commitment'
 import CtaBand from '../components/CtaBand'
@@ -35,6 +36,7 @@ export default function Landing() {
         <HowItWorks />
         <TestingQuality />
         <Quality />
+        <Reach />
         <Clients />
         <Commitment />
         <CtaBand />

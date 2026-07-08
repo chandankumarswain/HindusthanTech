@@ -41,6 +41,11 @@ export default function Registration() {
         {/* ---- Hero (centred) + main image ---- */}
         <section className="reg-hero">
           <div className="ap-shell">
+            <p className="ap-crumb reveal">
+              <a href="/">Home</a> <span aria-hidden="true">/</span>{' '}
+              <a href="/about">About</a> <span aria-hidden="true">/</span>{' '}
+              <span className="ap-crumb-current">Registration &amp; Approvals</span>
+            </p>
             <p className="eyebrow reg-hero-kicker reveal">
               <span className="dot"></span>Registration / Approvals
             </p>
