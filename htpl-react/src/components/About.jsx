@@ -62,16 +62,17 @@ export default function About() {
               <span className="dot"></span>Our story
             </p>
             <h2 className="display about2-head">
-              Engineered for the
+              Built for the moments
               <br />
-              <span className="italic-accent">industries that matter.</span>
+              <span className="italic-accent">that leave no margin.</span>
             </h2>
             <p className="about2-lead">
-              Founded in <strong>1987</strong> as Hindustan Enterprises by{' '}
-              <strong>Shri Mohan Ranjan Panda</strong> at Jagatpur, Cuttack, and incorporated
-              as Hindusthan Technologies Pvt. Ltd. in <strong>2010</strong>. An MSME-recognised
-              manufacturer with over <strong>three decades</strong> of expertise in
-              safety-critical engineering — trusted across India's most critical sectors.
+              For nearly <strong>four decades</strong>, we have designed and manufactured
+              firefighting and special-purpose vehicles at our Jagatpur works — every tank,
+              pump and body fabricated <strong>in-house</strong> and proven against{' '}
+              <strong>IS and DGQA standards</strong> before dispatch. From refineries and
+              ports to airfields and the front line, our fleets are engineered to perform on
+              the day everything depends on them.
             </p>
 
             <div className="about2-stat">

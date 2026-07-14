@@ -166,7 +166,7 @@ export default function PlantMachinery() {
         <section className="pm-ledger">
           <div className="ap-shell">
             <ListBlock idx="01" title="Major List of Plant & Machinery" data={plant} />
-            <ListBlock idx="02" title="Major List of Testing Equipments" data={testing} />
+            <ListBlock idx="02" title="Major List of Testing Equipment" data={testing} />
 
             <p className="pm-note">
               <span className="pm-note-mark" aria-hidden="true">*</span>

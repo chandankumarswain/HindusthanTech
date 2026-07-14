@@ -20,7 +20,7 @@
    ========================================================================== */
 
 const HERO = {
-  eyebrow: ['EST. 1987', 'JAGATPUR, CUTTACK', 'MAKE IN INDIA'],
+  eyebrow: ['ISO 9001:2015 CERTIFIED COMPANY', 'EST. 1987', 'JAGATPUR, CUTTACK', 'MAKE IN INDIA'],
   headline_top: 'Engineering of today,',
   headline_accent: 'saving lives of tomorrow.',
   lead:
@@ -86,7 +86,7 @@ export default function Hero() {
       <div className="w-full grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center lg:gap-16">
         {/* ============ LEFT — content (vertically centred; centre-aligned on mobile) ============ */}
         <div className="flex flex-col text-center md:text-left">
-          {/* Eyebrow — flex-wrap so the three segments never break mid-word on
+          {/* Eyebrow — flex-wrap so the segments never break mid-word on
               narrow phones; shrinks to text-xs on mobile. */}
           <p
             className="htpl-rise flex flex-wrap items-center gap-x-3 gap-y-1

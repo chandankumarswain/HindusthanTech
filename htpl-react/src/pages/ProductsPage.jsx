@@ -108,8 +108,8 @@ export default function ProductsPage() {
               <CategoryCol icon={ICON.cube} title="Special purpose vehicles (SPVs)" items={SPV} />
             </div>
             <div className="psp-build-foot reveal">
-              <a href="/products-services" className="psp-explore">
-                Explore our services <span aria-hidden="true">→</span>
+              <a href="/#products" className="psp-explore">
+                Explore our products <span aria-hidden="true">→</span>
               </a>
             </div>
           </div>

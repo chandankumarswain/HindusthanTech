@@ -275,6 +275,29 @@ const INSTRUMENTS = [
   ['E-11', 'Ultrasonic thickness gauge', '01 No.'],
 ]
 
+/* Collage figure — defined at module scope (NOT inside the page component) so
+   its component identity stays stable across renders. If it were declared inline,
+   every setLightbox() state change would create a new function reference, React
+   would remount all figures as fresh `.reveal` nodes, and useScrollReveal's
+   one-time IntersectionObserver would never re-observe them — leaving them stuck
+   at opacity:0 (the images would vanish after opening/closing the lightbox). */
+const Fig = ({ img, className = '', onZoom }) => (
+  <figure className={`tf-fig ${className}`}>
+    <button
+      type="button"
+      className="tf-fig-btn"
+      onClick={() => onZoom(img)}
+      aria-label={`Enlarge ${img.cap}`}
+    >
+      <img src={IMG + img.src} alt={img.cap} loading="lazy" decoding="async" />
+    </button>
+    <figcaption className="tf-fig-cap">
+      <b>{img.cap.split('—')[0].trim()}</b>
+      {img.cap.includes('—') ? img.cap.split('—').slice(1).join('—').trim() : ''}
+    </figcaption>
+  </figure>
+)
+
 export default function TestingFacility() {
   useScrollReveal()
 
@@ -293,23 +316,6 @@ export default function TestingFacility() {
       document.removeEventListener('keydown', onKey)
     }
   }, [lightbox, closeLb])
-
-  const Fig = ({ img, className = '' }) => (
-    <figure className={`tf-fig ${className}`}>
-      <button
-        type="button"
-        className="tf-fig-btn"
-        onClick={() => setLightbox(img)}
-        aria-label={`Enlarge ${img.cap}`}
-      >
-        <img src={IMG + img.src} alt={img.cap} loading="lazy" decoding="async" />
-      </button>
-      <figcaption className="tf-fig-cap">
-        <b>{img.cap.split('—')[0].trim()}</b>
-        {img.cap.includes('—') ? img.cap.split('—').slice(1).join('—').trim() : ''}
-      </figcaption>
-    </figure>
-  )
 
   return (
     <>
@@ -402,7 +408,12 @@ export default function TestingFacility() {
                   {/* staggered 3-image collage — mirrors right↔left by section side */}
                   <div className={`tf-collage ${t.flip ? 'tf-collage-left' : 'tf-collage-right'}`}>
                     {t.images.slice(0, 3).map((img, k) => (
-                      <Fig img={img} key={img.src} className={`tf-col-${'abc'[k]} reveal`} />
+                      <Fig
+                        img={img}
+                        key={img.src}
+                        className={`tf-col-${'abc'[k]} reveal`}
+                        onZoom={setLightbox}
+                      />
                     ))}
                   </div>
                 </div>
