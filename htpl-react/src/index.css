@@ -2553,18 +2553,232 @@ section { position: relative; overflow-x: clip; }
 .infra-card-media img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.95) contrast(1.02); transition: transform .6s cubic-bezier(.2,.8,.2,1); }
 .infra-card:hover .infra-card-media img { transform: scale(1.05); }
 
+/* shared centred section header (footprint / power / amenities / csr) */
+.infra-sec-head { text-align: center; max-width: 64ch; margin: 0 auto clamp(32px, 4vw, 52px); }
+.infra-sec-head .eyebrow { display: inline-flex; justify-content: center; }
+.infra-sec-head .infra-h2 { margin-inline: auto; max-width: none; }
+.infra-sec-head .infra-text { margin-inline: auto; }
+
+/* facility footprint — per-area metric tiles */
+.infra-fp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 1.8vw, 24px); }
+.infra-fp-tile {
+  background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--radius);
+  padding: clamp(22px, 2.2vw, 30px);
+  transition: box-shadow .3s ease, border-color .3s ease, transform .3s ease;
+}
+.infra-fp-tile:hover { box-shadow: var(--shadow-lg); border-color: var(--line); transform: translateY(-4px); }
+.infra-fp-n {
+  display: inline-flex; align-items: baseline; gap: 6px;
+  font-family: var(--serif); font-size: clamp(2rem, 3.4vw, 2.7rem); line-height: 1; letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.infra-fp-u { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-dk); }
+.infra-fp-name { margin: 14px 0 0; font-size: clamp(16px, 1.4vw, 19px); font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+.infra-fp-detail { margin: 8px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); }
+
+/* power & energy — 3 accent-topped cards */
+.infra-power-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 1.8vw, 24px); }
+.infra-power-card {
+  background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--radius);
+  border-top: 3px solid var(--accent);
+  padding: clamp(22px, 2.2vw, 30px);
+}
+.infra-power-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-dk); }
+.infra-power-v { margin: 12px 0 0; font-size: clamp(15px, 1.1vw, 16.5px); line-height: 1.65; color: var(--ink-2); }
+
+/* amenities / safety / IT — two-column check list */
+.infra-checklist {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(14px, 1.6vw, 22px) clamp(28px, 3vw, 56px);
+  max-width: 1000px; margin-inline: auto;
+}
+.infra-check { display: flex; gap: 14px; align-items: flex-start; font-size: clamp(14.5px, 1.05vw, 16px); line-height: 1.55; color: var(--ink-2); }
+.infra-check-ic {
+  flex: none; display: inline-grid; place-items: center; width: 26px; height: 26px; margin-top: 1px;
+  border-radius: 50%; background: rgba(214,57,36,0.1); color: var(--accent-dk);
+}
+
+/* CSR — statement + chip row */
+.infra-csr-inner {
+  background: var(--paper); border: 1px solid var(--line-2); border-radius: var(--radius);
+  padding: clamp(30px, 4vw, 56px); text-align: center;
+}
+.infra-csr-head .eyebrow { display: inline-flex; justify-content: center; }
+.infra-csr-head .infra-h2 { margin-inline: auto; max-width: none; }
+.infra-csr-head .infra-text { margin-inline: auto; }
+.infra-csr-list {
+  list-style: none; margin: clamp(26px, 3vw, 36px) 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+}
+.infra-csr-chip {
+  font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--ink);
+  padding: 10px 18px; border: 1px solid var(--line-2); border-radius: 999px; background: var(--bone);
+}
+
 /* tablet — 50px gutters (via .ap-shell), 2-up cards; the red band falls back to
    the global 2-col layout (2×2) with its correct dividers */
 @media (max-width: 991px) {
   .infra-cards { grid-template-columns: repeat(2, 1fr); }
+  .infra-fp-grid { grid-template-columns: repeat(2, 1fr); }
+  .infra-power-grid { grid-template-columns: 1fr; }
 }
 /* mobile — 25px gutters, single column; stack the red band */
 @media (max-width: 767px) {
   .infra-page > section { padding-block: clamp(34px, 8vw, 56px); }
   .infra-cards { grid-template-columns: 1fr; }
+  .infra-fp-grid { grid-template-columns: 1fr; }
+  .infra-checklist { grid-template-columns: 1fr; }
   .infra-page .ap-statsband { grid-template-columns: 1fr; }
   .infra-page .ap-sb, .infra-page .ap-sb:first-child { border-left: none; }
   .infra-hero-media { aspect-ratio: 16 / 9; }
+}
+
+/* ============================================================
+   OUR MILESTONES PAGE  (/our-milestone)
+   Scroll-driven timeline — sticky odometer rail + filter chips +
+   node-linked record. Re-skinned to the site tokens/fonts, .ap-shell
+   gutters (80/50/25) and the 991/767 breakpoints. Top hero + red band
+   reuse the About-page classes.
+   ============================================================ */
+.mile-page { background: var(--bone); color: var(--ink); }
+
+/* hero (About-page look, without the 100vh centring) */
+.mile-page .ap-hero { padding-top: clamp(64px, 9vw, 120px); padding-bottom: clamp(40px, 6vw, 72px); }
+.mile-page .ap-hero-head { align-items: end; margin-bottom: 0; }
+
+/* red stats band (matches About / VM / Infrastructure) */
+.mile-page > section.ap-stats-section {
+  display: block; background: var(--accent); color: #fff;
+  padding-block: clamp(48px, 6vw, 88px);
+}
+
+/* main timeline area.
+   The global `section { overflow-x: clip }` (set for the sticky nav) creates a
+   clip context that stops position:sticky on the rail from sticking to the
+   viewport — opt this section out so the rail sticks while the timeline scrolls
+   beside it. Horizontal overflow is still clipped globally by html/body. */
+.mile-main { padding-block: clamp(44px, 6vw, 88px); overflow: visible; }
+.mile-grid { display: grid; grid-template-columns: 300px 1fr; gap: clamp(32px, 4vw, 56px); align-items: start; }
+
+/* sticky odometer rail */
+.mile-rail { position: sticky; top: calc(var(--nav-h) + 18px); align-self: start; }
+.mile-odo {
+  background: var(--ink); color: var(--bone);
+  border-radius: var(--radius); padding: 20px 22px 22px; box-shadow: var(--shadow);
+}
+.mile-odo-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+.mile-odo-year {
+  font-family: var(--serif); font-weight: 600; font-size: 4rem; line-height: 0.95;
+  letter-spacing: -0.02em; color: var(--accent); font-variant-numeric: tabular-nums; margin-top: 4px;
+}
+.mile-odo-cap { font-size: 13.5px; line-height: 1.45; color: rgba(255,255,255,0.72); min-height: 2.9em; margin-top: 6px; }
+.mile-meter { height: 4px; background: rgba(255,255,255,0.16); margin-top: 14px; border-radius: 2px; overflow: hidden; }
+/* no transition — the scroll position IS the animation; it must match the spine
+   fill frame-for-frame, so a smoothing transition would make the two disagree. */
+.mile-meter i { display: block; height: 100%; width: 0; background: var(--accent); }
+
+/* filters */
+.mile-filters { margin-top: 22px; }
+.mile-filters > p { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.mile-chip {
+  display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  width: 100%; text-align: left;
+  font-family: var(--sans); font-size: 13.5px; font-weight: 500;
+  background: transparent; border: 1px solid var(--line); color: var(--ink);
+  padding: 9px 13px; margin-bottom: 7px; border-radius: 8px; cursor: pointer;
+  transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+.mile-chip span { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.mile-chip:hover { border-color: var(--ink); transform: translateX(3px); }
+.mile-chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.mile-chip[aria-pressed="true"] span { color: var(--accent); }
+.mile-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* timeline record */
+.mile-line { position: relative; padding-left: 34px; }
+.mile-line::before { content: ""; position: absolute; left: 5px; top: 6px; bottom: 0; width: 2px; background: var(--line); }
+/* fill: gradient painted once at full track height (background-size set from JS),
+   revealed top-down as `height` grows — so the gradient never stretches. No
+   transition on height: the scroll drives it directly. */
+.mile-fill {
+  position: absolute; left: 5px; top: 6px; width: 2px; height: 0; z-index: 1;
+  background-image: linear-gradient(180deg, var(--accent), var(--accent-dk));
+  background-repeat: no-repeat; background-position: top; will-change: height;
+}
+.mile-item {
+  position: relative; padding: 0 0 clamp(22px, 2.4vw, 34px);
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.16,.9,.24,1);
+}
+.mile-item.in { opacity: 1; transform: none; }
+.mile-item.hide { display: none; }
+.mile-item::before {
+  content: ""; position: absolute; left: -34px; top: 9px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--bone); border: 2px solid var(--line); transition: all 0.3s ease; z-index: 2;
+}
+.mile-item.on::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 5px var(--accent-wash); }
+.mile-card {
+  background: var(--paper); border: 1px solid var(--line-2); border-left: 3px solid var(--line);
+  border-radius: 10px; padding: 16px 20px 18px;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.mile-item.on .mile-card { border-left-color: var(--accent); box-shadow: var(--shadow); }
+@media (hover: hover) {
+  .mile-card:hover { border-left-color: var(--accent); box-shadow: var(--shadow); transform: translateX(4px); }
+}
+.mile-yr {
+  font-family: var(--serif); font-weight: 600; font-size: 1.7rem; line-height: 1; letter-spacing: -0.01em;
+  color: var(--ink); display: inline-block; margin-right: 12px; font-variant-numeric: tabular-nums;
+}
+.mile-tag {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  border: 1px solid var(--line); padding: 3px 7px; border-radius: 4px; color: var(--muted); vertical-align: 6px;
+}
+.mile-tag.def { border-color: var(--accent); color: var(--accent-dk); }
+.mile-tag.exp { border-color: var(--accent-dk); color: var(--accent-dk); }
+.mile-card p { margin-top: 8px; color: var(--ink-2); font-size: 14.5px; line-height: 1.6; }
+.mile-card p b { color: var(--ink); font-weight: 600; }
+.mile-empty { font-family: var(--mono); font-size: 13px; color: var(--muted); padding: 20px 0; }
+
+/* tablet & below — single column; the rail becomes a slim sticky bar under the
+   nav. It must be OPAQUE against the page (cards scroll beneath it). */
+@media (max-width: 991px) {
+  .mile-grid { grid-template-columns: 1fr; gap: 20px; }
+  .mile-rail {
+    position: sticky; top: var(--nav-h); z-index: 20;
+    background: var(--bone); padding: 12px 0 10px;
+    box-shadow: 0 8px 12px -10px rgba(20,20,20,0.25);
+  }
+  .mile-odo { display: flex; align-items: center; gap: 16px; padding: 12px 16px; }
+  .mile-odo-year { font-size: 2rem; margin-top: 0; }
+  .mile-odo-cap, .mile-odo-label { display: none; }
+  .mile-meter { flex: 1; margin-top: 0; }
+  /* horizontally scrollable chip row — hidden scrollbar, momentum scroll */
+  .mile-filters {
+    margin-top: 12px; display: flex; flex-wrap: nowrap; gap: 8px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .mile-filters::-webkit-scrollbar { display: none; }
+  .mile-filters > p { display: none; }
+  .mile-chip { flex: 0 0 auto; width: auto; margin: 0; }
+  .mile-chip span { display: none; }
+  .mile-page .ap-sb, .mile-page .ap-sb:first-child { border-left: none; }
+}
+/* mobile — 25px gutters, stacked red band */
+@media (max-width: 767px) {
+  .mile-main { padding-block: clamp(28px, 8vw, 48px); }
+  .mile-page .ap-statsband { grid-template-columns: 1fr; row-gap: 22px; }
+}
+
+/* reduced motion — year snaps, cards render static, hover lift removed. The
+   spine fill and progress bar still track scroll (they carry no transition). */
+@media (prefers-reduced-motion: reduce) {
+  .mile-item { opacity: 1; transform: none; transition: none; }
+  .mile-item::before, .mile-card { transition: none; }
+  .mile-chip { transition: none; }
+  .mile-card:hover { transform: none; }
 }
 
 /* ============================================================

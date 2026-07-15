@@ -2,10 +2,11 @@ import useScrollReveal from '../hooks/useScrollReveal'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 
-/* "Our Infrastructure" page — layout inspired by the supplied reference
-   (centred hero + main image · overview with metrics · capability cards).
-   Content is demo copy for now. Fonts, colours, gutters (80/50/25) and the
-   991/767 breakpoints follow the rest of the site for full design parity. */
+/* "Our Infrastructure" page — presents HTPL's real facility & infrastructure
+   details: the built-up footprint (per-area metrics), the core engineering
+   pillars, power & energy, on-site amenities / safety / IT, and CSR work.
+   Reuses site tokens, .ap-shell gutters (80/50/25) and the 991/767 breakpoints
+   for full design parity with the rest of the site. */
 
 const STATS = [
   { n: '38', suf: '+', l: 'Years of excellence' },
@@ -14,29 +15,87 @@ const STATS = [
   { n: '15', suf: '+', l: 'States served' },
 ]
 
+/* Built-up footprint — every dedicated area on site, with its size and use. */
+const FOOTPRINT = [
+  { n: '4,500', u: 'sqft', name: 'Corporate office', detail: 'Including meeting rooms & conference halls.' },
+  { n: '5,500', u: 'sqft', name: 'Factory-site office', detail: 'Including meeting rooms & conference halls.' },
+  { n: '2,500', u: 'sqft', name: 'Tool room / machine shop', detail: 'CNC turning, CNC plasma, manual lathe, drilling & milling, with dedicated calibrated instruments.' },
+  { n: '70,000', u: 'sqft', name: 'Production facility', detail: 'Fabrication, welding and fire-tender assembly.' },
+  { n: '10,000', u: 'sqft', name: 'Inspection & testing', detail: 'All testing facilities to IS / DGQA standard, with an integrated testing witness box.' },
+  { n: '17,000', u: 'sqft', name: 'Centralized store', detail: 'Ample spares & inventory under a proper inventory-management system.' },
+  { n: '2,500', u: 'sqft', name: 'Training facility', detail: 'Dedicated worker training — technical, fire & safety, electrical.' },
+  { n: '5,000', u: 'sqft', name: 'Air-conditioned cafeteria', detail: 'With subsidized food for staff and workers.' },
+  { n: '2,000', u: 'sqft', name: 'Workers’ resting area', detail: 'Air-conditioned rest space for the shop-floor team.' },
+]
+
+/* Core engineering pillars — the three production-critical capabilities. */
 const CARDS = [
   {
-    cat: 'Factory',
-    title: 'Precision Manufacturing Facility',
-    desc: 'Our modern production facility is equipped with advanced fabrication equipment and engineering tools that support high-quality manufacturing operations. Designed for efficiency and precision, the facility enables smooth workflow management while maintaining strict quality standards throughout the production process.',
-    img: '/images/fleet/fabrication-workshop.jpg',
-    alt: 'HTPL precision manufacturing and fabrication floor',
-  },
-  {
-    cat: 'Storage',
-    title: 'Organized Inventory Management',
-    desc: 'Our dedicated storage facility ensures systematic material handling and efficient inventory control. With structured storage systems and optimized logistics processes, we maintain seamless coordination between procurement, production, and project execution.',
+    cat: 'Design & Engineering',
+    title: 'Computer-Based Design Centre',
+    desc: 'A dedicated design & engineering centre runs fully computer-based design on SolidWorks and AutoCAD, turning every requirement into precise, manufacturable drawings before a single cut is made.',
     img: '/images/fleet/htpl-build-rear.jpg',
-    alt: 'Organized material storage and inventory area',
+    alt: 'HTPL design and engineering — computer-based design',
   },
   {
-    cat: 'Testing',
-    title: 'Rigorous Quality Verification',
-    desc: 'Every vehicle is validated through a dedicated, in-house testing facility built to IS and DGQA standards. Stage-wise inspection and full documentation ensure each product passes a complete battery of checks before it leaves our facility.',
+    cat: 'Production',
+    title: 'Fabrication & Assembly Floor',
+    desc: 'Nearly 70,000 sqft of production space houses fabrication, welding and complete fire-tender assembly — backed by a 2,500 sqft tool room with CNC turning, CNC plasma, lathe, drilling and milling on calibrated instruments.',
+    img: '/images/fleet/fabrication-workshop.jpg',
+    alt: 'HTPL fabrication and assembly floor',
+  },
+  {
+    cat: 'Inspection & Testing',
+    title: 'In-House Testing to IS / DGQA',
+    desc: 'Around 10,000 sqft of inspection & testing carries every facility required by IS and DGQA standards, with an integrated testing witness box so each vehicle is validated and documented before dispatch.',
     img: '/images/fleet/dcp-tender.jpg',
-    alt: 'HTPL vehicle undergoing quality testing',
+    alt: 'HTPL vehicle undergoing in-house quality testing',
   },
 ]
+
+/* Power & energy — grid supply, backup and on-site generation. */
+const POWER = [
+  {
+    k: 'Grid + transformer',
+    v: 'Three-phase industrial power supply with an in-house 70 KVA transformer.',
+  },
+  {
+    k: 'DG backup',
+    v: 'Diesel-generator backup of 125 KVA and 82 KVA at the factory, and 20 KVA at the corporate office.',
+  },
+  {
+    k: 'Solar power',
+    v: '70 kW rooftop solar power plant — 60 kW at the factory and 10 kW at the office.',
+  },
+]
+
+/* On-site amenities, safety & IT — the everyday infrastructure across the site. */
+const AMENITIES = [
+  'Two board rooms and three conference halls with VC facilities and projectors for presentations.',
+  'Fire extinguishers across all yard and office buildings, under a proper inspection & maintenance procedure.',
+  'RO normal and cold drinking water on the shop floor, in the canteen and across office buildings.',
+  'Adequate washrooms and toilets in the factory, corporate offices and all other areas.',
+  'First-aid facilities on the shop floor and in office buildings.',
+  'High-resolution CCTV cameras for electronic surveillance across the factory and corporate office.',
+  'Furnished, subsidized AC and non-AC guest houses for company guests, employees and workers.',
+  'Laptops, desktops and IT infrastructure with dedicated servers and 24×7 high-speed internet.',
+]
+
+/* CSR — community initiatives the company supports. */
+const CSR = [
+  'Old-age home',
+  'Orphanage',
+  'Cremation-ground aid',
+  'Psychiatric rehabilitation centre',
+  'Cattle-shelter aid',
+  'Local temple development',
+]
+
+const Check = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden="true">
+    <path d="M20 6L9 17l-5-5" />
+  </svg>
+)
 
 export default function Infrastructure() {
   useScrollReveal()
@@ -59,13 +118,12 @@ export default function Infrastructure() {
               <span className="italic-accent">Engineered for Excellence.</span>
             </h1>
             <p className="lead infra-hero-desc reveal">
-              Our infrastructure forms the backbone of our operations, combining advanced
-              manufacturing capabilities, organized storage systems, and rigorous quality
-              testing facilities. Every aspect of our facility is designed to ensure precision,
-              efficiency, and reliability in every project we undertake.
+              From design and fabrication to inspection, storage and training, HTPL runs a fully
+              integrated facility at Jagatpur, Cuttack — over a lakh square feet of purpose-built
+              space, backed by its own power, IT, safety and welfare infrastructure.
             </p>
             <div className="infra-hero-actions reveal">
-              <a href="#overview" className="btn btn-primary">
+              <a href="#footprint" className="btn btn-primary">
                 Explore Facilities <span className="arrow">→</span>
               </a>
               <a href="/#contact" className="btn btn-ghost">
@@ -83,19 +141,18 @@ export default function Infrastructure() {
           </div>
         </section>
 
-        {/* ---- Infrastructure overview + metrics ---- */}
+        {/* ---- Infrastructure overview ---- */}
         <section className="infra-overview" id="overview">
           <div className="ap-shell">
-            <p className="eyebrow reveal"><span className="dot"></span>Infrastructure Overview</p>
+            <p className="eyebrow reveal"><span className="dot"></span>Our Infrastructure &amp; Facility</p>
             <h2 className="display infra-h2 reveal">
               World-Class Facilities Supporting Every Stage of Production
             </h2>
             <p className="infra-text reveal">
-              From engineering and fabrication to storage and quality assurance, our integrated
-              infrastructure enables seamless project execution. Equipped with modern machinery,
-              efficient material handling systems, and comprehensive testing capabilities, our
-              facilities are built to meet the highest industry standards while ensuring
-              operational excellence.
+              Every function a fire-tender build demands stands under one roof — engineering,
+              tool room, production, testing and stores — supported by dedicated worker training,
+              on-site power and solar generation, full IT and surveillance infrastructure, and
+              comprehensive welfare facilities for our people.
             </p>
           </div>
         </section>
@@ -117,16 +174,41 @@ export default function Infrastructure() {
           </div>
         </section>
 
-        {/* ---- What we build ---- */}
+        {/* ---- Facility footprint (per-area metric tiles) ---- */}
+        <section className="infra-footprint" id="footprint">
+          <div className="ap-shell">
+            <header className="infra-sec-head reveal">
+              <p className="eyebrow"><span className="dot"></span>Facility Footprint</p>
+              <h2 className="display infra-h2">Purpose-built space for every stage</h2>
+              <p className="infra-text">
+                A dedicated area for each function on site — sized for capacity, laid out for a
+                clean, one-directional workflow from raw material to finished, tested vehicle.
+              </p>
+            </header>
+            <div className="infra-fp-grid">
+              {FOOTPRINT.map((f) => (
+                <article className="infra-fp-tile reveal" key={f.name}>
+                  <span className="infra-fp-n">
+                    {f.n}
+                    <span className="infra-fp-u">{f.u}</span>
+                  </span>
+                  <h3 className="infra-fp-name">{f.name}</h3>
+                  <p className="infra-fp-detail">{f.detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ---- Core capability cards ---- */}
         <section className="infra-build">
           <div className="ap-shell">
             <header className="infra-build-head reveal">
               <p className="eyebrow"><span className="dot"></span>Capabilities</p>
               <h2 className="display infra-h2">Infrastructure Designed for Performance</h2>
               <p className="infra-text">
-                Our facilities are strategically developed to support efficient manufacturing,
-                streamlined inventory management, and stringent quality verification processes,
-                ensuring consistent delivery of reliable engineering solutions.
+                Design, production and testing form the backbone of the plant — each equipped and
+                staffed to carry a build from drawing board to dispatch without leaving the site.
               </p>
             </header>
             <div className="infra-cards">
@@ -145,6 +227,71 @@ export default function Infrastructure() {
                   </figure>
                 </article>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ---- Power & energy ---- */}
+        <section className="infra-power">
+          <div className="ap-shell">
+            <header className="infra-sec-head reveal">
+              <p className="eyebrow"><span className="dot"></span>Power &amp; Energy</p>
+              <h2 className="display infra-h2">Uninterrupted, and increasingly clean</h2>
+              <p className="infra-text">
+                Grid supply, in-house transformation and diesel backup keep the line running around
+                the clock — while a 70 kW solar plant cuts the site&rsquo;s footprint year on year.
+              </p>
+            </header>
+            <div className="infra-power-grid">
+              {POWER.map((p) => (
+                <article className="infra-power-card reveal" key={p.k}>
+                  <span className="infra-power-k">{p.k}</span>
+                  <p className="infra-power-v">{p.v}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ---- Amenities, safety & IT (checklist) ---- */}
+        <section className="infra-amenities">
+          <div className="ap-shell">
+            <header className="infra-sec-head reveal">
+              <p className="eyebrow"><span className="dot"></span>Amenities, Safety &amp; IT</p>
+              <h2 className="display infra-h2">Built around the people on site</h2>
+              <p className="infra-text">
+                Meeting spaces, safety systems, drinking water, welfare and full IT — the everyday
+                infrastructure that keeps the plant safe, connected and comfortable.
+              </p>
+            </header>
+            <ul className="infra-checklist reveal">
+              {AMENITIES.map((a) => (
+                <li className="infra-check" key={a}>
+                  <span className="infra-check-ic"><Check /></span>
+                  <span>{a}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ---- CSR ---- */}
+        <section className="infra-csr">
+          <div className="ap-shell">
+            <div className="infra-csr-inner reveal">
+              <div className="infra-csr-head">
+                <p className="eyebrow"><span className="dot"></span>Beyond the Factory Gate</p>
+                <h2 className="display infra-h2">Corporate social responsibility</h2>
+                <p className="infra-text">
+                  Our responsibility extends into the community around us — a set of ongoing CSR
+                  initiatives we&rsquo;re proud to support.
+                </p>
+              </div>
+              <ul className="infra-csr-list">
+                {CSR.map((c) => (
+                  <li className="infra-csr-chip" key={c}>{c}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>
