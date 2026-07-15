@@ -2696,7 +2696,9 @@ section { position: relative; overflow-x: clip; }
 
 /* timeline record */
 .mile-line { position: relative; padding-left: 34px; }
-.mile-line::before { content: ""; position: absolute; left: 5px; top: 6px; bottom: 0; width: 2px; background: var(--line); }
+/* track ends at the last node — height driven by --mile-track (set in JS).
+   Fallback (JS off) spans the content so the plain spine still renders. */
+.mile-line::before { content: ""; position: absolute; left: 5px; top: 6px; height: var(--mile-track, calc(100% - 6px)); width: 2px; background: var(--line); }
 /* fill: gradient painted once at full track height (background-size set from JS),
    revealed top-down as `height` grows — so the gradient never stretches. No
    transition on height: the scroll drives it directly. */
@@ -2762,7 +2764,7 @@ section { position: relative; overflow-x: clip; }
   }
   .mile-filters::-webkit-scrollbar { display: none; }
   .mile-filters > p { display: none; }
-  .mile-chip { flex: 0 0 auto; width: auto; margin: 0; }
+  .mile-chip { flex: 0 0 auto; width: auto; margin: 0; min-height: 44px; }
   .mile-chip span { display: none; }
   .mile-page .ap-sb, .mile-page .ap-sb:first-child { border-left: none; }
 }

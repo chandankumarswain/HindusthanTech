@@ -20,7 +20,11 @@
    ========================================================================== */
 
 const HERO = {
-  eyebrow: ['ISO 9001:2015 CERTIFIED COMPANY', 'EST. 1987', 'JAGATPUR, CUTTACK', 'MAKE IN INDIA'],
+  // two bulleted eyebrow lines: ISO certification, then est./location.
+  eyebrow: [
+    ['ISO 9001:2015 CERTIFIED COMPANY'],
+    ['EST. 1987', 'JAGATPUR, CUTTACK', 'MAKE IN INDIA'],
+  ],
   headline_top: 'Engineering of today,',
   headline_accent: 'saving lives of tomorrow.',
   lead:
@@ -86,31 +90,38 @@ export default function Hero() {
       <div className="w-full grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center lg:gap-16">
         {/* ============ LEFT — content (vertically centred; centre-aligned on mobile) ============ */}
         <div className="flex flex-col text-center md:text-left">
-          {/* Eyebrow — flex-wrap so the segments never break mid-word on
-              narrow phones; shrinks to text-xs on mobile. */}
-          <p
-            className="htpl-rise flex flex-wrap items-center gap-x-3 gap-y-1
-                       justify-center md:justify-start
-                       eyebrow-script uppercase text-accent-dk font-medium
-                       text-xs tracking-[0.18em] sm:text-[13px]"
+          {/* Eyebrow — two bulleted lines. Each line leads with the dot and
+              flex-wraps so segments never break mid-word on narrow phones. */}
+          <div
+            className="htpl-rise flex flex-col gap-y-1.5 items-center md:items-start"
             style={{ animationDelay: '.05s' }}
           >
-            <span
-              className="htpl-dot inline-block h-[7px] w-[7px] rounded-full bg-accent
-                         shadow-[0_0_0_4px_rgba(214,57,36,0.12)]"
-              aria-hidden="true"
-            />
-            {HERO.eyebrow.map((seg, i) => (
-              <span key={seg} className="whitespace-nowrap">
-                {seg}
-                {i < HERO.eyebrow.length - 1 && (
-                  <span className="ml-3 text-accent/50" aria-hidden="true">
-                    ·
+            {HERO.eyebrow.map((line, li) => (
+              <p
+                key={li}
+                className="flex flex-wrap items-center gap-x-3 gap-y-1
+                           justify-center md:justify-start
+                           eyebrow-script uppercase text-accent-dk font-medium
+                           text-xs tracking-[0.18em] sm:text-[13px]"
+              >
+                <span
+                  className="htpl-dot inline-block h-[7px] w-[7px] rounded-full bg-accent
+                             shadow-[0_0_0_4px_rgba(214,57,36,0.12)]"
+                  aria-hidden="true"
+                />
+                {line.map((seg, i) => (
+                  <span key={seg} className="whitespace-nowrap">
+                    {seg}
+                    {i < line.length - 1 && (
+                      <span className="ml-3 text-accent/50" aria-hidden="true">
+                        ·
+                      </span>
+                    )}
                   </span>
-                )}
-              </span>
+                ))}
+              </p>
             ))}
-          </p>
+          </div>
 
           {/* Headline — fluid clamp(2.2rem,4vw,4rem), line-height ~1.08. Two block
               spans give the manual line break (italic always on its own line) AND

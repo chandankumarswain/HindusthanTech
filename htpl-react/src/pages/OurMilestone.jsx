@@ -93,6 +93,13 @@ export default function OurMilestone() {
   useScrollReveal()
   const rootRef = useRef(null)
 
+  /* Route-specific document title (client-rendered SPA — see note below). */
+  useEffect(() => {
+    const prev = document.title
+    document.title = 'Our Milestones — Hindusthan Technologies'
+    return () => { document.title = prev }
+  }, [])
+
   /* All timeline behaviour (scroll odometer, meter/fill, reveal, filters) is kept
      imperative and scoped to rootRef — the component renders once and never
      re-renders, so React never fights the classes we toggle by hand. */
@@ -105,7 +112,7 @@ export default function OurMilestone() {
     const capEl = root.querySelector('.mile-odo-cap')
     const meter = root.querySelector('.mile-meter i')
     const empty = root.querySelector('.mile-empty')
-    if (!line || !yearEl || !capEl) return
+    if (!line) return // yearEl / capEl / meter are optional (odometer card removed)
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const ACT = 0.42 // activation line — fraction of viewport height
 
@@ -124,22 +131,39 @@ export default function OurMilestone() {
     fillEl.className = 'mile-fill'
     line.appendChild(fillEl)
 
+    const NODE = 15 // node centre offset from an item's top (::before top 9 + r 6)
+    const SPINE = 6 // where the spine starts inside .mile-line
+
     /* Cached geometry (document-absolute offsets). Recomputed only on resize and
        after a filter change — never per scroll frame. */
-    let geo = { trackTop: 0, trackH: 1, tops: [], els: [] }
+    let geo = { trackTop: 0, trackPx: 1, tops: [], els: [] }
     const measure = () => {
+      // Force reflow (and any scroll clamp caused by a shrunk page) to settle
+      // BEFORE sampling scrollY — otherwise scrollY and the rects disagree by the
+      // clamp delta and active-detection desyncs right after a filter change.
+      const lineRect = line.getBoundingClientRect()
       const sy = window.scrollY || window.pageYOffset
-      const trackTop = line.getBoundingClientRect().top + sy
-      const trackH = line.offsetHeight || 1
       const els = allItems.filter((i) => !i.classList.contains('hide'))
       const tops = els.map((el) => el.getBoundingClientRect().top + sy)
-      geo = { trackTop, trackH, tops, els }
-      fillEl.style.backgroundSize = `100% ${trackH}px`
+      const lastEl = els[els.length - 1]
+
+      // Spine + fill run node-to-node: the track ends exactly at the last node
+      // (no tail into the padding) and the fill reaches 100% on the last card.
+      const trackPx = lastEl ? Math.max(1, lastEl.offsetTop + NODE - SPINE) : 1
+      const trackTop = lineRect.top + sy + SPINE
+      line.style.setProperty('--mile-track', `${trackPx}px`)
+      fillEl.style.backgroundSize = `100% ${trackPx}px`
+
+      // The column always fits its content — no min-height padding. (The odometer
+      // card is gone, so the short filter-only rail needs no extra sticky travel;
+      // padding here just showed up as an empty gap on short filtered sets.)
+      geo = { trackTop, trackPx, tops, els }
     }
 
     /* year odometer roll — latest target wins; any in-flight roll is cancelled */
     let rollRAF = 0
     const rollTo = (target) => {
+      if (!yearEl) return
       if (reduce) { yearEl.textContent = String(target); return }
       const start = parseInt(yearEl.textContent, 10) || target
       if (start === target) { yearEl.textContent = String(target); return } // e.g. the 2001 pair
@@ -153,30 +177,33 @@ export default function OurMilestone() {
       rollRAF = requestAnimationFrame(step)
     }
 
-    /* one paint = the four things moving together, off cached geometry */
+    /* Single source of truth: the active element. Year, caption and node all read
+       from it in one commit, so no two can ever disagree on a frame. */
     let currentEl = null
+    const applyActive = (el) => {
+      if (!el || el === currentEl) return
+      currentEl = el
+      allItems.forEach((i) => i.classList.toggle('on', i === el))
+      rollTo(+el.dataset.year)          // roll retargets from the displayed number
+      if (capEl) capEl.textContent = el.dataset.cap
+    }
+
+    /* one paint = the four things moving together, off cached geometry */
     const paint = () => {
+      const { trackTop, trackPx, tops, els } = geo
+      if (!els.length) return
       const sy = window.scrollY || window.pageYOffset
       const midAbs = sy + window.innerHeight * ACT
-      const { trackTop, trackH, tops, els } = geo
-      if (!els.length) return
 
       let idx = -1
       for (let k = 0; k < tops.length; k++) {
         if (tops[k] <= midAbs) idx = k
         else break
       }
-      const active = els[idx === -1 ? 0 : idx]
-      if (active && active !== currentEl) {
-        currentEl = active
-        allItems.forEach((i) => i.classList.remove('on'))
-        active.classList.add('on')
-        rollTo(+active.dataset.year)
-        capEl.textContent = active.dataset.cap
-      }
+      applyActive(els[idx === -1 ? 0 : idx])
 
-      const p = Math.min(1, Math.max(0, (midAbs - trackTop) / trackH))
-      fillEl.style.height = `${p * trackH}px`
+      const p = Math.min(1, Math.max(0, (midAbs - trackTop) / trackPx))
+      fillEl.style.height = `${p * trackPx}px`
       if (meter) meter.style.width = `${p * 100}%`
     }
 
@@ -193,7 +220,8 @@ export default function OurMilestone() {
 
     /* category filters — hide via display:none, then recompute + repaint in the
        SAME frame so year/fill are correct instantly. New cards appear already
-       revealed (no entrance replay). */
+       revealed (no entrance replay). aria-pressed is set from the clicked chip in
+       the same handler, so the highlighted chip always names the shown list. */
     const chips = [...root.querySelectorAll('.mile-chip')]
     const onChip = (c) => () => {
       chips.forEach((x) => x.setAttribute('aria-pressed', String(x === c)))
@@ -205,9 +233,10 @@ export default function OurMilestone() {
         if (ok) { shown++; i.classList.add('in') }
       })
       if (empty) empty.hidden = shown > 0
-      currentEl = null
+      currentEl = null                 // force re-apply for the new set
       measure()
-      paint()
+      paint()                          // correct in THIS frame — no scroll needed
+      requestAnimationFrame(paint)     // and once more after any scroll-clamp settles
     }
     const bound = chips.map((c) => { const h = onChip(c); c.addEventListener('click', h); return [c, h] })
 
@@ -272,14 +301,8 @@ export default function OurMilestone() {
         <section className="mile-main">
           <div className="ap-shell">
             <div className="mile-grid">
-              {/* left — sticky odometer + filters */}
+              {/* left — sticky filters */}
               <aside className="mile-rail">
-                <div className="mile-odo">
-                  <p className="mile-odo-label">Now reading</p>
-                  <div className="mile-odo-year">1987</div>
-                  <p className="mile-odo-cap">Founded.</p>
-                  <div className="mile-meter"><i /></div>
-                </div>
                 <div className="mile-filters">
                   <p>Filter the record</p>
                   {FILTERS.map((fl) => (
