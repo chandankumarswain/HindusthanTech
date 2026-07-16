@@ -2659,6 +2659,7 @@ section { position: relative; overflow-x: clip; }
    beside it. Horizontal overflow is still clipped globally by html/body. */
 .mile-main { padding-block: clamp(44px, 6vw, 88px); overflow: visible; }
 .mile-grid { display: grid; grid-template-columns: 300px 1fr; gap: clamp(32px, 4vw, 56px); align-items: start; }
+.mile-grid > * { min-width: 0; } /* let columns shrink — no horizontal card overflow */
 
 /* sticky odometer rail */
 .mile-rail { position: sticky; top: calc(var(--nav-h) + 18px); align-self: start; }
@@ -2743,32 +2744,17 @@ section { position: relative; overflow-x: clip; }
 .mile-card p b { color: var(--ink); font-weight: 600; }
 .mile-empty { font-family: var(--mono); font-size: 13px; color: var(--muted); padding: 20px 0; }
 
-/* tablet & below — single column; the rail becomes a slim sticky bar under the
-   nav. It must be OPAQUE against the page (cards scroll beneath it). */
+/* tablet & below — single-column, full-width timeline. The filter rail is
+   removed here (the whole record is shown), matching the simpler single-column
+   mobile layout used across the other pages. No sticky rail on this breakpoint,
+   so the section can safely clip horizontal overflow again. */
 @media (max-width: 991px) {
-  .mile-grid { grid-template-columns: 1fr; gap: 20px; }
-  .mile-rail {
-    position: sticky; top: var(--nav-h); z-index: 20;
-    background: var(--bone); padding: 12px 0 10px;
-    box-shadow: 0 8px 12px -10px rgba(20,20,20,0.25);
-  }
-  .mile-odo { display: flex; align-items: center; gap: 16px; padding: 12px 16px; }
-  .mile-odo-year { font-size: 2rem; margin-top: 0; }
-  .mile-odo-cap, .mile-odo-label { display: none; }
-  .mile-meter { flex: 1; margin-top: 0; }
-  /* horizontally scrollable chip row — hidden scrollbar, momentum scroll */
-  .mile-filters {
-    margin-top: 12px; display: flex; flex-wrap: nowrap; gap: 8px;
-    overflow-x: auto; -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; -ms-overflow-style: none;
-  }
-  .mile-filters::-webkit-scrollbar { display: none; }
-  .mile-filters > p { display: none; }
-  .mile-chip { flex: 0 0 auto; width: auto; margin: 0; min-height: 44px; }
-  .mile-chip span { display: none; }
+  .mile-main { overflow-x: clip; }
+  .mile-grid { grid-template-columns: 1fr; gap: 0; }
+  .mile-rail { display: none; }
   .mile-page .ap-sb, .mile-page .ap-sb:first-child { border-left: none; }
 }
-/* mobile — 25px gutters, stacked red band */
+/* mobile — 25px gutters (via .ap-shell), stacked red band */
 @media (max-width: 767px) {
   .mile-main { padding-block: clamp(28px, 8vw, 48px); }
   .mile-page .ap-statsband { grid-template-columns: 1fr; row-gap: 22px; }

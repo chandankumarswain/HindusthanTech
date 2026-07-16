@@ -18,6 +18,8 @@ function currentPath() {
   return window.location.pathname.replace(/\/+$/, '') || '/'
 }
 
+const SITE_ORIGIN = 'https://htplfire.com'
+
 export default function App() {
   const [path, setPath] = useState(currentPath())
 
@@ -26,6 +28,14 @@ export default function App() {
     window.addEventListener('popstate', onNav)
     return () => window.removeEventListener('popstate', onNav)
   }, [])
+
+  /* index.html ships one static canonical, but the SPA rewrite serves it for every
+     route — so point canonical/og:url at the page actually being rendered. */
+  useEffect(() => {
+    const url = SITE_ORIGIN + (path === '/' ? '/' : path)
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', url)
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', url)
+  }, [path])
 
   /* Cross-page section links (e.g. /about → "/#products", or "/about#company-overview")
      do a full page load, so the browser's native hash jump fires before React has
