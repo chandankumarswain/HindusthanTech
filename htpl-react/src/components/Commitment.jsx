@@ -8,7 +8,7 @@ export default function Commitment() {
               <span className="dot"></span>Our promise
             </p>
             <h2 className="display h-sec">
-              Our <span className="italic-accent">commitment</span>
+              Our <span className="italic-accent">compliance</span>
             </h2>
             <p style={{ marginTop: '24px' }}>
               At HTPL, we play an indispensable role in strengthening fire safety and emergency

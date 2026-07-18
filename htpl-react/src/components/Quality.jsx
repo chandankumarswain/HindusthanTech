@@ -70,7 +70,7 @@ export default function Quality() {
             <span className="dot"></span>Quality &amp; safety
           </p>
           <h2 className="display h-sec">
-            Our quality <span className="italic-accent">commitments</span>
+            Our compliance <span className="italic-accent">commitments</span>
           </h2>
         </div>
         <div className="quality-grid">

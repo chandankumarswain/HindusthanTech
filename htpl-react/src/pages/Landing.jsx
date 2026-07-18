@@ -12,6 +12,7 @@ import Technology from '../components/Technology'
 import Process from '../components/Process'
 import Quality from '../components/Quality'
 import Reach from '../components/Reach'
+import Serve from '../components/Serve'
 import Clients from '../components/Clients'
 import Commitment from '../components/Commitment'
 import CtaBand from '../components/CtaBand'
@@ -37,6 +38,7 @@ export default function Landing() {
         <TestingQuality />
         <Quality />
         <Reach />
+        <Serve />
         <Clients />
         <Commitment />
         <CtaBand />

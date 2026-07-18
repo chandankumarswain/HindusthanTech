@@ -20,9 +20,9 @@
    ========================================================================== */
 
 const HERO = {
-  // two bulleted eyebrow lines: ISO certification, then est./location.
+  // eyebrow lines: the ISO line leads (bulleted + bold), then est./location.
   eyebrow: [
-    ['ISO 9001:2015 CERTIFIED COMPANY'],
+    ['AN ISO 9001:2015 CERTIFIED COMPANY'],
     ['EST. 1987', 'JAGATPUR, CUTTACK', 'MAKE IN INDIA'],
   ],
   headline_top: 'Engineering of today,',
@@ -90,8 +90,9 @@ export default function Hero() {
       <div className="w-full grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center lg:gap-16">
         {/* ============ LEFT — content (vertically centred; centre-aligned on mobile) ============ */}
         <div className="flex flex-col text-center md:text-left">
-          {/* Eyebrow — two bulleted lines. Each line leads with the dot and
-              flex-wraps so segments never break mid-word on narrow phones. */}
+          {/* Eyebrow — two lines: a bold, bulleted ISO line, then the plain
+              est./location line. Both flex-wrap so segments never break
+              mid-word on narrow phones. */}
           <div
             className="htpl-rise flex flex-col gap-y-1.5 items-center md:items-start"
             style={{ animationDelay: '.05s' }}
@@ -99,16 +100,21 @@ export default function Hero() {
             {HERO.eyebrow.map((line, li) => (
               <p
                 key={li}
-                className="flex flex-wrap items-center gap-x-3 gap-y-1
+                className={`flex flex-wrap items-center gap-x-3 gap-y-1
                            justify-center md:justify-start
-                           eyebrow-script uppercase text-accent-dk font-medium
-                           text-xs tracking-[0.18em] sm:text-[13px]"
+                           eyebrow-script uppercase text-accent-dk
+                           text-xs tracking-[0.18em] sm:text-[13px] ${
+                             li === 0 ? 'font-bold' : 'font-medium'
+                           }`}
               >
-                <span
-                  className="htpl-dot inline-block h-[7px] w-[7px] rounded-full bg-accent
-                             shadow-[0_0_0_4px_rgba(214,57,36,0.12)]"
-                  aria-hidden="true"
-                />
+                {/* bullet leads the ISO line only */}
+                {li === 0 && (
+                  <span
+                    className="htpl-dot inline-block h-[7px] w-[7px] rounded-full bg-accent
+                               shadow-[0_0_0_4px_rgba(214,57,36,0.12)]"
+                    aria-hidden="true"
+                  />
+                )}
                 {line.map((seg, i) => (
                   <span key={seg} className="whitespace-nowrap">
                     {seg}

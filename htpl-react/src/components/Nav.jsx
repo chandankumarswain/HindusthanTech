@@ -12,7 +12,8 @@ const NAV = {
   products_link: '#products',
   gallery_link: '#gallery',
   technology_link: '#technology',
-  clients_link: '#clients',
+  // "Clients" jumps to the Nationwide presence (Reach) section on the landing page
+  clients_link: '#reach',
   contact_link: '#contact',
   cta_text: 'Contact Us',
   cta_link: '#contact',
@@ -98,7 +99,7 @@ export default function Nav() {
   const [activeHref, setActiveHref] = useState(onHome ? NAV.home_link : '/about')
   useEffect(() => {
     if (!onHome) return
-    const ids = ['hero', 'products', 'gallery', 'technology', 'clients', 'contact']
+    const ids = ['hero', 'products', 'gallery', 'technology', 'reach', 'contact']
     const els = ids.map((id) => document.getElementById(id)).filter(Boolean)
     if (!els.length) return
     const io = new IntersectionObserver(

@@ -10,7 +10,7 @@
  *   2) emails the enquiry to NOTIFY_EMAIL (reply-to = the sender's address).
  */
 
-var NOTIFY_EMAIL = 'aivorntech@gmail.com';
+var NOTIFY_EMAIL = 'admin@hindusthantechnologies.com';
 var SHEET_NAME = 'Enquiries';
 
 function doPost(e) {

@@ -2,8 +2,9 @@ import { useState } from 'react'
 
 /* Where the form posts. Set VITE_CONTACT_ENDPOINT to your deployed Google Apps
    Script Web App URL (see CONTACT_SETUP.md). On submit each enquiry is appended
-   to the Google Sheet and emailed to aivorntech@gmail.com. */
+   to the Google Sheet and emailed to admin@hindusthantechnologies.com. */
 const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || ''
+const CONTACT_EMAIL = 'admin@hindusthantechnologies.com'
 
 export default function Contact() {
   // idle | sending | sent | error
@@ -15,10 +16,26 @@ export default function Contact() {
     const body = new URLSearchParams(new FormData(form)) // simple request → no CORS preflight
 
     if (!CONTACT_ENDPOINT) {
-      // Not configured yet — don't lose the UX, but make it obvious in the console.
+      /* No Web App endpoint configured. Rather than claim success and silently
+         drop the enquiry, hand off to the visitor's mail client pre-addressed to
+         CONTACT_EMAIL, so it still reaches us. See CONTACT_SETUP.md. */
       console.warn(
-        'Contact form: VITE_CONTACT_ENDPOINT is not set, so this enquiry was not delivered. See CONTACT_SETUP.md.'
+        'Contact form: VITE_CONTACT_ENDPOINT is not set — falling back to mailto. See CONTACT_SETUP.md.'
       )
+      const d = Object.fromEntries(new FormData(form))
+      const subject = `Website enquiry — ${d.fullName || 'HTPL'}`
+      const lines = [
+        `Name: ${d.fullName || '-'}`,
+        `Organization: ${d.organization || '-'}`,
+        `Phone: ${d.phone || '-'}`,
+        `Email: ${d.email || '-'}`,
+        `Requirement: ${d.requirement || '-'}`,
+        '',
+        d.message || '',
+      ]
+      window.location.href =
+        `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}` +
+        `&body=${encodeURIComponent(lines.join('\n'))}`
       setStatus('sent')
       form.reset()
       return
@@ -260,7 +277,7 @@ export default function Contact() {
             {status === 'error' && (
               <p className="form-status" role="alert">
                 Something went wrong. Please try again or email{' '}
-                <a href="mailto:aivorntech@gmail.com">aivorntech@gmail.com</a>.
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
               </p>
             )}
             {sent && (

@@ -1,116 +1,279 @@
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import useScrollReveal from '../hooks/useScrollReveal'
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
+import { CATEGORIES, GROUPS, PRODUCTS } from '../data/portfolio'
 
-/* Products page (/products).
-   Layout: compact centred hero → "What we build" (two product categories
-   flanking a central image) → closing CTA. Built from the landing design
-   system (section-pad / wrap, site tokens, psp-* classes, 991/767
-   breakpoints) — shares styling with the Products & Services page. */
+/* "Core Product Portfolio" (/products) — the Section 8 portfolio document
+   rebuilt as a filterable product index: category tabs + search, one-open-at-a-time
+   accordion rows, each revealing an identity panel, a build sheet and its
+   photographs (click to enlarge in a lightbox).
 
-const ICON = {
-  truck: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 18V6a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h1" />
-      <path d="M14 9h4l3 3v5a1 1 0 0 1-1 1h-1" />
-      <circle cx="7.5" cy="18.5" r="1.5" />
-      <circle cx="17.5" cy="18.5" r="1.5" />
-    </svg>
-  ),
-  cube: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-      <path d="m3.3 7 8.7 5 8.7-5" />
-      <path d="M12 22V12" />
-    </svg>
-  ),
-}
+   Content is verbatim from the source document (src/data/portfolio.js). The
+   reference's own palette/type (Saira Condensed · IBM Plex · lime) is dropped in
+   favour of this project's system — bone/paper canvas, HTPL red accent, Source
+   Serif display + Space Grotesk body + JetBrains Mono labels, the .ap-shell
+   80/50/25 gutters and the 991/767 breakpoints. */
 
-const FIRE = [
-  ['Firefighting Trucks / Vehicles', 'Custom-built multi-capacity water, foam, and dry chemical powder tenders for extreme municipal and industrial hazards.'],
-  ['Quick Response Vehicles (QRVs)', 'Compact, fast-response units fitted with advanced first-aid firefighting and rescue setups.'],
-  ['Trailer & Portable Fire Pumps', 'High-efficiency decentralised field-pumping units engineered for dependable suction operations.'],
+const IMG = '/images/portfolio/'
+
+const STATS = [
+  { n: '23', l: 'Variants' },
+  { n: '77', l: 'Photographs' },
+  { n: '35', l: 'Max tonnage · GVW' },
+  { n: '18000', l: 'Max water · Liters' },
+  { n: '6000', l: 'Max pump · LPM' },
 ]
 
-const SPV = [
-  ['Explosive Vans', 'Insulated, completely spark-proof cargo bodies built to various capacities matching strict safety mandates.'],
-  ['Diesel Bowsers & Oil Tankers', 'Fuel logistics and distribution units with calibrated metering, flow monitoring, and grounding mechanics.'],
-  ['MOSRU / Gulley Suckers', 'Industrial heavy-suction rigs for specialised oil cleanup and recovery.'],
-  ['Mobile Blood Donation Vans (MBDV)', 'Ergonomically specialised, clinically sterile testing and blood-collection mobile clinics.'],
-  ['Mobile Service Vans', 'Fully outfitted mobile workshops and customised industrial application vehicles.'],
-]
+const countOf = (id) =>
+  id === 'all' ? PRODUCTS.length : PRODUCTS.filter((p) => p.cat === id).length
 
-function CategoryCol({ icon, title, items }) {
-  return (
-    <div className="psp-cat reveal">
-      <span className="psp-cat-ic" aria-hidden="true">{icon}</span>
-      <h3 className="psp-cat-title">{title}</h3>
-      <ul className="psp-cat-list">
-        {items.map(([name, desc]) => (
-          <li key={name}>
-            <span className="psp-li-name">{name}</span>
-            <span className="psp-li-desc">{desc}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
+const SearchIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="7" />
+    <path d="M20 20l-3.5-3.5" />
+  </svg>
+)
 
 export default function ProductsPage() {
   useScrollReveal()
 
+  const [cat, setCat] = useState('all')
+  const [q, setQ] = useState('')
+  const [open, setOpen] = useState(null)      // product name, one at a time
+  const [lb, setLb] = useState(null)          // { photos, i, name }
+
+  useEffect(() => {
+    const prev = document.title
+    document.title = 'Core Product Portfolio — Hindusthan Technologies'
+    return () => { document.title = prev }
+  }, [])
+
+  const shown = useMemo(() => {
+    const term = q.trim().toLowerCase()
+    return PRODUCTS.filter(
+      (p) => (cat === 'all' || p.cat === cat) && (!term || p.find.includes(term))
+    )
+  }, [cat, q])
+
+  /* ---- lightbox: arrows + escape, scroll lock ---- */
+  const closeLb = useCallback(() => setLb(null), [])
+  const step = useCallback((d) => {
+    setLb((v) => (v ? { ...v, i: (v.i + d + v.photos.length) % v.photos.length } : v))
+  }, [])
+
+  useEffect(() => {
+    if (!lb) return
+    const { overflow } = document.body.style
+    document.body.style.overflow = 'hidden'
+    const onKey = (e) => {
+      if (e.key === 'Escape') closeLb()
+      if (e.key === 'ArrowLeft') step(-1)
+      if (e.key === 'ArrowRight') step(1)
+    }
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = overflow
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [lb, closeLb, step])
+
   return (
     <>
       <Nav />
-      <main className="psp-page">
-        {/* ---- Hero (centred, content-height) ---- */}
-        <section className="psp-hero">
-          <div className="wrap">
+      <main className="pp-page">
+        {/* ---- Hero ---- */}
+        <section className="pp-hero">
+          <div className="ap-shell">
             <p className="ap-crumb reveal">
               <a href="/">Home</a> <span aria-hidden="true">/</span>{' '}
               <span className="ap-crumb-current">Products</span>
             </p>
-            <h1 className="display psp-title reveal">
-              Built for the front line.
-              <br />
-              <span className="italic-accent">Engineered to order.</span>
-            </h1>
-            <p className="lead psp-hero-desc reveal">
-              Custom-built firefighting and special-purpose vehicles, engineered for municipal,
-              industrial, and defence-grade hazards — every unit precision-built to perform under
-              the most demanding conditions.
+            <p className="eyebrow reveal">
+              <span className="dot" />Section 8 — Core Products &amp; Services
             </p>
-            <a href="#build" className="psp-explore reveal">
-              Explore <span aria-hidden="true">→</span>
-            </a>
+            <h1 className="display pp-hero-title reveal">
+              Core Product <span className="italic-accent">Portfolio</span>
+            </h1>
+            <p className="pp-tagline reveal">Engineering of today, saving lives of tomorrow</p>
+            <p className="lead pp-hero-desc reveal">
+              HTPL specializes in the design, engineering, and manufacturing of a wide range of
+              firefighting and special-purpose vehicles (SPVs) tailored for industrial and tactical
+              environments.
+            </p>
+            <div className="pp-hero-actions reveal">
+              <a href="#index" className="btn btn-primary">
+                Browse the portfolio <span className="arrow">→</span>
+              </a>
+              <a href="/#contact" className="btn btn-ghost">Request a quote</a>
+            </div>
           </div>
         </section>
 
-        {/* ---- What we build (two categories flanking a central image) ---- */}
-        <section className="section-pad" id="build">
-          <div className="wrap">
-            <div className="sec-head center reveal">
-              <p className="eyebrow"><span className="dot"></span>Capability</p>
-              <h2 className="display h-sec">What we build</h2>
-              <p className="lead">Four distinct product lines engineered for specialized demands.</p>
+        {/* ---- Stats band (primary red) ---- */}
+        <section className="ap-stats-section">
+          <div className="ap-shell">
+            <div className="ap-statsband pp-statsband reveal">
+              {STATS.map((s) => (
+                <div className="ap-sb" key={s.l}>
+                  <span className="ap-sb-n">{s.n}</span>
+                  <span className="ap-sb-l">{s.l}</span>
+                </div>
+              ))}
             </div>
-            <div className="psp-build">
-              <CategoryCol icon={ICON.truck} title="Fire-fighting equipment & vehicles" items={FIRE} />
-              <figure className="psp-build-media reveal">
-                <img
-                  src="/images/products-build.jpg"
-                  alt="HTPL fire tender built at the Jagatpur facility"
-                  loading="lazy"
-                  decoding="async"
+          </div>
+        </section>
+
+        {/* ---- The two capability groupings ---- */}
+        <section className="pp-groups">
+          <div className="ap-shell">
+            <div className="pp-groups-grid">
+              {GROUPS.map((g) => (
+                <article className="pp-group reveal" key={g.title}>
+                  <h2 className="pp-group-title">{g.title}</h2>
+                  <ul className="pp-group-list">
+                    {g.items.map((it) => <li key={it}>{it}</li>)}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ---- Product index ---- */}
+        <section className="pp-index" id="index">
+          {/* sticky control bar — tabs + search */}
+          <div className="pp-controls">
+            <div className="ap-shell pp-controls-inner">
+              <div className="pp-tabs" role="tablist" aria-label="Product categories">
+                {CATEGORIES.map((c) => (
+                  <button
+                    key={c.id}
+                    type="button"
+                    role="tab"
+                    className="pp-tab"
+                    aria-selected={cat === c.id}
+                    onClick={() => { setCat(c.id); setOpen(null) }}
+                  >
+                    {c.label}<span className="pp-tab-n">{countOf(c.id)}</span>
+                  </button>
+                ))}
+              </div>
+              <div className="pp-search">
+                <SearchIcon />
+                <input
+                  type="search"
+                  value={q}
+                  onChange={(e) => setQ(e.target.value)}
+                  placeholder="Search specifications…"
+                  aria-label="Search the portfolio"
                 />
-              </figure>
-              <CategoryCol icon={ICON.cube} title="Special purpose vehicles (SPVs)" items={SPV} />
+              </div>
             </div>
-            <div className="psp-build-foot reveal">
-              <a href="/#products" className="psp-explore">
-                Explore our products <span aria-hidden="true">→</span>
-              </a>
+          </div>
+
+          <div className="ap-shell">
+            {/* re-keyed per category so the stagger replays on tab change */}
+            <div className="pp-list" key={cat}>
+              {shown.map((p, i) => {
+                const isOpen = open === p.name
+                const photos = p.photos.slice(0, 3) // cap at 3, min 1
+                return (
+                  <article
+                    className={`pp-row${isOpen ? ' is-open' : ''}`}
+                    key={p.name}
+                    style={{ animationDelay: `${Math.min(i * 35, 420)}ms` }}
+                  >
+                    <button
+                      type="button"
+                      className="pp-row-head"
+                      aria-expanded={isOpen}
+                      onClick={() => setOpen(isOpen ? null : p.name)}
+                    >
+                      <span className="pp-mark" aria-hidden="true" />
+                      <span className="pp-row-name">
+                        {p.name}
+                        {p.sub && <em>{p.sub}</em>}
+                      </span>
+                      <span className="pp-thumbs" aria-hidden="true">
+                        {photos.map((f) => (
+                          <img key={f} src={IMG + f} alt="" loading="lazy" decoding="async" />
+                        ))}
+                      </span>
+                    </button>
+
+                    <div className="pp-row-body">
+                      <div className="pp-clip">
+                        <div className={`pp-panels ${photos.length === 1 ? 'is-single' : 'is-multi'}`}>
+                          {/* identity */}
+                          <div className="pp-panel pp-ident">
+                            <p className="pp-ident-eyebrow">{p.eyebrow}</p>
+                            <div className="pp-disc">
+                              <b>{p.discN}</b>
+                              <span>{p.discL}</span>
+                            </div>
+                            <div>
+                              <h3 className="pp-ident-title">{p.name}</h3>
+                              <p className="pp-ident-desc">
+                                {p.sub && <>{p.sub} · </>}
+                                <b>{photos.length} photograph{photos.length === 1 ? '' : 's'}</b> on record.
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* build sheet */}
+                          <div className="pp-panel pp-spec">
+                            <h4 className="pp-spec-h">Specification</h4>
+                            <p className="pp-spec-intro">{p.specIntro}</p>
+                            {p.sheet.length > 0 && (
+                              <div className="pp-sheet">
+                                <h5 className="pp-sheet-h">Build sheet</h5>
+                                <ul>
+                                  {p.sheet.map(([k, v]) => (
+                                    <li key={k}>
+                                      <i>{k}</i>
+                                      <b>{v}</b>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* photographs — max 3, laid out per count (see .pp-panels modes) */}
+                          <div className="pp-photos">
+                            {photos.map((f, k) => (
+                              <figure className="pp-panel pp-photo" key={f}>
+                                <button
+                                  type="button"
+                                  className="pp-photo-btn"
+                                  aria-label={`Enlarge photograph ${k + 1} of ${photos.length}, ${p.name}`}
+                                  onClick={() => setLb({ photos, i: k, name: p.name })}
+                                >
+                                  <img
+                                    src={IMG + f}
+                                    alt={`${p.name} — photograph ${k + 1}`}
+                                    loading="lazy"
+                                    decoding="async"
+                                  />
+                                  <figcaption>
+                                    <span>{p.name}</span>
+                                    <b>{String(k + 1).padStart(2, '0')}/{String(photos.length).padStart(2, '0')}</b>
+                                  </figcaption>
+                                </button>
+                              </figure>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                )
+              })}
+
+              {shown.length === 0 && (
+                <p className="pp-empty">No products match that search.</p>
+              )}
             </div>
           </div>
         </section>
@@ -123,13 +286,26 @@ export default function ProductsPage() {
               <a href="/#contact" className="btn btn-primary">
                 Request a quote <span className="arrow">→</span>
               </a>
-              <a href="/products-services" className="btn btn-ghost">
-                View our services
-              </a>
+              <a href="/products-services" className="btn btn-ghost">Explore our services</a>
             </div>
           </div>
         </section>
       </main>
+
+      {/* ---- Lightbox ---- */}
+      {lb && (
+        <div className="pp-lb is-open" role="dialog" aria-modal="true" aria-label={lb.name}>
+          <button type="button" className="pp-lb-x" onClick={closeLb} aria-label="Close">×</button>
+          <button type="button" className="pp-lb-nav is-prev" onClick={() => step(-1)} aria-label="Previous">‹</button>
+          <img src={IMG + lb.photos[lb.i]} alt={`${lb.name} — photograph ${lb.i + 1}`} />
+          <button type="button" className="pp-lb-nav is-next" onClick={() => step(1)} aria-label="Next">›</button>
+          <div className="pp-lb-cap">
+            <span>{lb.name}</span>
+            <b>{lb.i + 1} / {lb.photos.length}</b>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </>
   )

@@ -40,19 +40,25 @@ export default function AboutPage() {
             <div className="ap-hero-collage reveal">
               <figure className="ap-col ap-col-lg">
                 <img
-                  src="/images/about/truck-2.jpeg"
-                  alt="HTPL fire tender in the HTPL studio"
+                  src="/images/about/office-building.webp"
+                  alt="Hindusthan Technologies corporate office, Jagatpur, Cuttack"
+                  width="1195"
+                  height="896"
                   loading="eager"
                   decoding="async"
                 />
+                <figcaption className="ap-col-cap">Hindusthan Technologies Pvt. Ltd.</figcaption>
               </figure>
               <figure className="ap-col ap-col-md">
                 <img
-                  src="/images/about/truck-3.jpeg"
-                  alt="HTPL FACT fire tender built at the Jagatpur facility"
+                  src="/images/about/factory-gate.webp"
+                  alt="Main gate of the Hindusthan Technologies factory, Jagatpur"
+                  width="1400"
+                  height="716"
                   loading="eager"
                   decoding="async"
                 />
+                <figcaption className="ap-col-cap">Hindusthan Technologies Pvt. Ltd.</figcaption>
               </figure>
             </div>
 

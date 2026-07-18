@@ -126,7 +126,7 @@ export default function Products() {
             <a href="#contact" className="btn btn-ghost on-dark">
               Download brochure <span className="arrow">↓</span>
             </a>
-            <a href="#contact" className="btn btn-primary">
+            <a href="/products" className="btn btn-primary">
               View all products <span className="arrow">→</span>
             </a>
           </div>
