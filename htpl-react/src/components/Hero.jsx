@@ -20,11 +20,10 @@
    ========================================================================== */
 
 const HERO = {
-  // eyebrow lines: the ISO line leads (bulleted + bold), then est./location.
-  eyebrow: [
-    ['AN ISO 9001:2015 CERTIFIED COMPANY'],
-    ['EST. 1987', 'JAGATPUR, CUTTACK', 'MAKE IN INDIA'],
-  ],
+  // top eyebrow: the bulleted, bold ISO line only.
+  eyebrow: 'AN ISO 9001:2015 CERTIFIED COMPANY',
+  // est./location meta — now shown under the description, not in the eyebrow.
+  meta: ['EST. 1987', 'JAGATPUR, CUTTACK', 'MAKE IN INDIA'],
   headline_top: 'Engineering of today,',
   headline_accent: 'saving lives of tomorrow.',
   lead:
@@ -46,6 +45,22 @@ const HERO = {
     { n: '38', plus: true, label: 'Years of expertise' },
     { n: '50', plus: true, label: 'PSU clients' },
   ],
+}
+
+/* Bold just the certification token inside an eyebrow segment, e.g.
+   "AN ISO 9001:2015 CERTIFIED COMPANY" → the "ISO 9001:2015" part renders
+   in Source Serif 4 700 while the rest keeps the line's weight. */
+const ISO_TOKEN = 'ISO 9001:2015'
+function emphasizeIso(seg) {
+  if (!seg.includes(ISO_TOKEN)) return seg
+  const [before, after] = seg.split(ISO_TOKEN)
+  return (
+    <>
+      {before}
+      <strong className="font-bold">{ISO_TOKEN}</strong>
+      {after}
+    </>
+  )
 }
 
 export default function Hero() {
@@ -90,43 +105,25 @@ export default function Hero() {
       <div className="w-full grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center lg:gap-16">
         {/* ============ LEFT — content (vertically centred; centre-aligned on mobile) ============ */}
         <div className="flex flex-col text-center md:text-left">
-          {/* Eyebrow — two lines: a bold, bulleted ISO line, then the plain
-              est./location line. Both flex-wrap so segments never break
-              mid-word on narrow phones. */}
+          {/* Eyebrow — the bold, bulleted ISO line only. The est./location meta
+              now sits under the description below. */}
           <div
             className="htpl-rise flex flex-col gap-y-1.5 items-center md:items-start"
             style={{ animationDelay: '.05s' }}
           >
-            {HERO.eyebrow.map((line, li) => (
-              <p
-                key={li}
-                className={`flex flex-wrap items-center gap-x-3 gap-y-1
-                           justify-center md:justify-start
-                           eyebrow-script uppercase text-accent-dk
-                           text-xs tracking-[0.18em] sm:text-[13px] ${
-                             li === 0 ? 'font-semibold' : 'font-medium'
-                           }`}
-              >
-                {/* bullet leads the ISO line only */}
-                {li === 0 && (
-                  <span
-                    className="htpl-dot inline-block h-[7px] w-[7px] rounded-full bg-accent
-                               shadow-[0_0_0_4px_rgba(214,57,36,0.12)]"
-                    aria-hidden="true"
-                  />
-                )}
-                {line.map((seg, i) => (
-                  <span key={seg} className="whitespace-nowrap">
-                    {seg}
-                    {i < line.length - 1 && (
-                      <span className="ml-3 text-accent/50" aria-hidden="true">
-                        ·
-                      </span>
-                    )}
-                  </span>
-                ))}
-              </p>
-            ))}
+            <p
+              className="flex flex-wrap items-center gap-x-3 gap-y-1
+                         justify-center md:justify-start
+                         eyebrow-script uppercase text-accent-dk
+                         text-xs tracking-[0.18em] sm:text-[13px] font-semibold"
+            >
+              <span
+                className="htpl-dot inline-block h-[7px] w-[7px] rounded-full bg-accent
+                           shadow-[0_0_0_4px_rgba(214,57,36,0.12)]"
+                aria-hidden="true"
+              />
+              <span className="whitespace-nowrap">{emphasizeIso(HERO.eyebrow)}</span>
+            </p>
           </div>
 
           {/* Headline — fluid clamp(2.2rem,4vw,4rem), line-height ~1.08. Two block
@@ -147,6 +144,27 @@ export default function Hero() {
               {HERO.headline_accent}
             </span>
           </h1>
+
+          {/* Est./location meta — sits directly under the main title. Flex-wrap
+              so segments never break mid-word on phones. */}
+          <p
+            className="htpl-rise mt-4 flex flex-wrap items-center gap-x-3 gap-y-1
+                       justify-center md:justify-start
+                       eyebrow-script uppercase text-accent-dk
+                       text-xs tracking-[0.18em] sm:text-[13px] font-medium"
+            style={{ animationDelay: '.3s' }}
+          >
+            {HERO.meta.map((seg, i) => (
+              <span key={seg} className="whitespace-nowrap">
+                {seg}
+                {i < HERO.meta.length - 1 && (
+                  <span className="ml-3 text-accent/50" aria-hidden="true">
+                    ·
+                  </span>
+                )}
+              </span>
+            ))}
+          </p>
 
           {/* Description — fluid clamp(0.9rem,1vw,1rem). */}
           <p
