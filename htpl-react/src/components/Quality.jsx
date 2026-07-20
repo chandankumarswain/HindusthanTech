@@ -67,10 +67,10 @@ export default function Quality() {
       <div className="wrap">
         <div className="sec-head reveal">
           <p className="eyebrow">
-            <span className="dot"></span>Quality &amp; safety
+            <span className="dot"></span>Safety &amp; compliance
           </p>
           <h2 className="display h-sec">
-            Our compliance <span className="italic-accent">commitments</span>
+            Our safety <span className="italic-accent">commitments</span>
           </h2>
         </div>
         <div className="quality-grid">

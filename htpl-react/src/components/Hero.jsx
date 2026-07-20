@@ -104,7 +104,7 @@ export default function Hero() {
                            justify-center md:justify-start
                            eyebrow-script uppercase text-accent-dk
                            text-xs tracking-[0.18em] sm:text-[13px] ${
-                             li === 0 ? 'font-bold' : 'font-medium'
+                             li === 0 ? 'font-semibold' : 'font-medium'
                            }`}
               >
                 {/* bullet leads the ISO line only */}
@@ -133,7 +133,10 @@ export default function Hero() {
               spans give the manual line break (italic always on its own line) AND
               separate targets for the per-line stagger (0.1s apart). max-width
               keeps an optimal measure so lines don't break awkwardly. */}
-          <h1 className="mt-5 max-w-[16ch] mx-auto md:mx-0 font-serif font-normal tracking-[-0.03em] text-ink text-[clamp(2.2rem,4vw,4rem)] leading-[1.08]">
+          {/* Mobile: wider measure + smaller fluid size so each phrase stays on a
+              single line → the title reads as exactly 2 lines. From sm+ the original
+              16ch measure and clamp(2.2rem,4vw,4rem) take over (the designed look). */}
+          <h1 className="mt-5 max-w-none sm:max-w-[16ch] mx-auto md:mx-0 font-serif font-normal tracking-[-0.03em] text-ink text-[clamp(1.35rem,6.2vw,2.2rem)] sm:text-[clamp(2.2rem,4vw,4rem)] leading-[1.08]">
             <span className="htpl-rise block" style={{ animationDelay: '.15s' }}>
               {HERO.headline_top}
             </span>
