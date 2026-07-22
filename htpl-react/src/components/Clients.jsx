@@ -19,11 +19,9 @@ const GROUPS = [
 ]
 
 // client name -> processed transparent logo (in /public/images/clients/<slug>.png).
-// The supplied "NRL" file was the wrong entity (Australian rugby league, not
-// Numaligarh Refinery Ltd), so NRL falls back to a clean text wordmark until a
-// correct logo is provided. Every other client maps to its official logo.
+// Every client maps to its official logo.
 const slugify = (name) => name.toLowerCase().replace(/\s+/g, '-')
-const NO_LOGO = new Set(['NRL'])
+const NO_LOGO = new Set()
 
 export default function Clients() {
   return (

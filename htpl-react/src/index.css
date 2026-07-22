@@ -3026,7 +3026,10 @@ section { position: relative; overflow-x: clip; }
 @media (max-width: 767px) {
   .pp-hero { padding-top: clamp(44px, 12vw, 72px); }
   .pp-panels.is-single, .pp-panels.is-multi { grid-template-columns: 1fr; }
-  .pp-photos { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: 1fr; }
+  /* photos stack full-width on phones — the container is display:flex by default,
+     so it must switch to a single-column grid for the row/1fr rules to apply
+     (otherwise the 2–3 photos squash into one cramped row). */
+  .pp-photos { display: grid; grid-auto-flow: row; grid-template-columns: 1fr; }
   .pp-statsband { grid-template-columns: 1fr; row-gap: 22px; }
   .pp-thumbs { display: none; }               /* keep the row readable on phones */
   .pp-row-head { grid-template-columns: 20px 1fr; gap: 12px; }

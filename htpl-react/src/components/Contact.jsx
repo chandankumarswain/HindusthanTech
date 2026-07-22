@@ -241,14 +241,40 @@ export default function Contact() {
                 <label>Requirement Type</label>
                 <select name="requirement">
                   <option>Select product / service</option>
-                  <option>Firefighting Truck</option>
-                  <option>Trailer / Portable Pump</option>
-                  <option>Quick Response Vehicle (QRV)</option>
-                  <option>Diesel Bowser / Oil Tanker</option>
-                  <option>MOSRU / Explosive Van / SPV</option>
-                  <option>Blood Donation Van</option>
-                  <option>Annual Maintenance Contract (AMC)</option>
-                  <option>Custom / Other</option>
+                  <optgroup label="Fire-Fighting Vehicles">
+                    <option>Small Water Tender</option>
+                    <option>Water Tender</option>
+                    <option>Water Bowser</option>
+                    <option>Water Bowser with Boom Tower</option>
+                    <option>Small Foam Tender</option>
+                    <option>Foam Tender</option>
+                    <option>Industrial Foam Tender</option>
+                    <option>Multi-Purpose Fire Tender</option>
+                    <option>DCP Fire Tender</option>
+                    <option>Foam Nurser</option>
+                    <option>Ultra-High Pressure Mist Tender</option>
+                    <option>Quick Response Unit</option>
+                    <option>Emergency Rescue Tender</option>
+                    <option>Truck Fire Fighting (TFF)</option>
+                  </optgroup>
+                  <optgroup label="Pumps & Equipment">
+                    <option>Trailer Fire Pumps</option>
+                    <option>Portable Fire Pump</option>
+                    <option>Mobile Foam Trolley</option>
+                    <option>Trolley Mounted Water Mist Unit</option>
+                  </optgroup>
+                  <optgroup label="Special Purpose Vehicles">
+                    <option>Mobile Oil Spillage Recovery Unit</option>
+                    <option>Diesel Bowser</option>
+                    <option>Mobile Service Van</option>
+                    <option>Explosive Van</option>
+                    <option>Mobile Blood Donation Van</option>
+                    <option>Oil Tanker</option>
+                  </optgroup>
+                  <optgroup label="Other">
+                    <option>Annual Maintenance Contract (AMC)</option>
+                    <option>Custom / Other</option>
+                  </optgroup>
                 </select>
               </div>
               <div className="field full">

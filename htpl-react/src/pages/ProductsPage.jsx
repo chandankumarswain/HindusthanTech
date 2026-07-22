@@ -18,8 +18,8 @@ import { CATEGORIES, GROUPS, PRODUCTS } from '../data/portfolio'
 const IMG = '/images/portfolio/'
 
 const STATS = [
-  { n: '23', l: 'Variants' },
-  { n: '77', l: 'Photographs' },
+  { n: '24', l: 'Variants' },
+  { n: '80', l: 'Photographs' },
   { n: '35', l: 'Max tonnage · GVW' },
   { n: '18000', l: 'Max water · Liters' },
   { n: '6000', l: 'Max pump · LPM' },

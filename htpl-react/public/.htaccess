@@ -1,0 +1,17 @@
+# SPA routing: serve index.html for any path that isn't a real file/dir.
+# React's client-side router then renders the correct page.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Let real files and directories (e.g. /assets, /htpl-admin, images) load normally.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else -> index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Prefer index.html as the default document.
+DirectoryIndex index.html
