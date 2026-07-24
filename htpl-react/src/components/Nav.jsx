@@ -199,10 +199,11 @@ export default function Nav() {
     }
   }, [open, close])
 
-  /* Close the drawer when a route/anchor is chosen or viewport grows */
+  /* Close the drawer when a route/anchor is chosen or viewport grows past the
+     tablet range (>1024px), where the desktop link row takes over again */
   useEffect(() => {
     if (!open) return
-    const mq = window.matchMedia('(min-width: 992px)')
+    const mq = window.matchMedia('(min-width: 1025px)')
     const onChange = (e) => e.matches && close()
     mq.addEventListener('change', onChange)
     return () => mq.removeEventListener('change', onChange)

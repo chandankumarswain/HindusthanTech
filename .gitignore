@@ -11,6 +11,9 @@ dist-ssr/
 # Vite
 .vite/
 
+# SMTP credentials (Google Workspace app password) — never commit
+htpl-react/public/mail-config.php
+
 # Logs
 npm-debug.log*
 yarn-debug.log*

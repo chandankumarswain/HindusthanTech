@@ -75,7 +75,7 @@ export default function Hero() {
                  min-h-[90vh]
                  px-[25px] py-[25px]
                  md:px-[50px] md:py-[50px]
-                 lg:px-20 lg:pt-[50px] lg:pb-20"
+                 min-[1025px]:px-20 min-[1025px]:pt-[50px] min-[1025px]:pb-20"
     >
       {/* Scoped keyframes (single-file requirement). Names are namespaced so they
           never collide with the legacy hero animations still in index.css. */}
@@ -102,7 +102,7 @@ export default function Hero() {
           • md + lg (grid-cols-2): equal halves, vertically centred against
             each other via items-center. Tablet and desktop share the 50/50 split.
       */}
-      <div className="w-full grid grid-cols-1 gap-10 md:grid-cols-2 md:items-center lg:gap-16">
+      <div className="w-full grid grid-cols-1 gap-10 min-[1025px]:grid-cols-2 min-[1025px]:items-center min-[1025px]:gap-16">
         {/* ============ LEFT — content (vertically centred; centre-aligned on mobile) ============ */}
         <div className="flex flex-col text-center md:text-left">
           {/* Eyebrow — the bold, bulleted ISO line only. The est./location meta
@@ -210,7 +210,7 @@ export default function Hero() {
               proof points in the content area below lg without crowding the truck. */}
           {/* 3 stats fit the width in an equal 3-column grid (no scroll) below lg */}
           <div
-            className="mt-7 grid grid-cols-3 gap-2.5 lg:hidden"
+            className="mt-7 grid grid-cols-3 gap-2.5 min-[1025px]:hidden"
             role="list"
             aria-label="Key facts"
           >
@@ -223,7 +223,7 @@ export default function Hero() {
         {/* ============ RIGHT — visual (vertically centred) ============ */}
         <div
           className="htpl-img-in relative w-full self-center
-                     aspect-[4/3] md:aspect-[5/4]"
+                     aspect-[4/3] min-[1025px]:aspect-[5/4]"
         >
           {/* Depth layer: faint diagonal red gradient + dot-grid (~6% opacity max)
               so it adds texture without competing with the truck. */}
@@ -271,12 +271,12 @@ export default function Hero() {
               so tablet + mobile use the in-content stat rail instead. */}
           {/* TOP-LEFT, kept high in the empty area above the cab → clear of the windshield. */}
           <StatCard
-            className="hidden lg:flex absolute top-1 left-0 z-20"
+            className="hidden min-[1025px]:flex absolute top-1 left-0 z-20"
             stat={HERO.stats[0]}
           />
           {/* BOTTOM-RIGHT, inset inside the box (never a negative offset) → never clipped. */}
           <StatCard
-            className="hidden lg:flex absolute bottom-2 right-0 z-20"
+            className="hidden min-[1025px]:flex absolute bottom-2 right-0 z-20"
             stat={HERO.stats[1]}
           />
         </div>

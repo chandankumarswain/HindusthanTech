@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-/* Where the form posts. Set VITE_CONTACT_ENDPOINT to your deployed Google Apps
-   Script Web App URL (see CONTACT_SETUP.md). On submit each enquiry is appended
-   to the Google Sheet and emailed to admin@hindusthantechnologies.com. */
-const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || ''
+/* Where the form posts: a PHP handler at the site root (public/contact.php).
+   It saves each enquiry to the admin-panel database (Enquiries) and emails
+   admin@hindusthantechnologies.com. Same-origin, so we read the JSON reply. */
+const CONTACT_ENDPOINT = '/contact.php'
 const CONTACT_EMAIL = 'admin@hindusthantechnologies.com'
 
 export default function Contact() {
@@ -13,41 +13,18 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const form = e.currentTarget
-    const body = new URLSearchParams(new FormData(form)) // simple request → no CORS preflight
-
-    if (!CONTACT_ENDPOINT) {
-      /* No Web App endpoint configured. Rather than claim success and silently
-         drop the enquiry, hand off to the visitor's mail client pre-addressed to
-         CONTACT_EMAIL, so it still reaches us. See CONTACT_SETUP.md. */
-      console.warn(
-        'Contact form: VITE_CONTACT_ENDPOINT is not set — falling back to mailto. See CONTACT_SETUP.md.'
-      )
-      const d = Object.fromEntries(new FormData(form))
-      const subject = `Website enquiry — ${d.fullName || 'HTPL'}`
-      const lines = [
-        `Name: ${d.fullName || '-'}`,
-        `Organization: ${d.organization || '-'}`,
-        `Phone: ${d.phone || '-'}`,
-        `Email: ${d.email || '-'}`,
-        `Requirement: ${d.requirement || '-'}`,
-        '',
-        d.message || '',
-      ]
-      window.location.href =
-        `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}` +
-        `&body=${encodeURIComponent(lines.join('\n'))}`
-      setStatus('sent')
-      form.reset()
-      return
-    }
+    const body = new URLSearchParams(new FormData(form)) // urlencoded → no CORS preflight
 
     setStatus('sending')
     try {
-      // Apps Script web apps don't send CORS headers, so use no-cors (opaque
-      // response). A resolved fetch means the request was delivered.
-      await fetch(CONTACT_ENDPOINT, { method: 'POST', mode: 'no-cors', body })
-      setStatus('sent')
-      form.reset()
+      const res = await fetch(CONTACT_ENDPOINT, { method: 'POST', body })
+      const data = await res.json().catch(() => ({ success: res.ok }))
+      if (data.success) {
+        setStatus('sent')
+        form.reset()
+      } else {
+        setStatus('error')
+      }
     } catch (err) {
       console.error('Contact form submission failed:', err)
       setStatus('error')

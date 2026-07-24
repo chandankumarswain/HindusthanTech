@@ -1602,8 +1602,11 @@ section { position: relative; overflow-x: clip; }
 .psp-svc-title { margin: 0; font-family: var(--serif); font-weight: 600; font-size: clamp(18px, 1.5vw, 21px); letter-spacing: -0.01em; line-height: 1.15; color: var(--ink); }
 .psp-svc-desc { margin: 12px 0 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-2); }
 /* tablet */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .psp-services { grid-template-columns: 1fr; }
+  /* hero used the fluid .wrap; pin it to the site's 50px tablet gutter so it
+     matches every other section's inset (removes the max-width centring gap) */
+  .psp-hero .wrap { max-width: none; padding-inline: 50px; }
 }
 /* mobile */
 @media (max-width: 767px) {
@@ -1611,6 +1614,7 @@ section { position: relative; overflow-x: clip; }
   .psp-title { font-size: clamp(1.85rem, 8.4vw, 2.5rem); max-width: 18ch; }
   .psp-hero-desc { font-size: 15px; }
   .psp-services { margin-top: 28px; gap: 16px; }
+  .psp-hero .wrap { padding-inline: 25px; }
 }
 
 /* ============================================================
@@ -2070,8 +2074,9 @@ section { position: relative; overflow-x: clip; }
   }
   .proc-label h4 { font-size: 18px; }
 }
-/* Tablet & below: switch the center nav to the hamburger drawer */
-@media (max-width: 991px) {
+/* Tablet & below (incl. landscape iPad ≤1024): switch the center nav to the
+   hamburger drawer — the full desktop link row is too wide to sit cleanly here */
+@media (max-width: 1024px) {
   /* tablet: keep 10vh / 80px floor; padding follows the site's 50px tablet gutter */
   .nav-inner { grid-template-columns: auto 1fr; height: 10vh; min-height: 80px; padding: 0 50px; }
   .nav-links { display: none; }
@@ -3562,4 +3567,79 @@ section { position: relative; overflow-x: clip; }
   .pm-list-sub { margin-left: 0; flex-basis: 100%; }
   .pm-page .ap-statsband { grid-template-columns: 1fr; row-gap: 26px; }
   .pm-page .ap-sb, .pm-page .ap-sb:first-child { border-left: none; }
+}
+
+/* ============================================================
+   TABLET VIEW — unified gutter (breakpoint: ≤1024px)
+   Below 992px every section container already resolves to the
+   50px gutter through its own ≤991 override. This block extends
+   that identical 50px inset across the landscape-tablet band
+   (992–1024px) so EVERY section keeps exactly 50px each side up
+   to the 1024px tablet breakpoint — matching the nav drawer above.
+   The min-width:992px guard keeps the mobile 25px gutters intact;
+   it sits at the end of the file so it wins over the base 80px
+   desktop declarations. Full-bleed elements (the .flt carousel,
+   red stat/CTA bands, the sticky .pp-controls bar) are excluded
+   by design — only their inner content containers are listed.
+   ============================================================ */
+@media (min-width: 992px) and (max-width: 1024px) {
+  .section-pad > .wrap,
+  .ap-shell,
+  .about2-shell,
+  .products .wrap,
+  .hiw-inner,
+  .pgal-shell,
+  .gallery-shell,
+  .cta-band .wrap,
+  .footer .wrap,
+  .footer-watermark,
+  .statsbar-grid,
+  .psp-hero .wrap {
+    padding-inline: 50px;
+  }
+  /* psp hero used the fluid, max-width-centred .wrap on desktop — drop the
+     centring so its 50px inset lines up flush like every other section */
+  .psp-hero .wrap { max-width: none; }
+}
+
+/* ============================================================
+   TABLET VIEW — full-screen sections + vertical alignment (768–1024px)
+   Restores the desktop 100vh rhythm and vertical centring that the
+   site switched off below 991px, and stacks the two-column sections
+   (hero columns are stacked in Hero.jsx). Mobile (<768px) keeps
+   content-height sections by design, so the guard starts at 768px.
+   Sections that deliberately opt out of 100vh (.ap-stats-section,
+   .ap-sec-auto) keep their smaller height via higher specificity.
+   ============================================================ */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Landing — full-screen section types (already flex-centred at base) */
+  .section-pad,
+  .about2,
+  .hiw,
+  .gallery,
+  #reach,
+  #hero { min-height: 100vh; }
+
+  /* Company Overview (/about) — base is 100vh + column-centred */
+  .about-page > section { min-height: 100vh; }
+
+  /* Services page — every section full-screen; centre the non-section-pad ones */
+  .psp-page > section { min-height: 100vh; }
+  .psp-page > .psp-hero,
+  .psp-page > .ap-cta-wrap { display: flex; flex-direction: column; justify-content: center; }
+
+  @supports (min-height: 100dvh) {
+    .section-pad, .about2, .hiw, .gallery, #reach, #hero,
+    .about-page > section, .psp-page > section { min-height: 100dvh; }
+  }
+
+  /* Vertical alignment — stack the two-column sections to a single column
+     through the 1024 tablet ceiling (matches their existing ≤991 stacking):
+     our story, services aside, nationwide map, contact */
+  .about2-split { grid-template-columns: 1fr; gap: 48px; }
+  .serve-layout { grid-template-columns: 1fr; gap: clamp(28px, 4vw, 40px); }
+  .contact-grid { grid-template-columns: 1fr; align-items: stretch; gap: clamp(28px, 6vw, 40px); }
+  .reach-grid   { grid-template-columns: 1fr; gap: clamp(32px, 6vw, 56px); }
+  .reach-media  { order: 2; }
+  .reach-media img { max-width: 460px; margin-inline: auto; }
 }
