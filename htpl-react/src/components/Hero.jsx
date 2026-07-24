@@ -104,16 +104,16 @@ export default function Hero() {
       */}
       <div className="w-full grid grid-cols-1 gap-10 min-[1025px]:grid-cols-2 min-[1025px]:items-center min-[1025px]:gap-16">
         {/* ============ LEFT — content (vertically centred; centre-aligned on mobile) ============ */}
-        <div className="flex flex-col text-center md:text-left">
+        <div className="flex flex-col text-center min-[1025px]:text-left">
           {/* Eyebrow — the bold, bulleted ISO line only. The est./location meta
               now sits under the description below. */}
           <div
-            className="htpl-rise flex flex-col gap-y-1.5 items-center md:items-start"
+            className="htpl-rise flex flex-col gap-y-1.5 items-center min-[1025px]:items-start"
             style={{ animationDelay: '.05s' }}
           >
             <p
               className="flex flex-wrap items-center gap-x-3 gap-y-1
-                         justify-center md:justify-start
+                         justify-center min-[1025px]:justify-start
                          eyebrow-script uppercase text-accent-dk
                          text-xs tracking-[0.18em] sm:text-[13px] font-semibold"
             >
@@ -133,7 +133,7 @@ export default function Hero() {
           {/* Mobile: wider measure + smaller fluid size so each phrase stays on a
               single line → the title reads as exactly 2 lines. From sm+ the original
               16ch measure and clamp(2.2rem,4vw,4rem) take over (the designed look). */}
-          <h1 className="mt-5 max-w-none sm:max-w-[16ch] mx-auto md:mx-0 font-serif font-normal tracking-[-0.03em] text-ink text-[clamp(1.35rem,6.2vw,2.2rem)] sm:text-[clamp(2.2rem,4vw,4rem)] leading-[1.08]">
+          <h1 className="mt-5 max-w-none sm:max-w-[16ch] mx-auto min-[1025px]:mx-0 font-serif font-normal tracking-[-0.03em] text-ink text-[clamp(1.35rem,6.2vw,2.2rem)] sm:text-[clamp(2.2rem,4vw,4rem)] leading-[1.08]">
             <span className="htpl-rise block" style={{ animationDelay: '.15s' }}>
               {HERO.headline_top}
             </span>
@@ -149,7 +149,7 @@ export default function Hero() {
               so segments never break mid-word on phones. */}
           <p
             className="htpl-rise mt-4 flex flex-wrap items-center gap-x-3 gap-y-1
-                       justify-center md:justify-start
+                       justify-center min-[1025px]:justify-start
                        eyebrow-script uppercase text-accent-dk
                        text-xs tracking-[0.18em] sm:text-[13px] font-medium"
             style={{ animationDelay: '.3s' }}
@@ -168,7 +168,7 @@ export default function Hero() {
 
           {/* Description — fluid clamp(0.9rem,1vw,1rem). */}
           <p
-            className="htpl-rise mt-6 max-w-[54ch] mx-auto md:mx-0 text-ink-2 leading-[1.7]
+            className="htpl-rise mt-6 max-w-[54ch] mx-auto min-[1025px]:mx-0 text-ink-2 leading-[1.7]
                        text-[clamp(0.9rem,1vw,1rem)]"
             style={{ animationDelay: '.35s' }}
           >
@@ -177,7 +177,7 @@ export default function Hero() {
 
           {/* CTAs — desktop inline, mobile full-width stacked (gap-3). */}
           <div
-            className="htpl-rise mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
+            className="htpl-rise mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4 min-[1025px]:justify-start"
             style={{ animationDelay: '.5s' }}
           >
             <a

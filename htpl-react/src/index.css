@@ -3633,13 +3633,82 @@ section { position: relative; overflow-x: clip; }
     .about-page > section, .psp-page > section { min-height: 100dvh; }
   }
 
+  /* Fit-to-content height on tablet (kill the empty full-screen gap) so the
+     content fills the section. ID specificity overrides the 100vh/100dvh above,
+     so the other .section-pad sections keep their full-screen treatment.
+     Includes the map (reach) + our story (about) so their content fills too. */
+  #commitment,
+  #quality,
+  #quality-framework,
+  #process,
+  #track-record,
+  #reach,
+  #about,
+  .about-page > section.ap-hero,
+  .about-page > section.ap-cta-wrap { min-height: auto; }
+
   /* Vertical alignment — stack the two-column sections to a single column
      through the 1024 tablet ceiling (matches their existing ≤991 stacking):
      our story, services aside, nationwide map, contact */
   .about2-split { grid-template-columns: 1fr; gap: 48px; }
   .serve-layout { grid-template-columns: 1fr; gap: clamp(28px, 4vw, 40px); }
+  /* What we serve — single image on tablet: keep the first, hide the rest, and
+     let it fill the full section width. */
+  .serve-collage { grid-template-columns: 1fr; grid-template-areas: "t" "a"; max-width: none; width: 100%; }
+  .serve-pic-2, .serve-pic-3, .serve-pic-4, .serve-pic-5 { display: none; }
+  .serve-pic-1 { width: 100%; }
   .contact-grid { grid-template-columns: 1fr; align-items: stretch; gap: clamp(28px, 6vw, 40px); }
-  .reach-grid   { grid-template-columns: 1fr; gap: clamp(32px, 6vw, 56px); }
+  /* Contact info — two balanced columns like the reference (phone/email/office/
+     factory fill the left, departments + working hours the right). The message
+     form stays below, full width. */
+  .contact-info { display: block; columns: 2; column-gap: clamp(28px, 4vw, 56px); }
+  .contact-info .ci-item { break-inside: avoid; margin-bottom: 22px; }
+  .contact-info .ci-item:last-child { margin-bottom: 0; }
+  .reach-grid   { grid-template-columns: 1fr; gap: clamp(28px, 4vw, 44px); }
   .reach-media  { order: 2; }
-  .reach-media img { max-width: 460px; margin-inline: auto; }
+  /* Larger map so the stacked content fills the section (was capped at 460px). */
+  .reach-media img { max-width: min(760px, 94%); width: 100%; margin-inline: auto; }
+
+  /* ---- Centre section content on tablet (match the reference image) ----
+     The landing hero uses Tailwind utilities and is centred through the tablet
+     range directly in Hero.jsx (alignment flips at min-[1025px], matching the
+     grid). Our story + Nationwide use these real CSS classes: */
+  /* Our story (About) — centre the kicker/heading, but let the sub-content fill
+     the full inner width (no narrow max-width caps). */
+  .about2-left { text-align: center; }
+  .about2-left .eyebrow { display: flex; justify-content: center; }
+  .about2-lead { max-width: none; margin-inline: 0; }
+  /* Stat: number + label side-by-side on one line (like desktop), centred group. */
+  .about2-stat { flex-direction: row; align-items: center; justify-content: center; text-align: left; gap: 14px; }
+  .about2-stat .l { max-width: none; }
+  .about2-actions { justify-content: center; }
+  .about2-chips { justify-content: center; }
+  /* Address — centre the block (it has a 52ch cap, otherwise pins left). */
+  .about2-addr { margin-inline: auto; text-align: center; }
+  /* Images fill the full inner width, split into two equal columns. */
+  .about2-media { max-width: none; margin-inline: 0; grid-template-columns: 1fr 1fr; }
+
+  /* Nationwide presence (Reach) — match the "our story" design: centred
+     kicker/heading, full-width lead, centred stats + actions. */
+  .reach-body { text-align: center; }
+  .reach-body .eyebrow { display: flex; justify-content: center; }
+  .reach-lead { max-width: none; margin-inline: 0; }
+  .reach-stats { justify-content: center; }
+  .reach-actions { justify-content: center; }
+
+  /* Hero headline — keep each phrase on one line (2 lines total) by dropping the
+     narrow 16ch measure the Tailwind classes impose from sm upward. */
+  #hero h1 { max-width: none; }
+  #hero h1 > span { white-space: nowrap; }
+
+  /* Our story — drop the large top image; keep the two smaller vehicles. */
+  .about2-fig.is-lg { display: none; }
+
+  /* Gallery (Track record) — trim the top/bottom breathing room on tablet. */
+  .gallery { padding-block: clamp(28px, 4vw, 44px); }
+
+  /* Clients — 2 logos per line (like desktop); tiles fill each grid cell
+     instead of flex-wrapping into ragged, centred rows. */
+  .client-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .client-logo-box { width: 100%; }
 }
