@@ -3005,7 +3005,7 @@ section { position: relative; overflow-x: clip; }
    the images cover their cells (no letterbox). Long build sheets scroll inside
    the spec panel rather than pushing the photos off-screen. */
 .pp-row { scroll-margin-top: calc(var(--nav-h) + 64px); }
-@media (min-width: 992px) {
+@media (min-width: 1025px) {
   .pp-row.is-open .pp-panels { height: calc(100dvh - var(--nav-h)); min-height: 480px; }
   .pp-panels.is-single { grid-template-rows: 1fr; }
   .pp-panels.is-multi { grid-template-rows: minmax(0, 58%) 1fr; }
@@ -3016,9 +3016,10 @@ section { position: relative; overflow-x: clip; }
   .pp-photo-btn img { height: 100%; aspect-ratio: auto; }
 }
 
-/* tablet — 50px gutters (via .ap-shell). Both modes: identity + spec on the top
-   row, photos spanning full-width below. */
-@media (max-width: 991px) {
+/* tablet (≤1024) — 50px gutters (via .ap-shell). Both modes fit content:
+   identity + spec on the top row, photos spanning full-width below. Single-image
+   products drop their 3rd column so the photo sits under the card like multi. */
+@media (max-width: 1024px) {
   .pp-groups-grid { grid-template-columns: 1fr; }
   .pp-panels.is-single, .pp-panels.is-multi { grid-template-columns: 1fr 1.5fr; }
   .pp-panels.is-single .pp-photos { grid-column: 1 / -1; }
@@ -3646,6 +3647,9 @@ section { position: relative; overflow-x: clip; }
   #about,
   .about-page > section.ap-hero,
   .about-page > section.ap-cta-wrap { min-height: auto; }
+
+  /* Products & Services page — every section fits its content on tablet. */
+  .psp-page > section { min-height: auto; }
 
   /* Vertical alignment — stack the two-column sections to a single column
      through the 1024 tablet ceiling (matches their existing ≤991 stacking):

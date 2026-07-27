@@ -157,8 +157,16 @@ export default function Nav() {
   useEffect(() => {
     if (!open) return
 
-    const { overflow } = document.body.style
-    document.body.style.overflow = 'hidden'
+    const body = document.body
+    const prevOverflow = body.style.overflow
+    const prevPaddingRight = body.style.paddingRight
+
+    /* Reserve the exact width of the scrollbar we're about to hide, so locking
+       scroll doesn't widen the viewport and snap the page/navbar sideways
+       ("jump"). On touch devices with overlay scrollbars this is 0 — no-op. */
+    const scrollBarW = window.innerWidth - document.documentElement.clientWidth
+    body.style.overflow = 'hidden'
+    if (scrollBarW > 0) body.style.paddingRight = `${scrollBarW}px`
 
     const drawer = drawerRef.current
     const focusables = () =>
@@ -194,7 +202,8 @@ export default function Nav() {
 
     document.addEventListener('keydown', onKeyDown)
     return () => {
-      document.body.style.overflow = overflow
+      body.style.overflow = prevOverflow
+      body.style.paddingRight = prevPaddingRight
       document.removeEventListener('keydown', onKeyDown)
     }
   }, [open, close])
