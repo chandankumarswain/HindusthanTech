@@ -1,8 +1,6 @@
-import { useState } from 'react'
-
 /* ------------------------------------------------------------------
    Footer — premium industrial close.
-   Layout inspired by the reference (newsletter block · link columns ·
+   Layout inspired by the reference (company overview · link columns ·
    contact · bottom bar · oversized wordmark), rebuilt in the HTPL
    design system. Every fact is sourced from the existing site
    content (Nav / About / Products / Contact / StatsBar) — nothing
@@ -44,14 +42,6 @@ const INDUSTRIES = [
 const CERTS = ['MSME', 'DGQA', 'Z CERT', 'ISO 9001', 'CMVR']
 
 export default function Footer() {
-  const [email, setEmail] = useState('')
-  const [subscribed, setSubscribed] = useState(false)
-
-  const handleSubscribe = (e) => {
-    e.preventDefault()
-    if (email.trim()) setSubscribed(true)
-  }
-
   return (
     <footer className="footer">
       {/* warm corner glow — brand red only (decorative) */}
@@ -69,30 +59,6 @@ export default function Footer() {
               <span><strong>Est. 1987</strong> · Jagatpur, Cuttack</span>
               <span><strong>38+</strong> years · <strong>2000+</strong> vehicles · <strong>50+</strong> PSU clients</span>
             </p>
-
-            <div className="footer-news">
-              <h2 className="footer-news-title">Stay connected</h2>
-              <p>Get product updates, project highlights, and manufacturing news from HTPL.</p>
-              {subscribed ? (
-                <p className="footer-news-ok" role="status">Thanks — you're on the list ✓</p>
-              ) : (
-                <form className="footer-news-form" onSubmit={handleSubscribe} aria-label="Newsletter signup">
-                  <input
-                    type="email"
-                    required
-                    placeholder="Enter your email"
-                    aria-label="Email address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <button type="submit" className="footer-news-btn" aria-label="Subscribe">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h13M13 6l6 6-6 6" />
-                    </svg>
-                  </button>
-                </form>
-              )}
-            </div>
           </div>
 
           {/* COLUMN 02 — quick links */}

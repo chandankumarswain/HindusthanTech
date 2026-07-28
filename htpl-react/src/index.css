@@ -78,7 +78,7 @@ section { position: relative; overflow-x: clip; }
 @supports (min-height: 100dvh) { .section-pad { min-height: 100dvh; } }
 /* Full-width shell inside padded sections: 80px · 50px · 25px (matches About) */
 .section-pad > .wrap { max-width: none; width: 100%; margin: 0; padding-inline: 80px; }
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .section-pad { min-height: auto; }
   .section-pad > .wrap { padding-inline: 50px; }
 }
@@ -553,7 +553,7 @@ section { position: relative; overflow-x: clip; }
 }
 
 /* --- hero responsive --- (typography scales fluidly via clamp(); queries handle layout/padding only) */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   /* tablet keeps the equal 48/50 split — only the gutter (50px) tightens; type scales via clamp() */
   .hero-shell { padding-inline: 50px; }
   .hero-left { width: 100%; max-width: none; }
@@ -828,7 +828,7 @@ section { position: relative; overflow-x: clip; }
 .value-card p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.5; }
 
 /* --- about responsive --- (headings scale via clamp(); queries handle layout only) */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .about2 { min-height: auto; }
   .about2-shell { padding-inline: 50px; }
   /* tablet: stack story over images (content first), values to 2 columns */
@@ -965,7 +965,7 @@ section { position: relative; overflow-x: clip; }
 
 /* --- products responsive --- */
 /* shell padding steps: 50px tablet · 25px mobile (80px base set above) */
-@media (max-width: 991px) { .products .wrap { padding-inline: 50px; } }
+@media (max-width: 1024px) { .products .wrap { padding-inline: 50px; } }
 @media (max-width: 767px) { .products .wrap { padding-inline: 25px; } }
 
 @media (max-width: 860px) {
@@ -1096,7 +1096,7 @@ section { position: relative; overflow-x: clip; }
 }
 
 /* ---- tablet ≤991 ---- */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .hiw { min-height: auto; }
   .hiw-inner { padding-inline: 50px; }
   .hiw-head { grid-template-columns: 1fr; gap: 22px; align-items: start; margin-bottom: 44px; }
@@ -1251,7 +1251,7 @@ section { position: relative; overflow-x: clip; }
 .pgal-card:hover .pgal-img { transform: scale(1.05); }
 
 /* tablet — 2-column mosaic, 50px gutters */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .pgal-shell { padding-inline: 50px; }
   .pgal-mosaic {
     grid-template-columns: repeat(2, 1fr);
@@ -1425,7 +1425,7 @@ section { position: relative; overflow-x: clip; }
 .tst-num { font-family: var(--serif); font-size: clamp(1.1rem, 1.6vw, 1.4rem); color: var(--accent); line-height: 1; }
 .tst-name { font-family: var(--sans); font-weight: 600; font-size: clamp(17px, 1.5vw, 21px); letter-spacing: -0.01em; line-height: 1.2; color: var(--ink); }
 .tst-row-desc { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-2); max-width: 46ch; }
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .tst-layout { grid-template-columns: 1fr; gap: clamp(28px, 5vw, 44px); }
   .tst-media { max-width: 320px; }
 }
@@ -1468,7 +1468,7 @@ section { position: relative; overflow-x: clip; }
 .qmf-card-desc { margin: 12px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--ink-2); }
 /* tablet / mobile — switch cards to a horizontal (icon-left) layout so the
    content never gets squeezed into a too-narrow column */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .qmf-cards { grid-template-columns: repeat(2, 1fr); }
   .qmf-card { flex-direction: row; align-items: center; text-align: left; gap: 18px; padding: clamp(22px, 2.6vw, 28px); }
   .qmf-card-body { align-items: flex-start; }
@@ -1678,7 +1678,7 @@ section { position: relative; overflow-x: clip; }
 .flt-progress-wrap { width: min(840px, 90vw); margin: clamp(22px, 3vw, 30px) auto 0; height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
 .flt-progress { height: 100%; border-radius: 4px; background: repeating-linear-gradient(115deg, var(--accent) 0 9px, var(--accent-dk) 9px 18px); }
 .flt-card:focus-visible, .flt-nav:focus-visible, .flt-dot:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .flt-controls { display: flex; }
 }
 @media (max-width: 680px) {
@@ -1731,7 +1731,7 @@ section { position: relative; overflow-x: clip; }
   letter-spacing: 0.08em; color: var(--ink);
 }
 /* Logo container scales with the site's breakpoints: tablet 180×90 · mobile 140×70 */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .client-logo-box { width: 180px; height: 90px; padding: 14px 16px; }
   .client-wordmark { font-size: 18px; }
 }
@@ -1806,7 +1806,7 @@ section { position: relative; overflow-x: clip; }
    ============================================================ */
 .cta-band { background: var(--accent); color: #fff; }
 .cta-band .wrap { display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-block: clamp(48px, 6vw, 80px); padding-inline: 80px; }
-@media (max-width: 991px) { .cta-band .wrap { padding-inline: 50px; } }
+@media (max-width: 1024px) { .cta-band .wrap { padding-inline: 50px; } }
 @media (max-width: 767px) { .cta-band .wrap { padding-inline: 25px; } }
 .cta-band h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 4vw, 52px); margin: 0; letter-spacing: -0.02em; max-width: 18ch; line-height: 1.02; }
 .cta-band p { margin: 16px 0 0; font-size: 16.5px; color: rgba(255,255,255,0.88); max-width: 46ch; }
@@ -1871,7 +1871,7 @@ section { position: relative; overflow-x: clip; }
 .form-status a { color: var(--accent); text-decoration: underline; }
 
 /* --- contact responsive: 50/50 on desktop & tablet · single column on mobile --- */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   /* tablet keeps the 50/50 split; the form's inner fields stack so they never crowd */
   .form-grid { grid-template-columns: 1fr; }
 }
@@ -1924,38 +1924,6 @@ section { position: relative; overflow-x: clip; }
   letter-spacing: 0.07em; color: rgba(255,255,255,0.8);
 }
 .footer-meta strong { color: #fff; font-weight: 600; }
-
-/* newsletter — "stay connected" */
-.footer-news { margin: 28px 0 0; max-width: 380px; }
-.footer-news-title {
-  font-family: var(--serif); font-weight: 400; letter-spacing: -0.02em;
-  font-size: clamp(20px, 1.8vw, 26px); line-height: 1.1; margin: 0;
-}
-.footer-news > p {
-  font-size: clamp(13px, 0.9vw, 14px); color: rgba(255,255,255,0.85);
-  line-height: 1.6; margin: 10px 0 16px;
-}
-.footer-news-form {
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14);
-  border-radius: 999px; padding: 5px 5px 5px 18px;
-  transition: border-color .2s, box-shadow .2s;
-}
-.footer-news-form:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-wash); }
-.footer-news-form input {
-  flex: 1; min-width: 0; background: transparent; border: 0; outline: none;
-  color: var(--bone); font-family: var(--sans);
-  font-size: 16px; /* 16px prevents iOS focus zoom */
-}
-.footer-news-form input::placeholder { color: rgba(239,236,229,0.45); }
-.footer-news-btn {
-  flex: none; width: 42px; height: 42px; border-radius: 50%;
-  background: var(--accent); color: #fff; border: 0; cursor: pointer;
-  display: grid; place-items: center;
-  transition: transform .2s cubic-bezier(.2,.8,.2,1), background .2s;
-}
-.footer-news-btn:hover { background: var(--accent-dk); transform: translateX(2px); }
-.footer-news-ok { color: #fff; font-size: 14px; margin: 6px 0 0; }
 
 /* link / info columns */
 .footer-col-title {
@@ -2013,19 +1981,21 @@ section { position: relative; overflow-x: clip; }
 }
 
 /* --- footer responsive: 80 / 50 / 25 padding · tablet 2-col · mobile 1-col --- */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .footer .wrap { padding-inline: 50px; }
   .footer-watermark { padding-inline: 50px; }
-  /* tablet: company+newsletter spans the full row, the four columns drop to 2-up */
+  /* tablet: the company overview spans the full row, the four columns drop to 2-up */
   .footer-top { grid-template-columns: 1fr 1fr; gap: 34px 40px; }
   .footer-brand { grid-column: 1 / -1; }
+  /* the brand column now owns the full row, so its copy drops the desktop
+     42ch cap and stretches edge-to-edge with it */
+  .footer-about { max-width: none; }
 }
 @media (max-width: 767px) {
   .footer .wrap { padding-inline: 25px; }
   /* mobile: brand full-width on top, then the four link columns in a 2×2 grid */
   .footer-top { grid-template-columns: 1fr 1fr; gap: 30px 24px; }
   .footer-brand { grid-column: 1 / -1; }
-  .footer-news { max-width: 100%; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
   .footer-watermark { transform: none; padding-inline: 25px; }
 }
@@ -2044,35 +2014,52 @@ section { position: relative; overflow-x: clip; }
   .statsbar-grid { grid-template-columns: repeat(2, 1fr); padding-inline: 50px; row-gap: clamp(28px, 4vw, 40px); }
   .statsbar-cell:nth-child(odd) { border-left: none; }
 }
-/* Tablet + mobile: the 8-node wave is too wide — collapse to a vertical
-   dotted timeline (circle left, label right). Matches the site's 991/767 system. */
-@media (max-width: 991px) {
+/* Tablet + mobile: the 8-node wave is too wide — collapse to the vertical
+   node-linked timeline, mirroring the Our Milestones page style: a left spine
+   with node dots, each step a bordered card (icon disc + number/title/sub)
+   with a left accent border. One shared layout from 1024px down, so tablet and
+   mobile read identically — only the gutters change. */
+@media (max-width: 1024px) {
   .proc-flow {
-    flex-direction: column; height: auto; margin-top: 44px;
-    gap: 6px; padding-left: 4px;
+    display: block; grid-template-columns: none;
+    height: auto; margin-top: 40px; padding-left: 34px; position: relative;
   }
-  .proc-wave { display: none; }
-  /* single vertical dotted line running through the circle centres (left: 31px) */
+  /* left spine — mirrors .mile-line::before (2px track, node centres at 6px) */
   .proc-flow::before {
-    content: ""; position: absolute; left: 31px; top: 32px; bottom: 32px;
-    border-left: 2px dotted var(--accent); opacity: 0.5;
+    content: ""; display: block; position: absolute; left: 5px; top: 6px; bottom: 6px;
+    width: 2px; background: var(--line); border: 0; opacity: 1;
   }
-  .proc-node { display: flex; align-items: center; gap: 18px; min-height: 88px; }
+  .proc-wave, .proc-wave-m { display: none; }   /* drop both connector paths */
+  .proc-node {
+    display: flex; flex-direction: row; align-items: center; justify-content: flex-start;
+    text-align: left; gap: 16px; min-height: 0;
+    margin-bottom: clamp(16px, 4vw, 24px); padding: 14px 18px;
+    position: relative; z-index: 1;
+    background: var(--paper); border: 1px solid var(--line-2);
+    border-left: 3px solid var(--line); border-radius: 10px;
+    grid-area: auto;
+  }
+  .proc-node:last-child { margin-bottom: 0; }
+  /* node dot sitting on the spine — mirrors .mile-item::before. The extra 3px
+     (vs the milestone's -34px) offsets this node's own 3px left border, so the
+     dot centre lands on the spine centre. */
+  .proc-node::before {
+    content: ""; position: absolute; left: -37px; top: 50%; transform: translateY(-50%);
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--bone); border: 2px solid var(--line); z-index: 2;
+  }
   /* position:relative (not static) so .proc-ring stays anchored to the circle,
      not the full-width node; reset the desktop absolute placement. */
   .proc-circle {
-    position: relative; left: auto; transform: none; order: -1; flex: none;
-    width: 62px; height: 62px;
+    position: relative; left: auto; top: auto; transform: none; order: -1; flex: none;
+    width: 54px; height: 54px;
   }
   .is-up .proc-circle, .is-down .proc-circle { top: auto; }
-  .proc-circle .proc-ico { width: 24px; height: 24px; }
+  .proc-circle .proc-ico { width: 22px; height: 22px; }
   .is-up .proc-ring, .is-down .proc-ring { transform: rotate(125deg); }
   .proc-dot { display: none; }
-  .proc-label {
-    position: static; transform: none; text-align: left;
-    width: auto; max-width: none;
-  }
-  .proc-label h4 { font-size: 18px; }
+  .proc-label { position: static; transform: none; text-align: left; width: auto; max-width: none; }
+  .proc-label h4 { font-size: 17px; }
 }
 /* Tablet & below (incl. landscape iPad ≤1024): switch the center nav to the
    hamburger drawer — the full desktop link row is too wide to sit cleanly here */
@@ -2095,7 +2082,7 @@ section { position: relative; overflow-x: clip; }
 }
 
 /* Gallery showcase — same 991/767 breakpoints as About */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .gallery { min-height: auto; }
   .gallery-shell { padding-inline: 50px; }
   .show-bento { column-count: 2; }
@@ -2106,7 +2093,7 @@ section { position: relative; overflow-x: clip; }
 }
 
 /* Reach (map) — stack on tablet & below: content first, then map */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   #reach { min-height: auto; }
   .reach-grid { grid-template-columns: 1fr; gap: clamp(32px, 6vw, 56px); }
   .reach-media { order: 2; }
@@ -2139,48 +2126,8 @@ section { position: relative; overflow-x: clip; }
   /* Track record (Gallery) — keep full-width rule/thumb when the card centres */
   .show-card { align-items: center; text-align: center; }
   .show-rule, .show-thumb { align-self: stretch; width: 100%; }
-  /* How we work (Process) — vertical node-linked timeline, mirroring the
-     Our Milestones page mobile style: a left spine with node dots, each step a
-     bordered card with a left accent border. Content & colours are unchanged —
-     only the way the steps are represented follows the milestone timeline. */
-  .proc-flow {
-    display: block; grid-template-columns: none;
-    height: auto; margin-top: 40px; padding-left: 34px; position: relative;
-  }
-  /* left spine — mirrors .mile-line::before (2px track, node centres at 6px) */
-  .proc-flow::before {
-    content: ""; display: block; position: absolute; left: 5px; top: 6px; bottom: 6px;
-    width: 2px; background: var(--line); border: 0; opacity: 1;
-  }
-  .proc-wave, .proc-wave-m { display: none; }   /* drop both connector paths */
-  .proc-node {
-    display: flex; flex-direction: row; align-items: center; justify-content: flex-start;
-    text-align: left; gap: 16px; min-height: 0;
-    margin-bottom: clamp(16px, 4vw, 24px); padding: 14px 18px;
-    position: relative; z-index: 1;
-    background: var(--paper); border: 1px solid var(--line-2);
-    border-left: 3px solid var(--line); border-radius: 10px;
-    grid-area: auto;
-  }
-  .proc-node:last-child { margin-bottom: 0; }
-  /* node dot sitting on the spine — mirrors .mile-item::before. The extra 3px
-     (vs the milestone's -34px) offsets this node's own 3px left border, so the
-     dot centre lands on the spine centre. */
-  .proc-node::before {
-    content: ""; position: absolute; left: -37px; top: 50%; transform: translateY(-50%);
-    width: 12px; height: 12px; border-radius: 50%;
-    background: var(--bone); border: 2px solid var(--line); z-index: 2;
-  }
-  .proc-circle {
-    position: relative; left: auto; top: auto; transform: none; order: -1; flex: none;
-    width: 54px; height: 54px;
-  }
-  .is-up .proc-circle, .is-down .proc-circle { top: auto; }
-  .proc-circle .proc-ico { width: 22px; height: 22px; }
-  .is-up .proc-ring, .is-down .proc-ring { transform: rotate(125deg); }
-  .proc-dot { display: none; }
-  .proc-label { position: static; transform: none; text-align: left; width: auto; max-width: none; }
-  .proc-label h4 { font-size: 17px; }
+  /* How we work (Process) — the node-linked card timeline is defined once in
+     the ≤1024px tablet block above and inherited here unchanged. */
 
   /* ---- Centre every section's main heading + sub heading on mobile ---- */
   /* shared section header (About story, Products, Technology, Quality, Clients,
@@ -2395,7 +2342,7 @@ section { position: relative; overflow-x: clip; }
 .ap-checks-2col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 28px; }
 
 /* tablet — 50px gutters, single-column blocks */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .ap-shell { padding-inline: 50px; }
   /* drop the per-section 100vh (it created full-screen gaps between blocks);
      let content dictate height like the landing page does below 991px */
@@ -2491,7 +2438,7 @@ section { position: relative; overflow-x: clip; }
 .vm-values-block .ap-values-head { margin-bottom: clamp(36px, 4vw, 56px); }
 
 /* tablet — 50px gutters (via .ap-shell), 2-up collage */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .vm-collage,
   .vm-block.is-reverse .vm-collage { grid-template-columns: 1fr 1fr; align-items: stretch; }
   .vm-pic-1 { aspect-ratio: 16 / 9; align-self: auto; }
@@ -2631,7 +2578,7 @@ section { position: relative; overflow-x: clip; }
 
 /* tablet — 50px gutters (via .ap-shell), 2-up cards; the red band falls back to
    the global 2-col layout (2×2) with its correct dividers */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .infra-cards { grid-template-columns: repeat(2, 1fr); }
   .infra-fp-grid { grid-template-columns: repeat(2, 1fr); }
   .infra-power-grid { grid-template-columns: 1fr; }
@@ -2762,7 +2709,7 @@ section { position: relative; overflow-x: clip; }
    removed here (the whole record is shown), matching the simpler single-column
    mobile layout used across the other pages. No sticky rail on this breakpoint,
    so the section can safely clip horizontal overflow again. */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .mile-main { overflow-x: clip; }
   .mile-grid { grid-template-columns: 1fr; gap: 0; }
   .mile-rail { display: none; }
@@ -3139,7 +3086,7 @@ section { position: relative; overflow-x: clip; }
 
 /* tablet + mobile (<=991px): centre every heading/sub-heading, centre the
    spec band, and turn the process flow into a serpentine 2-column card grid */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .de-cap-grid { grid-template-columns: repeat(2, 1fr); }
   .de-band-grid { grid-template-columns: 1fr; gap: 28px; }
 
@@ -3247,7 +3194,7 @@ section { position: relative; overflow-x: clip; }
 .reg-card-sub { font-size: 12.5px; line-height: 1.45; color: var(--muted); }
 
 /* tablet — 50px gutters (via .ap-shell), 2-up */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .reg-grid { grid-template-columns: repeat(2, 1fr); }
 }
 /* mobile — 25px gutters, single column */
@@ -3438,7 +3385,7 @@ section { position: relative; overflow-x: clip; }
    images are capped in viewport height so every photo stays inside its section.
    Content is centred vertically; min-height (not fixed height) lets a section
    grow rather than clip if copy ever runs long. */
-@media (min-width: 992px) {
+@media (min-width: 1025px) {
   /* each test fills exactly one screen; the inner split stretches to fill the
      height, so both the 45% copy and the 55% collage run the full section. */
   .tf-page > section.tf-test {
@@ -3456,7 +3403,7 @@ section { position: relative; overflow-x: clip; }
 /* tablet — 50px gutters (via .ap-shell). Stack the test split to one column so
    the copy + spec plate aren't cramped in a 45% column; give the collage the
    roomy stacked layout (big image on top, two side cards below). */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .tf-protocol-grid { grid-template-columns: repeat(2, 1fr); }
   .tf-facility-grid { grid-template-columns: repeat(2, 1fr); }
   .tf-hero-title { font-size: clamp(2rem, 7vw, 3.4rem); }
@@ -3556,7 +3503,7 @@ section { position: relative; overflow-x: clip; }
 .pm-note-mark { color: var(--accent); margin-right: 6px; }
 
 /* tablet — 50px gutters (via .ap-shell), single column of rows */
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
   .pm-rows { columns: 1; }
   .pm-page .ap-statsband { grid-template-columns: repeat(2, 1fr); }
 }
@@ -3583,7 +3530,7 @@ section { position: relative; overflow-x: clip; }
    red stat/CTA bands, the sticky .pp-controls bar) are excluded
    by design — only their inner content containers are listed.
    ============================================================ */
-@media (min-width: 992px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   .section-pad > .wrap,
   .ap-shell,
   .about2-shell,
