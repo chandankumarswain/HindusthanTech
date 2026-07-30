@@ -1925,6 +1925,50 @@ section { position: relative; overflow-x: clip; }
 }
 .footer-meta strong { color: #fff; font-weight: 600; }
 
+/* newsletter — sits under the company overview in column 01 */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.footer-news { margin-top: clamp(26px, 2.8vw, 36px); max-width: 42ch; }
+.footer-news-title {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(24px, 2vw, 32px); line-height: 1.15;
+  color: #fff; margin: 0;
+}
+.footer-news-sub {
+  margin: 10px 0 0; max-width: 38ch;
+  font-size: clamp(13.5px, 0.95vw, 15px); line-height: 1.6;
+  color: rgba(255,255,255,0.9);
+}
+.footer-news-form {
+  display: flex; align-items: center; gap: 8px; margin-top: 18px;
+  padding: 6px 6px 6px 22px; border-radius: 999px;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.28);
+  transition: border-color .2s, background .2s;
+}
+.footer-news-form:focus-within { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.14); }
+.footer-news-form input {
+  flex: 1; min-width: 0; border: 0; background: transparent; outline: none;
+  font-family: inherit; font-size: clamp(13.5px, 0.95vw, 15px);
+  color: #fff; padding-block: 12px;
+}
+.footer-news-form input::placeholder { color: rgba(255,255,255,0.62); }
+.footer-news-form button {
+  flex: none; display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.32); background: rgba(255,255,255,0.14);
+  color: #fff; transition: background .2s, transform .25s cubic-bezier(.2,.8,.2,1);
+}
+.footer-news-form button:hover:not(:disabled) { background: #fff; color: var(--accent); transform: translateX(2px); }
+.footer-news-form button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.footer-news-form :disabled { opacity: 0.6; cursor: not-allowed; }
+.footer-news-msg {
+  margin: 10px 0 0; font-family: var(--mono);
+  font-size: 11px; letter-spacing: 0.06em; color: rgba(255,255,255,0.9);
+}
+.footer-news-msg.is-error { color: #ffd9d2; }
+
 /* link / info columns */
 .footer-col-title {
   font-family: var(--mono); font-size: clamp(10.5px, 0.85vw, 12px);

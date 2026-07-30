@@ -7,6 +7,13 @@
    here is invented.
 ------------------------------------------------------------------ */
 
+import { useState } from 'react'
+
+/* Newsletter signups post to a PHP handler at the site root
+   (public/newsletter.php), which emails admin@hindusthantechnologies.com
+   through the same Google Workspace SMTP config as the contact form. */
+const NEWSLETTER_ENDPOINT = '/newsletter.php'
+
 // real primary navigation (mirrors Nav.jsx)
 const QUICK_LINKS = [
   { label: 'Home', href: '#hero' },
@@ -42,6 +49,30 @@ const INDUSTRIES = [
 const CERTS = ['MSME', 'DGQA', 'Z CERT', 'ISO 9001', 'CMVR']
 
 export default function Footer() {
+  // idle | sending | sent | error
+  const [status, setStatus] = useState('idle')
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    const body = new URLSearchParams(new FormData(form)) // urlencoded → no CORS preflight
+
+    setStatus('sending')
+    try {
+      const res = await fetch(NEWSLETTER_ENDPOINT, { method: 'POST', body })
+      const data = await res.json().catch(() => ({ success: res.ok }))
+      if (data.success) {
+        setStatus('sent')
+        form.reset()
+      } else {
+        setStatus('error')
+      }
+    } catch (err) {
+      console.error('Newsletter subscription failed:', err)
+      setStatus('error')
+    }
+  }
+
   return (
     <footer className="footer">
       {/* warm corner glow — brand red only (decorative) */}
@@ -59,6 +90,42 @@ export default function Footer() {
               <span><strong>Est. 1987</strong> · Jagatpur, Cuttack</span>
               <span><strong>38+</strong> years · <strong>2000+</strong> vehicles · <strong>50+</strong> PSU clients</span>
             </p>
+
+            {/* newsletter — posts to newsletter.php, delivered to admin@ */}
+            <div className="footer-news">
+              <h3 className="footer-news-title">Stay connected</h3>
+              <p className="footer-news-sub">
+                Get product updates, project highlights, and manufacturing news from HTPL.
+              </p>
+              <form className="footer-news-form" onSubmit={handleSubscribe} noValidate>
+                <label className="sr-only" htmlFor="footer-news-email">Email address</label>
+                <input
+                  id="footer-news-email"
+                  type="email"
+                  name="email"
+                  required
+                  autoComplete="email"
+                  placeholder="Enter your email"
+                  disabled={status === 'sending'}
+                />
+                <button
+                  type="submit"
+                  disabled={status === 'sending'}
+                  aria-label="Subscribe to the HTPL newsletter"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </button>
+              </form>
+              {status !== 'idle' && status !== 'sending' && (
+                <p className={`footer-news-msg is-${status}`} role="status">
+                  {status === 'sent'
+                    ? 'Thank you — you are on the list.'
+                    : 'Sorry, that did not go through. Please try again.'}
+                </p>
+              )}
+            </div>
           </div>
 
           {/* COLUMN 02 — quick links */}

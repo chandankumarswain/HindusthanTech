@@ -25,7 +25,6 @@ const SLIDES = [
   { file: '10_Combat_Fire_Tender.jpg', sub: 'Frontline fire combat vehicle' },
   { file: '11_Multi_Purpose_Rescue_Tender.jpg', sub: 'Combined rescue and firefighting platform' },
   { file: '12_Foam_Nurser_Heavy.jpg', sub: 'Heavy-duty foam resupply carrier' },
-  { file: '13_Compact_Fire_Tender.jpg', sub: 'Compact-footprint urban fire tender' },
   { file: '14_Recovery_Vehicle.jpg', sub: 'Fleet recovery and towing unit' },
 ].map((s) => ({ ...s, title: slug(s.file) }))
 

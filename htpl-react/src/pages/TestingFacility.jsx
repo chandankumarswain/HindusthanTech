@@ -47,9 +47,9 @@ const TESTS = [
       ['Accepts', 'Zero leakage / seepage'],
     ],
     images: [
-      { src: 'tf-t1-a.jpg', cap: 'FIG. 01-A — TANK INTERIOR, HYDRO TEST' },
+      { src: 'tf-t1-a.jpg', cap: 'FIG. 01-A — PENETRATION TEST OF INTERNAL TANK WELDING' },
       { src: 'tf-t1-b.jpg', cap: 'FIG. 01-B — DYE PENETRANT ON TANK SHELL' },
-      { src: 'tf-t1-c.jpg', cap: 'FIG. 01-C — PIPELINE FABRICATION' },
+      { src: 'tf-t1-c.jpg', cap: 'FIG. 01-C — HYDROSTATIC TEST OF PIPELINE' },
     ],
   },
   {
@@ -74,7 +74,7 @@ const TESTS = [
       ['Rig capacity', '10 tenders / cycle'],
       ['Standard', 'Relevant IS'],
       ['Verifies', 'Pump · PTO · engine'],
-      ['Duration', 'Long-hour continuous run'],
+      ['Duration', '4 hours continuous run'],
     ],
     images: [
       { src: 'tf-t2-a.jpg', cap: 'FIG. 02-A — TENDERS AT THE YARD' },
@@ -123,7 +123,7 @@ const TESTS = [
       ['Verifies', 'Parking brake'],
     ],
     images: [
-      { src: 'tf-t4-a.jpg', cap: 'FIG. 04-A — GRADEABILITY RAMP, 1 IN 4' },
+      { src: 'tf-t4-a.jpg', cap: 'FIG. 04-A — TENDER STAGED FOR GRADE RUN' },
       { src: 'tf-t4-b.jpg', cap: 'FIG. 04-B — FULLY LOADED ON THE GRADE' },
       { src: 'tf-t4-c.jpg', cap: 'FIG. 04-C — THE 1-IN-4 RAMP' },
     ],
@@ -199,7 +199,7 @@ const TESTS = [
     ],
     images: [
       { src: 'tf-t7-a.jpg', cap: 'FIG. 07-A — MONITOR LINE, FULL ARC' },
-      { src: 'tf-t7-b.jpg', cap: 'FIG. 07-B — THROW OVER THE YARD' },
+      { src: 'tf-t7-b.jpg', cap: 'FIG. 07-B — THROW OVER THE YARD', pos: 'right center' },
       { src: 'tf-t7-c.jpg', cap: 'FIG. 07-C — FOAM MONITOR RUN' },
     ],
   },
@@ -289,7 +289,15 @@ const Fig = ({ img, className = '', onZoom }) => (
       onClick={() => onZoom(img)}
       aria-label={`Enlarge ${img.cap}`}
     >
-      <img src={IMG + img.src} alt={img.cap} loading="lazy" decoding="async" />
+      {/* `pos` overrides the default centre crop for photos whose subject sits
+          off-centre (e.g. a tender parked hard right of frame). */}
+      <img
+        src={IMG + img.src}
+        alt={img.cap}
+        loading="lazy"
+        decoding="async"
+        style={img.pos ? { objectPosition: img.pos } : undefined}
+      />
     </button>
     <figcaption className="tf-fig-cap">
       <b>{img.cap.split('—')[0].trim()}</b>
