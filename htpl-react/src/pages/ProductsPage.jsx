@@ -25,6 +25,10 @@ const STATS = [
   { n: '6000', l: 'Max pump · LPM' },
 ]
 
+/* URL-safe id for a product row: "Quick Response Unit" -> "p-quick-response-unit" */
+export const productAnchor = (name) =>
+  'p-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+
 const countOf = (id) =>
   id === 'all' ? PRODUCTS.length : PRODUCTS.filter((p) => p.cat === id).length
 
@@ -47,6 +51,50 @@ export default function ProductsPage() {
     const prev = document.title
     document.title = 'Core Product Portfolio — Hindusthan Technologies'
     return () => { document.title = prev }
+  }, [])
+
+  /* Deep links (footer "Products" column, or any "/products#…" URL):
+       #cat-ff | #cat-pump | #cat-spv  -> select that tab and scroll to the index
+       #p-<slug>                       -> select the product's tab, open its row, scroll to it
+     Applied on load and whenever the hash changes. The row only exists after React
+     re-renders the filtered list, so the scroll retries briefly until it appears. */
+  useEffect(() => {
+    let timer
+    const apply = () => {
+      const h = decodeURIComponent(window.location.hash.replace(/^#/, ''))
+      if (!h) return
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      let targetId = null
+      const catMatch = /^cat-([a-z]+)$/.exec(h)
+      if (catMatch && CATEGORIES.some((c) => c.id === catMatch[1])) {
+        setCat(catMatch[1])
+        setOpen(null)
+        setQ('')
+        targetId = 'index'
+      } else if (h.startsWith('p-')) {
+        const prod = PRODUCTS.find((pp) => productAnchor(pp.name) === h)
+        if (!prod) return
+        setCat(prod.cat)
+        setOpen(prod.name)
+        setQ('')
+        targetId = h
+      } else {
+        return
+      }
+      let tries = 0
+      const tryScroll = () => {
+        const el = document.getElementById(targetId)
+        if (el) el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+        else if (tries++ < 30) timer = window.setTimeout(tryScroll, 80)
+      }
+      timer = window.setTimeout(tryScroll, 60)
+    }
+    apply()
+    window.addEventListener('hashchange', apply)
+    return () => {
+      window.removeEventListener('hashchange', apply)
+      window.clearTimeout(timer)
+    }
   }, [])
 
   const shown = useMemo(() => {
@@ -181,6 +229,7 @@ export default function ProductsPage() {
                 return (
                   <article
                     className={`pp-row${isOpen ? ' is-open' : ''}`}
+                    id={productAnchor(p.name)}
                     key={p.name}
                     style={{ animationDelay: `${Math.min(i * 35, 420)}ms` }}
                   >

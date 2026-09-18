@@ -2997,7 +2997,8 @@ section { position: relative; overflow-x: clip; }
    Multi mode: identity + spec cap the top ~58%, the photo row fills the rest and
    the images cover their cells (no letterbox). Long build sheets scroll inside
    the spec panel rather than pushing the photos off-screen. */
-.pp-row { scroll-margin-top: calc(var(--nav-h) + 64px); }
+/* html's scroll-padding-top already clears the nav; this only clears the sticky tab bar */
+.pp-row { scroll-margin-top: 72px; }
 @media (min-width: 1025px) {
   .pp-row.is-open .pp-panels { height: calc(100dvh - var(--nav-h)); min-height: 480px; }
   .pp-panels.is-single { grid-template-rows: 1fr; }

@@ -8,8 +8,8 @@ const NAV = {
   brand_mark: 'H',
   brand_name: ['Hindusthan', 'Technologies'],
   home_link: '#hero',
-  about_link: '#about',
-  products_link: '#products',
+  // About Us / Products link to their dedicated routes (/about, /products) in
+  // PRIMARY below — never to landing-page hashes.
   gallery_link: '#gallery',
   technology_link: '#technology',
   // "Clients" jumps to the Nationwide presence (Reach) section on the landing page

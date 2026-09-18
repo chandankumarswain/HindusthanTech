@@ -28,14 +28,16 @@ const QUICK_LINKS = [
   { label: 'Contact Us', href: '#contact' },
 ]
 
-// real product range (mirrors Products.jsx)
+// real product range (mirrors Products.jsx). Each entry deep-links into the
+// /products portfolio: "#cat-<id>" selects a category tab, "#p-<slug>" selects the
+// product's tab, opens that row and scrolls to it (handled in ProductsPage.jsx).
 const PRODUCTS = [
-  'Firefighting Trucks',
-  'Trailer & Portable Pumps',
-  'Quick Response Vehicles',
-  'Diesel Bowser & Oil Tanker',
-  'MOSRU / Explosive Van',
-  'Blood Donation Van (MBDV)',
+  { label: 'Firefighting Trucks', href: '/products#cat-ff' },
+  { label: 'Trailer & Portable Pumps', href: '/products#cat-pump' },
+  { label: 'Quick Response Vehicles', href: '/products#p-quick-response-unit' },
+  { label: 'Diesel Bowser & Oil Tanker', href: '/products#p-diesel-bowser' },
+  { label: 'MOSRU / Explosive Van', href: '/products#p-mobile-oil-spillage-recovery-unit' },
+  { label: 'Blood Donation Van (MBDV)', href: '/products#p-mobile-blood-donation-van' },
 ]
 
 // real industries served (mirrors Serve.jsx — the "#serve" section on Landing)
@@ -153,7 +155,7 @@ export default function Footer() {
             <h3 className="footer-col-title">Products</h3>
             <ul>
               {PRODUCTS.map((p) => (
-                <li key={p}><a href="/products">{p}</a></li>
+                <li key={p.href}><a href={p.href}>{p.label}</a></li>
               ))}
             </ul>
           </nav>
