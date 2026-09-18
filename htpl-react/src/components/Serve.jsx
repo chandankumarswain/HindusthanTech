@@ -77,20 +77,23 @@ const ICON = {
   ),
 }
 
-/* em = the keyword set in the serif/accent treatment; rest = the remainder */
+/* em = the keyword set in the serif/accent treatment; rest = the remainder.
+   href targets the matching sector card in the Clients section (id="client-<slug>",
+   see Clients.jsx). Airports & Aviation has no card of its own — Airports Authority
+   of India sits under Defence & Aerospace, so it links there. */
 const SECTORS = [
-  { tag: 'Petrochemical', em: 'Oil, Gas', rest: ' & Refineries', icon: ICON.drop, href: '#products', desc: 'High-capacity fire tenders for IOCL, BPCL and petrochemical plants.' },
-  { tag: 'Coastal', em: 'Ports', rest: ' & Maritime', icon: ICON.anchor, href: '#products', desc: 'Rapid-response vehicles for coastal facilities and port authorities.' },
-  { tag: 'DGQA approved', em: 'Defence', rest: ' & Aerospace', icon: ICON.shield, href: '#clients', desc: 'DGQA-approved builds trusted by the Indian Navy and ISRO.' },
-  { tag: 'Heavy industry', em: 'Steel', rest: ' & Power', icon: ICON.bolt, href: '#clients', desc: 'Fire safety fleets for SAIL, NTPC and thermal & steel plant sites.' },
-  { tag: 'Airside', em: 'Airports', rest: ' & Aviation', icon: ICON.plane, href: '#products', desc: 'Crash fire tenders engineered for airside emergency response.' },
-  { tag: 'Plants & estates', em: 'Industrial', rest: ' & Manufacturing', icon: ICON.factory, href: '#products', desc: 'Special purpose vehicles for plants, estates and refineries.' },
-  { tag: 'Process plants', em: 'Fertilizers', rest: ' & Chemicals', icon: ICON.flask, href: '#products', desc: 'Foam and DCP tenders for IFFCO, FACT and chemical process plants.' },
-  { tag: 'Mining', em: 'Mines', rest: ' & Minerals', icon: ICON.mountain, href: '#products', desc: 'Rugged tenders and water bowsers for NALCO and open-cast mining sites.' },
-  { tag: 'Infrastructure', em: 'Construction', rest: '', icon: ICON.hardhat, href: '#products', desc: 'Fire and rescue vehicles for large infrastructure and project sites.' },
-  { tag: 'Institutions', em: 'Education', rest: ' & Healthcare', icon: ICON.pulse, href: '#products', desc: 'Compact, quick-response tenders for campuses and hospital complexes.' },
-  { tag: 'Rail', em: 'Indian', rest: ' Railways', icon: ICON.train, href: '#products', desc: 'Rescue and fire-fighting vehicles for railway yards and workshops.' },
-  { tag: 'Repeat orders', em: 'State', rest: ' Fire Services', icon: ICON.flame, href: '#clients', desc: 'Repeat-order fleets for twelve state fire services across India.' },
+  { tag: 'Petrochemical', em: 'Oil, Gas', rest: ' & Refineries', icon: ICON.drop, href: '#client-oil-gas', desc: 'High-capacity fire tenders for IOCL, BPCL and petrochemical plants.' },
+  { tag: 'Coastal', em: 'Ports', rest: ' & Maritime', icon: ICON.anchor, href: '#client-ports-maritime', desc: 'Rapid-response vehicles for coastal facilities and port authorities.' },
+  { tag: 'DGQA approved', em: 'Defence', rest: ' & Aerospace', icon: ICON.shield, href: '#client-defence-aerospace', desc: 'DGQA-approved builds trusted by the Indian Navy and ISRO.' },
+  { tag: 'Heavy industry', em: 'Steel', rest: ' & Power', icon: ICON.bolt, href: '#client-steel-power', desc: 'Fire safety fleets for SAIL, NTPC and thermal & steel plant sites.' },
+  { tag: 'Airside', em: 'Airports', rest: ' & Aviation', icon: ICON.plane, href: '#client-defence-aerospace', desc: 'Crash fire tenders engineered for airside emergency response.' },
+  { tag: 'Plants & estates', em: 'Industrial', rest: ' & Manufacturing', icon: ICON.factory, href: '#client-industrial-manufacturing', desc: 'Special purpose vehicles for plants, estates and refineries.' },
+  { tag: 'Process plants', em: 'Fertilizers', rest: ' & Chemicals', icon: ICON.flask, href: '#client-fertilizer-chemicals', desc: 'Foam and DCP tenders for IFFCO, FACT and chemical process plants.' },
+  { tag: 'Mining', em: 'Mines', rest: ' & Minerals', icon: ICON.mountain, href: '#client-mines-minerals', desc: 'Rugged tenders and water bowsers for NALCO and open-cast mining sites.' },
+  { tag: 'Infrastructure', em: 'Construction', rest: '', icon: ICON.hardhat, href: '#client-construction', desc: 'Fire and rescue vehicles for large infrastructure and project sites.' },
+  { tag: 'Institutions', em: 'Education', rest: ' & Healthcare', icon: ICON.pulse, href: '#client-education-healthcare', desc: 'Compact, quick-response tenders for campuses and hospital complexes.' },
+  { tag: 'Rail', em: 'Indian', rest: ' Railways', icon: ICON.train, href: '#client-indian-railways', desc: 'Rescue and fire-fighting vehicles for railway yards and workshops.' },
+  { tag: 'Repeat orders', em: 'State', rest: ' Fire Services', icon: ICON.flame, href: '#client-state-fire-services', desc: 'Repeat-order fleets for twelve state fire services across India.' },
 ]
 
 export default function Serve() {

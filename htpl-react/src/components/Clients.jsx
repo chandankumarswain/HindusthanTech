@@ -1,26 +1,70 @@
-// Client logos grouped into four sector cards (no duplicates across groups).
+// Client logos grouped into sector cards (no duplicates across groups).
+// Each card gets id="client-<slug of heading>" so the "Built for critical industries"
+// sector cards (Serve.jsx) can deep-link straight to it.
+// Groups with `wide: true` span the full grid width so large logo sets stay compact.
 const GROUPS = [
   {
-    heading: 'Defence & Space',
-    clients: ['Indian Navy', 'Indian Air Force', 'DRDO', 'HAL', 'ISRO', 'Ordnance Factories'],
+    heading: 'State Fire Services',
+    wide: true,
+    clients: [
+      'Odisha Fire Service', 'WB Fire Service', 'Tamil Nadu Fire Service', 'UP Fire Service',
+      'Chhattisgarh Fire Service', 'Delhi Fire Service', 'Jharkhand Fire Service', 'Assam Fire Service',
+      'Mizoram Fire Service', 'Tripura Fire Service', 'Manipur Fire Service', 'Arunachal Pradesh Fire Service',
+    ],
+  },
+  {
+    heading: 'Defence & Aerospace',
+    clients: ['Indian Navy', 'Indian Air Force', 'DRDO', 'HAL', 'ISRO', 'Ordnance Factories', 'DRDL', 'RAW', 'Airports Authority of India'],
   },
   {
     heading: 'Oil & Gas',
-    clients: ['IOCL', 'BPCL', 'HPCL', 'ONGC', 'GAIL', 'MRPL', 'NRL'],
+    clients: ['IOCL', 'BPCL', 'HPCL', 'ONGC', 'GAIL', 'MRPL', 'NRL', 'Oil India', 'GeoEnpro'],
   },
   {
     heading: 'Steel & Power',
-    clients: ['NTPC', 'BHEL', 'SAIL', 'NSPCL', 'NPCIL', 'RINL', 'Tata Steel', 'NHPC'],
+    wide: true,
+    clients: [
+      'NTPC', 'BHEL', 'SAIL', 'NSPCL', 'NPCIL', 'RINL', 'Tata Steel', 'NHPC',
+      'BRBCL', 'OPGC', 'DVC', 'THDC', 'DAE', 'Aarti', 'JSPL', 'Jindal Stainless', 'NINL',
+    ],
   },
   {
-    heading: 'Fertilizer & State Fire Service',
-    clients: ['IFFCO', 'Paradeep Phosphates', 'FACT', 'NFL Bathinda', 'Odisha Fire Service', 'WB Fire Service'],
+    heading: 'Mines & Minerals',
+    wide: true,
+    clients: [
+      'Coal India', 'MCL', 'SECL', 'NCL', 'ECL', 'BCCL', 'WCL', 'IMFA', 'NALCO', 'Aditya Birla EMIL',
+      'Bhubaneswari Coal Mining', 'KIOCL', 'MOIL', 'OMC', 'MGM Minerals', 'NMDC',
+    ],
+  },
+  {
+    heading: 'Ports & Maritime',
+    clients: ['Paradip Port Authority', 'SMP Kolkata', 'Goa Shipyard', 'Cochin Shipyard'],
+  },
+  {
+    heading: 'Industrial & Manufacturing',
+    clients: ['ACC', 'Dalmia Bharat Cement', 'Rashmi Group', 'Hyundai', 'TRL Krosaki', 'JK Paper'],
+  },
+  {
+    heading: 'Fertilizer & Chemicals',
+    clients: ['IFFCO', 'Paradeep Phosphates', 'FACT', 'NFL Bathinda'],
+  },
+  {
+    heading: 'Construction',
+    clients: ['L&T Construction', 'NCC'],
+  },
+  {
+    heading: 'Indian Railways',
+    clients: ['Southern Railway', 'East Coast Railway'],
+  },
+  {
+    heading: 'Education & Healthcare',
+    clients: ['National Fire Service College', 'KIMS Bhubaneswar'],
   },
 ]
 
 // client name -> processed transparent logo (in /public/images/clients/<slug>.png).
-// Every client maps to its official logo.
-const slugify = (name) => name.toLowerCase().replace(/\s+/g, '-')
+// Every client maps to its official logo. Non-alphanumerics (spaces, "&") become "-".
+const slugify = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 const NO_LOGO = new Set()
 
 export default function Clients() {
@@ -35,14 +79,20 @@ export default function Clients() {
             Trusted across <span className="italic-accent">strategic sectors</span>
           </h2>
           <p className="lead">
-            HTPL serves State Fire Services, Steel &amp; Power, Defence, Oil &amp; Gas, Space, and
-            Fertilizer sectors. Twelve state fire services have placed repeat orders — a testament
-            to our quality of manufacturing and the trust of our customers.
+            HTPL serves Steel &amp; Power, Defence &amp; Aerospace, Oil &amp; Gas, Mines &amp; Minerals,
+            Fertilizer &amp; Chemicals, Industry &amp; Manufacturing, Education, Indian Railways,
+            Infrastructure &amp; Construction, Ports &amp; Maritime and Twelve State Fire Services
+            sectors. Twelve state fire services have placed repeat orders — a testament to our quality
+            of manufacturing and the trust of our customers.
           </p>
         </div>
         <div className="clients-groups">
           {GROUPS.map((g) => (
-            <div className="client-group reveal" key={g.heading}>
+            <div
+              className={`client-group reveal${g.wide ? ' wide' : ''}`}
+              id={`client-${slugify(g.heading)}`}
+              key={g.heading}
+            >
               <div className="gh">
                 <span className="bar"></span>
                 {g.heading}

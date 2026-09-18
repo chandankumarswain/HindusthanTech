@@ -43,7 +43,7 @@ const INDUSTRIES = [
   'Oil, Gas & Refineries',
   'Ports & Maritime',
   'Defence & Aerospace',
-  'Power & Energy',
+  'Steel & Power',
   'Airports & Aviation',
   'Industrial & Manufacturing',
 ]

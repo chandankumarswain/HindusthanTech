@@ -1689,7 +1689,21 @@ section { position: relative; overflow-x: clip; }
 .client-group {
   background: var(--paper); border: 1px solid var(--line-2);
   border-radius: var(--radius); padding: 26px 28px;
+  /* deep-link target from the "Built for critical industries" sector cards:
+     html's scroll-padding-top already clears the sticky nav; this adds breathing room
+     and :target flashes the card so the user sees where they arrived */
+  scroll-margin-top: 24px;
 }
+/* cards are deep-link targets: keep the fade-in but drop the 26px slide, otherwise a jump
+   to a not-yet-revealed card lands 26px low (the browser scrolls to the pre-reveal position) */
+.client-group.reveal { transform: none; }
+.client-group:target { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); animation: client-target-flash 1.6s ease-out; }
+@keyframes client-target-flash {
+  0% { background: color-mix(in srgb, var(--accent) 10%, var(--paper)); }
+  100% { background: var(--paper); }
+}
+/* large sector groups span both grid columns so their logos flow 4–5 per row */
+.client-group.wide { grid-column: 1 / -1; }
 .client-group .gh {
   display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
   font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
