@@ -102,7 +102,7 @@ const TESTS = [
     images: [
       { src: 'tf-t3-a.jpg', cap: 'FIG. 03-A — ON THE HYDRAULIC RAMP' },
       { src: 'tf-t3-b.jpg', cap: 'FIG. 03-B — REAR QUARTER AT FULL TILT' },
-      { src: 'tf-t3-c.jpg', cap: 'FIG. 03-C — INSPECTION AT THE PLATFORM' },
+      { src: 'tf-t3-c-inspection.jpg', cap: 'FIG. 03-C — INSPECTION AT THE PLATFORM' },
     ],
   },
   {
@@ -123,7 +123,7 @@ const TESTS = [
       ['Verifies', 'Parking brake'],
     ],
     images: [
-      { src: 'tf-t4-a.jpg', cap: 'FIG. 04-A — TENDER STAGED FOR GRADE RUN' },
+      { src: 'tf-t4-a-grade.jpg', cap: 'FIG. 04-A — TENDER STAGED FOR GRADE RUN' },
       { src: 'tf-t4-b.jpg', cap: 'FIG. 04-B — FULLY LOADED ON THE GRADE' },
       { src: 'tf-t4-c.jpg', cap: 'FIG. 04-C — THE 1-IN-4 RAMP' },
     ],
@@ -148,7 +148,7 @@ const TESTS = [
     images: [
       { src: 'tf-t5-a.jpg', cap: 'FIG. 05-A — SHOWER ARRAY, NIGHT RUN' },
       { src: 'tf-t5-b.jpg', cap: 'FIG. 05-B — UNDER THE SHOWER ARRAY' },
-      { src: 'tf-t5-c.jpg', cap: 'FIG. 05-C — FULL-SOAK CYCLE' },
+      { src: 'tf-t5-c-soak.jpg', cap: 'FIG. 05-C — FULL-SOAK CYCLE' },
     ],
   },
   {

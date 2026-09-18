@@ -65,7 +65,7 @@ const PRODUCTS = [
   {
     num: '06',
     title: 'Blood Donation Van (MBDV)',
-    img: '/images/fleet/blood-donation-mbdv.png',
+    img: '/images/fleet/blood-donation-mbdv-v2.png',
     alt: 'Mobile blood donation van',
     specs: [
       ['Use case', 'Healthcare outreach'],

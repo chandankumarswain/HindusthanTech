@@ -14,12 +14,15 @@ import { useState } from 'react'
    through the same Google Workspace SMTP config as the contact form. */
 const NEWSLETTER_ENDPOINT = '/newsletter.php'
 
-// real primary navigation (mirrors Nav.jsx)
+/* Real primary navigation (mirrors Nav.jsx). Bare "#section" hashes only resolve
+   on the landing page, so About Us / Products point at their dedicated routes
+   (same destinations as the navbar) and the remaining section anchors are run
+   through resolveHref() below. */
 const QUICK_LINKS = [
-  { label: 'Home', href: '#hero' },
-  { label: 'About Us', href: '#about' },
-  { label: 'Products', href: '#products' },
-  { label: 'Gallery', href: '#gallery' },
+  { label: 'Home', href: '#hero' },          // Hero section (Landing)
+  { label: 'About Us', href: '/about' },     // dedicated AboutPage route
+  { label: 'Products', href: '/products' },  // dedicated ProductsPage route
+  { label: 'Gallery', href: '#gallery' },    // FleetCarousel section (Landing)
   { label: 'Technology', href: '#technology' },
   { label: 'Clients', href: '#clients' },
   { label: 'Contact Us', href: '#contact' },
@@ -35,7 +38,7 @@ const PRODUCTS = [
   'Blood Donation Van (MBDV)',
 ]
 
-// real industries served (mirrors About.jsx)
+// real industries served (mirrors Serve.jsx — the "#serve" section on Landing)
 const INDUSTRIES = [
   'Oil, Gas & Refineries',
   'Ports & Maritime',
@@ -51,6 +54,13 @@ const CERTS = ['MSME', 'DGQA', 'Z CERT', 'ISO 9001', 'CMVR']
 export default function Footer() {
   // idle | sending | sent | error
   const [status, setStatus] = useState('idle')
+
+  /* Same rule as Nav.jsx: the footer renders on all 11 routes, but the section
+     ids it targets (#hero, #gallery, …) only exist on the landing page. Off
+     home, rewrite "#products" → "/#products" so the link goes back to the
+     landing page and App.jsx's hash-scroll effect lands on the section. */
+  const onHome = (window.location.pathname.replace(/\/+$/, '') || '/') === '/'
+  const resolveHref = (href) => (href.startsWith('#') && !onHome ? `/${href}` : href)
 
   const handleSubscribe = async (e) => {
     e.preventDefault()
@@ -133,7 +143,7 @@ export default function Footer() {
             <h3 className="footer-col-title">Quick Links</h3>
             <ul>
               {QUICK_LINKS.map((l) => (
-                <li key={l.href}><a href={l.href}>{l.label}</a></li>
+                <li key={l.href}><a href={resolveHref(l.href)}>{l.label}</a></li>
               ))}
             </ul>
           </nav>
@@ -143,7 +153,7 @@ export default function Footer() {
             <h3 className="footer-col-title">Products</h3>
             <ul>
               {PRODUCTS.map((p) => (
-                <li key={p}><a href="#products">{p}</a></li>
+                <li key={p}><a href="/products">{p}</a></li>
               ))}
             </ul>
           </nav>
@@ -153,7 +163,7 @@ export default function Footer() {
             <h3 className="footer-col-title">Industries Served</h3>
             <ul>
               {INDUSTRIES.map((it) => (
-                <li key={it}><a href="#about">{it}</a></li>
+                <li key={it}><a href={resolveHref('#serve')}>{it}</a></li>
               ))}
             </ul>
           </nav>

@@ -82,11 +82,11 @@ export default function About() {
             <figure className="about2-fig is-sm">
               <img
                 src="/images/fleet/hyundai-water-tender.png"
-                alt="HTPL quick response vehicle ready for delivery"
+                alt="HTPL multi purpose fire tender ready for delivery"
                 loading="lazy"
                 decoding="async"
               />
-              <figcaption>Quick response vehicle</figcaption>
+              <figcaption>Multi purpose fire tender</figcaption>
             </figure>
           </div>
         </div>

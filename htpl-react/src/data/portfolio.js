@@ -49,7 +49,7 @@ export const PRODUCTS = [
     ],
     photos: [
       'small-water-tender-1.jpg',
-      'small-water-tender-2.jpg',
+      'small-water-tender-2-new.jpg',
       'small-water-tender-3.jpg',
     ],
     find: 'small water tender mini motor fire engine fire-fighting vehicles chassis gvw range 9 to 11 ton water tank capacity up to 3000 liters pump capacity up to 1800 lpm @ 7 bar',
