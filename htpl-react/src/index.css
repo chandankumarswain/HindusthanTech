@@ -670,72 +670,55 @@ section { position: relative; overflow-x: clip; }
 .about2-link:hover .arrow { transform: translateX(4px); }
 .about2-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-/* --- "What we serve": sticky aside (40%) + scroll-driven cards (60%) --- */
-.serve-layout {
+/* --- "What we serve": 2 rows × 1 column — hero image, then sector cards.
+   Cards borrow the .qmf-card design (Quality Management Framework) verbatim;
+   only the grid, hero and link row are defined here. --- */
+.serve-stack {
   margin-top: 26px;
-  display: grid; grid-template-columns: 40% 1fr;
-  gap: clamp(48px, 5vw, 64px); align-items: start;
+  display: grid; grid-template-columns: minmax(0, 1fr);
+  gap: clamp(28px, 3.5vw, 48px);
 }
-.serve-aside { position: sticky; top: calc(var(--nav-h) + 24px); align-self: start; }
-.serve-aside .about2-subhead { margin-top: 4px; }
-/* left visual — asymmetric 3-image collage (reference-inspired) */
-.serve-collage {
-  margin: 20px 0;
-  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px, 1.2vw, 16px);
-  grid-template-areas:
-    "t a"
-    "b c"
-    "d e";
-}
+.serve-head { max-width: 760px; }
+.serve-head .about2-subhead { margin-top: 4px; }
 .serve-note {
-  grid-area: t; align-self: center; margin: 0; padding-right: 6px;
+  margin: 12px auto 0; max-width: 52ch;
   font-family: var(--serif); font-style: italic;
   font-size: clamp(15px, 1.4vw, 19px); line-height: 1.4; color: var(--ink-2);
 }
-.serve-pic {
-  margin: 0; overflow: hidden;
-  border-radius: 14px; border: 1px solid var(--line-2); box-shadow: var(--shadow);
-}
-.serve-pic img {
-  width: 100%; height: 100%; object-fit: cover;
-  filter: saturate(0.95) contrast(1.02);
-  transition: transform .5s cubic-bezier(.2,.8,.2,1);
-}
-.serve-pic:hover img { transform: scale(1.04); }
-.serve-pic-1 { grid-area: a; aspect-ratio: 4 / 3; }
-.serve-pic-2 { grid-area: b; aspect-ratio: 1 / 1; align-self: end; }
-.serve-pic-3 { grid-area: c; aspect-ratio: 4 / 3.2; }
-.serve-pic-4 { grid-area: d; aspect-ratio: 4 / 3.2; }
-.serve-pic-5 { grid-area: e; aspect-ratio: 1 / 1; align-self: start; }
-
-/* right column — stacked numbered cards */
-.serve-list { display: flex; flex-direction: column; gap: clamp(14px, 1.4vw, 20px); margin: 0; }
-.industry-row.serve-card {
-  align-items: flex-start; gap: 18px;
-  padding: clamp(18px, 1.9vw, 26px);
-  border: 1px solid var(--line-2); border-radius: var(--radius);
+/* row 1 — single full-width image; aspect steps taller as the viewport narrows
+   so the tender is never cropped to a sliver */
+.serve-hero {
+  margin: 0; width: 100%; overflow: hidden; aspect-ratio: 21 / 9;
+  border-radius: clamp(18px, 2.4vw, 30px); border: 1px solid var(--line-2);
   background: var(--paper); box-shadow: var(--shadow);
-  transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease,
-              border-color .3s ease;
 }
-.serve-list li:last-child .serve-card { border-bottom: 1px solid var(--line-2); }
-.serve-card .idx { font-size: clamp(20px, 2vw, 26px); line-height: 1; margin-top: 2px; }
-.serve-card .it-name { font-size: clamp(18px, 1.5vw, 21px); }
-.serve-card .it-desc { font-size: 14px; max-width: 46ch; }
-.serve-card .it-arrow { align-self: center; }
-/* hover + scroll-active card emphasis (existing accent tokens — no new colors) */
-.industry-row.serve-card:hover, .industry-row.serve-card:focus-visible {
-  padding-left: clamp(18px, 1.9vw, 26px);
-  background: var(--paper); border-radius: var(--radius);
-  border-color: var(--accent); box-shadow: var(--shadow-lg);
-  transform: translateY(-3px);
+.serve-hero img {
+  display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 58%;
+  filter: saturate(0.95) contrast(1.02);
+  transition: transform .6s cubic-bezier(.2,.8,.2,1);
 }
-.serve-card.is-active { border-color: var(--accent); box-shadow: var(--shadow-lg); }
-.serve-card.is-active .it-name { color: var(--accent-dk); }
+.serve-hero:hover img { transform: scale(1.03); }
+/* row 2 — sector cards (4 · 3 · 2 · 1 columns across breakpoints) */
+.serve-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 1.6vw, 22px);
+}
+.serve-grid > li { display: flex; min-width: 0; }
+.serve-sector { width: 100%; }
+.serve-sector .qmf-card-body, .serve-sector .qmf-card-tag,
+.serve-sector .qmf-card-title, .serve-sector .qmf-card-desc { display: block; }
+.serve-sector .qmf-card-body { display: flex; }
+.serve-sector .qmf-card-desc { max-width: 32ch; }
+.serve-sector:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.serve-link-row { text-align: center; }
+.serve-link-row .about2-link { margin-top: 0; }
+@media (max-width: 1280px) {
+  .serve-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 @media (prefers-reduced-motion: reduce) {
-  .industry-row.serve-card { transition: none; }
+  .serve-hero img { transition: none; }
 }
-
 /* --- right column: image composition (real HTPL product visuals) --- */
 .about2-media { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 1.6vw, 20px); align-content: center; }
 .about2-fig {
@@ -834,13 +817,18 @@ section { position: relative; overflow-x: clip; }
   /* tablet: stack story over images (content first), values to 2 columns */
   .about2-split { grid-template-columns: 1fr; gap: 48px; }
   .values-grid { grid-template-columns: repeat(2, 1fr); }
-  /* "What we serve": no sticky — vertical flow (badge · heading · image · cards) */
-  .serve-layout { grid-template-columns: 1fr; gap: clamp(28px, 4vw, 40px); }
-  .serve-aside { position: static; top: auto; }
-  .serve-collage { max-width: 560px; }
+  /* "What we serve": 2-col cards (icon-left, via the shared .qmf-card tablet
+     rules) and a 16:9 hero on tablet */
+  .serve-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .serve-hero { aspect-ratio: 16 / 9; }
 }
 @media (max-width: 767px) {
   .about2-shell { padding-inline: 25px; }
+  /* What we serve — single column + 4:3 hero on phones (must follow the
+     ≤1024 tablet rule above so it wins the cascade) */
+  .serve-grid { grid-template-columns: minmax(0, 1fr); }
+  .serve-hero { aspect-ratio: 4 / 3; }
+  .serve-sector .qmf-card-desc { max-width: none; }
   .about2-actions .btn { flex: 1 1 auto; justify-content: center; }
   .industry-row { gap: 14px; padding: 16px 4px; }
   .industry-row .it-name { font-size: 16.5px; }
@@ -3646,12 +3634,6 @@ section { position: relative; overflow-x: clip; }
      through the 1024 tablet ceiling (matches their existing ≤991 stacking):
      our story, services aside, nationwide map, contact */
   .about2-split { grid-template-columns: 1fr; gap: 48px; }
-  .serve-layout { grid-template-columns: 1fr; gap: clamp(28px, 4vw, 40px); }
-  /* What we serve — single image on tablet: keep the first, hide the rest, and
-     let it fill the full section width. */
-  .serve-collage { grid-template-columns: 1fr; grid-template-areas: "t" "a"; max-width: none; width: 100%; }
-  .serve-pic-2, .serve-pic-3, .serve-pic-4, .serve-pic-5 { display: none; }
-  .serve-pic-1 { width: 100%; }
   .contact-grid { grid-template-columns: 1fr; align-items: stretch; gap: clamp(28px, 6vw, 40px); }
   /* Contact info — two balanced columns like the reference (phone/email/office/
      factory fill the left, departments + working hours the right). The message
