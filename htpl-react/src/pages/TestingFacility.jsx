@@ -48,7 +48,7 @@ const TESTS = [
     ],
     images: [
       { src: 'tf-t1-a.jpg', cap: 'FIG. 01-A — PENETRATION TEST OF INTERNAL TANK WELDING' },
-      { src: 'tf-t1-b.jpg', cap: 'FIG. 01-B — DYE PENETRANT ON TANK SHELL' },
+      { src: 'tf-t1-b-hydro-tank.jpg', cap: 'FIG. 01-B — HYDROSTATIC TEST OF TANK' },
       { src: 'tf-t1-c.jpg', cap: 'FIG. 01-C — HYDROSTATIC TEST OF PIPELINE' },
     ],
   },
@@ -102,7 +102,7 @@ const TESTS = [
     images: [
       { src: 'tf-t3-a.jpg', cap: 'FIG. 03-A — ON THE HYDRAULIC RAMP' },
       { src: 'tf-t3-b.jpg', cap: 'FIG. 03-B — REAR QUARTER AT FULL TILT' },
-      { src: 'tf-t3-c-inspection.jpg', cap: 'FIG. 03-C — INSPECTION AT THE PLATFORM' },
+      { src: 'tf-t3-c-stability-rig.jpg', cap: 'FIG. 03-C — TILTED ON THE HYDRAULIC RIG' },
     ],
   },
   {
@@ -123,7 +123,7 @@ const TESTS = [
       ['Verifies', 'Parking brake'],
     ],
     images: [
-      { src: 'tf-t4-a-grade.jpg', cap: 'FIG. 04-A — TENDER STAGED FOR GRADE RUN' },
+      { src: 'tf-t4-a-grade-ramp.jpg', cap: 'FIG. 04-A — TENDER STAGED FOR GRADE RUN' },
       { src: 'tf-t4-b.jpg', cap: 'FIG. 04-B — FULLY LOADED ON THE GRADE' },
       { src: 'tf-t4-c.jpg', cap: 'FIG. 04-C — THE 1-IN-4 RAMP' },
     ],
@@ -148,7 +148,7 @@ const TESTS = [
     images: [
       { src: 'tf-t5-a.jpg', cap: 'FIG. 05-A — SHOWER ARRAY, NIGHT RUN' },
       { src: 'tf-t5-b.jpg', cap: 'FIG. 05-B — UNDER THE SHOWER ARRAY' },
-      { src: 'tf-t5-c-soak.jpg', cap: 'FIG. 05-C — FULL-SOAK CYCLE' },
+      { src: 'tf-t5-c-rain-rig.jpg', cap: 'FIG. 05-C — CAB UNDER THE RAIN RIG' },
     ],
   },
   {
@@ -198,7 +198,7 @@ const TESTS = [
       ['Applies to', 'Every tender'],
     ],
     images: [
-      { src: 'tf-t7-a.jpg', cap: 'FIG. 07-A — MONITOR LINE, FULL ARC' },
+      { src: 'tf-t7-a-monitor-throw.jpg', cap: 'FIG. 07-A — MONITOR THROW, FULL RANGE' },
       { src: 'tf-t7-b.jpg', cap: 'FIG. 07-B — THROW OVER THE YARD', pos: 'right center' },
       { src: 'tf-t7-c.jpg', cap: 'FIG. 07-C — FOAM MONITOR RUN' },
     ],
@@ -245,9 +245,9 @@ const TESTS = [
       ['Stage', 'Post-painting'],
     ],
     images: [
-      { src: 'tf-t9-a.jpg', cap: 'FIG. 09-A — INSPECTION AT THE PANEL' },
-      { src: 'tf-t9-b.jpg', cap: 'FIG. 09-B — GAUGE CHECK ON THE TANKER' },
-      { src: 'tf-t9-c.jpg', cap: 'FIG. 09-C — CALIBRATED THICKNESS GAUGE' },
+      { src: 'tf-t9-a-panel-check.jpg', cap: 'FIG. 09-A — GAUGE CHECK AT THE FOAM TANK' },
+      { src: 'tf-t9-b-gauge-reading.jpg', cap: 'FIG. 09-B — CALIBRATED GAUGE READING', pos: 'right center' },
+      { src: 'tf-t9-c-body-panel.jpg', cap: 'FIG. 09-C — READING AT THE BODY PANEL' },
     ],
   },
 ]
