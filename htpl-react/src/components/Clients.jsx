@@ -71,7 +71,7 @@ export default function Clients() {
   return (
     <section className="clients section-pad" id="clients">
       <div className="wrap">
-        <div className="sec-head reveal">
+        <div className="sec-head center reveal">
           <p className="eyebrow">
             <span className="dot"></span>Trusted partners
           </p>

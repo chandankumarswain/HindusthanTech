@@ -14,6 +14,7 @@ import Quality from '../components/Quality'
 import Reach from '../components/Reach'
 import Serve from '../components/Serve'
 import Clients from '../components/Clients'
+import Testimonials from '../components/Testimonials'
 import Commitment from '../components/Commitment'
 import CtaBand from '../components/CtaBand'
 import Contact from '../components/Contact'
@@ -40,6 +41,7 @@ export default function Landing() {
         <Reach />
         <Serve />
         <Clients />
+        <Testimonials />
         <Commitment />
         <CtaBand />
         <Contact />

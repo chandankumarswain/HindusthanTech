@@ -6,8 +6,8 @@ import { CATEGORIES, GROUPS, PRODUCTS } from '../data/portfolio'
 
 /* "Core Product Portfolio" (/products) — the Section 8 portfolio document
    rebuilt as a filterable product index: category tabs + search, one-open-at-a-time
-   accordion rows, each revealing an identity panel, a build sheet and its
-   photographs (click to enlarge in a lightbox).
+   accordion rows, each revealing an identity panel, a build sheet and every
+   photograph on record for that product (click to enlarge in a lightbox).
 
    Content is verbatim from the source document (src/data/portfolio.js). The
    reference's own palette/type (Saira Condensed · IBM Plex · lime) is dropped in
@@ -18,8 +18,8 @@ import { CATEGORIES, GROUPS, PRODUCTS } from '../data/portfolio'
 const IMG = '/images/portfolio/'
 
 const STATS = [
-  { n: '24', l: 'Variants' },
-  { n: '80', l: 'Photographs' },
+  { n: '25', l: 'Variants' },
+  { n: '73', l: 'Photographs' },
   { n: '35', l: 'Max tonnage · GVW' },
   { n: '18000', l: 'Max water · Liters' },
   { n: '6000', l: 'Max pump · LPM' },
@@ -28,6 +28,9 @@ const STATS = [
 /* URL-safe id for a product row: "Quick Response Unit" -> "p-quick-response-unit" */
 export const productAnchor = (name) =>
   'p-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+
+/* header preview strip shows at most this many thumbnails, then a "+N" pill */
+const THUMBS = 4
 
 const countOf = (id) =>
   id === 'all' ? PRODUCTS.length : PRODUCTS.filter((p) => p.cat === id).length
@@ -225,7 +228,8 @@ export default function ProductsPage() {
             <div className="pp-list" key={cat}>
               {shown.map((p, i) => {
                 const isOpen = open === p.name
-                const photos = p.photos.slice(0, 3) // cap at 3, min 1
+                const photos = p.photos                 // every photo on record (1–7)
+                const thumbs = photos.slice(0, THUMBS)  // header preview strip
                 return (
                   <article
                     className={`pp-row${isOpen ? ' is-open' : ''}`}
@@ -245,15 +249,20 @@ export default function ProductsPage() {
                         {p.sub && <em>{p.sub}</em>}
                       </span>
                       <span className="pp-thumbs" aria-hidden="true">
-                        {photos.map((f) => (
+                        {thumbs.map((f) => (
                           <img key={f} src={IMG + f} alt="" loading="lazy" decoding="async" />
                         ))}
+                        {photos.length > THUMBS && (
+                          <span className="pp-thumbs-more">+{photos.length - THUMBS}</span>
+                        )}
                       </span>
                     </button>
 
                     <div className="pp-row-body">
                       <div className="pp-clip">
-                        <div className={`pp-panels ${photos.length === 1 ? 'is-single' : 'is-multi'}`}>
+                        <div
+                          className={`pp-panels ${photos.length === 1 ? 'is-single' : 'is-multi'}${photos.length > 3 ? ' is-many' : ''}`}
+                        >
                           {/* identity */}
                           <div className="pp-panel pp-ident">
                             <p className="pp-ident-eyebrow">{p.eyebrow}</p>
@@ -289,7 +298,7 @@ export default function ProductsPage() {
                             )}
                           </div>
 
-                          {/* photographs — max 3, laid out per count (see .pp-panels modes) */}
+                          {/* photographs — 1 / 2–3 sit in one row, 4+ wrap into a grid (see .pp-panels modes) */}
                           <div className="pp-photos">
                             {photos.map((f, k) => (
                               <figure className="pp-panel pp-photo" key={f}>

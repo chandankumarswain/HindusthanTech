@@ -670,54 +670,38 @@ section { position: relative; overflow-x: clip; }
 .about2-link:hover .arrow { transform: translateX(4px); }
 .about2-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
-/* --- "What we serve": 2 rows × 1 column — hero image, then sector cards.
-   Cards borrow the .qmf-card design (Quality Management Framework) verbatim;
-   only the grid, hero and link row are defined here. --- */
+/* --- "What we serve": row 1 is the centred section heading (shared .sec-head
+   / .h-sec / .lead), row 2 is a compact sector-card grid. Cards borrow the
+   .qmf-card shell (Quality Management Framework) without the icon. --- */
 .serve-stack {
   margin-top: 26px;
   display: grid; grid-template-columns: minmax(0, 1fr);
   gap: clamp(28px, 3.5vw, 48px);
 }
-.serve-head { max-width: 760px; }
-.serve-head .about2-subhead { margin-top: 4px; }
-.serve-note {
-  margin: 12px auto 0; max-width: 52ch;
-  font-family: var(--serif); font-style: italic;
-  font-size: clamp(15px, 1.4vw, 19px); line-height: 1.4; color: var(--ink-2);
-}
-/* row 1 — single full-width image; aspect steps taller as the viewport narrows
-   so the tender is never cropped to a sliver */
-.serve-hero {
-  margin: 0; width: 100%; overflow: hidden; aspect-ratio: 21 / 9;
-  border-radius: clamp(18px, 2.4vw, 30px); border: 1px solid var(--line-2);
-  background: var(--paper); box-shadow: var(--shadow);
-}
-.serve-hero img {
-  display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 58%;
-  filter: saturate(0.95) contrast(1.02);
-  transition: transform .6s cubic-bezier(.2,.8,.2,1);
-}
-.serve-hero:hover img { transform: scale(1.03); }
-/* row 2 — sector cards (4 · 3 · 2 · 1 columns across breakpoints) */
+/* row 2 — sector cards (4 · 3 · 2 · 1 columns across breakpoints), kept short:
+   no icon, tighter padding, left-aligned copy */
 .serve-grid {
   list-style: none; margin: 0; padding: 0;
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(14px, 1.6vw, 22px);
+  gap: clamp(12px, 1.4vw, 18px);
 }
 .serve-grid > li { display: flex; min-width: 0; }
-.serve-sector { width: 100%; }
+.serve-sector {
+  width: 100%; align-items: flex-start; text-align: left;
+  padding: clamp(16px, 1.6vw, 20px) clamp(16px, 1.6vw, 22px);
+  border-radius: clamp(14px, 1.6vw, 20px);
+}
 .serve-sector .qmf-card-body, .serve-sector .qmf-card-tag,
 .serve-sector .qmf-card-title, .serve-sector .qmf-card-desc { display: block; }
-.serve-sector .qmf-card-body { display: flex; }
-.serve-sector .qmf-card-desc { max-width: 32ch; }
+.serve-sector .qmf-card-body { display: flex; align-items: flex-start; }
+.serve-sector .qmf-card-title { margin-top: 6px; font-size: clamp(15px, 1.2vw, 17px); }
+.serve-sector .qmf-card-desc { margin-top: 6px; font-size: 12.5px; line-height: 1.5; max-width: 32ch; }
+.serve-sector:hover { transform: translateY(-3px); }
 .serve-sector:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .serve-link-row { text-align: center; }
 .serve-link-row .about2-link { margin-top: 0; }
 @media (max-width: 1280px) {
   .serve-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .serve-hero img { transition: none; }
 }
 /* --- right column: image composition (real HTPL product visuals) --- */
 .about2-media { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 1.6vw, 20px); align-content: center; }
@@ -817,17 +801,16 @@ section { position: relative; overflow-x: clip; }
   /* tablet: stack story over images (content first), values to 2 columns */
   .about2-split { grid-template-columns: 1fr; gap: 48px; }
   .values-grid { grid-template-columns: repeat(2, 1fr); }
-  /* "What we serve": 2-col cards (icon-left, via the shared .qmf-card tablet
-     rules) and a 16:9 hero on tablet */
+  /* "What we serve": 2-col cards. Cards stay column-stacked (no icon, so the
+     shared row layout has nothing to sit beside) with the desktop padding. */
   .serve-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .serve-hero { aspect-ratio: 16 / 9; }
+  .serve-sector { flex-direction: column; gap: 0; padding: 18px 20px; }
 }
 @media (max-width: 767px) {
   .about2-shell { padding-inline: 25px; }
-  /* What we serve — single column + 4:3 hero on phones (must follow the
-     ≤1024 tablet rule above so it wins the cascade) */
+  /* What we serve — single column on phones (must follow the ≤1024 tablet
+     rule above so it wins the cascade) */
   .serve-grid { grid-template-columns: minmax(0, 1fr); }
-  .serve-hero { aspect-ratio: 4 / 3; }
   .serve-sector .qmf-card-desc { max-width: none; }
   .about2-actions .btn { flex: 1 1 auto; justify-content: center; }
   .industry-row { gap: 14px; padding: 16px 4px; }
@@ -2895,6 +2878,12 @@ section { position: relative; overflow-x: clip; }
   width: 62px; height: 42px; object-fit: cover; border-radius: 6px;
   border: 1px solid var(--line-2); filter: saturate(0.95) contrast(1.02);
 }
+/* "+N" pill after the first few thumbnails when a product has more photos */
+.pp-thumbs-more {
+  display: grid; place-items: center; width: 42px; height: 42px; border-radius: 6px;
+  border: 1px dashed var(--line-2); background: var(--paper);
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; color: var(--muted);
+}
 
 /* accordion body — grid-rows trick keeps it height-agnostic */
 .pp-row-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .42s cubic-bezier(.2,.8,.2,1); }
@@ -2913,6 +2902,11 @@ section { position: relative; overflow-x: clip; }
 /* photos container — equal-width columns for however many (1–3) are present */
 .pp-photos { display: flex; gap: clamp(12px, 1.4vw, 18px); }
 .pp-photos > .pp-photo { flex: 1 1 0; min-width: 0; }
+/* 4+ photos → a wrapping 3-up gallery grid (2-up tablet, 1-up phone) so every
+   photograph on record is shown; the open panel grows to fit instead of locking
+   to one viewport (see the desktop override below). */
+.pp-panels.is-many .pp-photos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pp-panels.is-many .pp-photo-btn img { aspect-ratio: 4 / 3; height: auto; }
 
 .pp-panel { animation: ppRise .5s cubic-bezier(.2,.8,.2,1) both; }
 .pp-row:not(.is-open) .pp-panel { animation: none; }
@@ -2965,7 +2959,8 @@ section { position: relative; overflow-x: clip; }
   font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase;
   color: rgba(255,255,255,0.82);
 }
-.pp-photo figcaption b { color: #fff; font-weight: 600; }
+.pp-photo figcaption span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pp-photo figcaption b { color: #fff; font-weight: 600; flex: none; }
 
 .pp-empty { font-family: var(--mono); font-size: 13px; color: var(--muted); padding: 40px 4px; }
 
@@ -3008,6 +3003,10 @@ section { position: relative; overflow-x: clip; }
   .pp-photos { min-height: 0; }
   .pp-photo-btn { height: 100%; }
   .pp-photo-btn img { height: 100%; aspect-ratio: auto; }
+  /* 4+ photos: release the one-viewport lock and let the gallery rows stack */
+  .pp-row.is-open .pp-panels.is-many { height: auto; min-height: 0; grid-template-rows: auto auto; }
+  .pp-panels.is-many .pp-photo-btn { height: auto; }
+  .pp-panels.is-many .pp-photo-btn img { height: auto; aspect-ratio: 4 / 3; }
 }
 
 /* tablet (≤1024) — 50px gutters (via .ap-shell). Both modes fit content:
@@ -3017,6 +3016,7 @@ section { position: relative; overflow-x: clip; }
   .pp-groups-grid { grid-template-columns: 1fr; }
   .pp-panels.is-single, .pp-panels.is-multi { grid-template-columns: 1fr 1.5fr; }
   .pp-panels.is-single .pp-photos { grid-column: 1 / -1; }
+  .pp-panels.is-many .pp-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pp-statsband { grid-template-columns: repeat(3, 1fr); }
   .pp-page .ap-sb, .pp-page .ap-sb:first-child { border-left: none; }
   .pp-search { flex: 1 1 100%; }
@@ -3030,6 +3030,7 @@ section { position: relative; overflow-x: clip; }
      so it must switch to a single-column grid for the row/1fr rules to apply
      (otherwise the 2–3 photos squash into one cramped row). */
   .pp-photos { display: grid; grid-auto-flow: row; grid-template-columns: 1fr; }
+  .pp-panels.is-many .pp-photos { grid-template-columns: 1fr; }
   .pp-statsband { grid-template-columns: 1fr; row-gap: 22px; }
   .pp-thumbs { display: none; }               /* keep the row readable on phones */
   .pp-row-head { grid-template-columns: 20px 1fr; gap: 12px; }
@@ -3563,6 +3564,179 @@ section { position: relative; overflow-x: clip; }
   .pm-page .ap-statsband { grid-template-columns: 1fr; row-gap: 26px; }
   .pm-page .ap-sb, .pm-page .ap-sb:first-child { border-left: none; }
 }
+
+/* ============================================================
+   TESTIMONIALS — "What our clients say" (after the client logos)
+   Centre-focus carousel: raised centre card, receded neighbours,
+   arrows in the side gutters, dots below. Same breakpoints as the
+   rest of the site — desktop >1024 · tablet 768–1024 · mobile ≤767.
+   ============================================================ */
+.tst { background: var(--bone); }
+
+/* prev | stage | next  /  · dots · */
+.tst-body {
+  margin-top: clamp(36px, 5vw, 60px);
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) 46px;
+  grid-template-areas:
+    "prev stage next"
+    ".    dots  .";
+  align-items: center;
+  column-gap: clamp(16px, 2.5vw, 32px);
+  row-gap: clamp(24px, 3vw, 36px);
+}
+.tst-prev { grid-area: prev; }
+.tst-next { grid-area: next; }
+.tst-dots { grid-area: dots; }
+
+/* stage — every card sits in the same grid cell, then shifts by data-pos,
+   so the stage is always as tall as its tallest card (no fixed height) */
+.tst-stage {
+  grid-area: stage;
+  display: grid;
+  min-width: 0;
+  padding-block: 18px;               /* room for the raised centre card's shadow */
+  --tst-card-w: 33%;
+  --tst-shift: 106%;
+  --tst-side-scale: .9;
+}
+.tst-card {
+  grid-area: 1 / 1;
+  width: var(--tst-card-w);
+  justify-self: center;
+  display: flex; flex-direction: column;
+  padding: clamp(22px, 2.4vw, 30px);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition:
+    transform .55s cubic-bezier(.22,.61,.36,1),
+    opacity .45s ease,
+    box-shadow .45s ease;
+  will-change: transform, opacity;
+}
+.tst-card[data-pos="center"] {
+  z-index: 3; cursor: default;
+  transform: translateX(0) scale(1);
+  box-shadow: var(--shadow-lg);
+}
+.tst-card[data-pos="left"]  { z-index: 2; opacity: .78; transform: translateX(calc(-1 * var(--tst-shift))) scale(var(--tst-side-scale)); }
+.tst-card[data-pos="right"] { z-index: 2; opacity: .78; transform: translateX(var(--tst-shift)) scale(var(--tst-side-scale)); }
+.tst-card[data-pos="hidden"] { z-index: 1; opacity: 0; pointer-events: none; transform: translateX(0) scale(.8); }
+.tst-card[data-pos="left"]:hover, .tst-card[data-pos="right"]:hover { opacity: 1; }
+
+/* card internals */
+.tst-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.tst-quote {
+  font-family: var(--serif);
+  font-size: clamp(54px, 5vw, 72px);
+  line-height: .62;
+  color: var(--accent);
+  margin-top: 14px;
+}
+.tst-count {
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: .06em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.tst-count b { color: var(--ink); font-weight: 600; }
+.tst-text {
+  font-family: var(--sans);
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 18px 0 0;
+  text-wrap: pretty;
+}
+.tst-foot {
+  display: flex; align-items: center; gap: 14px;
+  margin-top: 22px; padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+/* logo where the avatar would be — same contain-and-centre rule as the client wall */
+.tst-logo-box {
+  flex: 0 0 auto;
+  width: 60px; height: 60px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 8px;
+  background: var(--bone); border: 1px solid var(--line); border-radius: 12px;
+}
+.tst-logo { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
+.tst-who { display: flex; flex-direction: column; min-width: 0; }
+.tst-name {
+  font-family: var(--serif);
+  font-size: clamp(18px, 1.4vw, 21px);
+  font-weight: 500; letter-spacing: -0.01em; line-height: 1.15;
+  color: var(--ink);
+}
+.tst-meta {
+  font-family: var(--sans);
+  font-size: 13px; line-height: 1.4;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* arrows + dots — same controls language as the fleet carousel */
+.tst-nav {
+  width: 46px; height: 46px; border-radius: 50%; flex: 0 0 auto;
+  border: 1.5px solid var(--line); background: var(--paper); color: var(--ink);
+  display: grid; place-items: center; cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: border-color .25s, background .25s, transform .25s, color .25s;
+}
+.tst-nav:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+.tst-nav:active { transform: translateY(0); }
+.tst-nav svg { width: 18px; height: 18px; }
+.tst-dots { display: flex; align-items: center; justify-content: center; gap: 9px; flex-wrap: wrap; }
+.tst-dot {
+  width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+  background: #cfc9bd;
+  transition: width .3s cubic-bezier(.22,.61,.36,1), background .3s, border-radius .3s;
+}
+.tst-dot:hover { background: #a59f93; }
+.tst-dot[aria-current="true"] { width: 26px; border-radius: 5px; background: var(--accent); }
+.tst-nav:focus-visible, .tst-dot:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* ---- tablet 768–1024: one full card + clipped side peeks; content-height section ---- */
+@media (max-width: 1024px) {
+  #testimonials { min-height: auto; }
+  .tst-body { grid-template-columns: 44px minmax(0, 1fr) 44px; }
+  .tst-stage { overflow: hidden; --tst-card-w: 62%; --tst-shift: 76%; --tst-side-scale: .86; }
+  .tst-card[data-pos="left"], .tst-card[data-pos="right"] { opacity: .5; }
+  .tst-nav { width: 44px; height: 44px; }
+}
+
+/* ---- mobile ≤767: single card, swipe, arrows flank the dots below ---- */
+@media (max-width: 767px) {
+  .tst-body {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    grid-template-areas:
+      "stage stage stage"
+      "prev  dots  next";
+    column-gap: 14px;
+    row-gap: 22px;
+  }
+  .tst-stage { padding-block: 12px; --tst-card-w: 100%; --tst-shift: 112%; --tst-side-scale: 1; }
+  .tst-card { padding: 22px 20px; }
+  .tst-card[data-pos="left"], .tst-card[data-pos="right"] { opacity: 0; pointer-events: none; }
+  .tst-quote { font-size: 50px; margin-top: 12px; }
+  .tst-text { font-size: 15px; }
+  .tst-logo-box { width: 52px; height: 52px; padding: 7px; }
+  .tst-name { font-size: 18px; }
+}
+@media (max-width: 479px) {
+  .tst-card { padding: 20px 18px; }
+  .tst-meta { font-size: 12px; }
+  .tst-nav { width: 40px; height: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tst-card { transition: opacity .3s ease; }
+}
+
 
 /* ============================================================
    TABLET VIEW — unified gutter (breakpoint: ≤1024px)

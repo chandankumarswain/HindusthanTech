@@ -1,6 +1,8 @@
-/* HTPL core product portfolio — 23 variants, extracted verbatim from the
+/* HTPL core product portfolio — 25 variants, extracted verbatim from the
    supplied Section 8 portfolio document. Photographs live in
-   /public/images/portfolio (exported from the same source).
+   /public/images/portfolio, named <product-slug>-<n>.jpg. The 15 vehicle sets
+   refreshed on 2026-09-19 come from the client's "final product" folder (one
+   set per product, numbered as supplied, camera watermarks removed).
 
    cat: 'ff' fire-fighting · 'pump' pumps & portable · 'spv' special purpose */
 
@@ -49,7 +51,7 @@ export const PRODUCTS = [
     ],
     photos: [
       'small-water-tender-1.jpg',
-      'small-water-tender-2-new.jpg',
+      'small-water-tender-2.jpg',
       'small-water-tender-3.jpg',
     ],
     find: 'small water tender mini motor fire engine fire-fighting vehicles chassis gvw range 9 to 11 ton water tank capacity up to 3000 liters pump capacity up to 1800 lpm @ 7 bar',
@@ -71,6 +73,9 @@ export const PRODUCTS = [
     ],
     photos: [
       'water-tender-1.jpg',
+      'water-tender-2.jpg',
+      'water-tender-3.jpg',
+      'water-tender-4.jpg',
     ],
     find: 'water tender fire-fighting vehicles chassis gvw range up to 18.5 ton water tank capacity up to 7000 liters pump capacity up to 4000 lpm @ 7 bar lp, 300–400 lpm @ 40 bar hp uhpp pump (optional) 38–150 lpm @ 100 bar additional fitment light mast, cable winch',
   },
@@ -92,6 +97,7 @@ export const PRODUCTS = [
     photos: [
       'water-bowser-1.jpg',
       'water-bowser-2.jpg',
+      'water-bowser-3.jpg',
     ],
     find: 'water bowser fire-fighting vehicles chassis gvw range up to 35 ton water tank capacity up to 18000 liters pump capacity up to 4000 lpm @ 7 bar lp, 300–400 lpm @ 40 bar hp uhpp pump (optional) 38–150 lpm @ 100 bar additional fitment light mast, cable winch',
   },
@@ -114,6 +120,8 @@ export const PRODUCTS = [
     photos: [
       'water-bowser-boom-tower-1.jpg',
       'water-bowser-boom-tower-2.jpg',
+      'water-bowser-boom-tower-3.jpg',
+      'water-bowser-boom-tower-4.jpg',
     ],
     find: 'water bowser with boom tower fire-fighting vehicles chassis gvw range up to 35 ton water tank capacity up to 18000 liters pump capacity up to 6000 lpm @ 7 bar lp, 300–400 lpm @ 40 bar hp boom working height 15–28 meter monitor capacity 1250 gpm @ 7 bar with wireless operation additional fitment light mast',
   },
@@ -133,6 +141,7 @@ export const PRODUCTS = [
     ],
     photos: [
       'small-foam-tender-1.jpg',
+      'small-foam-tender-2.jpg',
     ],
     find: 'small foam tender fire-fighting vehicles chassis gvw range up to 12 ton water tank capacity up to 2500 liters foam tank capacity up to 500 liters pump capacity up to 1800 lpm @ 7 bar lp',
   },
@@ -177,6 +186,7 @@ export const PRODUCTS = [
     photos: [
       'industrial-foam-tender-1.jpg',
       'industrial-foam-tender-2.jpg',
+      'industrial-foam-tender-3.jpg',
     ],
     find: 'industrial foam tender fire-fighting vehicles chassis gvw range up to 28 ton water tank capacity up to 5000–10000 liters foam tank capacity up to 1000–6000 liters pump capacity up to 6000 lpm @ 7 bar lp, 300–400 lpm @ 40 bar hp uhpp pump (optional) 38–150 lpm @ 100 bar additional fitment light mast, cable winch',
   },
@@ -201,8 +211,6 @@ export const PRODUCTS = [
       'multi-purpose-fire-tender-1.jpg',
       'multi-purpose-fire-tender-2.jpg',
       'multi-purpose-fire-tender-3.jpg',
-      'multi-purpose-fire-tender-4.jpg',
-      'multi-purpose-fire-tender-5.jpg',
     ],
     find: 'multi-purpose fire tender fire-fighting vehicles chassis gvw range 18.5 to 28 ton water tank capacity 4000–10000 liters foam tank capacity 500–6000 liters dcp system 150 to 1000 kg with n₂ expellant system pump capacity 2250–6000 lpm @ 7 bar lp, 300–400 lpm @ 40 bar hp uhpp pump (optional) 38–150 lpm @ 100 bar additional fitment light mast, cable winch',
   },
@@ -224,6 +232,9 @@ export const PRODUCTS = [
     photos: [
       'dcp-fire-tender-1.jpg',
       'dcp-fire-tender-2.jpg',
+      'dcp-fire-tender-3.jpg',
+      'dcp-fire-tender-4.jpg',
+      'dcp-fire-tender-5.jpg',
     ],
     find: 'dcp fire tender fire-fighting vehicles chassis gvw range 18.5 to 28 ton dcp vessel capacity 2000 kg (2×1000) to 4000 kg (2×2000) expellant bank 50 liters n₂, 16 to 32 nos hose reel 2/4 nos on either side with dcp gun (discharge 3 to 5 kg per sec) dcp monitor discharge up to 40 kg/s',
   },
@@ -247,6 +258,7 @@ export const PRODUCTS = [
       'foam-nurser-1.jpg',
       'foam-nurser-2.jpg',
       'foam-nurser-3.jpg',
+      'foam-nurser-4.jpg',
     ],
     find: 'foam nurser fire-fighting vehicles chassis gvw range 18.5 to 28 ton foam tank capacity 5000 to 16000 liters foam pump 600 lpm @ 4 to 12 bar hose reel 1 nos foam monitor discharge up to 2000 gpm from hydrant inlet from on-board system with 3% foam induction auxiliary foam induction on either side',
   },
@@ -268,6 +280,7 @@ export const PRODUCTS = [
     photos: [
       'ultra-high-pressure-mist-tender-1.jpg',
       'ultra-high-pressure-mist-tender-2.jpg',
+      'ultra-high-pressure-mist-tender-3.jpg',
     ],
     find: 'ultra-high pressure mist tender fire-fighting vehicles chassis gvw range 5 to 12 ton water tank capacity 1500–2500 liters foam tank capacity 200–500 liters uhpp pump 38–150 lpm @ 100 bar additional fitment light mast, cable winch',
   },
@@ -293,9 +306,6 @@ export const PRODUCTS = [
       'quick-response-unit-2.jpg',
       'quick-response-unit-3.jpg',
       'quick-response-unit-4.jpg',
-      'quick-response-unit-5.jpg',
-      'quick-response-unit-6.jpg',
-      'quick-response-unit-7.jpg',
     ],
     find: 'quick response unit water mist unit / qrv fire-fighting vehicles chassis gvw range 2 to 3 ton water tank capacity 500–600 liters foam tank capacity 50–100 liters uhpp pump 38–42 lpm @ 100 bar prime mover gasoline powered 13 hp or higher hose reel 2 × 60 meter length with gun (jet & fog) additional fitment cable winch',
   },
@@ -317,6 +327,7 @@ export const PRODUCTS = [
       'emergency-rescue-tender-1.jpg',
       'emergency-rescue-tender-2.jpg',
       'emergency-rescue-tender-3.jpg',
+      'emergency-rescue-tender-4.jpg',
     ],
     find: 'emergency rescue tender fire-fighting vehicles chassis gvw range 2 to 18.5 ton alternator unit 5 to 20 kva equipment as per is or customized such as spreader, cutter & other major rescue tools additional fitment cable winch, light mast',
   },
@@ -333,6 +344,8 @@ export const PRODUCTS = [
       'truck-fire-fighting-tff-1.jpg',
       'truck-fire-fighting-tff-2.jpg',
       'truck-fire-fighting-tff-3.jpg',
+      'truck-fire-fighting-tff-4.jpg',
+      'truck-fire-fighting-tff-5.jpg',
     ],
     find: 'truck fire fighting (tff) large / small fire-fighting vehicles',
   },
@@ -353,8 +366,6 @@ export const PRODUCTS = [
       'trailer-fire-pumps-2.jpg',
       'trailer-fire-pumps-3.jpg',
       'trailer-fire-pumps-4.jpg',
-      'trailer-fire-pumps-5.jpg',
-      'trailer-fire-pumps-6.jpg',
     ],
     find: 'trailer fire pumps pumps & portable equipment pump capacity 1600–2250 lpm @ 7 to 8.8 bar is standard is : 944',
   },
@@ -373,8 +384,6 @@ export const PRODUCTS = [
     photos: [
       'portable-fire-pump-1.jpg',
       'portable-fire-pump-2.jpg',
-      'portable-fire-pump-3.jpg',
-      'portable-fire-pump-4.jpg',
     ],
     find: 'portable fire pump pumps & portable equipment pump capacity 275–800 lpm @ 4 to 5 bar is standard is : 942',
   },
@@ -426,7 +435,6 @@ export const PRODUCTS = [
       'mobile-oil-spillage-recovery-unit-1.jpg',
       'mobile-oil-spillage-recovery-unit-2.jpg',
       'mobile-oil-spillage-recovery-unit-3.jpg',
-      'mobile-oil-spillage-recovery-unit-4.jpg',
     ],
     find: 'mobile oil spillage recovery unit mosru / gulley sucker special purpose vehicles chassis gvw range 10 to 18.5 ton sludge tank capacity 3000–6000 liters vacuum pump air cooled / air cum water cooled type hydraulic system pto driven alternator unit gasoline powered 2 to 5 kva additional fitment light mast, gas detector',
   },
@@ -510,5 +518,22 @@ export const PRODUCTS = [
       'oil-tanker-2.jpg',
     ],
     find: 'oil tanker special purpose vehicles',
+  },
+  {
+    cat: 'spv',
+    name: 'Miscellaneous Special Purpose Vehicles & Equipment',
+    sub: 'Mobile Service Van · Explosive Van · MBDV · Foam Trolley',
+    eyebrow: 'Special Purpose Vehicles',
+    discN: 'SPV',
+    discL: 'special purpose',
+    specIntro: 'Built to order.',
+    sheet: [],
+    photos: [
+      'misc-special-purpose-1.jpg',
+      'misc-special-purpose-2.jpg',
+      'misc-special-purpose-3.jpg',
+      'misc-special-purpose-4.jpg',
+    ],
+    find: 'miscellaneous special purpose vehicles & equipment mobile service van explosive van mbdv mobile blood donation van foam trolley special purpose vehicles',
   },
 ]
