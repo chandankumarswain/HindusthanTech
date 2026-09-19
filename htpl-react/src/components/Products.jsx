@@ -123,7 +123,11 @@ export default function Products() {
             Explore our complete <em>product range</em> across industries.
           </p>
           <div className="products-footer-cta">
-            <a href="#contact" className="btn btn-ghost on-dark">
+            <a
+              href="/HTPL-brochure.pdf"
+              download="Hindusthan-Tech-Company-Profile.pdf"
+              className="btn btn-ghost on-dark"
+            >
               Download brochure <span className="arrow">↓</span>
             </a>
             <a href="/products" className="btn btn-primary">

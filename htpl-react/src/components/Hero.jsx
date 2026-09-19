@@ -31,9 +31,13 @@ const HERO = {
     'vehicles for over three decades — engineered for refineries, ports, defence ' +
     'establishments, and the front line.',
   primary_cta: { label: 'Explore products', href: '#products' },
-  // No brochure asset ships with the repo yet — point at contact so the button
-  // never 404s. Swap href for the real PDF (e.g. "/HTPL-brochure.pdf") when ready.
-  secondary_cta: { label: 'Download brochure', href: '#contact' },
+  // Brochure PDF lives in /public so it is served as a static asset. The
+  // `download` filename is what the user's browser saves the file as.
+  secondary_cta: {
+    label: 'Download brochure',
+    href: '/HTPL-brochure.pdf',
+    download: 'Hindusthan-Tech-Company-Profile.pdf',
+  },
   image: {
     src: '/images/hero-water-tender.webp',
     alt: 'HTPL Ashok Leyland 1920 water tender fire truck',
@@ -195,6 +199,7 @@ export default function Hero() {
             </a>
             <a
               href={HERO.secondary_cta.href}
+              download={HERO.secondary_cta.download}
               className="inline-flex items-center justify-center gap-2.5 rounded-full
                          border border-[rgba(24,24,26,0.18)] bg-transparent px-7 py-[15px]
                          text-[15px] font-semibold text-ink transition
